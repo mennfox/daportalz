@@ -26,7 +26,7 @@ This project is a Linux-based dashboard designed to monitor and visualize enviro
    git clone https://github.com/mennfox/daportalz.git
    cd daportalz
 pip install -r requirements.txt
-python dashboard.py
+python dpz.py
 🔒 Notes
 This project is part of a personal automation system for grow tent management. It emphasizes modularity, transparency, and resilience — especially in sensor failure or system restarts.
 
