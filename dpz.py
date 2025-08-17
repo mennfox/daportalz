@@ -17,6 +17,9 @@ import adafruit_hts221
 import adafruit_scd4x
 import adafruit_bh1750
 from adafruit_as7341 import AS7341
+import adafruit_sht31d
+import adafruit_mcp9808
+import adafruit_adt7410
 
 import smbus2
 import bme280
@@ -28,6 +31,9 @@ scd4x = adafruit_scd4x.SCD4X(i2c)
 scd4x.start_periodic_measurement()
 bh1750 = adafruit_bh1750.BH1750(i2c)
 as7341 = AS7341(i2c)
+sht31 = adafruit_sht31d.SHT31D(i2c, address=0x44)
+mcp9808 = adafruit_mcp9808.MCP9808(i2c)
+adt7410 = adafruit_adt7410.ADT7410(i2c)
 
 bme_bus = smbus2.SMBus(1)
 bme_address = 0x76
@@ -62,6 +68,21 @@ def colorize(value, thresholds=(50, 75)):
     else:
         return f"[red]{value:.1f}%[/red]"
 
+def bar_visual(value, max_value=100, width=20, color="white"):
+    filled_len = min(int((value / max_value) * width), width)
+    bar = "█" * filled_len + " " * (width - filled_len)
+    return Text(bar, style=color)
+
+def zone_color(value, zones):
+    for threshold, color in zones:
+        if value <= threshold:
+            return color
+    return zones[-1][1]
+
+def format_zone_bar(value, zones, label="", unit="", width=20):
+    color = zone_color(value, zones)
+    bar = bar_visual(value, max_value=zones[-1][0], width=width, color=color)
+    return Text(f"{label:<10} {value:.1f}{unit:<3} ", style=color) + bar
 def get_cpu_panel():
     cpu_percents = psutil.cpu_percent(percpu=True)
     table = Table(title="[bold cyan]CPU Usage[/bold cyan]", expand=True)
@@ -73,7 +94,7 @@ def get_cpu_panel():
         color = core_colors[i] if i < len(core_colors) else "white"
         graph = sparkline(cpu_histories[i], color=color)
         table.add_row(f"Core {i}", colorize(percent), graph)
-    return Panel(table, border_style="cyan")
+    return Panel(table, border_style="grey37")
 
 def get_memory_panel():
     mem = psutil.virtual_memory()
@@ -90,7 +111,7 @@ def get_memory_panel():
         colorize(mem.percent),
         graph
     )
-    return Panel(table, border_style="magenta")
+    return Panel(table, border_style="grey37")
 
 def get_disk_panel():
     usage = psutil.disk_usage("/")
@@ -107,7 +128,7 @@ def get_disk_panel():
         colorize(usage.percent),
         graph
     )
-    return Panel(table, border_style="yellow")
+    return Panel(table, border_style="grey37")
 
 def get_network_panel():
     global prev_net
@@ -125,7 +146,7 @@ def get_network_panel():
     table.add_column("Graph")
     table.add_row("Sent", f"[cyan]{sent:.1f}[/cyan]", graph_sent)
     table.add_row("Recv", f"[magenta]{recv:.1f}[/magenta]", graph_recv)
-    return Panel(table, border_style="green")
+    return Panel(table, border_style="grey37")
 
 def get_system_panel():
     load1, load5, load15 = os.getloadavg()
@@ -139,15 +160,14 @@ def get_system_panel():
     table.add_row("Load Avg", f"[white]{load1:.2f}, {load5:.2f}, {load15:.2f}[/white]")
     table.add_row("Uptime", f"[white]{hours}h {minutes}m[/white]")
     table.add_row("Time", f"[white]{now}[/white]")
-    return Panel(table, border_style="blue")
-# SCD4x update loop
+    return Panel(table, border_style="grey37")
 def update_scd4x_loop():
     while True:
         time.sleep(SCD4X_REFRESH)
         if scd4x.data_ready:
             environment_data["CO₂"] = f"{scd4x.CO2} ppm"
-            scd4x_data["Temperature"] = f"{scd4x.temperature:.1f}°C"
-            scd4x_data["Humidity"] = f"{scd4x.relative_humidity:.1f}%"
+            scd4x_data["Temperature"] = scd4x.temperature
+            scd4x_data["Humidity"] = scd4x.relative_humidity
         else:
             environment_data["CO₂"] = "Not ready"
             scd4x_data["Temperature"] = "-"
@@ -157,10 +177,7 @@ def get_hts221_stats():
     try:
         temp = hts.temperature
         humidity = hts.relative_humidity
-        return {
-            "Temperature": f"{temp:.2f}°C",
-            "Humidity": f"{humidity:.2f}% rH"
-        }
+        return {"Temperature": temp, "Humidity": humidity}
     except Exception as e:
         return {"Sensor Error": str(e)}
 
@@ -168,10 +185,7 @@ def get_bme280_stats():
     try:
         data = bme280.sample(bme_bus, bme_address, bme_calibration)
         environment_data["Pressure"] = f"{data.pressure:.2f} hPa"
-        return {
-            "Temperature": f"{data.temperature:.2f}°C",
-            "Humidity": f"{data.humidity:.2f}%"
-        }
+        return {"Temperature": data.temperature, "Humidity": data.humidity}
     except Exception as e:
         return {"Sensor Error": str(e)}
 
@@ -203,33 +217,90 @@ def get_as7341_panel():
             line.append(bar, style=color)
             lines.append(line)
 
-        return Panel(Text("\n").join(lines), title="🌈 AS7341 Spectral Sensor", border_style="bright_white")
+        return Panel(Text("\n").join(lines), title="🌈 AS7341 Spectral Sensor", border_style="grey37")
 
     except Exception as e:
-        return Panel(f"[red]Sensor Error: {e}", title="🌈 AS7341 Spectral Sensor", border_style="red")
-
-def build_environment_panel():
-    body = "\n".join([f"[bold white]{k}:[/bold white] {v}" for k, v in environment_data.items()])
-    return Panel(body, title="🌍 Environment", border_style="white")
-
+        return Panel(f"[red]Sensor Error: {e}", title="🌈 AS7341 Spectral Sensor", border_style="grey37")
 def build_hts221_panel():
     data = get_hts221_stats()
-    body = "\n".join([f"[bold green]{k}:[/bold green] {v}" for k, v in data.items()])
-    return Panel(body, title="💧 HTS221 Sensor", border_style="green")
+    if "Sensor Error" in data:
+        body = f"[red]{data['Sensor Error']}[/red]"
+    else:
+        zones_temp = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
+        zones_hum = [(30, "blue"), (50, "green"), (70, "yellow"), (100, "red")]
+        lines = [
+            format_zone_bar(data["Temperature"], zones_temp, label="Temp", unit="°C"),
+            format_zone_bar(data["Humidity"], zones_hum, label="Humidity", unit="%")
+        ]
+        body = Text("\n").join(lines)
+    return Panel(body, title="💧 HTS221 Sensor", border_style="grey37")
 
 def build_scd4x_panel():
-    body = "\n".join([f"[bold magenta]{k}:[/bold magenta] {v}" for k, v in scd4x_data.items()])
-    return Panel(body, title="🫁 SCD4x Sensor", border_style="magenta")
+    if isinstance(scd4x_data["Temperature"], float):
+        zones_temp = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
+        zones_hum = [(30, "blue"), (50, "green"), (70, "yellow"), (100, "red")]
+        lines = [
+            format_zone_bar(scd4x_data["Temperature"], zones_temp, label="Temp", unit="°C"),
+            format_zone_bar(scd4x_data["Humidity"], zones_hum, label="Humidity", unit="%")
+        ]
+        body = Text("\n").join(lines)
+    else:
+        body = f"[red]Sensor not ready[/red]"
+    return Panel(body, title="🫁 SCD4x Sensor", border_style="grey37")
 
 def build_bme280_panel():
     data = get_bme280_stats()
-    body = "\n".join([f"[bold yellow]{k}:[/bold yellow] {v}" for k, v in data.items()])
-    return Panel(body, title="🌤  BME280 Sensor", border_style="yellow")
+    if "Sensor Error" in data:
+        body = f"[red]{data['Sensor Error']}[/red]"
+    else:
+        zones_temp = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
+        zones_hum = [(30, "blue"), (50, "green"), (70, "yellow"), (100, "red")]
+        lines = [
+            format_zone_bar(data["Temperature"], zones_temp, label="Temp", unit="°C"),
+            format_zone_bar(data["Humidity"], zones_hum, label="Humidity", unit="%")
+        ]
+        body = Text("\n").join(lines)
+    return Panel(body, title="🌤 BME280 Sensor", border_style="grey37")
 
 def build_bh1750_panel():
     data = get_bh1750_stats()
     body = "\n".join([f"[bold blue]{k}:[/bold blue] {v}" for k, v in data.items()])
-    return Panel(body, title="🔆 BH1750 Sensor", border_style="blue")
+    return Panel(body, title="🔆 BH1750 Sensor", border_style="grey37")
+
+def build_environment_panel():
+    body = "\n".join([f"[bold white]{k}:[/bold white] {v}" for k, v in environment_data.items()])
+    return Panel(body, title="🌍 Environment", border_style="grey37")
+def build_room_panel():
+    try:
+        temp = sht31.temperature
+        humidity = sht31.relative_humidity
+        zones_temp = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
+        zones_hum = [(30, "blue"), (50, "green"), (70, "yellow"), (100, "red")]
+        lines = [
+            format_zone_bar(temp, zones_temp, label="Room Temp", unit="°C"),
+            format_zone_bar(humidity, zones_hum, label="Room Hum", unit="%")
+        ]
+        body = Text("\n").join(lines)
+    except Exception as e:
+        body = f"[red]Sensor Error: {e}[/red]"
+    return Panel(body, title="🏠 Room Stats (SHT31)", border_style="grey37")
+
+def build_tent_panel():
+    try:
+        temp_mcp = mcp9808.temperature
+        temp_adt = adt7410.temperature
+        data_bme = get_bme280_stats()
+        zones_temp = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
+        lines = [
+            format_zone_bar(temp_mcp, zones_temp, label="MCP9808", unit="°C"),
+            format_zone_bar(temp_adt, zones_temp, label="ADT7410", unit="°C"),
+        ]
+        if "Sensor Error" not in data_bme:
+            lines.append(format_zone_bar(data_bme["Temperature"], zones_temp, label="BME280", unit="°C"))
+        body = Text("\n").join(lines)
+    except Exception as e:
+        body = f"[red]Sensor Error: {e}[/red]"
+    return Panel(body, title="🌡 Tent Heatmap", border_style="grey37")
 def build_dashboard():
     layout = Table.grid(padding=(1, 2))
     layout.add_row(
@@ -247,7 +318,12 @@ def build_dashboard():
         get_as7341_panel(),
         build_environment_panel()
     )
+    layout.add_row(
+        build_room_panel(),
+        build_tent_panel()
+    )
     return layout
+
 def run_dashboard():
     threading.Thread(target=update_scd4x_loop, daemon=True).start()
     with Live(console=console, refresh_per_second=10, screen=True) as live:
@@ -257,5 +333,4 @@ def run_dashboard():
 
 if __name__ == "__main__":
     run_dashboard()
-
 
