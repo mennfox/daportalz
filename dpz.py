@@ -226,8 +226,8 @@ def build_hts221_panel():
     if "Sensor Error" in data:
         body = f"[red]{data['Sensor Error']}[/red]"
     else:
-        zones_temp = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
-        zones_hum = [(30, "blue"), (50, "green"), (70, "yellow"), (100, "red")]
+        zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
+        zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
         lines = [
             format_zone_bar(data["Temperature"], zones_temp, label="Temp", unit="°C"),
             format_zone_bar(data["Humidity"], zones_hum, label="Humidity", unit="%")
@@ -237,8 +237,8 @@ def build_hts221_panel():
 
 def build_scd4x_panel():
     if isinstance(scd4x_data["Temperature"], float):
-        zones_temp = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
-        zones_hum = [(30, "blue"), (50, "green"), (70, "yellow"), (100, "red")]
+        zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
+        zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
         lines = [
             format_zone_bar(scd4x_data["Temperature"], zones_temp, label="Temp", unit="°C"),
             format_zone_bar(scd4x_data["Humidity"], zones_hum, label="Humidity", unit="%")
@@ -253,8 +253,8 @@ def build_bme280_panel():
     if "Sensor Error" in data:
         body = f"[red]{data['Sensor Error']}[/red]"
     else:
-        zones_temp = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
-        zones_hum = [(30, "blue"), (50, "green"), (70, "yellow"), (100, "red")]
+        zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
+        zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
         lines = [
             format_zone_bar(data["Temperature"], zones_temp, label="Temp", unit="°C"),
             format_zone_bar(data["Humidity"], zones_hum, label="Humidity", unit="%")
@@ -275,7 +275,7 @@ def build_room_panel():
         temp = sht31.temperature
         humidity = sht31.relative_humidity
         zones_temp = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
-        zones_hum = [(30, "blue"), (50, "green"), (70, "yellow"), (100, "red")]
+        zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
         lines = [
             format_zone_bar(temp, zones_temp, label="Room Temp", unit="°C"),
             format_zone_bar(humidity, zones_hum, label="Room Hum", unit="%")
@@ -290,7 +290,7 @@ def build_tent_panel():
         temp_mcp = mcp9808.temperature
         temp_adt = adt7410.temperature
         data_bme = get_bme280_stats()
-        zones_temp = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
+        zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
         lines = [
             format_zone_bar(temp_mcp, zones_temp, label="MCP9808", unit="°C"),
             format_zone_bar(temp_adt, zones_temp, label="ADT7410", unit="°C"),
