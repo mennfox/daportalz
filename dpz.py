@@ -40,6 +40,18 @@ bme_bus = smbus2.SMBus(1)
 bme_address = 0x76
 bme_calibration = bme280.load_calibration_params(bme_bus, bme_address)
 
+# Historical max trackers for sensors
+max_values = {
+    "HTS221": {"Temp": float('-inf'), "Hum": float('-inf')},
+    "SCD4X": {"Temp": float('-inf'), "Hum": float('-inf')},
+    "BME280": {"Temp": float('-inf'), "Hum": float('-inf')},
+    "Room": {"Temp": float('-inf'), "Hum": float('-inf')},
+    "Tent": {
+        "MCP9808": float('-inf'),
+        "ADT7410": float('-inf'),
+        "BME280": float('-inf')
+    }
+}
 console = Console()
 REFRESH_INTERVAL = 1.0
 SCD4X_REFRESH = 10.0
@@ -227,22 +239,39 @@ def build_hts221_panel():
     if "Sensor Error" in data:
         body = f"[red]{data['Sensor Error']}[/red]"
     else:
+        temp = data["Temperature"]
+        hum = data["Humidity"]
+        max_values["HTS221"]["Temp"] = max(max_values["HTS221"]["Temp"], temp)
+        max_values["HTS221"]["Hum"] = max(max_values["HTS221"]["Hum"], hum)
+
         zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
         zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
+
         lines = [
-            format_zone_bar(data["Temperature"], zones_temp, label="Temp", unit="°C"),
-            format_zone_bar(data["Humidity"], zones_hum, label="Humidity", unit="%")
+            format_zone_bar(temp, zones_temp, label="Temp", unit="°C"),
+            Text(f"Max Temp: {max_values['HTS221']['Temp']:.1f}°C", style="bold green"),
+            format_zone_bar(hum, zones_hum, label="Humidity", unit="%"),
+            Text(f"Max Hum: {max_values['HTS221']['Hum']:.1f}%", style="bold cyan")
         ]
         body = Text("\n").join(lines)
     return Panel(body, title="💧 HTS221 Sensor", border_style="grey37")
 
 def build_scd4x_panel():
     if isinstance(scd4x_data["Temperature"], float):
+        temp = scd4x_data["Temperature"]
+        hum = scd4x_data["Humidity"]
+
+        max_values["SCD4X"]["Temp"] = max(max_values["SCD4X"]["Temp"], temp)
+        max_values["SCD4X"]["Hum"] = max(max_values["SCD4X"]["Hum"], hum)
+
         zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
         zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
+
         lines = [
-            format_zone_bar(scd4x_data["Temperature"], zones_temp, label="Temp", unit="°C"),
-            format_zone_bar(scd4x_data["Humidity"], zones_hum, label="Humidity", unit="%")
+            format_zone_bar(temp, zones_temp, label="Temp", unit="°C"),
+            Text(f"Max Temp: {max_values['SCD4X']['Temp']:.1f}°C", style="bold green"),
+            format_zone_bar(hum, zones_hum, label="Humidity", unit="%"),
+            Text(f"Max Hum: {max_values['SCD4X']['Hum']:.1f}%", style="bold cyan")
         ]
         body = Text("\n").join(lines)
     else:
@@ -254,11 +283,20 @@ def build_bme280_panel():
     if "Sensor Error" in data:
         body = f"[red]{data['Sensor Error']}[/red]"
     else:
+        temp = data["Temperature"]
+        hum = data["Humidity"]
+
+        max_values["BME280"]["Temp"] = max(max_values["BME280"]["Temp"], temp)
+        max_values["BME280"]["Hum"] = max(max_values["BME280"]["Hum"], hum)
+
         zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
         zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
+
         lines = [
-            format_zone_bar(data["Temperature"], zones_temp, label="Temp", unit="°C"),
-            format_zone_bar(data["Humidity"], zones_hum, label="Humidity", unit="%")
+            format_zone_bar(temp, zones_temp, label="Temp", unit="°C"),
+            Text(f"Max Temp: {max_values['BME280']['Temp']:.1f}°C", style="bold green"),
+            format_zone_bar(hum, zones_hum, label="Humidity", unit="%"),
+            Text(f"Max Hum: {max_values['BME280']['Hum']:.1f}%", style="bold cyan")
         ]
         body = Text("\n").join(lines)
     return Panel(body, title="🌤 BME280 Sensor", border_style="grey37")
@@ -271,37 +309,59 @@ def build_bh1750_panel():
 def build_environment_panel():
     body = "\n".join([f"[bold white]{k}:[/bold white] {v}" for k, v in environment_data.items()])
     return Panel(body, title="🌍 Environment", border_style="grey37")
+
 def build_room_panel():
     try:
         temp = sht31.temperature
         humidity = sht31.relative_humidity
+
+        max_values["Room"]["Temp"] = max(max_values["Room"]["Temp"], temp)
+        max_values["Room"]["Hum"] = max(max_values["Room"]["Hum"], humidity)
+
         zones_temp = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
         zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
+
         lines = [
             format_zone_bar(temp, zones_temp, label="Room Temp", unit="°C"),
-            format_zone_bar(humidity, zones_hum, label="Room Hum", unit="%")
+            Text(f"Max Temp: {max_values['Room']['Temp']:.1f}°C", style="bold green"),
+            format_zone_bar(humidity, zones_hum, label="Room Hum", unit="%"),
+            Text(f"Max Hum: {max_values['Room']['Hum']:.1f}%", style="bold cyan")
         ]
         body = Text("\n").join(lines)
     except Exception as e:
         body = f"[red]Sensor Error: {e}[/red]"
     return Panel(body, title="🏠 Room Stats (SHT31)", border_style="grey37")
-
 def build_tent_panel():
     try:
         temp_mcp = mcp9808.temperature
         temp_adt = adt7410.temperature
         data_bme = get_bme280_stats()
+        temp_bme = data_bme["Temperature"] if "Sensor Error" not in data_bme else None
+
+        max_values["Tent"]["MCP9808"] = max(max_values["Tent"]["MCP9808"], temp_mcp)
+        max_values["Tent"]["ADT7410"] = max(max_values["Tent"]["ADT7410"], temp_adt)
+        if temp_bme is not None:
+            max_values["Tent"]["BME280"] = max(max_values["Tent"]["BME280"], temp_bme)
+
         zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
+
         lines = [
             format_zone_bar(temp_mcp, zones_temp, label="MCP9808", unit="°C"),
+            Text(f"Max MCP: {max_values['Tent']['MCP9808']:.1f}°C", style="bold green"),
             format_zone_bar(temp_adt, zones_temp, label="ADT7410", unit="°C"),
+            Text(f"Max ADT: {max_values['Tent']['ADT7410']:.1f}°C", style="bold green")
         ]
-        if "Sensor Error" not in data_bme:
-            lines.append(format_zone_bar(data_bme["Temperature"], zones_temp, label="BME280", unit="°C"))
+        if temp_bme is not None:
+            lines.extend([
+                format_zone_bar(temp_bme, zones_temp, label="BME280", unit="°C"),
+                Text(f"Max BME: {max_values['Tent']['BME280']:.1f}°C", style="bold green")
+            ])
+
         body = Text("\n").join(lines)
     except Exception as e:
         body = f"[red]Sensor Error: {e}[/red]"
     return Panel(body, title="🌡 Tent Heatmap", border_style="grey37")
+
 def build_dashboard():
     layout = Table.grid(padding=(1, 2))
     layout.add_row(
