@@ -1,4 +1,3 @@
-# dpz Dashboard
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
@@ -95,7 +94,7 @@ def get_cpu_panel():
         color = core_colors[i] if i < len(core_colors) else "white"
         graph = sparkline(cpu_histories[i], color=color)
         table.add_row(f"Core {i}", colorize(percent), graph)
-    return Panel(table, border_style="grey37")
+    return Panel(table, border_style="cyan")
 
 def get_memory_panel():
     mem = psutil.virtual_memory()
@@ -112,7 +111,7 @@ def get_memory_panel():
         colorize(mem.percent),
         graph
     )
-    return Panel(table, border_style="grey37")
+    return Panel(table, border_style="magenta")
 
 def get_disk_panel():
     usage = psutil.disk_usage("/")
@@ -129,7 +128,7 @@ def get_disk_panel():
         colorize(usage.percent),
         graph
     )
-    return Panel(table, border_style="grey37")
+    return Panel(table, border_style="yellow")
 
 def get_network_panel():
     global prev_net
@@ -147,7 +146,7 @@ def get_network_panel():
     table.add_column("Graph")
     table.add_row("Sent", f"[cyan]{sent:.1f}[/cyan]", graph_sent)
     table.add_row("Recv", f"[magenta]{recv:.1f}[/magenta]", graph_recv)
-    return Panel(table, border_style="grey37")
+    return Panel(table, border_style="green")
 
 def get_system_panel():
     load1, load5, load15 = os.getloadavg()
@@ -161,7 +160,7 @@ def get_system_panel():
     table.add_row("Load Avg", f"[white]{load1:.2f}, {load5:.2f}, {load15:.2f}[/white]")
     table.add_row("Uptime", f"[white]{hours}h {minutes}m[/white]")
     table.add_row("Time", f"[white]{now}[/white]")
-    return Panel(table, border_style="grey37")
+    return Panel(table, border_style="blue")
 def update_scd4x_loop():
     while True:
         time.sleep(SCD4X_REFRESH)
@@ -218,28 +217,28 @@ def get_as7341_panel():
             line.append(bar, style=color)
             lines.append(line)
 
-        return Panel(Text("\n").join(lines), title="🌈 AS7341 Spectral Sensor", border_style="grey37")
+        return Panel(Text("\n").join(lines), title="🌈 AS7341 Spectral Sensor", border_style="bright_white")
 
     except Exception as e:
-        return Panel(f"[red]Sensor Error: {e}", title="🌈 AS7341 Spectral Sensor", border_style="grey37")
+        return Panel(f"[red]Sensor Error: {e}", title="🌈 AS7341 Spectral Sensor", border_style="red")
 def build_hts221_panel():
     data = get_hts221_stats()
     if "Sensor Error" in data:
         body = f"[red]{data['Sensor Error']}[/red]"
     else:
-        zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
-        zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
+        zones_temp = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
+        zones_hum = [(30, "blue"), (50, "green"), (70, "yellow"), (100, "red")]
         lines = [
             format_zone_bar(data["Temperature"], zones_temp, label="Temp", unit="°C"),
             format_zone_bar(data["Humidity"], zones_hum, label="Humidity", unit="%")
         ]
         body = Text("\n").join(lines)
-    return Panel(body, title="💧 HTS221 Sensor", border_style="grey37")
+    return Panel(body, title="💧 HTS221 Sensor", border_style="green")
 
 def build_scd4x_panel():
     if isinstance(scd4x_data["Temperature"], float):
-        zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
-        zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
+        zones_temp = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
+        zones_hum = [(30, "blue"), (50, "green"), (70, "yellow"), (100, "red")]
         lines = [
             format_zone_bar(scd4x_data["Temperature"], zones_temp, label="Temp", unit="°C"),
             format_zone_bar(scd4x_data["Humidity"], zones_hum, label="Humidity", unit="%")
@@ -247,15 +246,15 @@ def build_scd4x_panel():
         body = Text("\n").join(lines)
     else:
         body = f"[red]Sensor not ready[/red]"
-    return Panel(body, title="🫁 SCD4x Sensor", border_style="grey37")
+    return Panel(body, title="🫁 SCD4x Sensor", border_style="magenta")
 
 def build_bme280_panel():
     data = get_bme280_stats()
     if "Sensor Error" in data:
         body = f"[red]{data['Sensor Error']}[/red]"
     else:
-        zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
-        zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
+        zones_temp = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
+        zones_hum = [(30, "blue"), (50, "green"), (70, "yellow"), (100, "red")]
         lines = [
             format_zone_bar(data["Temperature"], zones_temp, label="Temp", unit="°C"),
             format_zone_bar(data["Humidity"], zones_hum, label="Humidity", unit="%")
@@ -266,17 +265,17 @@ def build_bme280_panel():
 def build_bh1750_panel():
     data = get_bh1750_stats()
     body = "\n".join([f"[bold blue]{k}:[/bold blue] {v}" for k, v in data.items()])
-    return Panel(body, title="🔆 BH1750 Sensor", border_style="grey37")
+    return Panel(body, title="🔆 BH1750 Sensor", border_style="blue")
 
 def build_environment_panel():
     body = "\n".join([f"[bold white]{k}:[/bold white] {v}" for k, v in environment_data.items()])
-    return Panel(body, title="🌍 Environment", border_style="grey37")
+    return Panel(body, title="🌍 Environment", border_style="white")
 def build_room_panel():
     try:
         temp = sht31.temperature
         humidity = sht31.relative_humidity
         zones_temp = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
-        zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
+        zones_hum = [(30, "blue"), (50, "green"), (70, "yellow"), (100, "red")]
         lines = [
             format_zone_bar(temp, zones_temp, label="Room Temp", unit="°C"),
             format_zone_bar(humidity, zones_hum, label="Room Hum", unit="%")
@@ -284,14 +283,14 @@ def build_room_panel():
         body = Text("\n").join(lines)
     except Exception as e:
         body = f"[red]Sensor Error: {e}[/red]"
-    return Panel(body, title="🏠 Room Stats (SHT31)", border_style="grey37")
+    return Panel(body, title="🏠 Room Stats (SHT31)", border_style="grey19")
 
 def build_tent_panel():
     try:
         temp_mcp = mcp9808.temperature
         temp_adt = adt7410.temperature
         data_bme = get_bme280_stats()
-        zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
+        zones_temp = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
         lines = [
             format_zone_bar(temp_mcp, zones_temp, label="MCP9808", unit="°C"),
             format_zone_bar(temp_adt, zones_temp, label="ADT7410", unit="°C"),
@@ -301,7 +300,7 @@ def build_tent_panel():
         body = Text("\n").join(lines)
     except Exception as e:
         body = f"[red]Sensor Error: {e}[/red]"
-    return Panel(body, title="🌡 Tent Heatmap", border_style="grey37")
+    return Panel(body, title="🌡 Tent Heatmap", border_style="bright_red")
 def build_dashboard():
     layout = Table.grid(padding=(1, 2))
     layout.add_row(
