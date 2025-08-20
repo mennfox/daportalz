@@ -451,7 +451,7 @@ def build_sensor_graph_panel():
         graphs.append(Text("     └───────────────────────────────────────────────"))
 
         graphs.append(Text("°C ─┬───────────────────────────────────────────────"))
-        graphs.append(Text(f"     │   {render_high_graph(temp_history, 29, 40).plain}"))
+        graphs.append(Text(f"     │   {render_high_graph(temp_history, 28.5, 40).plain}"))
         graphs.append(Text("     └───────────────────────────────────────────────"))
 
         graphs.append(Text("Rh ──┬───────────────────────────────────────────────"))
