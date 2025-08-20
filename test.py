@@ -185,7 +185,8 @@ def update_scd4x_loop():
         if scd4x.data_ready:
             co2 = scd4x.CO2
             environment_data["CO₂"] = f"{co2} ppm"
-            max_values["Environment"]["CO2"] = max(max_values["Environment"]["CO2"], co2)
+            max_values["Environment"]["CO2"] = max(max_values["Environment"]["CO2"], scd4x.CO2)
+
         else:
             environment_data["CO₂"] = "Not ready"
             scd4x_data["Temperature"] = "-"
@@ -204,6 +205,7 @@ def get_bme280_stats():
         data = bme280.sample(bme_bus, bme_address, bme_calibration)
         environment_data["Pressure"] = f"{data.pressure:.2f} hPa"
         max_values["Environment"]["Pressure"] = max(max_values["Environment"]["Pressure"], data.pressure)
+       
     except Exception as e:
         return {"Sensor Error": str(e)}
 
@@ -211,6 +213,7 @@ def get_bh1750_stats():
     try:
         lux = bh1750.lux
         max_values["Environment"]["Lux"] = max(max_values["Environment"]["Lux"], lux)
+       
         return {"Light Level": f"{lux:.2f} Lux"}
     except Exception as e:
         return {"Sensor Error": str(e)}
@@ -313,6 +316,7 @@ lines = [
     Text(f"Max Lux: {max_values['Environment']['Lux']:.2f} Lux", style="bold yellow")
 ]
 return Panel(Text("\n").join(lines), title="🔆 BH1750 Sensor", border_style="grey37")
+
   
 def build_environment_panel():
 lines = [
