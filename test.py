@@ -184,6 +184,38 @@ def get_system_panel():
     table.add_row("Uptime", f"[white]{hours}h {minutes}m[/white]")
     table.add_row("Time", f"[white]{now}[/white]")
     return Panel(table, border_style="grey37")
+
+def update_sht31d_loop():
+    while True:
+        try:
+            temp = sht31.temperature
+            hum = sht31.relative_humidity
+            temp_history.append(temp)
+            hum_history.append(hum)
+            max_values["Room"]["Temp"] = max(max_values["Room"]["Temp"], temp)
+            max_values["Room"]["Hum"] = max(max_values["Room"]["Hum"], hum)
+        except Exception as e:
+            pass
+        time.sleep(REFRESH_INTERVAL)
+
+def update_mcp9808_loop():
+    while True:
+        try:
+            temp = mcp9808.temperature
+            max_values["Tent"]["MCP9808"] = max(max_values["Tent"]["MCP9808"], temp)
+        except Exception as e:
+            pass
+        time.sleep(REFRESH_INTERVAL)
+
+def update_adt7410_loop():
+    while True:
+        try:
+            temp = adt7410.temperature
+            max_values["Tent"]["ADT7410"] = max(max_values["Tent"]["ADT7410"], temp)
+        except Exception as e:
+            pass
+        time.sleep(REFRESH_INTERVAL)
+
 def update_scd4x_loop():
     while True:
         time.sleep(SCD4X_REFRESH)
@@ -199,37 +231,49 @@ def update_scd4x_loop():
             scd4x_data["Temperature"] = "-"
             scd4x_data["Humidity"] = "-"
 
-def get_hts221_stats():
-    try:
-        temp = hts.temperature
-        humidity = hts.relative_humidity
-        temp_history.append(temp)
-        hum_history.append(humidity)
-        return {"Temperature": temp, "Humidity": humidity}
-    except Exception as e:
-        return {"Sensor Error": str(e)}
+def update_hts221_loop():
+    while True:
+        try:
+            temp = hts.temperature
+            hum = hts.relative_humidity
+            temp_history.append(temp)
+            hum_history.append(hum)
+            max_values["HTS221"]["Temp"] = max(max_values["HTS221"]["Temp"], temp)
+            max_values["HTS221"]["Hum"] = max(max_values["HTS221"]["Hum"], hum)
+        except Exception as e:
+            pass  # Optional: log error or set fallback
+        time.sleep(REFRESH_INTERVAL)
 
-def get_bme280_stats():
-    try:
-        data = bme280.sample(bme_bus, bme_address, bme_calibration)
-        pressure = data.pressure
-        pressure_history.append(pressure)
-        environment_data["Pressure"] = f"{data.pressure:.2f} hPa"
-        return {"Temperature": data.temperature, "Humidity": data.humidity}
-    except Exception as e:
-        return {"Sensor Error": str(e)}
+def update_bme280_loop():
+    while True:
+        try:
+            data = bme280.sample(bme_bus, bme_address, bme_calibration)
+            temp = data.temperature
+            hum = data.humidity
+            pressure = data.pressure
 
-def get_bh1750_stats():
-    try:
-        lux = bh1750.lux
-        lux_history.append(lux)
-        max_values["BH1750"]["Lux"] = max(max_values["BH1750"]["Lux"], lux)
-        return {
-            "Light Level": f"{lux:.2f} Lux",
-            "Max Lux": f"{max_values['BH1750']['Lux']:.2f} Lux"
-        }
-    except Exception as e:
-        return {"Sensor Error": str(e)}
+            environment_data["Pressure"] = f"{pressure:.2f} hPa"
+            temp_history.append(temp)
+            hum_history.append(hum)
+            pressure_history.append(pressure)
+
+            max_values["BME280"]["Temp"] = max(max_values["BME280"]["Temp"], temp)
+            max_values["BME280"]["Hum"] = max(max_values["BME280"]["Hum"], hum)
+            max_values["Environment"]["Pressure"] = max(max_values["Environment"]["Pressure"], pressure)
+        except Exception as e:
+            environment_data["Pressure"] = f"Error: {e}"
+        time.sleep(REFRESH_INTERVAL)
+
+def update_bh1750_loop():
+    while True:
+        try:
+            lux = bh1750.lux
+            environment_data["Lux"] = f"{lux:.1f} lx"
+            lux_history.append(lux)
+            max_values["BH1750"]["Lux"] = max(max_values["BH1750"]["Lux"], lux)
+        except Exception as e:
+            environment_data["Lux"] = f"Error: {e}"
+        time.sleep(REFRESH_INTERVAL)
 
 def get_as7341_panel():
     try:
@@ -446,7 +490,7 @@ def build_sensor_graph_panel():
         graphs.append(Text("     └───────────────────────────────────────────────"))
 
         graphs.append(Text("Lux ──┬───────────────────────────────────────────────"))
-        graphs.append(Text(f"     │   {render_high_graph(lux_history, 1000, 2000).plain}"))
+        graphs.append(Text(f"     │   {render_high_graph(lux_history, 9000, 10000).plain}"))
         graphs.append(Text("     └───────────────────────────────────────────────"))
 
         graphs.append(Text("Temp ─┬───────────────────────────────────────────────"))
@@ -495,7 +539,16 @@ def build_dashboard():
     return layout
 
 def run_dashboard():
+    # Launch sensor update threads
     threading.Thread(target=update_scd4x_loop, daemon=True).start()
+    threading.Thread(target=update_bh1750_loop, daemon=True).start()
+    threading.Thread(target=update_hts221_loop, daemon=True).start()
+    threading.Thread(target=update_bme280_loop, daemon=True).start()
+    threading.Thread(target=update_sht31d_loop, daemon=True).start()
+    threading.Thread(target=update_mcp9808_loop, daemon=True).start()
+    threading.Thread(target=update_adt7410_loop, daemon=True).start()
+    # threading.Thread(target=update_as7341_loop, daemon=True).start()
+
     with Live(console=console, refresh_per_second=10, screen=True) as live:
         while True:
             live.update(build_dashboard())
