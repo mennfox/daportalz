@@ -43,7 +43,7 @@ bme_calibration = bme280.load_calibration_params(bme_bus, bme_address)
 # Historical max trackers for sensors
 max_values = {
     "Environment": {"CO₂": float('-inf'), "Pressure": float('-inf')},
-    "BH1750": {"Light": float('-inf')}
+    "BH1750": {"Light": float('-inf')},
     "HTS221": {"Temp": float('-inf'), "Hum": float('-inf')},
     "SCD4X": {"Temp": float('-inf'), "Hum": float('-inf')},
     "BME280": {"Temp": float('-inf'), "Hum": float('-inf')},
