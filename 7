@@ -42,6 +42,7 @@ bme_calibration = bme280.load_calibration_params(bme_bus, bme_address)
 
 # Historical max trackers for sensors
 max_values = {
+    "BH1750": {"Lux": float('-inf')},
     "HTS221": {"Temp": float('-inf'), "Hum": float('-inf')},
     "SCD4X": {"Temp": float('-inf'), "Hum": float('-inf')},
     "BME280": {"Temp": float('-inf'), "Hum": float('-inf')},
@@ -205,7 +206,11 @@ def get_bme280_stats():
 def get_bh1750_stats():
     try:
         lux = bh1750.lux
-        return {"Light Level": f"{lux:.2f} Lux"}
+        max_values["BH1750"]["Lux"] = max(max_values["BH1750"]["Lux"], lux)
+        return {
+            "Light Level": f"{lux:.2f} Lux",
+            "Max Lux": f"{max_values['BH1750']['Lux']:.2f} Lux"
+        }
     except Exception as e:
         return {"Sensor Error": str(e)}
 
@@ -303,7 +308,13 @@ def build_bme280_panel():
 
 def build_bh1750_panel():
     data = get_bh1750_stats()
-    body = "\n".join([f"[bold blue]{k}:[/bold blue] {v}" for k, v in data.items()])
+    if "Sensor Error" in data:
+        body = f"[red]{data['Sensor Error']}[/red]"
+    else:
+        body = "\n".join([
+            f"[bold blue]Light Level:[/bold blue] {data['Light Level']}",
+            f"[bold green]Max Lux:[/bold green] {data['Max Lux']}"
+        ])
     return Panel(body, title="🔆 BH1750 Sensor", border_style="grey37")
 
 def build_environment_panel():
