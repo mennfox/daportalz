@@ -188,6 +188,9 @@ def update_scd4x_loop():
     while True:
         time.sleep(SCD4X_REFRESH)
         if scd4x.data_ready:
+            co2_value = scd4x.CO2
+            environment_data["CO₂"] = f"{co2_value} ppm"
+            co2_history.append(co2_value)
             environment_data["CO₂"] = f"{scd4x.CO2} ppm"
             scd4x_data["Temperature"] = scd4x.temperature
             scd4x_data["Humidity"] = scd4x.relative_humidity
@@ -200,6 +203,8 @@ def get_hts221_stats():
     try:
         temp = hts.temperature
         humidity = hts.relative_humidity
+        temp_history.append(temp)
+        hum_history.append(humidity)
         return {"Temperature": temp, "Humidity": humidity}
     except Exception as e:
         return {"Sensor Error": str(e)}
@@ -207,6 +212,8 @@ def get_hts221_stats():
 def get_bme280_stats():
     try:
         data = bme280.sample(bme_bus, bme_address, bme_calibration)
+        pressure = data.pressure
+        pressure_history.append(pressure)
         environment_data["Pressure"] = f"{data.pressure:.2f} hPa"
         return {"Temperature": data.temperature, "Humidity": data.humidity}
     except Exception as e:
@@ -215,6 +222,7 @@ def get_bme280_stats():
 def get_bh1750_stats():
     try:
         lux = bh1750.lux
+        lux_history.append(lux)
         max_values["BH1750"]["Lux"] = max(max_values["BH1750"]["Lux"], lux)
         return {
             "Light Level": f"{lux:.2f} Lux",
@@ -412,8 +420,22 @@ def build_tent_panel():
     except Exception as e:
         body = f"[red]Sensor Error: {e}[/red]"
     return Panel(body, title="🌡 Tent Heatmap", border_style="grey37")
-from rich.panel import Panel
 from rich.text import Text
+
+def render_high_graph(data, threshold, max_value, width=60):
+    blocks = "▁▂▃▄▅▆▇█"
+    graph = []
+    for val in list(data)[-width:]:
+        try:
+            val = float(val)
+        except:
+            val = 0.0
+        if val >= threshold:
+            idx = min(int((val / max_value) * (len(blocks) - 1)), len(blocks) - 1)
+            graph.append(blocks[idx])
+        else:
+            graph.append(" ")
+    return Text("".join(graph), style="bold green")
 
 def build_sensor_graph_panel():
     try:
