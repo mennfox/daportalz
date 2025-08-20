@@ -1,6 +1,12 @@
 # dpz Dashboard
 from collections import deque
+
 co2_history = deque([0.0]*60, maxlen=60)
+lux_history = deque([0.0]*60, maxlen=60)
+temp_history = deque([0.0]*60, maxlen=60)
+hum_history = deque([0.0]*60, maxlen=60)
+pressure_history = deque([0.0]*60, maxlen=60)  # Optional
+
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
@@ -63,7 +69,6 @@ SCD4X_REFRESH = 10.0
 scd4x_data = {"Temperature": "Waiting...", "Humidity": "Waiting..."}
 environment_data = {"CO₂": "Waiting...", "Pressure": "Waiting..."}
 HISTORY_LEN = 30
-co2_history = deque([0.0]*60, maxlen=60)
 cpu_histories = [deque([0]*HISTORY_LEN, maxlen=HISTORY_LEN) for _ in range(psutil.cpu_count())]
 mem_history = deque([0]*HISTORY_LEN, maxlen=HISTORY_LEN)
 disk_history = deque([0]*HISTORY_LEN, maxlen=HISTORY_LEN)
@@ -72,23 +77,6 @@ net_recv_history = deque([0]*HISTORY_LEN, maxlen=HISTORY_LEN)
 prev_net = psutil.net_io_counters()
 
 core_colors = ["cyan", "magenta", "yellow", "green"]
-
-
-def render_high_graph(data, threshold=1000, max_value=2000, width=60):
-    blocks = "▁▂▃▄▅▆▇█"
-    graph = []
-    for val in list(data)[-width:]:  # ← Fixed here
-        try:
-            val = float(val)
-        except:
-            val = 0.0
-        if val >= threshold:
-            idx = min(int((val / max_value) * (len(blocks) - 1)), len(blocks) - 1)
-            graph.append(blocks[idx])
-        else:
-            graph.append(" ")
-    return Text("".join(graph), style="bold green")
-
 
 def sparkline(data, max_value=100, color="white"):
     blocks = "▁▂▃▄▅▆▇█"
@@ -196,13 +184,15 @@ def get_system_panel():
     table.add_row("Uptime", f"[white]{hours}h {minutes}m[/white]")
     table.add_row("Time", f"[white]{now}[/white]")
     return Panel(table, border_style="grey37")
+
 def update_scd4x_loop():
     while True:
         time.sleep(SCD4X_REFRESH)
         if scd4x.data_ready:
             co2_value = scd4x.CO2
-            environment_data["CO₂"] = f"{co2_value:.1f} ppm"
+            environment_data["CO₂"] = f"{co2_value} ppm"
             co2_history.append(co2_value)
+            environment_data["CO₂"] = f"{scd4x.CO2} ppm"
             scd4x_data["Temperature"] = scd4x.temperature
             scd4x_data["Humidity"] = scd4x.relative_humidity
         else:
@@ -214,6 +204,8 @@ def get_hts221_stats():
     try:
         temp = hts.temperature
         humidity = hts.relative_humidity
+        temp_history.append(temp)
+        hum_history.append(humidity)
         return {"Temperature": temp, "Humidity": humidity}
     except Exception as e:
         return {"Sensor Error": str(e)}
@@ -221,6 +213,8 @@ def get_hts221_stats():
 def get_bme280_stats():
     try:
         data = bme280.sample(bme_bus, bme_address, bme_calibration)
+        pressure = data.pressure
+        pressure_history.append(pressure)
         environment_data["Pressure"] = f"{data.pressure:.2f} hPa"
         return {"Temperature": data.temperature, "Humidity": data.humidity}
     except Exception as e:
@@ -229,6 +223,7 @@ def get_bme280_stats():
 def get_bh1750_stats():
     try:
         lux = bh1750.lux
+        lux_history.append(lux)
         max_values["BH1750"]["Lux"] = max(max_values["BH1750"]["Lux"], lux)
         return {
             "Light Level": f"{lux:.2f} Lux",
@@ -347,22 +342,32 @@ def build_bh1750_panel():
 def build_environment_panel():
     try:
         co2_str = environment_data["CO₂"]
+        pressure_str = environment_data["Pressure"]
+
         co2_value = float(co2_str.split()[0]) if "ppm" in co2_str else 0.0
+        pressure_value = float(pressure_str.split()[0]) if "hPa" in pressure_str else 0.0
+
+        # Update max values
         max_values["Environment"]["CO₂"] = max(max_values["Environment"]["CO₂"], co2_value)
+        max_values["Environment"]["Pressure"] = max(max_values["Environment"]["Pressure"], pressure_value)
 
-        graph = render_high_graph(co2_history, threshold=1500)  # ← This is the call
+        # Define zones
+        zones_co2 = [(600, "blue"), (1000, "green"), (1500, "yellow"), (2000, "red")]
+        zones_pressure = [(980, "blue"), (1013, "green"), (1030, "yellow"), (1050, "red")]
 
+        # Build visual lines
         lines = [
-            "Co₂(PPM) ──┬───────────────────────────────────────────────",
-            f"           │   {graph.plain}",
-            "           └───────────────────────────────────────────────",
-            "           Time →  [Last 24h]",
-            f"           Max: {max_values['Environment']['CO₂']:.1f} ppm"
+            format_zone_bar(co2_value, zones_co2, label="CO₂", unit="ppm"),
+            Text(f"Max CO₂: {max_values['Environment']['CO₂']:.1f} ppm", style="bold green"),
+            format_zone_bar(pressure_value, zones_pressure, label="Pressure", unit="hPa"),
+            Text(f"Max Pressure: {max_values['Environment']['Pressure']:.2f} hPa", style="bold cyan")
         ]
-        body = Text("\n".join(lines), style="green")
+        body = Text("\n").join(lines)
+
     except Exception as e:
-        body = Text(f"[red]Sensor Error: {e}[/red]")
-    return Panel(body, title="🌍 CO₂ High Readings", border_style="grey37")
+        body = f"[red]Sensor Error: {e}[/red]"
+
+    return Panel(body, title="🌍 Environment", border_style="grey37")
 
 def build_room_panel():
     try:
@@ -385,6 +390,7 @@ def build_room_panel():
     except Exception as e:
         body = f"[red]Sensor Error: {e}[/red]"
     return Panel(body, title="🏠 Room Stats (SHT31)", border_style="grey37")
+
 def build_tent_panel():
     try:
         temp_mcp = mcp9808.temperature
@@ -415,6 +421,54 @@ def build_tent_panel():
     except Exception as e:
         body = f"[red]Sensor Error: {e}[/red]"
     return Panel(body, title="🌡 Tent Heatmap", border_style="grey37")
+from rich.text import Text
+
+def render_high_graph(data, threshold, max_value, width=60):
+    blocks = "▁▂▃▄▅▆▇█"
+    graph = []
+    for val in list(data)[-width:]:
+        try:
+            val = float(val)
+        except:
+            val = 0.0
+        if val >= threshold:
+            idx = min(int((val / max_value) * (len(blocks) - 1)), len(blocks) - 1)
+            graph.append(blocks[idx])
+        else:
+            graph.append(" ")
+    return Text("".join(graph), style="bold green")
+
+def build_sensor_graph_panel():
+    try:
+        graphs = []
+
+        graphs.append(Text("CO₂ ──┬───────────────────────────────────────────────"))
+        graphs.append(Text(f"     │   {render_high_graph(co2_history, 1500, 2000).plain}"))
+        graphs.append(Text("     └───────────────────────────────────────────────"))
+
+        graphs.append(Text("Lux ──┬───────────────────────────────────────────────"))
+        graphs.append(Text(f"     │   {render_high_graph(lux_history, 9000, 10500).plain}"))
+        graphs.append(Text("     └───────────────────────────────────────────────"))
+
+        graphs.append(Text("°C ─┬───────────────────────────────────────────────"))
+        graphs.append(Text(f"     │   {render_high_graph(temp_history, 29, 40).plain}"))
+        graphs.append(Text("     └───────────────────────────────────────────────"))
+
+        graphs.append(Text("Rh ──┬───────────────────────────────────────────────"))
+        graphs.append(Text(f"     │   {render_high_graph(hum_history, 70, 100).plain}"))
+        graphs.append(Text("     └───────────────────────────────────────────────"))
+
+        graphs.append(Text("hPa ─┬────────────────────────────────────────────"))
+        graphs.append(Text(f"          │   {render_high_graph(pressure_history, 1020, 1050).plain}"))
+        graphs.append(Text("          └────────────────────────────────────────────"))
+
+        graphs.append(Text("Time → [Last 24h]"))
+
+        body = Text("\n").join(graphs)
+    except Exception as e:
+        body = Text(f"[red]Sensor Graph Error: {e}[/red]")
+
+    return Panel(body, title="📊 High Sensor Readings", border_style="grey37")
 
 def build_dashboard():
     layout = Table.grid(padding=(1, 2))
@@ -435,7 +489,9 @@ def build_dashboard():
     layout.add_row(
         build_room_panel(),
         build_tent_panel(),
-        build_bh1750_panel()
+        build_bh1750_panel(),
+        build_sensor_graph_panel()
+
     )
     return layout
 
