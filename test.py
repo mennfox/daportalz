@@ -46,6 +46,11 @@ max_values = {
     "SCD4X": {"Temp": float('-inf'), "Hum": float('-inf')},
     "BME280": {"Temp": float('-inf'), "Hum": float('-inf')},
     "Room": {"Temp": float('-inf'), "Hum": float('-inf')},
+    max_values["Environment"] = {
+    "CO2": float('-inf'),
+    "Pressure": float('-inf'),
+    "Lux": float('-inf')
+}
     "Tent": {
         "MCP9808": float('-inf'),
         "ADT7410": float('-inf'),
@@ -178,9 +183,9 @@ def update_scd4x_loop():
     while True:
         time.sleep(SCD4X_REFRESH)
         if scd4x.data_ready:
-            environment_data["CO₂"] = f"{scd4x.CO2} ppm"
-            scd4x_data["Temperature"] = scd4x.temperature
-            scd4x_data["Humidity"] = scd4x.relative_humidity
+            co2 = scd4x.CO2
+            environment_data["CO₂"] = f"{co2} ppm"
+            max_values["Environment"]["CO2"] = max(max_values["Environment"]["CO2"], co2)
         else:
             environment_data["CO₂"] = "Not ready"
             scd4x_data["Temperature"] = "-"
@@ -198,13 +203,14 @@ def get_bme280_stats():
     try:
         data = bme280.sample(bme_bus, bme_address, bme_calibration)
         environment_data["Pressure"] = f"{data.pressure:.2f} hPa"
-        return {"Temperature": data.temperature, "Humidity": data.humidity}
+        max_values["Environment"]["Pressure"] = max(max_values["Environment"]["Pressure"], data.pressure)
     except Exception as e:
         return {"Sensor Error": str(e)}
 
 def get_bh1750_stats():
     try:
         lux = bh1750.lux
+        max_values["Environment"]["Lux"] = max(max_values["Environment"]["Lux"], lux)
         return {"Light Level": f"{lux:.2f} Lux"}
     except Exception as e:
         return {"Sensor Error": str(e)}
@@ -302,13 +308,21 @@ def build_bme280_panel():
     return Panel(body, title="🌤 BME280 Sensor", border_style="grey37")
 
 def build_bh1750_panel():
-    data = get_bh1750_stats()
-    body = "\n".join([f"[bold blue]{k}:[/bold blue] {v}" for k, v in data.items()])
-    return Panel(body, title="🔆 BH1750 Sensor", border_style="grey37")
-
+lines = [
+    Text(f"Light Level: {data['Light Level']}"),
+    Text(f"Max Lux: {max_values['Environment']['Lux']:.2f} Lux", style="bold yellow")
+]
+return Panel(Text("\n").join(lines), title="🔆 BH1750 Sensor", border_style="grey37")
+  
 def build_environment_panel():
-    body = "\n".join([f"[bold white]{k}:[/bold white] {v}" for k, v in environment_data.items()])
-    return Panel(body, title="🌍 Environment", border_style="grey37")
+lines = [
+    Text(f"CO₂: {environment_data['CO₂']}"),
+    Text(f"Max CO₂: {max_values['Environment']['CO2']:.1f} ppm", style="bold green"),
+    Text(f"Pressure: {environment_data['Pressure']}"),
+    Text(f"Max Pressure: {max_values['Environment']['Pressure']:.2f} hPa", style="bold cyan")
+]
+return Panel(Text("\n").join(lines), title="🌍 Environment", border_style="grey37")
+
 
 def build_room_panel():
     try:
