@@ -46,7 +46,7 @@ max_values = {
     "SCD4X": {"Temp": float('-inf'), "Hum": float('-inf')},
     "BME280": {"Temp": float('-inf'), "Hum": float('-inf')},
     "Room": {"Temp": float('-inf'), "Hum": float('-inf')},
-    max_values["Environment"] = {
+max_values["Environment"] = {
     "CO2": float('-inf'),
     "Pressure": float('-inf'),
     "Lux": float('-inf')
