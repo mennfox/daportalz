@@ -46,10 +46,15 @@ max_values = {
     "SCD4X": {"Temp": float('-inf'), "Hum": float('-inf')},
     "BME280": {"Temp": float('-inf'), "Hum": float('-inf')},
     "Room": {"Temp": float('-inf'), "Hum": float('-inf')},
+    }
+}
+
+# Now safely add Environment tracking
 max_values["Environment"] = {
     "CO2": float('-inf'),
     "Pressure": float('-inf'),
     "Lux": float('-inf')
+
 }
     "Tent": {
         "MCP9808": float('-inf'),
