@@ -200,7 +200,6 @@ def update_scd4x_loop():
     while True:
         time.sleep(SCD4X_REFRESH)
         if scd4x.data_ready:
-            environment_data["CO₂"] = f"{scd4x.CO2} ppm"
             co2_value = scd4x.CO2
             environment_data["CO₂"] = f"{co2_value:.1f} ppm"
             co2_history.append(co2_value)
