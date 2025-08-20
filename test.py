@@ -42,16 +42,14 @@ bme_calibration = bme280.load_calibration_params(bme_bus, bme_address)
 
 # Historical max trackers for sensors
 max_values = {
-    "Environment": {"CO₂": float('-inf'), "Pressure": float('-inf')},
-    "BH1750": {"Light": float('-inf')},
     "HTS221": {"Temp": float('-inf'), "Hum": float('-inf')},
     "SCD4X": {"Temp": float('-inf'), "Hum": float('-inf')},
     "BME280": {"Temp": float('-inf'), "Hum": float('-inf')},
     "Room": {"Temp": float('-inf'), "Hum": float('-inf')},
     "Tent": {
-        "UPPER": float('-inf'),
-        "MID": float('-inf'),
-        "LOWER": float('-inf')
+        "MCP9808": float('-inf'),
+        "ADT7410": float('-inf'),
+        "BME280": float('-inf')
     }
 }
 console = Console()
@@ -176,19 +174,6 @@ def get_system_panel():
     table.add_row("Uptime", f"[white]{hours}h {minutes}m[/white]")
     table.add_row("Time", f"[white]{now}[/white]")
     return Panel(table, border_style="grey37")
-
-def build_i2c_panel():
-    try:
-        while not i2c.try_lock():
-            pass
-        addresses = i2c.scan()
-        i2c.unlock()
-        lines = [f"[green]0x{addr:02X}[/green]" for addr in addresses]
-        body = "\n".join(lines) if lines else "[yellow]No devices detected[/yellow]"
-    except Exception as e:
-        body = f"[red]Scan error: {e}[/red]"
-    return Panel(body, title="🔌 I²C Devices", border_style="grey37")
-
 def update_scd4x_loop():
     while True:
         time.sleep(SCD4X_REFRESH)
@@ -213,7 +198,6 @@ def get_bme280_stats():
     try:
         data = bme280.sample(bme_bus, bme_address, bme_calibration)
         environment_data["Pressure"] = f"{data.pressure:.2f} hPa"
-        max_values["Environment"]["Pressure"] = max(max_values["Environment"]["Pressure"], data.pressure)
         return {"Temperature": data.temperature, "Humidity": data.humidity}
     except Exception as e:
         return {"Sensor Error": str(e)}
@@ -221,7 +205,6 @@ def get_bme280_stats():
 def get_bh1750_stats():
     try:
         lux = bh1750.lux
-        max_values["BH1750"]["Light"] = max(max_values["BH1750"]["Light"], lux)
         return {"Light Level": f"{lux:.2f} Lux"}
     except Exception as e:
         return {"Sensor Error": str(e)}
@@ -280,13 +263,7 @@ def build_scd4x_panel():
 
         max_values["SCD4X"]["Temp"] = max(max_values["SCD4X"]["Temp"], temp)
         max_values["SCD4X"]["Hum"] = max(max_values["SCD4X"]["Hum"], hum)
-        environment_data["CO₂"] = f"{scd4x.CO2} ppm"
-    if isinstance(scd4x.CO2, (int, float)):
-        environment_data["CO₂"] = f"{scd4x.CO2} ppm"
-        max_values["Environment"]["CO₂"] = max(max_values["Environment"]["CO₂"], scd4x.CO2)
-    else:
-        environment_data["CO₂"] = "Not ready"
- 
+
         zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
         zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
 
@@ -326,16 +303,11 @@ def build_bme280_panel():
 
 def build_bh1750_panel():
     data = get_bh1750_stats()
-    lines = [f"[bold blue]{k}:[/bold blue] {v}" for k, v in data.items()]
-    lines.append(f"[bold green]Max Lux:[/bold green] {max_values['BH1750']['Light']:.2f} Lux")
-    body = "\n".join(lines)
+    body = "\n".join([f"[bold blue]{k}:[/bold blue] {v}" for k, v in data.items()])
     return Panel(body, title="🔆 BH1750 Sensor", border_style="grey37")
 
 def build_environment_panel():
-    lines = [f"[bold white]{k}:[/bold white] {v}" for k, v in environment_data.items()]
-    lines.append(f"[bold cyan]Max Pressure:[/bold cyan] {max_values['Environment']['Pressure']:.2f} hPa")
-    lines.append(f"[bold green]Max CO₂:[/bold green] {max_values['Environment']['CO₂']:.0f} ppm")
-    body = "\n".join(lines)
+    body = "\n".join([f"[bold white]{k}:[/bold white] {v}" for k, v in environment_data.items()])
     return Panel(body, title="🌍 Environment", border_style="grey37")
 
 def build_room_panel():
@@ -366,23 +338,23 @@ def build_tent_panel():
         data_bme = get_bme280_stats()
         temp_bme = data_bme["Temperature"] if "Sensor Error" not in data_bme else None
 
-        max_values["Tent"]["UPPER"] = max(max_values["Tent"]["UPPER"], temp_mcp)
-        max_values["Tent"]["MID"] = max(max_values["Tent"]["MID"], temp_adt)
+        max_values["Tent"]["MCP9808"] = max(max_values["Tent"]["MCP9808"], temp_mcp)
+        max_values["Tent"]["ADT7410"] = max(max_values["Tent"]["ADT7410"], temp_adt)
         if temp_bme is not None:
-            max_values["Tent"]["LOWER"] = max(max_values["Tent"]["LOWER"], temp_bme)
+            max_values["Tent"]["BME280"] = max(max_values["Tent"]["BME280"], temp_bme)
 
         zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
 
         lines = [
-            format_zone_bar(temp_mcp, zones_temp, label="UPPER", unit="°C"),
-            Text(f"Max UPPER MCP: {max_values['Tent']['UPPER']:.1f}°C", style="bold green"),
-            format_zone_bar(temp_adt, zones_temp, label="MID", unit="°C"),
-            Text(f"Max MID ADT: {max_values['Tent']['MID']:.1f}°C", style="bold green")
+            format_zone_bar(temp_mcp, zones_temp, label="MCP9808", unit="°C"),
+            Text(f"Max MCP: {max_values['Tent']['MCP9808']:.1f}°C", style="bold green"),
+            format_zone_bar(temp_adt, zones_temp, label="ADT7410", unit="°C"),
+            Text(f"Max ADT: {max_values['Tent']['ADT7410']:.1f}°C", style="bold green")
         ]
         if temp_bme is not None:
             lines.extend([
-                format_zone_bar(temp_bme, zones_temp, label="LOWER", unit="°C"),
-                Text(f"Max LOWER BME: {max_values['Tent']['LOWER']:.1f}°C", style="bold green")
+                format_zone_bar(temp_bme, zones_temp, label="BME280", unit="°C"),
+                Text(f"Max BME: {max_values['Tent']['BME280']:.1f}°C", style="bold green")
             ])
 
         body = Text("\n").join(lines)
@@ -409,8 +381,7 @@ def build_dashboard():
     layout.add_row(
         build_room_panel(),
         build_tent_panel(),
-        build_bh1750_panel(),
-        build_i2c_panel()
+        build_bh1750_panel()
     )
     return layout
 
