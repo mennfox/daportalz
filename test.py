@@ -213,6 +213,7 @@ def get_bme280_stats():
     try:
         data = bme280.sample(bme_bus, bme_address, bme_calibration)
         environment_data["Pressure"] = f"{data.pressure:.2f} hPa"
+        max_values["Environment"]["Pressure"] = max(max_values["Environment"]["Pressure"], data.pressure)
         return {"Temperature": data.temperature, "Humidity": data.humidity}
     except Exception as e:
         return {"Sensor Error": str(e)}
@@ -220,6 +221,7 @@ def get_bme280_stats():
 def get_bh1750_stats():
     try:
         lux = bh1750.lux
+        max_values["BH1750"]["Light"] = max(max_values["BH1750"]["Light"], lux)
         return {"Light Level": f"{lux:.2f} Lux"}
     except Exception as e:
         return {"Sensor Error": str(e)}
@@ -278,7 +280,13 @@ def build_scd4x_panel():
 
         max_values["SCD4X"]["Temp"] = max(max_values["SCD4X"]["Temp"], temp)
         max_values["SCD4X"]["Hum"] = max(max_values["SCD4X"]["Hum"], hum)
-
+        environment_data["CO₂"] = f"{scd4x.CO2} ppm"
+    if isinstance(scd4x.CO2, (int, float)):
+        environment_data["CO₂"] = f"{scd4x.CO2} ppm"
+        max_values["Environment"]["CO₂"] = max(max_values["Environment"]["CO₂"], scd4x.CO2)
+    else:
+        environment_data["CO₂"] = "Not ready"
+ 
         zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
         zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
 
@@ -318,11 +326,16 @@ def build_bme280_panel():
 
 def build_bh1750_panel():
     data = get_bh1750_stats()
-    body = "\n".join([f"[bold blue]{k}:[/bold blue] {v}" for k, v in data.items()])
+    lines = [f"[bold blue]{k}:[/bold blue] {v}" for k, v in data.items()]
+    lines.append(f"[bold green]Max Lux:[/bold green] {max_values['BH1750']['Light']:.2f} Lux")
+    body = "\n".join(lines)
     return Panel(body, title="🔆 BH1750 Sensor", border_style="grey37")
 
 def build_environment_panel():
-    body = "\n".join([f"[bold white]{k}:[/bold white] {v}" for k, v in environment_data.items()])
+    lines = [f"[bold white]{k}:[/bold white] {v}" for k, v in environment_data.items()]
+    lines.append(f"[bold cyan]Max Pressure:[/bold cyan] {max_values['Environment']['Pressure']:.2f} hPa")
+    lines.append(f"[bold green]Max CO₂:[/bold green] {max_values['Environment']['CO₂']:.0f} ppm")
+    body = "\n".join(lines)
     return Panel(body, title="🌍 Environment", border_style="grey37")
 
 def build_room_panel():
