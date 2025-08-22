@@ -1,6 +1,6 @@
 # dpz Dashboard
-from collections import deque
 
+from collections import deque
 co2_history = deque([0.0]*60, maxlen=60)
 lux_history = deque([0.0]*60, maxlen=60)
 temp_all_history = deque([0.0]*60, maxlen=60)
@@ -19,7 +19,6 @@ import os
 import time
 import threading
 from datetime import datetime
-from collections import deque
 
 import board
 import busio
@@ -30,9 +29,16 @@ from adafruit_as7341 import AS7341
 import adafruit_sht31d
 import adafruit_mcp9808
 import adafruit_adt7410
-
 import smbus2
 import bme280
+
+#Zone Constants
+ZONES_LUX       = [(100, "blue"), (5500, "green"), (8500, "yellow"), (10000, "red")]
+ZONES_TEMP      = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
+ZONES_TEMP_ROOM = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
+ZONES_HUM       = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
+ZONES_CO2       = [(600, "blue"), (1000, "green"), (1500, "yellow"), (2000, "red")]
+ZONES_PRESSURE  = [(980, "blue"), (1013, "green"), (1030, "yellow"), (1050, "red")]
 
 # Initialize I2C and sensors
 i2c = busio.I2C(board.SCL, board.SDA)
@@ -103,10 +109,13 @@ def zone_color(value, zones):
             return color
     return zones[-1][1]
 
-def format_zone_bar(value, zones, label="", unit="", width=20):
+def format_zone_bar(value, zones, label="", unit="", width=20, max_value=None):
     color = zone_color(value, zones)
-    bar = bar_visual(value, max_value=zones[-1][0], width=width, color=color)
+    scale = max_value if max_value else zones[-1][0]
+    bar = bar_visual(value, max_value=scale, width=width, color=color)
     return Text(f"{label:<10} {value:.1f}{unit:<3} ", style=color) + bar
+
+
 def get_cpu_panel():
     cpu_percents = psutil.cpu_percent(percpu=True)
     table = Table(title="[bold cyan]CPU Usage[/bold cyan]", expand=True)
@@ -185,6 +194,12 @@ def get_system_panel():
     table.add_row("Uptime", f"[white]{hours}h {minutes}m[/white]")
     table.add_row("Time", f"[white]{now}[/white]")
     return Panel(table, border_style="grey37")
+
+def sensor_zone_lines(value, zones, label, unit, max_val):
+    return [
+        format_zone_bar(value, zones, label=label, unit=unit),
+        Text(f"Max {label}: {max_val:.2f} {unit}", style="bold green")
+    ]
 
 def update_scd4x_loop():
     while True:
@@ -283,6 +298,7 @@ def get_as7341_panel():
 
     except Exception as e:
         return Panel(f"[red]Sensor Error: {e}", title="🌈 AS7341 Spectral Sensor", border_style="grey37")
+
 def build_hts221_panel():
     data = get_hts221_stats()
     if "Sensor Error" in data:
@@ -295,16 +311,9 @@ def build_hts221_panel():
             temp_spike_history[i] = max(temp_spike_history[i], val)
         max_values["HTS221"]["Temp"] = max(max_values["HTS221"]["Temp"], temp)
         max_values["HTS221"]["Hum"] = max(max_values["HTS221"]["Hum"], hum)
-
-        zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
-        zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
-
-        lines = [
-            format_zone_bar(temp, zones_temp, label="Temp", unit="°C"),
-            Text(f"Max Temp: {max_values['HTS221']['Temp']:.1f}°C", style="bold green"),
-            format_zone_bar(hum, zones_hum, label="Humidity", unit="%"),
-            Text(f"Max Hum: {max_values['HTS221']['Hum']:.1f}%", style="bold cyan")
-        ]
+        lines = []
+        lines += sensor_zone_lines(temp, ZONES_TEMP, "Temp", "°C", max_values["HTS221"]["Temp"])
+        lines += sensor_zone_lines(hum, ZONES_HUM, "Humidity", "%", max_values["HTS221"]["Hum"])
         body = Text("\n").join(lines)
     return Panel(body, title="💧 HTS221 Sensor", border_style="grey37")
 
@@ -317,16 +326,10 @@ def build_scd4x_panel():
             temp_spike_history[i] = max(temp_spike_history[i], val)
         max_values["SCD4X"]["Temp"] = max(max_values["SCD4X"]["Temp"], temp)
         max_values["SCD4X"]["Hum"] = max(max_values["SCD4X"]["Hum"], hum)
+        lines = []
+        lines += sensor_zone_lines(temp, ZONES_TEMP, "Temp", "°C", max_values["SCD4X"]["Temp"])
+        lines += sensor_zone_lines(hum, ZONES_HUM, "Humidity", "%", max_values["SCD4X"]["Hum"])
 
-        zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
-        zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
-
-        lines = [
-            format_zone_bar(temp, zones_temp, label="Temp", unit="°C"),
-            Text(f"Max Temp: {max_values['SCD4X']['Temp']:.1f}°C", style="bold green"),
-            format_zone_bar(hum, zones_hum, label="Humidity", unit="%"),
-            Text(f"Max Hum: {max_values['SCD4X']['Hum']:.1f}%", style="bold cyan")
-        ]
         body = Text("\n").join(lines)
     else:
         body = f"[red]Sensor not ready[/red]"
@@ -344,16 +347,9 @@ def build_bme280_panel():
             temp_spike_history[i] = max(temp_spike_history[i], val)
         max_values["BME280"]["Temp"] = max(max_values["BME280"]["Temp"], temp)
         max_values["BME280"]["Hum"] = max(max_values["BME280"]["Hum"], hum)
-
-        zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
-        zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
-
-        lines = [
-            format_zone_bar(temp, zones_temp, label="Temp", unit="°C"),
-            Text(f"Max Temp: {max_values['BME280']['Temp']:.1f}°C", style="bold green"),
-            format_zone_bar(hum, zones_hum, label="Humidity", unit="%"),
-            Text(f"Max Hum: {max_values['BME280']['Hum']:.1f}%", style="bold cyan")
-        ]
+        lines = []
+        lines += sensor_zone_lines(temp, ZONES_TEMP, "Temp", "°C", max_values["BME280"]["Temp"])
+        lines += sensor_zone_lines(hum, ZONES_HUM, "Humidity", "%", max_values["BME280"]["Hum"])
         body = Text("\n").join(lines)
     return Panel(body, title="🌤 BME280 Sensor", border_style="grey37")
 
@@ -364,11 +360,11 @@ def build_bh1750_panel():
     else:
         lux_value = float(data['Light Level'].split()[0])
         max_values["BH1750"]["Lux"] = max(max_values["BH1750"]["Lux"], lux_value)
-        zones_lux = [(100, "blue"), (55000, "green"), (70000, "yellow"), (100000, "red")]
         lines = [
-            format_zone_bar(lux_value, zones_lux, label="Lux", unit="Lux"),
+            format_zone_bar(lux_value, ZONES_LUX, label="Lux", unit="Lux", max_value=max_values["BH1750"]["Lux"]),
             Text(f"Max Lux: {max_values['BH1750']['Lux']:.2f} Lux", style="bold green")
-        ]
+]
+
         body = Text("\n").join(lines)
     return Panel(body, title="🔆 BH1750 Sensor", border_style="grey37")
 
@@ -385,16 +381,9 @@ def build_environment_panel():
         max_values["Environment"]["Pressure"] = max(max_values["Environment"]["Pressure"], pressure_value)
 
         # Define zones
-        zones_co2 = [(600, "blue"), (1000, "green"), (1500, "yellow"), (2000, "red")]
-        zones_pressure = [(980, "blue"), (1013, "green"), (1030, "yellow"), (1050, "red")]
-
-        # Build visual lines
-        lines = [
-            format_zone_bar(co2_value, zones_co2, label="CO₂", unit="ppm"),
-            Text(f"Max CO₂: {max_values['Environment']['CO₂']:.1f} ppm", style="bold green"),
-            format_zone_bar(pressure_value, zones_pressure, label="Pressure", unit="hPa"),
-            Text(f"Max Pressure: {max_values['Environment']['Pressure']:.2f} hPa", style="bold cyan")
-        ]
+        lines = []
+        lines += sensor_zone_lines(co2_value, ZONES_CO2, "CO₂", "ppm", max_values["Environment"]["CO₂"])
+        lines += sensor_zone_lines(pressure_value, ZONES_PRESSURE, "Pressure", "hPa", max_values["Environment"]["Pressure"])
         body = Text("\n").join(lines)
 
     except Exception as e:
@@ -411,16 +400,9 @@ def build_room_panel():
             temp_spike_history[i] = max(temp_spike_history[i], val)
         max_values["Room"]["Temp"] = max(max_values["Room"]["Temp"], temp)
         max_values["Room"]["Hum"] = max(max_values["Room"]["Hum"], humidity)
-
-        zones_temp = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
-        zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
-
-        lines = [
-            format_zone_bar(temp, zones_temp, label="Room Temp", unit="°C"),
-            Text(f"Max Temp: {max_values['Room']['Temp']:.1f}°C", style="bold green"),
-            format_zone_bar(humidity, zones_hum, label="Room Hum", unit="%"),
-            Text(f"Max Hum: {max_values['Room']['Hum']:.1f}%", style="bold cyan")
-        ]
+        lines = []
+        lines += sensor_zone_lines(temp, ZONES_TEMP_ROOM, "Room Temp", "°C", max_values["Room"]["Temp"])
+        lines += sensor_zone_lines(humidity, ZONES_HUM, "Room Hum", "%", max_values["Room"]["Hum"])
         body = Text("\n").join(lines)
     except Exception as e:
         body = f"[red]Sensor Error: {e}[/red]"
@@ -437,20 +419,11 @@ def build_tent_panel():
         if temp_bme is not None:
             max_values["Tent"]["BME280"] = max(max_values["Tent"]["BME280"], temp_bme)
 
-        zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
-
-        lines = [
-            format_zone_bar(temp_mcp, zones_temp, label="MCP9808", unit="°C"),
-            Text(f"Max MCP: {max_values['Tent']['MCP9808']:.1f}°C", style="bold green"),
-            format_zone_bar(temp_adt, zones_temp, label="ADT7410", unit="°C"),
-            Text(f"Max ADT: {max_values['Tent']['ADT7410']:.1f}°C", style="bold green")
-        ]
+        lines = []
+        lines += sensor_zone_lines(temp_mcp, ZONES_TEMP, "MCP9808", "°C", max_values["Tent"]["MCP9808"])
+        lines += sensor_zone_lines(temp_adt, ZONES_TEMP, "ADT7410", "°C", max_values["Tent"]["ADT7410"])
         if temp_bme is not None:
-            lines.extend([
-                format_zone_bar(temp_bme, zones_temp, label="BME280", unit="°C"),
-                Text(f"Max BME: {max_values['Tent']['BME280']:.1f}°C", style="bold green")
-            ])
-
+            lines += sensor_zone_lines(temp_bme, ZONES_TEMP, "BME280", "°C", max_values["Tent"]["BME280"])
         body = Text("\n").join(lines)
     except Exception as e:
         body = f"[red]Sensor Error: {e}[/red]"

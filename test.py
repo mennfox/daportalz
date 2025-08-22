@@ -3,9 +3,14 @@
 from collections import deque
 co2_history = deque([0.0]*60, maxlen=60)
 lux_history = deque([0.0]*60, maxlen=60)
-temp_all_history = deque([0.0]*60, maxlen=60)
+hts221_history = deque([0.0]*60, maxlen=60)
+scd4x_history = deque([0.0]*60, maxlen=60)
+sht31d_history = deque([0.0]*60, maxlen=60)
+mcp9808_history = deque([0.0]*60, maxlen=60)
+adt7410_history = deque([0.0]*60, maxlen=60)
 hum_history = deque([0.0]*60, maxlen=60)
 pressure_history = deque([0.0]*60, maxlen=60)  # Optional
+temp_all_history = deque([0.0]*60, maxlen=60)
 temp_spike_history = deque([0.0]*60, maxlen=60)
 
 from rich.console import Console
@@ -33,7 +38,7 @@ import smbus2
 import bme280
 
 #Zone Constants
-ZONES_LUX       = [(100, "blue"), (55000, "green"), (70000, "yellow"), (100000, "red")]
+ZONES_LUX       = [(100, "blue"), (5500, "green"), (8500, "yellow"), (10000, "red")]
 ZONES_TEMP      = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
 ZONES_TEMP_ROOM = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
 ZONES_HUM       = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
@@ -306,7 +311,7 @@ def build_hts221_panel():
     else:
         temp = data["Temperature"]
         hum = data["Humidity"]
-        temp_all_history.append(temp)
+        hts221_history.append(temp)
         for i, val in enumerate(temp_all_history):
             temp_spike_history[i] = max(temp_spike_history[i], val)
         max_values["HTS221"]["Temp"] = max(max_values["HTS221"]["Temp"], temp)
@@ -321,7 +326,7 @@ def build_scd4x_panel():
     if isinstance(scd4x_data["Temperature"], float):
         temp = scd4x_data["Temperature"]
         hum = scd4x_data["Humidity"]
-        temp_all_history.append(temp)
+        scd4x_history.append(temp)
         for i, val in enumerate(temp_all_history):
             temp_spike_history[i] = max(temp_spike_history[i], val)
         max_values["SCD4X"]["Temp"] = max(max_values["SCD4X"]["Temp"], temp)
@@ -360,7 +365,11 @@ def build_bh1750_panel():
     else:
         lux_value = float(data['Light Level'].split()[0])
         max_values["BH1750"]["Lux"] = max(max_values["BH1750"]["Lux"], lux_value)
-        lines = sensor_zone_lines(lux_value, ZONES_LUX, "Lux", "Lux", max_values["BH1750"]["Lux"])
+        lines = [
+            format_zone_bar(lux_value, ZONES_LUX, label="Lux", unit="Lux", max_value=max_values["BH1750"]["Lux"]),
+            Text(f"Max Lux: {max_values['BH1750']['Lux']:.2f} Lux", style="bold green")
+]
+
         body = Text("\n").join(lines)
     return Panel(body, title="🔆 BH1750 Sensor", border_style="grey37")
 
@@ -391,7 +400,7 @@ def build_room_panel():
     try:
         temp = sht31.temperature
         humidity = sht31.relative_humidity
-        temp_all_history.append(temp)
+        sht31d_history.append(temp)
         for i, val in enumerate(temp_all_history):
             temp_spike_history[i] = max(temp_spike_history[i], val)
         max_values["Room"]["Temp"] = max(max_values["Room"]["Temp"], temp)
@@ -473,7 +482,17 @@ def build_sensor_graph_panel():
         graphs.append(Text("     └───────────────────────────────────────────────"))
 
         graphs.append(Text("°C Max ─┬───────────────────────────────────────────────"))
-        graphs.append(Text(f" │ {max_overlay_graph(temp_all_history, temp_spike_history, 28.5, 40).plain}"))
+        graphs.append(Text("HTS221 ─┬───────────────────────────────────────────────"))
+        graphs.append(Text(f" │ {render_high_graph(hts221_history, 28.5, 40).plain}"))
+
+        graphs.append(Text("°C Max ─┬───────────────────────────────────────────────"))
+        graphs.append(Text("SCD4X ──┬───────────────────────────────────────────────"))
+        graphs.append(Text(f" │ {render_high_graph(scd4x_history, 28.5, 40).plain}"))
+
+        graphs.append(Text("°C Max ─┬───────────────────────────────────────────────"))
+        graphs.append(Text("SHT31D ─┬───────────────────────────────────────────────"))
+        graphs.append(Text(f" │ {render_high_graph(sht31d_history, 28.5, 40).plain}"))
+
         graphs.append(Text(" └───────────────────────────────────────────────"))
 
         graphs.append(Text("Rh ──┬───────────────────────────────────────────────"))
