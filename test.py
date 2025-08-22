@@ -300,8 +300,8 @@ def build_hts221_panel():
         max_values["HTS221"]["Temp"] = max(max_values["HTS221"]["Temp"], temp)
         max_values["HTS221"]["Hum"] = max(max_values["HTS221"]["Hum"], hum)
 
-        zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
-        zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
+        zones_temp = auto_scale_zones(temp_all_history, ["blue", "green", "yellow", "red"])
+        zones_hum = auto_scale_zones(hum_history, ["sky_blue1", "cyan", "deep_sky_blue1", "steel_blue"])
 
         lines = [
             format_zone_bar(temp, zones_temp, label="Temp", unit="°C"),
@@ -322,8 +322,8 @@ def build_scd4x_panel():
         max_values["SCD4X"]["Temp"] = max(max_values["SCD4X"]["Temp"], temp)
         max_values["SCD4X"]["Hum"] = max(max_values["SCD4X"]["Hum"], hum)
 
-        zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
-        zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
+        zones_temp = auto_scale_zones(temp_all_history, ["blue", "green", "yellow", "red"])
+        zones_hum = auto_scale_zones(hum_history, ["sky_blue1", "cyan", "deep_sky_blue1", "steel_blue"])
 
         lines = [
             format_zone_bar(temp, zones_temp, label="Temp", unit="°C"),
@@ -389,9 +389,8 @@ def build_environment_panel():
         max_values["Environment"]["Pressure"] = max(max_values["Environment"]["Pressure"], pressure_value)
 
         # Define zones
-        zones_co2 = [(600, "blue"), (1000, "green"), (1500, "yellow"), (2000, "red")]
-        zones_pressure = [(980, "blue"), (1013, "green"), (1030, "yellow"), (1050, "red")]
-
+        zones_co2 = auto_scale_zones(co2_history, ["blue", "green", "yellow", "red"])
+        zones_pressure = auto_scale_zones(pressure_history, ["blue", "green", "yellow", "red"])
         # Build visual lines
         lines = [
             format_zone_bar(co2_value, zones_co2, label="CO₂", unit="ppm"),
@@ -416,9 +415,8 @@ def build_room_panel():
         max_values["Room"]["Temp"] = max(max_values["Room"]["Temp"], temp)
         max_values["Room"]["Hum"] = max(max_values["Room"]["Hum"], humidity)
 
-        zones_temp = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
-        zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
-
+        zones_temp = auto_scale_zones(temp_all_history, ["blue", "green", "yellow", "red"])
+        zones_hum = auto_scale_zones(hum_history, ["sky_blue1", "cyan", "deep_sky_blue1", "steel_blue"])
         lines = [
             format_zone_bar(temp, zones_temp, label="Room Temp", unit="°C"),
             Text(f"Max Temp: {max_values['Room']['Temp']:.1f}°C", style="bold green"),
@@ -441,7 +439,7 @@ def build_tent_panel():
         if temp_bme is not None:
             max_values["Tent"]["BME280"] = max(max_values["Tent"]["BME280"], temp_bme)
 
-        zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
+        zones_temp = auto_scale_zones(temp_all_history, ["blue", "green", "yellow", "red"])
 
         lines = [
             format_zone_bar(temp_mcp, zones_temp, label="MCP9808", unit="°C"),
