@@ -19,6 +19,7 @@ from rich.table import Table
 from rich.live import Live
 from rich.text import Text
 from rich.layout import Layout
+from logo_panel import build_logo_panel
 import psutil
 import os
 import time
@@ -76,7 +77,20 @@ max_values = {
 }
 console = Console()
 REFRESH_INTERVAL = 1.0
+
 SCD4X_REFRESH = 10.0
+def build_layout() -> Layout:
+    layout = Layout()
+    layout.split_column(
+        Layout(name="logo", size=9),       # ← top banner
+        Layout(name="main", ratio=3),      # ← sensor panels
+        Layout(name="footer", size=3)      # ← timestamp or status
+    )
+    layout["logo"].update(build_logo_panel())  # ← embed logo directly
+    return layout
+if __name__ == "__main__":
+    layout = build_layout()
+    console.print(layout)
 
 scd4x_data = {"Temperature": "Waiting...", "Humidity": "Waiting..."}
 environment_data = {"CO₂": "Waiting...", "Pressure": "Waiting..."}
