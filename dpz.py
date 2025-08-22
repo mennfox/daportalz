@@ -355,8 +355,8 @@ def build_bme280_panel():
         max_values["BME280"]["Temp"] = max(max_values["BME280"]["Temp"], temp)
         max_values["BME280"]["Hum"] = max(max_values["BME280"]["Hum"], hum)
 
-        zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
-        zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
+        zones_temp = auto_scale_zones(temp_all_history, ["blue", "green", "yellow", "red"])
+        zones_hum = auto_scale_zones(hum_history, ["sky_blue1", "cyan", "deep_sky_blue1", "steel_blue"])
 
         lines = [
             format_zone_bar(temp, zones_temp, label="Temp", unit="°C"),

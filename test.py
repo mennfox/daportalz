@@ -234,6 +234,10 @@ def build_i2c_panel():
     body = Text("\n").join(lines)
     return Panel(body, title="🧭 I²C Port Map", border_style="grey37")
 
+def get_autoscaled_max(history, base_colors):
+    zones = auto_scale_zones(history, base_colors)
+    return zones[-1][0] if zones else 100  # Fallback
+
 def get_hts221_stats():
     try:
         temp = hts.temperature
@@ -293,6 +297,28 @@ def get_as7341_panel():
 
     except Exception as e:
         return Panel(f"[red]Sensor Error: {e}", title="🌈 AS7341 Spectral Sensor", border_style="grey37")
+
+def styled_block(val, max_val, zones):
+    color = zone_color(val, zones)
+    blocks = "▁▂▃▄▅▆▇█"
+    idx = min(int((val / max_val) * (len(blocks) - 1)), len(blocks) - 1)
+    return Text(blocks[idx], style=f"bold {color}")
+
+def render_high_graph(data, threshold, max_value, zones, width=60):
+    graph = []
+    for val in list(data)[-width:]:
+        try:
+            val = float(val)
+        except:
+            val = 0.0
+        block = styled_block(val, max_value, zones) if val >= threshold else Text(" ", style="dim")
+        graph.append(block)
+    return Text.assemble(*graph)
+
+def build_timestamp_panel():
+    now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    return Panel(f"[bold green]Last Refresh:[/bold green] {now}", border_style="grey37")
+
 def build_hts221_panel():
     data = get_hts221_stats()
     if "Sensor Error" in data:
@@ -397,6 +423,7 @@ def build_environment_panel():
         # Define zones
         zones_co2 = auto_scale_zones(co2_history, ["blue", "green", "yellow", "red"])
         zones_pressure = auto_scale_zones(pressure_history, ["blue", "green", "yellow", "red"])
+    
         # Build visual lines
         lines = [
             format_zone_bar(co2_value, zones_co2, label="CO₂", unit="ppm"),
@@ -405,7 +432,6 @@ def build_environment_panel():
             Text(f"Max Pressure: {max_values['Environment']['Pressure']:.2f} hPa", style="bold cyan")
         ]
         body = Text("\n").join(lines)
-
     except Exception as e:
         body = f"[red]Sensor Error: {e}[/red]"
 
@@ -485,8 +511,18 @@ def max_overlay_graph(current, spikes, threshold, max_value, width=60):
     graph = []
 
     for i in range(width):
-        val = float(current[i]) if i < len(current) else 0.0
-        spike = float(spikes[i]) if i < len(spikes) else 0.0
+        # Safely extract current value
+        try:
+            val = float(current[i]) if i < len(current) and not isinstance(current[i], list) else 0.0
+        except (TypeError, ValueError):
+            val = 0.0
+
+        # Safely extract spike value
+        try:
+            spike = float(spikes[i]) if i < len(spikes) and not isinstance(spikes[i], list) else 0.0
+        except (TypeError, ValueError):
+            spike = 0.0
+
         show_val = max(val, spike)
 
         if show_val >= threshold:
@@ -503,27 +539,42 @@ def build_sensor_graph_panel():
     try:
         graphs = []
 
-        graphs.append(Text("CO₂ ──┬───────────────────────────────────────────────"))
-        graphs.append(Text(f"     │   {render_high_graph(co2_history, 1500, 2000).plain}"))
-        graphs.append(Text("     └───────────────────────────────────────────────"))
+        # CO₂
+        zones_co2 = auto_scale_zones(co2_history, ["blue", "green", "yellow", "red"])
+        max_co2 = zones_co2[-1][0]
+        graphs.append(Text("🧪 CO₂ ──┬───────────────────────────────────────────────", style="bold cyan"))
+        graphs.append(Text(" │ ") + render_high_graph(co2_history, 1500, max_co2, zones_co2))
+        graphs.append(render_threshold_line(width=60))
 
-        graphs.append(Text("Lux ──┬───────────────────────────────────────────────"))
-        graphs.append(Text(f"     │   {render_high_graph(lux_history, 9000, 10500).plain}"))
-        graphs.append(Text("     └───────────────────────────────────────────────"))
+        # Lux
+        zones_lux = auto_scale_zones(lux_history, ["blue", "green", "yellow", "red"])
+        max_lux = zones_lux[-1][0]
+        graphs.append(Text("🔆 Lux ──┬───────────────────────────────────────────────", style="bold yellow"))
+        graphs.append(Text(" │ ") + render_high_graph(lux_history, 9000, max_lux, zones_lux))
+        graphs.append(render_threshold_line(width=60))
 
-        graphs.append(Text("°C Max ─┬───────────────────────────────────────────────"))
-        graphs.append(Text(f" │ {max_overlay_graph(temp_all_history, temp_spike_history, 28.5, 40).plain}"))
-        graphs.append(Text(" └───────────────────────────────────────────────"))
+        # °C Max (Overlay)
+        zones_temp = auto_scale_zones(temp_all_history, ["blue", "green", "yellow", "red"])
+        max_temp = zones_temp[-1][0]
+        graphs.append(Text("🌡 °C Max ─┬───────────────────────────────────────────────", style="bold red"))
+        graphs.append(Text(f" │ {max_overlay_graph(temp_all_history, temp_spike_history, 28.5, max_temp).plain}"))
+        graphs.append(render_threshold_line(width=60))
 
-        graphs.append(Text("Rh ──┬───────────────────────────────────────────────"))
-        graphs.append(Text(f"     │   {render_high_graph(hum_history, 70, 100).plain}"))
-        graphs.append(Text("     └───────────────────────────────────────────────"))
+        # Humidity
+        zones_hum = auto_scale_zones(hum_history, ["sky_blue1", "cyan", "deep_sky_blue1", "steel_blue"])
+        max_hum = zones_hum[-1][0]
+        graphs.append(Text("💧 Rh ──┬───────────────────────────────────────────────", style="bold blue"))
+        graphs.append(Text(" │ ") + render_high_graph(hum_history, 70, max_hum, zones_hum))
+        graphs.append(render_threshold_line(width=60))
 
-        graphs.append(Text("hPa ─┬────────────────────────────────────────────"))
-        graphs.append(Text(f"          │   {render_high_graph(pressure_history, 1020, 1050).plain}"))
-        graphs.append(Text("          └────────────────────────────────────────────"))
+        # Pressure
+        zones_pressure = auto_scale_zones(pressure_history, ["blue", "green", "yellow", "red"])
+        max_pressure = zones_pressure[-1][0]
+        graphs.append(Text("📈 hPa ─┬────────────────────────────────────────────", style="bold magenta"))
+        graphs.append(Text(" │ ") + render_high_graph(pressure_history, 1020, max_pressure, zones_pressure))
+        graphs.append(render_threshold_line(width=60))
 
-        graphs.append(Text("Time → [Last 24h]"))
+        graphs.append(Text("Time → [Last 24h]", style="dim"))
 
         body = Text("\n").join(graphs)
     except Exception as e:
@@ -551,9 +602,9 @@ def build_dashboard():
         build_room_panel(),
         build_tent_panel(),
         build_bh1750_panel(),
+        build_timestamp_panel(),
         build_sensor_graph_panel(),
-        build_i2c_panel()
-
+        layout.add_row(build_i2c_panel()) 
     )
     return layout
 
