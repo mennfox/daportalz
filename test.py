@@ -93,6 +93,8 @@ def colorize(value, thresholds=(50, 75)):
         return f"[red]{value:.1f}%[/red]"
 
 def bar_visual(value, max_value=100, width=20, color="white"):
+    if max_value == 0:
+        return Text(" " * width, style="dim")  # Prevent crash
     filled_len = min(int((value / max_value) * width), width)
     bar = "█" * filled_len + " " * (width - filled_len)
     return Text(bar, style=color)
@@ -107,6 +109,7 @@ def format_zone_bar(value, zones, label="", unit="", width=20):
     color = zone_color(value, zones)
     bar = bar_visual(value, max_value=zones[-1][0], width=width, color=color)
     return Text(f"{label:<10} {value:.1f}{unit:<3} ", style=color) + bar
+
 def get_cpu_panel():
     cpu_percents = psutil.cpu_percent(percpu=True)
     table = Table(title="[bold cyan]CPU Usage[/bold cyan]", expand=True)
@@ -202,9 +205,12 @@ def update_scd4x_loop():
             scd4x_data["Humidity"] = "-"
 
 def auto_scale_zones(history, base_colors):
-    max_val = max(history) if history else 1
-    step = max_val / len(base_colors)
-    return [(step * (i + 1), color) for i, color in enumerate(base_colors)]
+    valid = [v for v in history if v > 0]
+    if not valid:
+        return [(1, c) for c in base_colors]  # Safe fallback
+    min_val, max_val = min(valid), max(valid)
+    step = (max_val - min_val) / len(base_colors) or 1
+    return [(min_val + step * (i + 1), base_colors[i]) for i in range(len(base_colors))]
 
 def build_i2c_panel():
     lines = []
@@ -349,8 +355,8 @@ def build_bme280_panel():
         max_values["BME280"]["Temp"] = max(max_values["BME280"]["Temp"], temp)
         max_values["BME280"]["Hum"] = max(max_values["BME280"]["Hum"], hum)
 
-        zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
-        zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
+        zones_temp = auto_scale_zones(temp_all_history, ["blue", "green", "yellow", "red"])
+        zones_hum = auto_scale_zones(hum_history, ["sky_blue1", "cyan", "deep_sky_blue1", "steel_blue"])
 
         lines = [
             format_zone_bar(temp, zones_temp, label="Temp", unit="°C"),

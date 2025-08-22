@@ -93,6 +93,8 @@ def colorize(value, thresholds=(50, 75)):
         return f"[red]{value:.1f}%[/red]"
 
 def bar_visual(value, max_value=100, width=20, color="white"):
+    if max_value == 0:
+        return Text(" " * width, style="dim")  # Prevent crash
     filled_len = min(int((value / max_value) * width), width)
     bar = "█" * filled_len + " " * (width - filled_len)
     return Text(bar, style=color)
@@ -107,6 +109,7 @@ def format_zone_bar(value, zones, label="", unit="", width=20):
     color = zone_color(value, zones)
     bar = bar_visual(value, max_value=zones[-1][0], width=width, color=color)
     return Text(f"{label:<10} {value:.1f}{unit:<3} ", style=color) + bar
+
 def get_cpu_panel():
     cpu_percents = psutil.cpu_percent(percpu=True)
     table = Table(title="[bold cyan]CPU Usage[/bold cyan]", expand=True)
@@ -201,6 +204,13 @@ def update_scd4x_loop():
             scd4x_data["Temperature"] = "-"
             scd4x_data["Humidity"] = "-"
 
+def auto_scale_zones(history, base_colors):
+    valid = [v for v in history if v > 0]
+    if not valid:
+        return [(1, c) for c in base_colors]  # Safe fallback
+    min_val, max_val = min(valid), max(valid)
+    step = (max_val - min_val) / len(base_colors) or 1
+    return [(min_val + step * (i + 1), base_colors[i]) for i in range(len(base_colors))]
 
 def build_i2c_panel():
     lines = []
@@ -296,8 +306,8 @@ def build_hts221_panel():
         max_values["HTS221"]["Temp"] = max(max_values["HTS221"]["Temp"], temp)
         max_values["HTS221"]["Hum"] = max(max_values["HTS221"]["Hum"], hum)
 
-        zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
-        zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
+        zones_temp = auto_scale_zones(temp_all_history, ["blue", "green", "yellow", "red"])
+        zones_hum = auto_scale_zones(hum_history, ["sky_blue1", "cyan", "deep_sky_blue1", "steel_blue"])
 
         lines = [
             format_zone_bar(temp, zones_temp, label="Temp", unit="°C"),
@@ -318,8 +328,8 @@ def build_scd4x_panel():
         max_values["SCD4X"]["Temp"] = max(max_values["SCD4X"]["Temp"], temp)
         max_values["SCD4X"]["Hum"] = max(max_values["SCD4X"]["Hum"], hum)
 
-        zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
-        zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
+        zones_temp = auto_scale_zones(temp_all_history, ["blue", "green", "yellow", "red"])
+        zones_hum = auto_scale_zones(hum_history, ["sky_blue1", "cyan", "deep_sky_blue1", "steel_blue"])
 
         lines = [
             format_zone_bar(temp, zones_temp, label="Temp", unit="°C"),
@@ -364,7 +374,7 @@ def build_bh1750_panel():
     else:
         lux_value = float(data['Light Level'].split()[0])
         max_values["BH1750"]["Lux"] = max(max_values["BH1750"]["Lux"], lux_value)
-        zones_lux = [(1000, "blue"), (3000, "green"), (7000, "yellow"), (10000, "red")]
+        zones_lux = auto_scale_zones(lux_history, ["blue", "green", "yellow", "red"])
         lines = [
             format_zone_bar(lux_value, zones_lux, label="Lux", unit="Lux"),
             Text(f"Max Lux: {max_values['BH1750']['Lux']:.2f} Lux", style="bold green")
@@ -385,9 +395,8 @@ def build_environment_panel():
         max_values["Environment"]["Pressure"] = max(max_values["Environment"]["Pressure"], pressure_value)
 
         # Define zones
-        zones_co2 = [(600, "blue"), (1000, "green"), (1500, "yellow"), (2000, "red")]
-        zones_pressure = [(980, "blue"), (1013, "green"), (1030, "yellow"), (1050, "red")]
-
+        zones_co2 = auto_scale_zones(co2_history, ["blue", "green", "yellow", "red"])
+        zones_pressure = auto_scale_zones(pressure_history, ["blue", "green", "yellow", "red"])
         # Build visual lines
         lines = [
             format_zone_bar(co2_value, zones_co2, label="CO₂", unit="ppm"),
@@ -412,9 +421,8 @@ def build_room_panel():
         max_values["Room"]["Temp"] = max(max_values["Room"]["Temp"], temp)
         max_values["Room"]["Hum"] = max(max_values["Room"]["Hum"], humidity)
 
-        zones_temp = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
-        zones_hum = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
-
+        zones_temp = auto_scale_zones(temp_all_history, ["blue", "green", "yellow", "red"])
+        zones_hum = auto_scale_zones(hum_history, ["sky_blue1", "cyan", "deep_sky_blue1", "steel_blue"])
         lines = [
             format_zone_bar(temp, zones_temp, label="Room Temp", unit="°C"),
             Text(f"Max Temp: {max_values['Room']['Temp']:.1f}°C", style="bold green"),
@@ -437,7 +445,7 @@ def build_tent_panel():
         if temp_bme is not None:
             max_values["Tent"]["BME280"] = max(max_values["Tent"]["BME280"], temp_bme)
 
-        zones_temp = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
+        zones_temp = auto_scale_zones(temp_all_history, ["blue", "green", "yellow", "red"])
 
         lines = [
             format_zone_bar(temp_mcp, zones_temp, label="MCP9808", unit="°C"),
