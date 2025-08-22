@@ -6,6 +6,7 @@ lux_history = deque([0.0]*60, maxlen=60)
 temp_all_history = deque([0.0]*60, maxlen=60)
 hum_history = deque([0.0]*60, maxlen=60)
 pressure_history = deque([0.0]*60, maxlen=60)  # Optional
+temp_spike_history = deque([0.0]*60, maxlen=60)
 
 from rich.console import Console
 from rich.panel import Panel
@@ -200,11 +201,36 @@ def update_scd4x_loop():
             scd4x_data["Temperature"] = "-"
             scd4x_data["Humidity"] = "-"
 
+
+def build_i2c_panel():
+    lines = []
+
+    # busio.I2C(board.SCL, board.SDA)
+    lines.append(Text("🔌 busio.I2C(board.SCL, board.SDA)", style="bold cyan"))
+    lines.append(Text("  ├─ HTS221 @ 0x5F"))
+    lines.append(Text("  ├─ SCD4X @ 0x62"))
+    lines.append(Text("  ├─ BH1750 @ 0x23"))
+    lines.append(Text("  ├─ AS7341 @ 0x39"))
+    lines.append(Text("  ├─ SHT31D @ 0x44"))
+    lines.append(Text("  ├─ MCP9808 @ 0x18"))
+    lines.append(Text("  └─ ADT7410 @ 0x48"))
+
+    lines.append(Text(""))  # Spacer
+
+    # smbus2.SMBus(1)
+    lines.append(Text("🔌 smbus2.SMBus(1)", style="bold magenta"))
+    lines.append(Text("  └─ BME280 @ 0x76"))
+
+    body = Text("\n").join(lines)
+    return Panel(body, title="🧭 I²C Port Map", border_style="grey37")
+
 def get_hts221_stats():
     try:
         temp = hts.temperature
         humidity = hts.relative_humidity
         temp_all_history.append(temp)
+        for i, val in enumerate(temp_all_history):
+            temp_spike_history[i] = max(temp_spike_history[i], val)
         hum_history.append(humidity)
         return {"Temperature": temp, "Humidity": humidity}
     except Exception as e:
@@ -265,6 +291,8 @@ def build_hts221_panel():
         temp = data["Temperature"]
         hum = data["Humidity"]
         temp_all_history.append(temp)
+        for i, val in enumerate(temp_all_history):
+            temp_spike_history[i] = max(temp_spike_history[i], val)
         max_values["HTS221"]["Temp"] = max(max_values["HTS221"]["Temp"], temp)
         max_values["HTS221"]["Hum"] = max(max_values["HTS221"]["Hum"], hum)
 
@@ -285,6 +313,8 @@ def build_scd4x_panel():
         temp = scd4x_data["Temperature"]
         hum = scd4x_data["Humidity"]
         temp_all_history.append(temp)
+        for i, val in enumerate(temp_all_history):
+            temp_spike_history[i] = max(temp_spike_history[i], val)
         max_values["SCD4X"]["Temp"] = max(max_values["SCD4X"]["Temp"], temp)
         max_values["SCD4X"]["Hum"] = max(max_values["SCD4X"]["Hum"], hum)
 
@@ -310,6 +340,8 @@ def build_bme280_panel():
         temp = data["Temperature"]
         hum = data["Humidity"]
         temp_all_history.append(temp)
+        for i, val in enumerate(temp_all_history):
+            temp_spike_history[i] = max(temp_spike_history[i], val)
         max_values["BME280"]["Temp"] = max(max_values["BME280"]["Temp"], temp)
         max_values["BME280"]["Hum"] = max(max_values["BME280"]["Hum"], hum)
 
@@ -332,7 +364,7 @@ def build_bh1750_panel():
     else:
         lux_value = float(data['Light Level'].split()[0])
         max_values["BH1750"]["Lux"] = max(max_values["BH1750"]["Lux"], lux_value)
-        zones_lux = [(100, "blue"), (500, "green"), (1000, "yellow"), (2000, "red")]
+        zones_lux = [(100, "blue"), (55000, "green"), (70000, "yellow"), (100000, "red")]
         lines = [
             format_zone_bar(lux_value, zones_lux, label="Lux", unit="Lux"),
             Text(f"Max Lux: {max_values['BH1750']['Lux']:.2f} Lux", style="bold green")
@@ -375,6 +407,8 @@ def build_room_panel():
         temp = sht31.temperature
         humidity = sht31.relative_humidity
         temp_all_history.append(temp)
+        for i, val in enumerate(temp_all_history):
+            temp_spike_history[i] = max(temp_spike_history[i], val)
         max_values["Room"]["Temp"] = max(max_values["Room"]["Temp"], temp)
         max_values["Room"]["Hum"] = max(max_values["Room"]["Hum"], humidity)
 
@@ -421,7 +455,6 @@ def build_tent_panel():
     except Exception as e:
         body = f"[red]Sensor Error: {e}[/red]"
     return Panel(body, title="🌡 Tent Heatmap", border_style="grey37")
-from rich.text import Text
 
 def render_high_graph(data, threshold, max_value, width=60):
     blocks = "▁▂▃▄▅▆▇█"
@@ -438,6 +471,26 @@ def render_high_graph(data, threshold, max_value, width=60):
             graph.append(" ")
     return Text("".join(graph), style="bold green")
 
+
+def max_overlay_graph(current, spikes, threshold, max_value, width=60):
+    blocks = "▁▂▃▄▅▆▇█"
+    graph = []
+
+    for i in range(width):
+        val = float(current[i]) if i < len(current) else 0.0
+        spike = float(spikes[i]) if i < len(spikes) else 0.0
+        show_val = max(val, spike)
+
+        if show_val >= threshold:
+            idx = min(int((show_val / max_value) * (len(blocks) - 1)), len(blocks) - 1)
+            block = blocks[idx]
+            style = "bold red" if spike > val else "bold yellow"
+            graph.append((block, style))
+        else:
+            graph.append((" ", "dim"))
+
+    return Text.assemble(*[Text(char, style=style) for char, style in graph])
+
 def build_sensor_graph_panel():
     try:
         graphs = []
@@ -450,8 +503,8 @@ def build_sensor_graph_panel():
         graphs.append(Text(f"     │   {render_high_graph(lux_history, 9000, 10500).plain}"))
         graphs.append(Text("     └───────────────────────────────────────────────"))
 
-        graphs.append(Text("Temp ─┬───────────────────────────────────────────────"))
-        graphs.append(Text(f" │ {render_high_graph(temp_all_history, 29, 40).plain}"))
+        graphs.append(Text("°C Max ─┬───────────────────────────────────────────────"))
+        graphs.append(Text(f" │ {max_overlay_graph(temp_all_history, temp_spike_history, 28.5, 40).plain}"))
         graphs.append(Text(" └───────────────────────────────────────────────"))
 
         graphs.append(Text("Rh ──┬───────────────────────────────────────────────"))
@@ -490,7 +543,8 @@ def build_dashboard():
         build_room_panel(),
         build_tent_panel(),
         build_bh1750_panel(),
-        build_sensor_graph_panel()
+        build_sensor_graph_panel(),
+        build_i2c_panel()
 
     )
     return layout
