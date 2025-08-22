@@ -365,16 +365,11 @@ def build_bh1750_panel():
         lux_value = float(data['Light Level'].split()[0])
         max_values["BH1750"]["Lux"] = max(max_values["BH1750"]["Lux"], lux_value)
         zones_lux = [(100, "blue"), (55000, "green"), (70000, "yellow"), (100000, "red")]
-
-        bar_line = format_zone_bar(lux_value, zones_lux, label="Lux", unit="Lux", width=30)
-        print(bar_line.plain)  # Debug output
-
         lines = [
-            bar_line,
+            format_zone_bar(lux_value, zones_lux, label="Lux", unit="Lux"),
             Text(f"Max Lux: {max_values['BH1750']['Lux']:.2f} Lux", style="bold green")
         ]
         body = Text("\n").join(lines)
- 
     return Panel(body, title="🔆 BH1750 Sensor", border_style="grey37")
 
 def build_environment_panel():
