@@ -364,7 +364,7 @@ def build_bh1750_panel():
     else:
         lux_value = float(data['Light Level'].split()[0])
         max_values["BH1750"]["Lux"] = max(max_values["BH1750"]["Lux"], lux_value)
-        zones_lux = [(100, "blue"), (55000, "green"), (70000, "yellow"), (100000, "red")]
+        zones_lux = [(1000, "blue"), (3000, "green"), (7000, "yellow"), (10000, "red")]
         lines = [
             format_zone_bar(lux_value, zones_lux, label="Lux", unit="Lux"),
             Text(f"Max Lux: {max_values['BH1750']['Lux']:.2f} Lux", style="bold green")

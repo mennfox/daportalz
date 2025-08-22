@@ -201,6 +201,10 @@ def update_scd4x_loop():
             scd4x_data["Temperature"] = "-"
             scd4x_data["Humidity"] = "-"
 
+def auto_scale_zones(history, base_colors):
+    max_val = max(history) if history else 1
+    step = max_val / len(base_colors)
+    return [(step * (i + 1), color) for i, color in enumerate(base_colors)]
 
 def build_i2c_panel():
     lines = []
@@ -364,7 +368,7 @@ def build_bh1750_panel():
     else:
         lux_value = float(data['Light Level'].split()[0])
         max_values["BH1750"]["Lux"] = max(max_values["BH1750"]["Lux"], lux_value)
-        zones_lux = [(100, "blue"), (55000, "green"), (70000, "yellow"), (100000, "red")]
+        zones_lux = auto_scale_zones(lux_history, ["blue", "green", "yellow", "red"])
         lines = [
             format_zone_bar(lux_value, zones_lux, label="Lux", unit="Lux"),
             Text(f"Max Lux: {max_values['BH1750']['Lux']:.2f} Lux", style="bold green")
