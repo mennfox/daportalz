@@ -473,41 +473,39 @@ def build_sensor_graph_panel():
     try:
         graphs = []
 
-        # CO₂
         graphs.append(Text("CO₂ ──┬───────────────────────────────────────────────"))
-        graphs.append(Text(f" │ {render_high_graph(co2_history, 1500, 2000).plain}"))
-        graphs.append(Text(" └───────────────────────────────────────────────"))
+        graphs.append(Text(f"     │   {render_high_graph(co2_history, 1500, 2000).plain}"))
+        graphs.append(Text("     └───────────────────────────────────────────────"))
 
-        # Lux
         graphs.append(Text("Lux ──┬───────────────────────────────────────────────"))
-        graphs.append(Text(f" │ {render_high_graph(lux_history, 9000, 10500).plain}"))
-        graphs.append(Text(" └───────────────────────────────────────────────"))
+        graphs.append(Text(f"     │   {render_high_graph(lux_history, 9000, 10500).plain}"))
+        graphs.append(Text("     └───────────────────────────────────────────────"))
 
-        # Temperature with spike overlays
         graphs.append(Text("°C Max ─┬───────────────────────────────────────────────"))
         graphs.append(Text("HTS221 ─┬───────────────────────────────────────────────"))
-        graphs.append(Text(f" │ {max_overlay_graph(hts221_history, temp_spike_history, 28.5, 40).plain}"))
+        graphs.append(Text(f" │ {render_high_graph(hts221_history, 28.5, 40).plain}"))
 
+        graphs.append(Text("°C Max ─┬───────────────────────────────────────────────"))
         graphs.append(Text("SCD4X ──┬───────────────────────────────────────────────"))
-        graphs.append(Text(f" │ {max_overlay_graph(scd4x_history, temp_spike_history, 28.5, 40).plain}"))
+        graphs.append(Text(f" │ {render_high_graph(scd4x_history, 28.5, 40).plain}"))
 
+        graphs.append(Text("°C Max ─┬───────────────────────────────────────────────"))
         graphs.append(Text("SHT31D ─┬───────────────────────────────────────────────"))
-        graphs.append(Text(f" │ {max_overlay_graph(sht31d_history, temp_spike_history, 28.5, 40).plain}"))
+        graphs.append(Text(f" │ {render_high_graph(sht31d_history, 28.5, 40).plain}"))
+
         graphs.append(Text(" └───────────────────────────────────────────────"))
 
-        # Humidity
         graphs.append(Text("Rh ──┬───────────────────────────────────────────────"))
-        graphs.append(Text(f" │ {render_high_graph(hum_history, 70, 100).plain}"))
-        graphs.append(Text(" └───────────────────────────────────────────────"))
+        graphs.append(Text(f"     │   {render_high_graph(hum_history, 70, 100).plain}"))
+        graphs.append(Text("     └───────────────────────────────────────────────"))
 
-        # Pressure
         graphs.append(Text("hPa ─┬────────────────────────────────────────────"))
-        graphs.append(Text(f" │ {render_high_graph(pressure_history, 1020, 1050).plain}"))
-        graphs.append(Text(" └────────────────────────────────────────────"))
+        graphs.append(Text(f"          │   {render_high_graph(pressure_history, 1020, 1050).plain}"))
+        graphs.append(Text("          └────────────────────────────────────────────"))
 
         graphs.append(Text("Time → [Last 24h]"))
-        body = Text("\n").join(graphs)
 
+        body = Text("\n").join(graphs)
     except Exception as e:
         body = Text(f"[red]Sensor Graph Error: {e}[/red]")
 
