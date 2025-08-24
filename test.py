@@ -453,20 +453,18 @@ def render_high_graph(data, threshold, max_value, width=60):
 def max_overlay_graph(current, spikes, threshold, max_value, width=60):
     blocks = "▁▂▃▄▅▆▇█"
     graph = []
-
     for i in range(width):
         val = float(current[i]) if i < len(current) else 0.0
         spike = float(spikes[i]) if i < len(spikes) else 0.0
         show_val = max(val, spike)
-
         if show_val >= threshold:
             idx = min(int((show_val / max_value) * (len(blocks) - 1)), len(blocks) - 1)
             block = blocks[idx]
-            style = "bold red" if spike > val else "bold yellow"
-            graph.append((block, style))
+            style = "bold red"
         else:
-            graph.append((" ", "dim"))
-
+            block = " "
+            style = "dim"
+        graph.append((block, style))
     return Text.assemble(*[Text(char, style=style) for char, style in graph])
 
 def build_sensor_graph_panel():
@@ -486,13 +484,12 @@ def build_sensor_graph_panel():
         # Temperature with spike overlays
         graphs.append(Text("°C Max ─┬───────────────────────────────────────────────"))
         graphs.append(Text("HTS221 ─┬───────────────────────────────────────────────"))
-        graphs.append(Text(f" │ {max_overlay_graph(hts221_history, temp_spike_history, 28.5, 40).plain}"))
+        graphs.append(Text(" │ ") + max_overlay_graph(hts221_history, temp_spike_history, 28.5, 40))
 
         graphs.append(Text("SCD4X ──┬───────────────────────────────────────────────"))
-        graphs.append(Text(f" │ {max_overlay_graph(scd4x_history, temp_spike_history, 28.5, 40).plain}"))
-
+        graphs.append(Text(" │ ") + max_overlay_graph(scd4x_history, temp_spike_history, 28.5, 40))
         graphs.append(Text("SHT31D ─┬───────────────────────────────────────────────"))
-        graphs.append(Text(f" │ {max_overlay_graph(sht31d_history, temp_spike_history, 28.5, 40).plain}")) 
+        graphs.append(Text(" │ ") + max_overlay_graph(sht31d_history, temp_spike_history, 28.5, 40))
         graphs.append(Text(" └───────────────────────────────────────────────"))
 
         # Humidity
