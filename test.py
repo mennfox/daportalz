@@ -47,10 +47,6 @@ ZONES_HUM       = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85,
 ZONES_CO2       = [(600, "blue"), (1000, "green"), (1500, "yellow"), (2000, "red")]
 ZONES_PRESSURE  = [(980, "blue"), (1013, "green"), (1030, "yellow"), (1050, "red")]
 
-# Weather Spinners
-SPINNERS = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
-spinner_index = 0  # Global tracker
-
 # Initialize I2C and sensors
 i2c = busio.I2C(board.SCL, board.SDA)
 hts = adafruit_hts221.HTS221(i2c)
@@ -227,18 +223,6 @@ def update_scd4x_loop():
             scd4x_data["Temperature"] = "-"
             scd4x_data["Humidity"] = "-"
 
-def build_weather_panel(spinner="⠋", city="Orpington"):
-    data = get_live_weather(city)
-    table = Table.grid(padding=1)
-    table.add_row("[bold]Location[/bold]", city)
-    table.add_row("[bold]Temperature[/bold]", f"{data['Temperature']} {spinner}")
-    table.add_row("[bold]Humidity[/bold]", f"{data['Humidity']} {spinner}")
-    table.add_row("[bold]Pressure[/bold]", f"{data['Pressure']} {spinner}")
-    table.add_row("[bold]Wind[/bold]", f"{data['Wind']} {spinner}")
-    table.add_row("[bold]CO₂[/bold]", f"{data['CO₂']} {spinner}")
-    table.add_row("[dim]Last updated[/dim]", data["Updated"])
-    mood_color = get_mood_color(data["Temperature"])
-    return Panel(table, title=f"[bold]{city} Weather[/bold]", border_style=mood_color)
 
 def build_i2c_panel():
     lines = []
@@ -590,11 +574,8 @@ def build_weather_panel(city="Orpington"):
 ENABLE_WEATHER_PANEL = True  # Toggle this to False to disable weather panel
 
 def build_dashboard():
-    global spinner_index
-    spinner = SPINNERS[spinner_index % len(SPINNERS)]
-    spinner_index += 1
-
     layout = Table.grid(padding=(1, 2))
+
     layout.add_row(
         get_cpu_panel(),
         get_memory_panel(),
@@ -602,6 +583,7 @@ def build_dashboard():
         get_network_panel(),
         get_system_panel()
     )
+
     layout.add_row(
         get_as7341_panel(),
         build_environment_panel(),
@@ -610,6 +592,7 @@ def build_dashboard():
         build_bme280_panel()
     )
 
+    # Build third row dynamically
     third_row_panels = [
         build_room_panel(),
         build_tent_panel(),
@@ -619,9 +602,10 @@ def build_dashboard():
     ]
 
     if ENABLE_WEATHER_PANEL:
-        third_row_panels.append(build_weather_panel(spinner=spinner))
+        third_row_panels.append(build_weather_panel())
 
     layout.add_row(*third_row_panels)
+
     return layout
 
 
