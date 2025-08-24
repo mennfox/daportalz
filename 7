@@ -207,13 +207,6 @@ def sensor_zone_lines(value, zones, label, unit, max_val):
         Text(f"Max {label}: {max_val:.2f} {unit}", style="bold green")
     ]
 
-def fade_spike_history(history, decay=0.99, floor=28.5):
-    for i in range(len(history)):
-        if history[i] > floor:
-            history[i] *= decay
-        if history[i] < floor:
-            history[i] = 0.0  # Optional: reset below threshold
-
 def update_scd4x_loop():
     while True:
         time.sleep(SCD4X_REFRESH)
@@ -520,7 +513,7 @@ def build_sensor_graph_panel():
 
 ENABLE_WEATHER_PANEL = True  # Toggle this to False to disable
 
-def get_live_weather(city="BR6"):
+def get_live_weather(city="Orpington"):
     try:
         output = subprocess.check_output([
             "curl", "-s", f"wttr.in/{city}?format=%t|%h|%P|%w"
@@ -564,20 +557,19 @@ def get_mood_color(temp_str):
     except:
         return "grey50"
 
-def build_weather_panel():
-    data = get_live_weather()
-    if data["Error"]:
-        return Panel("[red]Weather data unavailable[/red]", title="🌦 Weather", border_style="grey37")
-
-    lines = [
-        Text(f"Temp: {data['Temperature']}"),
-        Text(f"Humidity: {data['Humidity']}"),
-        Text(f"Pressure: {data['Pressure']}"),
-        Text(f"Wind: {data['Wind']}"),
-        Text(f"CO₂: {data['CO₂']}"),
-        Text(f"Updated: {data['Updated']}", style="dim")
-    ]
-    return Panel(Text("\n").join(lines), title="🌦 Weather", border_style="grey37")
+def build_weather_panel(city="Orpington"):
+    data = get_live_weather(city)
+    table = Table.grid(padding=1)
+    table.add_row("[bold]Location[/bold]", city)
+    table.add_row("[bold]Temperature[/bold]", data["Temperature"])
+    table.add_row("[bold]Humidity[/bold]", data["Humidity"])
+    table.add_row("[bold]Pressure[/bold]", data["Pressure"])
+    table.add_row("[bold]Wind[/bold]", data["Wind"])
+    table.add_row("[bold]CO₂[/bold]", data["CO₂"])
+    table.add_row("[dim]Last updated[/dim]", data["Updated"])
+    mood_color = get_mood_color(data["Temperature"])
+    return Panel(table, title=f"[bold]{city} Weather[/bold]", border_style=mood_color)
+ENABLE_WEATHER_PANEL = True  # Toggle this to False to disable weather panel
 
 def build_dashboard():
     layout = Table.grid(padding=(1, 2))
@@ -619,7 +611,6 @@ def run_dashboard():
     threading.Thread(target=update_scd4x_loop, daemon=True).start()
     with Live(console=console, refresh_per_second=10, screen=True) as live:
         while True:
-            fade_spike_history(temp_spike_history)
             live.update(build_dashboard())
             time.sleep(REFRESH_INTERVAL)
 
