@@ -3,9 +3,14 @@
 from collections import deque
 co2_history = deque([0.0]*60, maxlen=60)
 lux_history = deque([0.0]*60, maxlen=60)
-temp_all_history = deque([0.0]*60, maxlen=60)
+hts221_history = deque([0.0]*60, maxlen=60)
+scd4x_history = deque([0.0]*60, maxlen=60)
+sht31d_history = deque([0.0]*60, maxlen=60)
+mcp9808_history = deque([0.0]*60, maxlen=60)
+adt7410_history = deque([0.0]*60, maxlen=60)
 hum_history = deque([0.0]*60, maxlen=60)
 pressure_history = deque([0.0]*60, maxlen=60)  # Optional
+temp_all_history = deque([0.0]*60, maxlen=60)
 temp_spike_history = deque([0.0]*60, maxlen=60)
 
 from rich.console import Console
@@ -306,7 +311,7 @@ def build_hts221_panel():
     else:
         temp = data["Temperature"]
         hum = data["Humidity"]
-        temp_all_history.append(temp)
+        hts221_history.append(temp)
         for i, val in enumerate(temp_all_history):
             temp_spike_history[i] = max(temp_spike_history[i], val)
         max_values["HTS221"]["Temp"] = max(max_values["HTS221"]["Temp"], temp)
@@ -321,7 +326,7 @@ def build_scd4x_panel():
     if isinstance(scd4x_data["Temperature"], float):
         temp = scd4x_data["Temperature"]
         hum = scd4x_data["Humidity"]
-        temp_all_history.append(temp)
+        scd4x_history.append(temp)
         for i, val in enumerate(temp_all_history):
             temp_spike_history[i] = max(temp_spike_history[i], val)
         max_values["SCD4X"]["Temp"] = max(max_values["SCD4X"]["Temp"], temp)
@@ -395,7 +400,7 @@ def build_room_panel():
     try:
         temp = sht31.temperature
         humidity = sht31.relative_humidity
-        temp_all_history.append(temp)
+        sht31d_history.append(temp)
         for i, val in enumerate(temp_all_history):
             temp_spike_history[i] = max(temp_spike_history[i], val)
         max_values["Room"]["Temp"] = max(max_values["Room"]["Temp"], temp)
@@ -477,7 +482,17 @@ def build_sensor_graph_panel():
         graphs.append(Text("     └───────────────────────────────────────────────"))
 
         graphs.append(Text("°C Max ─┬───────────────────────────────────────────────"))
-        graphs.append(Text(f" │ {max_overlay_graph(temp_all_history, temp_spike_history, 28.5, 40).plain}"))
+        graphs.append(Text("HTS221 ─┬───────────────────────────────────────────────"))
+        graphs.append(Text(f" │ {render_high_graph(hts221_history, 28.5, 40).plain}"))
+
+        graphs.append(Text("°C Max ─┬───────────────────────────────────────────────"))
+        graphs.append(Text("SCD4X ──┬───────────────────────────────────────────────"))
+        graphs.append(Text(f" │ {render_high_graph(scd4x_history, 28.5, 40).plain}"))
+
+        graphs.append(Text("°C Max ─┬───────────────────────────────────────────────"))
+        graphs.append(Text("SHT31D ─┬───────────────────────────────────────────────"))
+        graphs.append(Text(f" │ {render_high_graph(sht31d_history, 28.5, 40).plain}"))
+
         graphs.append(Text(" └───────────────────────────────────────────────"))
 
         graphs.append(Text("Rh ──┬───────────────────────────────────────────────"))

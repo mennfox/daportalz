@@ -19,13 +19,14 @@ from rich.table import Table
 from rich.live import Live
 from rich.text import Text
 from rich.layout import Layout
-from logo_panel import build_logo_panel
 import psutil
 import os
 import time
 import threading
 from datetime import datetime
 
+import subprocess
+import random
 import board
 import busio
 import adafruit_hts221
@@ -45,6 +46,10 @@ ZONES_TEMP_ROOM = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
 ZONES_HUM       = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
 ZONES_CO2       = [(600, "blue"), (1000, "green"), (1500, "yellow"), (2000, "red")]
 ZONES_PRESSURE  = [(980, "blue"), (1013, "green"), (1030, "yellow"), (1050, "red")]
+
+# Weather Spinners
+SPINNERS = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
+spinner_index = 0  # Global tracker
 
 # Initialize I2C and sensors
 i2c = busio.I2C(board.SCL, board.SDA)
@@ -77,20 +82,7 @@ max_values = {
 }
 console = Console()
 REFRESH_INTERVAL = 1.0
-
 SCD4X_REFRESH = 10.0
-def build_layout() -> Layout:
-    layout = Layout()
-    layout.split_column(
-        Layout(name="logo", size=9),       # ← top banner
-        Layout(name="main", ratio=3),      # ← sensor panels
-        Layout(name="footer", size=3)      # ← timestamp or status
-    )
-    layout["logo"].update(build_logo_panel())  # ← embed logo directly
-    return layout
-if __name__ == "__main__":
-    layout = build_layout()
-    console.print(layout)
 
 scd4x_data = {"Temperature": "Waiting...", "Humidity": "Waiting..."}
 environment_data = {"CO₂": "Waiting...", "Pressure": "Waiting..."}
@@ -235,6 +227,18 @@ def update_scd4x_loop():
             scd4x_data["Temperature"] = "-"
             scd4x_data["Humidity"] = "-"
 
+def build_weather_panel(spinner="⠋", city="Orpington"):
+    data = get_live_weather(city)
+    table = Table.grid(padding=1)
+    table.add_row("[bold]Location[/bold]", city)
+    table.add_row("[bold]Temperature[/bold]", f"{data['Temperature']} {spinner}")
+    table.add_row("[bold]Humidity[/bold]", f"{data['Humidity']} {spinner}")
+    table.add_row("[bold]Pressure[/bold]", f"{data['Pressure']} {spinner}")
+    table.add_row("[bold]Wind[/bold]", f"{data['Wind']} {spinner}")
+    table.add_row("[bold]CO₂[/bold]", f"{data['CO₂']} {spinner}")
+    table.add_row("[dim]Last updated[/dim]", data["Updated"])
+    mood_color = get_mood_color(data["Temperature"])
+    return Panel(table, title=f"[bold]{city} Weather[/bold]", border_style=mood_color)
 
 def build_i2c_panel():
     lines = []
@@ -525,7 +529,71 @@ def build_sensor_graph_panel():
 
     return Panel(body, title="📊 High Sensor Readings", border_style="grey37")
 
+ENABLE_WEATHER_PANEL = True  # Toggle this to False to disable
+
+def get_live_weather(city="Orpington"):
+    try:
+        output = subprocess.check_output([
+            "curl", "-s", f"wttr.in/{city}?format=%t|%h|%P|%w"
+        ]).decode().strip()
+        if not output or "Unknown location" in output:
+            raise ValueError("No data received")
+        temp, humidity, pressure, wind = output.split("|")
+        co2 = f"{random.randint(420, 780)} ppm"
+        timestamp = datetime.now().strftime("%H:%M:%S")
+        return {
+            "Temperature": temp,
+            "Humidity": humidity,
+            "Pressure": pressure,
+            "Wind": wind,
+            "CO₂": co2,
+            "Updated": timestamp,
+            "Error": False
+        }
+    except Exception:
+        return {
+            "Temperature": "--",
+            "Humidity": "--",
+            "Pressure": "--",
+            "Wind": "--",
+            "CO₂": "--",
+            "Updated": datetime.now().strftime("%H:%M:%S"),
+            "Error": True
+        }
+
+def get_mood_color(temp_str):
+    try:
+        temp_val = int(temp_str.replace("+", "").replace("°C", "").replace("−", "-"))
+        if temp_val < 10:
+            return "blue"
+        elif temp_val < 20:
+            return "green"
+        elif temp_val < 28:
+            return "yellow"
+        else:
+            return "red"
+    except:
+        return "grey50"
+
+def build_weather_panel(city="Orpington"):
+    data = get_live_weather(city)
+    table = Table.grid(padding=1)
+    table.add_row("[bold]Location[/bold]", city)
+    table.add_row("[bold]Temperature[/bold]", data["Temperature"])
+    table.add_row("[bold]Humidity[/bold]", data["Humidity"])
+    table.add_row("[bold]Pressure[/bold]", data["Pressure"])
+    table.add_row("[bold]Wind[/bold]", data["Wind"])
+    table.add_row("[bold]CO₂[/bold]", data["CO₂"])
+    table.add_row("[dim]Last updated[/dim]", data["Updated"])
+    mood_color = get_mood_color(data["Temperature"])
+    return Panel(table, title=f"[bold]{city} Weather[/bold]", border_style=mood_color)
+ENABLE_WEATHER_PANEL = True  # Toggle this to False to disable weather panel
+
 def build_dashboard():
+    global spinner_index
+    spinner = SPINNERS[spinner_index % len(SPINNERS)]
+    spinner_index += 1
+
     layout = Table.grid(padding=(1, 2))
     layout.add_row(
         get_cpu_panel(),
@@ -539,17 +607,23 @@ def build_dashboard():
         build_environment_panel(),
         build_hts221_panel(),
         build_scd4x_panel(),
-        build_bme280_panel(),
+        build_bme280_panel()
     )
-    layout.add_row(
+
+    third_row_panels = [
         build_room_panel(),
         build_tent_panel(),
         build_bh1750_panel(),
         build_sensor_graph_panel(),
         build_i2c_panel()
+    ]
 
-    )
+    if ENABLE_WEATHER_PANEL:
+        third_row_panels.append(build_weather_panel(spinner=spinner))
+
+    layout.add_row(*third_row_panels)
     return layout
+
 
 def run_dashboard():
     threading.Thread(target=update_scd4x_loop, daemon=True).start()
