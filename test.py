@@ -24,7 +24,7 @@ import os
 import time
 import threading
 from datetime import datetime
-import requests
+
 import subprocess
 import board
 import busio
@@ -45,25 +45,6 @@ ZONES_TEMP_ROOM = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
 ZONES_HUM       = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
 ZONES_CO2       = [(600, "blue"), (1000, "green"), (1500, "yellow"), (2000, "red")]
 ZONES_PRESSURE  = [(980, "blue"), (1013, "green"), (1030, "yellow"), (1050, "red")]
-
-# Location GPS
-
-import requests  # ← Add this if not already present
-
-def get_ip():
-    response = requests.get("https://api64.ipify.org?format=json").json()
-    return response["ip"]
-
-def get_location():
-    ip = get_ip()
-    response = requests.get(f"https://ipapi.co/{ip}/json/").json()
-    return {
-        "latitude": response.get("latitude"),
-        "longitude": response.get("longitude"),
-        "city": response.get("city"),
-        "region": response.get("region"),
-        "country": response.get("country_name")
-    }
 
 # Initialize I2C and sensors
 i2c = busio.I2C(board.SCL, board.SDA)
@@ -539,25 +520,36 @@ def build_sensor_graph_panel():
 
 ENABLE_WEATHER_PANEL = True  # Toggle this to False to disable
 
-def get_live_weather():
-    loc = get_location()
-    latlon = f"{loc['latitude']},{loc['longitude']}"
-    output = subprocess.check_output([
-        "curl", "-s", f"wttr.in/{latlon}?format=%t|%h|%P|%w"
-    ]).decode().strip()
-    temp, humidity, pressure, wind = output.split("|")
-    co2 = environment_data.get("CO₂", "--")
-    timestamp = datetime.now().strftime("%H:%M:%S")
-    return {
-        "Temperature": temp,
-        "Humidity": humidity,
-        "Pressure": pressure,
-        "Wind": wind,
-        "CO₂": co2,
-        "Updated": timestamp,
-        "Error": False
-    }
-  
+def get_live_weather(city="BR6"):
+    try:
+        output = subprocess.check_output([
+            "curl", "-s", f"wttr.in/{city}?format=%t|%h|%P|%w"
+        ]).decode().strip()
+        if not output or "Unknown location" in output:
+            raise ValueError("No data received")
+        temp, humidity, pressure, wind = output.split("|")
+        co2 = environment_data.get("CO₂", "--")  # Use live SCD4X reading
+        timestamp = datetime.now().strftime("%H:%M:%S")
+        return {
+            "Temperature": temp,
+            "Humidity": humidity,
+            "Pressure": pressure,
+            "Wind": wind,
+            "CO₂": co2,
+            "Updated": timestamp,
+            "Error": False
+        }
+    except Exception:
+        return {
+            "Temperature": "--",
+            "Humidity": "--",
+            "Pressure": "--",
+            "Wind": "--",
+            "CO₂": "--",
+            "Updated": datetime.now().strftime("%H:%M:%S"),
+            "Error": True
+        }
+
 def get_mood_color(temp_str):
     try:
         temp_val = int(temp_str.replace("+", "").replace("°C", "").replace("−", "-"))
