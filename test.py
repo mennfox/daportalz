@@ -411,6 +411,8 @@ def build_room_panel():
         sht31d_history.append(temp)
         for i, val in enumerate(temp_all_history):
             temp_spike_history[i] = max(temp_spike_history[i], val)
+        for i, val in enumerate(sht31d_history):
+            sht31d_spike_history[i] = max(sht31d_spike_history[i], val)
         max_values["Room"]["Temp"] = max(max_values["Room"]["Temp"], temp)
         max_values["Room"]["Hum"] = max(max_values["Room"]["Hum"], humidity)
         lines = []
@@ -498,7 +500,7 @@ def build_sensor_graph_panel():
         graphs.append(Text(" │ ") + max_overlay_graph(scd4x_history, temp_spike_history, 28.5, 40))
 
         graphs.append(Text("SHT31D ─┬───────────────────────────────────────────────"))
-        graphs.append(Text(" │ ") + max_overlay_graph(sht31d_history, temp_spike_history, 28.5, 40))
+        graphs.append(Text(" │ ") + max_overlay_graph(sht31d_history, sht31d_spike_history, 25.5, 30))
         graphs.append(Text(" └───────────────────────────────────────────────"))
 
         # Humidity
