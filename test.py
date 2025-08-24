@@ -26,7 +26,6 @@ import threading
 from datetime import datetime
 
 import subprocess
-import random
 import board
 import busio
 import adafruit_hts221
@@ -523,7 +522,7 @@ def get_live_weather(city="Orpington"):
         if not output or "Unknown location" in output:
             raise ValueError("No data received")
         temp, humidity, pressure, wind = output.split("|")
-        co2 = f"{random.randint(420, 780)} ppm"
+        co2 = environment_data.get("CO₂", "--")  # Use live SCD4X reading
         timestamp = datetime.now().strftime("%H:%M:%S")
         return {
             "Temperature": temp,
