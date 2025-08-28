@@ -3,9 +3,10 @@
 from collections import deque
 co2_history = deque([0.0]*60, maxlen=60)
 lux_history = deque([0.0]*60, maxlen=60)
-hts221_history = deque([0.0]*60, maxlen=60)
+htu21d_history = deque([0.0]*60, maxlen=60)
 scd4x_history = deque([0.0]*60, maxlen=60)
 sht31d_history = deque([0.0]*60, maxlen=60)
+sht31d_spike_history = deque([0.0]*60, maxlen=60)
 mcp9808_history = deque([0.0]*60, maxlen=60)
 adt7410_history = deque([0.0]*60, maxlen=60)
 hum_history = deque([0.0]*60, maxlen=60)
@@ -28,7 +29,7 @@ from datetime import datetime
 import subprocess
 import board
 import busio
-import adafruit_hts221
+from adafruit_htu21d import HTU21D
 import adafruit_scd4x
 import adafruit_bh1750
 from adafruit_as7341 import AS7341
@@ -48,7 +49,7 @@ ZONES_PRESSURE  = [(980, "blue"), (1013, "green"), (1030, "yellow"), (1050, "red
 
 # Initialize I2C and sensors
 i2c = busio.I2C(board.SCL, board.SDA)
-hts = adafruit_hts221.HTS221(i2c)
+hts = HTU21D(i2c)
 scd4x = adafruit_scd4x.SCD4X(i2c)
 scd4x.start_periodic_measurement()
 bh1750 = adafruit_bh1750.BH1750(i2c)
@@ -65,7 +66,7 @@ bme_calibration = bme280.load_calibration_params(bme_bus, bme_address)
 max_values = {
     "Environment": {"CO₂": float('-inf'), "Pressure": float('-inf')},
     "BH1750": {"Lux": float('-inf')},
-    "HTS221": {"Temp": float('-inf'), "Hum": float('-inf')},
+    "HTU21d": {"Temp": float('-inf'), "Hum": float('-inf')},
     "SCD4X": {"Temp": float('-inf'), "Hum": float('-inf')},
     "BME280": {"Temp": float('-inf'), "Hum": float('-inf')},
     "Room": {"Temp": float('-inf'), "Hum": float('-inf')},
@@ -207,6 +208,13 @@ def sensor_zone_lines(value, zones, label, unit, max_val):
         Text(f"Max {label}: {max_val:.2f} {unit}", style="bold green")
     ]
 
+def fade_spike_history(history, decay=0.99, floor=28.5):
+    for i in range(len(history)):
+        if history[i] > floor:
+            history[i] *= decay
+        if history[i] < floor:
+            history[i] = 0.0  # Optional: reset below threshold
+
 def update_scd4x_loop():
     while True:
         time.sleep(SCD4X_REFRESH)
@@ -227,7 +235,7 @@ def build_i2c_panel():
 
     # busio.I2C(board.SCL, board.SDA)
     lines.append(Text("🔌 busio.I2C(board.SCL, board.SDA)", style="bold cyan"))
-    lines.append(Text("  ├─ HTS221 @ 0x5F"))
+    lines.append(Text("  ├─ HTU21d @ 0x40"))
     lines.append(Text("  ├─ SCD4X @ 0x62"))
     lines.append(Text("  ├─ BH1750 @ 0x23"))
     lines.append(Text("  ├─ AS7341 @ 0x39"))
@@ -244,7 +252,7 @@ def build_i2c_panel():
     body = Text("\n").join(lines)
     return Panel(body, title="🧭 I²C Port Map", border_style="grey37")
 
-def get_hts221_stats():
+def get_htu21d_stats():
     try:
         temp = hts.temperature
         humidity = hts.relative_humidity
@@ -304,23 +312,23 @@ def get_as7341_panel():
     except Exception as e:
         return Panel(f"[red]Sensor Error: {e}", title="🌈 AS7341 Spectral Sensor", border_style="grey37")
 
-def build_hts221_panel():
-    data = get_hts221_stats()
+def build_htu21d_panel():
+    data = get_htu21d_stats()
     if "Sensor Error" in data:
         body = f"[red]{data['Sensor Error']}[/red]"
     else:
         temp = data["Temperature"]
         hum = data["Humidity"]
-        hts221_history.append(temp)
+        htu21d_history.append(temp)
         for i, val in enumerate(temp_all_history):
             temp_spike_history[i] = max(temp_spike_history[i], val)
-        max_values["HTS221"]["Temp"] = max(max_values["HTS221"]["Temp"], temp)
-        max_values["HTS221"]["Hum"] = max(max_values["HTS221"]["Hum"], hum)
+        max_values["HTU21d"]["Temp"] = max(max_values["HTU21d"]["Temp"], temp)
+        max_values["HTU21d"]["Hum"] = max(max_values["HTU21d"]["Hum"], hum)
         lines = []
-        lines += sensor_zone_lines(temp, ZONES_TEMP, "Temp", "°C", max_values["HTS221"]["Temp"])
-        lines += sensor_zone_lines(hum, ZONES_HUM, "Humidity", "%", max_values["HTS221"]["Hum"])
+        lines += sensor_zone_lines(temp, ZONES_TEMP, "Temp", "°C", max_values["HTU21d"]["Temp"])
+        lines += sensor_zone_lines(hum, ZONES_HUM, "Humidity", "%", max_values["HTU21d"]["Hum"])
         body = Text("\n").join(lines)
-    return Panel(body, title="💧 HTS221 Sensor", border_style="grey37")
+    return Panel(body, title="💧 HTU21d Sensor", border_style="grey37")
 
 def build_scd4x_panel():
     if isinstance(scd4x_data["Temperature"], float):
@@ -403,6 +411,8 @@ def build_room_panel():
         sht31d_history.append(temp)
         for i, val in enumerate(temp_all_history):
             temp_spike_history[i] = max(temp_spike_history[i], val)
+        for i, val in enumerate(sht31d_history):
+            sht31d_spike_history[i] = max(sht31d_spike_history[i], val)
         max_values["Room"]["Temp"] = max(max_values["Room"]["Temp"], temp)
         max_values["Room"]["Hum"] = max(max_values["Room"]["Hum"], humidity)
         lines = []
@@ -453,20 +463,18 @@ def render_high_graph(data, threshold, max_value, width=60):
 def max_overlay_graph(current, spikes, threshold, max_value, width=60):
     blocks = "▁▂▃▄▅▆▇█"
     graph = []
-
     for i in range(width):
         val = float(current[i]) if i < len(current) else 0.0
         spike = float(spikes[i]) if i < len(spikes) else 0.0
         show_val = max(val, spike)
-
         if show_val >= threshold:
             idx = min(int((show_val / max_value) * (len(blocks) - 1)), len(blocks) - 1)
             block = blocks[idx]
-            style = "bold red" if spike > val else "bold yellow"
-            graph.append((block, style))
+            style = "bold red"
         else:
-            graph.append((" ", "dim"))
-
+            block = " "
+            style = "dim"
+        graph.append((block, style))
     return Text.assemble(*[Text(char, style=style) for char, style in graph])
 
 def build_sensor_graph_panel():
@@ -485,14 +493,14 @@ def build_sensor_graph_panel():
 
         # Temperature with spike overlays
         graphs.append(Text("°C Max ─┬───────────────────────────────────────────────"))
-        graphs.append(Text("HTS221 ─┬───────────────────────────────────────────────"))
-        graphs.append(Text(f" │ {max_overlay_graph(hts221_history, temp_spike_history, 28.5, 40).plain}"))
+        graphs.append(Text("HTU21d ─┬───────────────────────────────────────────────"))
+        graphs.append(Text(" │ ") + max_overlay_graph(htu21d_history, temp_spike_history, 28.5, 40))
 
         graphs.append(Text("SCD4X ──┬───────────────────────────────────────────────"))
-        graphs.append(Text(f" │ {max_overlay_graph(scd4x_history, temp_spike_history, 28.5, 40).plain}"))
+        graphs.append(Text(" │ ") + max_overlay_graph(scd4x_history, temp_spike_history, 28.5, 40))
 
         graphs.append(Text("SHT31D ─┬───────────────────────────────────────────────"))
-        graphs.append(Text(f" │ {max_overlay_graph(sht31d_history, temp_spike_history, 28.5, 40).plain}"))
+        graphs.append(Text(" │ ") + max_overlay_graph(sht31d_history, sht31d_spike_history, 25.5, 30))
         graphs.append(Text(" └───────────────────────────────────────────────"))
 
         # Humidity
@@ -515,7 +523,7 @@ def build_sensor_graph_panel():
 
 ENABLE_WEATHER_PANEL = True  # Toggle this to False to disable
 
-def get_live_weather(city="Orpington"):
+def get_live_weather(city="BR6"):
     try:
         output = subprocess.check_output([
             "curl", "-s", f"wttr.in/{city}?format=%t|%h|%P|%w"
@@ -559,19 +567,20 @@ def get_mood_color(temp_str):
     except:
         return "grey50"
 
-def build_weather_panel(city="Orpington"):
-    data = get_live_weather(city)
-    table = Table.grid(padding=1)
-    table.add_row("[bold]Location[/bold]", city)
-    table.add_row("[bold]Temperature[/bold]", data["Temperature"])
-    table.add_row("[bold]Humidity[/bold]", data["Humidity"])
-    table.add_row("[bold]Pressure[/bold]", data["Pressure"])
-    table.add_row("[bold]Wind[/bold]", data["Wind"])
-    table.add_row("[bold]CO₂[/bold]", data["CO₂"])
-    table.add_row("[dim]Last updated[/dim]", data["Updated"])
-    mood_color = get_mood_color(data["Temperature"])
-    return Panel(table, title=f"[bold]{city} Weather[/bold]", border_style=mood_color)
-ENABLE_WEATHER_PANEL = True  # Toggle this to False to disable weather panel
+def build_weather_panel():
+    data = get_live_weather()
+    if data["Error"]:
+        return Panel("[red]Weather data unavailable[/red]", title="🌦 Weather", border_style="grey37")
+
+    lines = [
+        Text(f"Temp: {data['Temperature']}"),
+        Text(f"Humidity: {data['Humidity']}"),
+        Text(f"Pressure: {data['Pressure']}"),
+        Text(f"Wind: {data['Wind']}"),
+        Text(f"CO₂: {data['CO₂']}"),
+        Text(f"Updated: {data['Updated']}", style="dim")
+    ]
+    return Panel(Text("\n").join(lines), title="🌦 Weather", border_style="grey37")
 
 def build_dashboard():
     layout = Table.grid(padding=(1, 2))
@@ -587,7 +596,7 @@ def build_dashboard():
     layout.add_row(
         get_as7341_panel(),
         build_environment_panel(),
-        build_hts221_panel(),
+        build_htu21d_panel(),
         build_scd4x_panel(),
         build_bme280_panel()
     )
@@ -613,6 +622,7 @@ def run_dashboard():
     threading.Thread(target=update_scd4x_loop, daemon=True).start()
     with Live(console=console, refresh_per_second=10, screen=True) as live:
         while True:
+            fade_spike_history(temp_spike_history)
             live.update(build_dashboard())
             time.sleep(REFRESH_INTERVAL)
 
