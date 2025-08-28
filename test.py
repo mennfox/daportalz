@@ -25,7 +25,7 @@ import os
 import time
 import threading
 from datetime import datetime
-
+from pyfiglet import Figlet
 import subprocess
 import board
 import busio
@@ -636,6 +636,7 @@ def build_dashboard():
 
 def run_dashboard():
     threading.Thread(target=update_scd4x_loop, daemon=True).start()
+    console.print(Figlet(font="slant").renderText("DAPortalz"), style="bold cyan")
     with Live(console=console, refresh_per_second=10, screen=True) as live:
         while True:
             fade_spike_history(temp_spike_history)
