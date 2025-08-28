@@ -14,6 +14,7 @@ pressure_history = deque([0.0]*60, maxlen=60)  # Optional
 temp_all_history = deque([0.0]*60, maxlen=60)
 temp_spike_history = deque([0.0]*60, maxlen=60)
 
+from datetime import datetime, time
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
@@ -252,6 +253,31 @@ def build_i2c_panel():
     body = Text("\n").join(lines)
     return Panel(body, title="🧭 I²C Port Map", border_style="grey37")
 
+# Definitions
+
+# ─── Mood-Based Lux Palette ──────────────────────────────
+def get_lux_palette(current_time=None):
+    if current_time is None:
+        current_time = datetime.now().time()
+
+    light_on = time(17, 0)   # 5:00 PM
+    light_off = time(11, 0)  # 11:00 AM
+
+    if light_on <= current_time or current_time < light_off:
+        return [
+            (100, "sky_blue"),
+            (5500, "spring_green"),
+            (8500, "gold"),
+            (10000, "deep_pink")
+        ]
+    else:
+        return [
+            (100, "midnight_blue"),
+            (5500, "slate_grey"),
+            (8500, "plum"),
+            (10000, "lavender")
+        ]
+
 def get_htu21d_stats():
     try:
         temp = hts.temperature
@@ -366,18 +392,25 @@ def build_bme280_panel():
         body = Text("\n").join(lines)
     return Panel(body, title="🌤 BME280 Sensor", border_style="grey37")
 
+USE_MOOD_LUX = True
+lux_zones = get_lux_palette() if USE_MOOD_LUX else ZONES_LUX
+
 def build_bh1750_panel():
     data = get_bh1750_stats()
     if "Sensor Error" in data:
         body = f"[red]{data['Sensor Error']}[/red]"
     else:
         lux_value = float(data['Light Level'].split()[0])
-        # max_values["BH1750"]["Lux"] = max(max_values["BH1750"]["Lux"], lux_value)
-        lines = [
-            format_zone_bar(lux_value, ZONES_LUX, label="Lux", unit="Lux", max_value=max_values["BH1750"]["Lux"]),
-            Text(f"Max Lux: {max_values['BH1750']['Lux']:.2f} Lux", style="bold green")
-]
 
+        # Use mood-based palette if enabled
+        USE_MOOD_LUX = True
+        lux_zones = get_lux_palette() if USE_MOOD_LUX else ZONES_LUX
+
+        lines = [
+            format_zone_bar(lux_value, lux_zones, label="Lux", unit="Lux", max_value=max_values["BH1750"]["Lux"]),
+    Text(f"Max Lux: {max_values['BH1750']['Lux']:.2f} Lux", style="bold green")
+        ]
+ 
         body = Text("\n").join(lines)
     return Panel(body, title="🔆 BH1750 Sensor", border_style="grey37")
 
