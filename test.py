@@ -252,6 +252,22 @@ def build_i2c_panel():
     body = Text("\n").join(lines)
     return Panel(body, title="🧭 I²C Port Map", border_style="grey37")
 
+# DEFINITONS
+
+def get_mood_lux_palette():
+    from datetime import datetime
+    hour = datetime.now().hour
+
+    if hour < 6:
+        return [(50, "grey23"), (1000, "dark_blue"), (5000, "purple"), (10000, "red"), (16000, "deep_pink1")]
+    elif hour < 12:
+        return [(50, "blue"), (1000, "green"), (5000, "yellow"), (10000, "orange1"), (16000, "red")]
+    elif hour < 18:
+        return [(50, "sky_blue1"), (1000, "bright_green"), (5000, "gold1"), (10000, "red"), (16000, "deep_pink1")]
+    else:
+        return [(50, "dark_orange"), (1000, "orange3"), (5000, "red"), (10000, "deep_pink1"), (16000, "magenta")]
+
+
 def get_htu21d_stats():
     try:
         temp = hts.temperature
@@ -374,7 +390,7 @@ def build_bh1750_panel():
         lux_value = float(data['Light Level'].split()[0])
         # max_values["BH1750"]["Lux"] = max(max_values["BH1750"]["Lux"], lux_value)
         lines = [
-            format_zone_bar(lux_value, ZONES_LUX, label="Lux", unit="Lux", max_value=max_values["BH1750"]["Lux"]),
+            format_zone_bar(lux_value, get_mood_lux_palette(), label="Lux", unit="Lux", max_value=max_values["BH1750"]["Lux"]), 
             Text(f"Max Lux: {max_values['BH1750']['Lux']:.2f} Lux", style="bold green")
 ]
 
