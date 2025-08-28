@@ -254,13 +254,6 @@ def build_i2c_panel():
 
 # DEFINITONS
 
-def print_animated_banner(text="DaPortalZ", font="slant", delay=0.1):
-    figlet = Figlet(font=font)
-    banner_lines = figlet.renderText(text).splitlines()
-    for line in banner_lines:
-        console.print(line, style="bold cyan")
-        time.sleep(delay)
-
 def get_mood_lux_palette():
     from datetime import datetime
     hour = datetime.now().hour
@@ -646,9 +639,12 @@ from pyfiglet import Figlet
 def run_dashboard():
     threading.Thread(target=update_scd4x_loop, daemon=True).start()
 
-    # 🎭 Animated banner intro
-    print_animated_banner()
-    time.sleep(2)  # Optional pause before dashboard kicks in
+    # Print banner BEFORE Live clears the screen
+    banner = Figlet(font="slant").renderText("DAPortalz")
+    console.print(banner, style="bold cyan")
+
+    # ⏳ Pause before launching dashboard
+    time.sleep(5)
 
     with Live(console=console, refresh_per_second=10, screen=True) as live:
         while True:
