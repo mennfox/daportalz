@@ -40,7 +40,7 @@ import adafruit_adt7410
 import smbus2
 import bme280
 
-#Zone Constants
+# Zone Constants
 ZONES_LUX       = [(100, "blue"), (5500, "green"), (8500, "yellow"), (10000, "red")]
 ZONES_TEMP      = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
 ZONES_TEMP_ROOM = [(18, "blue"), (25, "green"), (30, "yellow"), (40, "red")]
@@ -646,8 +646,6 @@ def build_dashboard():
 
     return layout
 
-
-from pyfiglet import Figlet
 
 def run_dashboard():
     threading.Thread(target=update_scd4x_loop, daemon=True).start()

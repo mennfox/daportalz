@@ -41,6 +41,59 @@ import smbus2
 import bme280
 import json
 
+class WateringLog:
+    def __init__(self, log_file="watering_log.json"):
+        self.log_file = log_file
+        self.entries = self._load_log()
+
+    def _load_log(self):
+        try:
+            with open(self.log_file, "r") as f:
+                return json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            return []
+
+    def log_watering(self, notes=None, moisture_level=None):
+        entry = {
+            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "notes": notes or "",
+            "moisture_level": moisture_level
+        }
+        self.entries.append(entry)
+        self._save_log()
+        print(f"\n[✓] Watering logged: {entry['timestamp']}")
+
+    def _save_log(self):
+        with open(self.log_file, "w") as f:
+            json.dump(self.entries, f, indent=2)
+
+    def get_recent(self, count=5):
+        return self.entries[-count:]
+
+def watering_input_loop(log):
+    while True:
+        print("\n────────────────────────────")
+        print("[W] Log watering")
+        print("[V] View recent logs")
+        print("[Q] Quit watering input")
+        print("────────────────────────────")
+        choice = input("Select option: ").lower()
+
+        if choice == "w":
+            notes = input("Notes (e.g. 'Full soak'): ")
+            moisture = input("Moisture level (% or leave blank): ")
+            moisture = moisture if moisture else None
+            log.log_watering(notes=notes, moisture_level=moisture)
+
+        elif choice == "v":
+            print("\nRecent Watering Events:")
+            for entry in log.get_recent():
+                print(f"{entry['timestamp']} | Notes: {entry['notes']} | Moisture: {entry['moisture_level']}")
+
+        elif choice == "q":
+            print("Exiting watering input thread...")
+            break
+
 # Zone Constants
 ZONES_LUX       = [(100, "blue"), (5500, "green"), (8500, "yellow"), (10000, "red")]
 ZONES_TEMP      = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
@@ -256,17 +309,29 @@ def build_i2c_panel():
 
 # DEFINITONS
 
-def build_watering_panel(log):
-    try:
-        recent = log.get_recent(1)
-        if recent:
-            entry = recent[0]
-            body = Text(f"Last Watered:\n{entry['timestamp']}\nNotes: {entry['notes']}\nMoisture: {entry['moisture_level']}")
-        else:
-            body = Text("No watering data yet.")
-    except Exception as e:
-        body = Text(f"[red]Error: {e}[/red]")
-    return Panel(body, title="💧 Watering Log", border_style="grey37")
+def watering_input_loop(log):
+    while True:
+        print("\n────────────────────────────")
+        print("[W] Log watering")
+        print("[V] View recent logs")
+        print("[Q] Quit watering input")
+        print("────────────────────────────")
+        choice = input("Select option: ").lower()
+
+        if choice == "w":
+            notes = input("Notes (e.g. 'Full soak'): ")
+            moisture = input("Moisture level (% or leave blank): ")
+            moisture = moisture if moisture else None
+            log.log_watering(notes=notes, moisture_level=moisture)
+
+        elif choice == "v":
+            print("\nRecent Watering Events:")
+            for entry in log.get_recent():
+                print(f"{entry['timestamp']} | Notes: {entry['notes']} | Moisture: {entry['moisture_level']}")
+
+        elif choice == "q":
+            print("Exiting watering input thread...")
+            break
 
 def watchdog_ping_loop():
     while True:
@@ -650,7 +715,7 @@ def build_dashboard(log):
         build_bh1750_panel(),
         build_sensor_graph_panel(),
         build_i2c_panel(),
-        build_watering_panel(log) 
+        build_watering_panel(log)
     ]
 
     if ENABLE_WEATHER_PANEL:
@@ -660,34 +725,6 @@ def build_dashboard(log):
 
     return layout
 
-class WateringLog:
-    def __init__(self, log_file="watering_log.json"):
-        self.log_file = log_file
-        self.entries = self._load_log()
-
-    def _load_log(self):
-        try:
-            with open(self.log_file, "r") as f:
-                return json.load(f)
-        except (FileNotFoundError, json.JSONDecodeError):
-            return []
-
-    def log_watering(self, notes=None, moisture_level=None):
-        entry = {
-            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "notes": notes or "",
-            "moisture_level": moisture_level
-        }
-        self.entries.append(entry)
-        self._save_log()
-        print(f"\n[✓] Watering logged: {entry['timestamp']}")
-
-    def _save_log(self):
-        with open(self.log_file, "w") as f:
-            json.dump(self.entries, f, indent=2)
-
-    def get_recent(self, count=5):
-        return self.entries[-count:]
 
 def run_dashboard():
     threading.Thread(target=update_scd4x_loop, daemon=True).start()
