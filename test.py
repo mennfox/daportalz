@@ -39,60 +39,6 @@ import adafruit_mcp9808
 import adafruit_adt7410
 import smbus2
 import bme280
-import json
-
-class WateringLog:
-    def __init__(self, log_file="watering_log.json"):
-        self.log_file = log_file
-        self.entries = self._load_log()
-
-    def _load_log(self):
-        try:
-            with open(self.log_file, "r") as f:
-                return json.load(f)
-        except (FileNotFoundError, json.JSONDecodeError):
-            return []
-
-    def log_watering(self, notes=None, moisture_level=None):
-        entry = {
-            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "notes": notes or "",
-            "moisture_level": moisture_level
-        }
-        self.entries.append(entry)
-        self._save_log()
-        print(f"\n[✓] Watering logged: {entry['timestamp']}")
-
-    def _save_log(self):
-        with open(self.log_file, "w") as f:
-            json.dump(self.entries, f, indent=2)
-
-    def get_recent(self, count=5):
-        return self.entries[-count:]
-
-def watering_input_loop(log):
-    while True:
-        print("\n────────────────────────────")
-        print("[W] Log watering")
-        print("[V] View recent logs")
-        print("[Q] Quit watering input")
-        print("────────────────────────────")
-        choice = input("Select option: ").lower()
-
-        if choice == "w":
-            notes = input("Notes (e.g. 'Full soak'): ")
-            moisture = input("Moisture level (% or leave blank): ")
-            moisture = moisture if moisture else None
-            log.log_watering(notes=notes, moisture_level=moisture)
-
-        elif choice == "v":
-            print("\nRecent Watering Events:")
-            for entry in log.get_recent():
-                print(f"{entry['timestamp']} | Notes: {entry['notes']} | Moisture: {entry['moisture_level']}")
-
-        elif choice == "q":
-            print("Exiting watering input thread...")
-            break
 
 # Zone Constants
 ZONES_LUX       = [(100, "blue"), (5500, "green"), (8500, "yellow"), (10000, "red")]
@@ -308,30 +254,6 @@ def build_i2c_panel():
     return Panel(body, title="🧭 I²C Port Map", border_style="grey37")
 
 # DEFINITONS
-
-def watering_input_loop(log):
-    while True:
-        print("\n────────────────────────────")
-        print("[W] Log watering")
-        print("[V] View recent logs")
-        print("[Q] Quit watering input")
-        print("────────────────────────────")
-        choice = input("Select option: ").lower()
-
-        if choice == "w":
-            notes = input("Notes (e.g. 'Full soak'): ")
-            moisture = input("Moisture level (% or leave blank): ")
-            moisture = moisture if moisture else None
-            log.log_watering(notes=notes, moisture_level=moisture)
-
-        elif choice == "v":
-            print("\nRecent Watering Events:")
-            for entry in log.get_recent():
-                print(f"{entry['timestamp']} | Notes: {entry['notes']} | Moisture: {entry['moisture_level']}")
-
-        elif choice == "q":
-            print("Exiting watering input thread...")
-            break
 
 def watchdog_ping_loop():
     while True:
@@ -689,7 +611,7 @@ def build_weather_panel():
     ]
     return Panel(Text("\n").join(lines), title="🌦 Weather", border_style="grey37")
 
-def build_dashboard(log):
+def build_dashboard():
     layout = Table.grid(padding=(1, 2))
 
     layout.add_row(
@@ -714,8 +636,7 @@ def build_dashboard(log):
         build_tent_panel(),
         build_bh1750_panel(),
         build_sensor_graph_panel(),
-        build_i2c_panel(),
-        third_row_panels.append(build_watering_panel(log))
+        build_i2c_panel()
     ]
 
     if ENABLE_WEATHER_PANEL:
@@ -733,13 +654,11 @@ def run_dashboard():
     # 🎭 Animated banner intro
     print_animated_banner()
     time.sleep(2)  # Optional pause before dashboard kicks in
-    log = WateringLog()
-    threading.Thread(target=watering_input_loop, args=(log,), daemon=True).start()
 
     with Live(console=console, refresh_per_second=10, screen=True) as live:
         while True:
             fade_spike_history(temp_spike_history)
-            live.update(build_dashboard(log))
+            live.update(build_dashboard())
             time.sleep(REFRESH_INTERVAL)
 
 if __name__ == "__main__":
