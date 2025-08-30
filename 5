@@ -667,7 +667,7 @@ def build_dashboard():
     )
 
     layout.add_row(
-        build_tent_panel(),
+        get_as7341_panel(),
         build_environment_panel(),
         build_htu21d_panel(),
         build_scd4x_panel(),
@@ -678,7 +678,7 @@ def build_dashboard():
     # Build third row dynamically
     third_row_panels = [
         build_sensor_graph_panel(),
-        get_as7341_panel(),
+        build_tent_panel(),
         build_bh1750_panel(),
         build_watering_panel()
     ]

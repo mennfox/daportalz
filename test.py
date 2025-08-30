@@ -39,6 +39,8 @@ import adafruit_mcp9808
 import adafruit_adt7410
 import smbus2
 import bme280
+import json
+from pathlib import Path
 
 # Zone Constants
 ZONES_LUX       = [(100, "blue"), (5500, "green"), (8500, "yellow"), (10000, "red")]
@@ -254,6 +256,33 @@ def build_i2c_panel():
     return Panel(body, title="🧭 I²C Port Map", border_style="grey37")
 
 # DEFINITONS
+LOG_PATH = Path("watering_log.json")
+watering_notes = []
+
+def load_watering_notes():
+    if LOG_PATH.exists():
+        with open(LOG_PATH, "r") as f:
+            raw_notes = json.load(f)
+            now = time.time()
+            return [note for note in raw_notes if now - note["timestamp"] < 7 * 86400]
+    return []
+
+def save_watering_notes():
+    with open(LOG_PATH, "w") as f:
+        json.dump(watering_notes, f)
+def watering_input_loop():
+    global watering_notes
+    watering_notes = load_watering_notes()
+    while True:
+        note = input("💧 Enter watering note (or 'q' to quit): ")
+        if note.lower() == 'q':
+            break
+        entry = {
+            "timestamp": time.time(),
+            "text": note
+        }
+        watering_notes.append(entry)
+        save_watering_notes()
 
 def watchdog_ping_loop():
     while True:
@@ -263,8 +292,11 @@ def watchdog_ping_loop():
 def print_animated_banner(text="DaPortalZ", font="slant", delay=0.1):
     figlet = Figlet(font=font)
     banner_lines = figlet.renderText(text).splitlines()
+    terminal_width = os.get_terminal_size().columns
+
     for line in banner_lines:
-        console.print(line, style="bold cyan")
+        padded_line = line.center(terminal_width)
+        console.print(padded_line, style="bold cyan")
         time.sleep(delay)
 
 def get_mood_lux_palette():
@@ -340,6 +372,17 @@ def get_as7341_panel():
 
     except Exception as e:
         return Panel(f"[red]Sensor Error: {e}", title="🌈 AS7341 Spectral Sensor", border_style="grey37")
+
+# PANEL BUILDER
+
+def build_watering_panel():
+    recent_notes = [n for n in watering_notes if time.time() - n["timestamp"] < 7 * 86400]
+    if not recent_notes:
+        body = Text("No watering notes in the last 7 days.", style="dim")
+    else:
+        lines = [f"{time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(n['timestamp']))} — {n['text']}" for n in recent_notes[-5:]]
+        body = Text("\n".join(lines), style="green")
+    return Panel(body, title="🪴 Watering Log", border_style="spring_green3")
 
 def build_htu21d_panel():
     data = get_htu21d_stats()
@@ -619,24 +662,25 @@ def build_dashboard():
         get_memory_panel(),
         get_disk_panel(),
         get_network_panel(),
-        get_system_panel()
+        get_system_panel(),
+        build_i2c_panel()
     )
 
     layout.add_row(
-        get_as7341_panel(),
+        build_tent_panel(),
         build_environment_panel(),
         build_htu21d_panel(),
         build_scd4x_panel(),
-        build_bme280_panel()
+        build_bme280_panel(),
+        build_room_panel()
     )
 
     # Build third row dynamically
     third_row_panels = [
-        build_room_panel(),
-        build_tent_panel(),
-        build_bh1750_panel(),
         build_sensor_graph_panel(),
-        build_i2c_panel()
+        get_as7341_panel(),
+        build_bh1750_panel(),
+        build_watering_panel()
     ]
 
     if ENABLE_WEATHER_PANEL:
@@ -651,9 +695,13 @@ def run_dashboard():
     threading.Thread(target=update_scd4x_loop, daemon=True).start()
     threading.Thread(target=watchdog_ping_loop, daemon=True).start()
 
+    # 🧼 Clear screen before banner
+    os.system("clear")  
+
     # 🎭 Animated banner intro
     print_animated_banner()
     time.sleep(2)  # Optional pause before dashboard kicks in
+    threading.Thread(target=watering_input_loop, daemon=True).start()
 
     with Live(console=console, refresh_per_second=10, screen=True) as live:
         while True:

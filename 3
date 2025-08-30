@@ -292,11 +292,8 @@ def watchdog_ping_loop():
 def print_animated_banner(text="DaPortalZ", font="slant", delay=0.1):
     figlet = Figlet(font=font)
     banner_lines = figlet.renderText(text).splitlines()
-    terminal_width = os.get_terminal_size().columns
-
     for line in banner_lines:
-        padded_line = line.center(terminal_width)
-        console.print(padded_line, style="bold cyan")
+        console.print(line, style="bold cyan")
         time.sleep(delay)
 
 def get_mood_lux_palette():
@@ -662,24 +659,24 @@ def build_dashboard():
         get_memory_panel(),
         get_disk_panel(),
         get_network_panel(),
-        get_system_panel(),
-        build_i2c_panel()
+        get_system_panel()
     )
 
     layout.add_row(
-        build_tent_panel(),
+        get_as7341_panel(),
         build_environment_panel(),
         build_htu21d_panel(),
         build_scd4x_panel(),
-        build_bme280_panel(),
-        build_room_panel()
+        build_bme280_panel()
     )
 
     # Build third row dynamically
     third_row_panels = [
-        build_sensor_graph_panel(),
-        get_as7341_panel(),
+        build_room_panel(),
+        build_tent_panel(),
         build_bh1750_panel(),
+        build_sensor_graph_panel(),
+        build_i2c_panel(),
         build_watering_panel()
     ]
 
@@ -694,9 +691,6 @@ def build_dashboard():
 def run_dashboard():
     threading.Thread(target=update_scd4x_loop, daemon=True).start()
     threading.Thread(target=watchdog_ping_loop, daemon=True).start()
-
-    # 🧼 Clear screen before banner
-    os.system("clear")  
 
     # 🎭 Animated banner intro
     print_animated_banner()
