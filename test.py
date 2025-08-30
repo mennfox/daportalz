@@ -715,7 +715,7 @@ def build_dashboard(log):
         build_bh1750_panel(),
         build_sensor_graph_panel(),
         build_i2c_panel(),
-        build_watering_panel(log)
+        third_row_panels.append(build_watering_panel(log))
     ]
 
     if ENABLE_WEATHER_PANEL:
@@ -729,12 +729,12 @@ def build_dashboard(log):
 def run_dashboard():
     threading.Thread(target=update_scd4x_loop, daemon=True).start()
     threading.Thread(target=watchdog_ping_loop, daemon=True).start()
-    log = WateringLog()
-    threading.Thread(target=watering_input_loop, args=(log,), daemon=True).start()
 
     # 🎭 Animated banner intro
     print_animated_banner()
     time.sleep(2)  # Optional pause before dashboard kicks in
+    log = WateringLog()
+    threading.Thread(target=watering_input_loop, args=(log,), daemon=True).start()
 
     with Live(console=console, refresh_per_second=10, screen=True) as live:
         while True:
