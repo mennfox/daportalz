@@ -1,0 +1,59 @@
+import json
+import os
+from datetime import datetime
+
+PLANT_FILE = "plants.json"
+
+def load_plants():
+    if os.path.exists(PLANT_FILE):
+        with open(PLANT_FILE, "r") as f:
+            return json.load(f)
+    return []
+
+def save_plants(plants):
+    with open(PLANT_FILE, "w") as f:
+        json.dump(plants, f, indent=2)
+
+def prompt_for_names():
+    plants = []
+    i = 1
+    print("🌱 Enter plant details. Leave name blank and press Enter to finish.")
+    while True:
+        name = input(f"Plant #{i} name: ").strip()
+        if not name:
+            break
+        type_ = input("Type (e.g., Auto): ").strip()
+        prop_date = input("Propagation date (DD/MM/YY): ").strip()
+        repot_date = input("Repot date (DD/MM/YY): ").strip()
+
+        plants.append({
+            "id": i,
+            "name": name,
+            "type": type_,
+            "propagation_date": prop_date,
+            "repot_date": repot_date,
+            "progress": None,           # Placeholder for dashboard logic
+            "last_watered": None,       # To be synced from hydration log
+            "status": "Unknown"
+        })
+        i += 1
+    return plants
+
+def main():
+    print("🪴 Plant Setup Utility")
+    existing = load_plants()
+    if existing:
+        print(f"Found {len(existing)} existing plants in {PLANT_FILE}. Overwrite? (y/N)")
+        if input().lower() != "y":
+            print("❌ Aborted. No changes made.")
+            return
+    new_plants = prompt_for_names()
+    if new_plants:
+        save_plants(new_plants)
+        print(f"✅ Saved {len(new_plants)} plants to {PLANT_FILE}")
+    else:
+        print("⚠️ No plants entered. File not updated.")
+
+if __name__ == "__main__":
+    main()
+

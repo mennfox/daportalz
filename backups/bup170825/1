@@ -1,0 +1,39 @@
+from rich.console import Console
+from rich.panel import Panel
+from rich.live import Live
+import psutil
+import time
+
+console = Console()
+REFRESH_INTERVAL = 1.0  # seconds
+
+def get_usage_stats():
+    cpu = psutil.cpu_percent(interval=None)
+    ram = psutil.virtual_memory()
+    disk = psutil.disk_usage('/')
+    swap = psutil.swap_memory()
+    net = psutil.net_io_counters()
+
+    stats = {
+        "CPU": f"{cpu:.1f}%",
+        "RAM": f"{ram.percent:.1f}% ({ram.used / (1024**2):.1f}MB / {ram.total / (1024**2):.1f}MB)",
+        "Disk": f"{disk.percent:.1f}% ({disk.used / (1024**3):.1f}GB / {disk.total / (1024**3):.1f}GB)",
+        "Swap": f"{swap.percent:.1f}% ({swap.used / (1024**2):.1f}MB / {swap.total / (1024**2):.1f}MB)",
+        "Net Up": f"{net.bytes_sent / (1024**2):.2f} MB",
+        "Net Down": f"{net.bytes_recv / (1024**2):.2f} MB"
+    }
+    return stats
+
+def build_usage_panel():
+    stats = get_usage_stats()
+    body = "\n".join([f"[bold cyan]{k}:[/bold cyan] {v}" for k, v in stats.items()])
+    return Panel(body, title="📊 System Usage", border_style="cyan")
+
+def run_dashboard():
+    with Live(console=console, refresh_per_second=10, screen=True) as live:
+        while True:
+            live.update(build_usage_panel())
+            time.sleep(REFRESH_INTERVAL)
+
+if __name__ == "__main__":
+    run_dashboard()

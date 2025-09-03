@@ -1,0 +1,103 @@
+from rich.console import Console
+from rich.panel import Panel
+from rich.table import Table
+from rich.live import Live
+import psutil
+import time
+import threading
+
+import board
+import busio
+import adafruit_hts221
+import adafruit_scd4x
+
+# Initialize sensors
+i2c = busio.I2C(board.SCL, board.SDA)
+hts = adafruit_hts221.HTS221(i2c)
+
+scd4x = adafruit_scd4x.SCD4X(i2c)
+scd4x.start_periodic_measurement()
+
+console = Console()
+REFRESH_INTERVAL = 1.0  # seconds
+SCD4X_REFRESH = 10.0    # seconds
+
+# Shared SCD4x data
+scd4x_data = {
+    "CO₂": "Waiting...",
+    "Temperature": "Waiting...",
+    "Humidity": "Waiting..."
+}
+
+def update_scd4x_loop():
+    while True:
+        time.sleep(SCD4X_REFRESH)
+        if scd4x.data_ready:
+            scd4x_data["CO₂"] = f"{scd4x.CO2} ppm"
+            scd4x_data["Temperature"] = f"{scd4x.temperature:.1f}°C"
+            scd4x_data["Humidity"] = f"{scd4x.relative_humidity:.1f}%"
+        else:
+            scd4x_data["CO₂"] = "Not ready"
+            scd4x_data["Temperature"] = "-"
+            scd4x_data["Humidity"] = "-"
+
+# System usage stats
+def get_usage_stats():
+    cpu = psutil.cpu_percent(interval=None)
+    ram = psutil.virtual_memory()
+    disk = psutil.disk_usage('/')
+    swap = psutil.swap_memory()
+    net = psutil.net_io_counters()
+
+    return {
+        "CPU": f"{cpu:.1f}%",
+        "RAM": f"{ram.percent:.1f}% ({ram.used / (1024**2):.1f}MB / {ram.total / (1024**2):.1f}MB)",
+        "Disk": f"{disk.percent:.1f}% ({disk.used / (1024**3):.1f}GB / {disk.total / (1024**3):.1f}GB)",
+        "Swap": f"{swap.percent:.1f}% ({swap.used / (1024**2):.1f}MB / {swap.total / (1024**2):.1f}MB)",
+        "Net Up": f"{net.bytes_sent / (1024**2):.2f} MB",
+        "Net Down": f"{net.bytes_recv / (1024**2):.2f} MB"
+    }
+
+# HTS221 sensor stats
+def get_hts221_stats():
+    try:
+        temp = hts.temperature
+        humidity = hts.relative_humidity
+        return {
+            "Temperature": f"{temp:.2f}°C",
+            "Humidity": f"{humidity:.2f}% rH"
+        }
+    except Exception as e:
+        return {"Sensor Error": str(e)}
+
+# Panel builders
+def build_usage_panel():
+    stats = get_usage_stats()
+    body = "\n".join([f"[bold cyan]{k}:[/bold cyan] {v}" for k, v in stats.items()])
+    return Panel(body, title="📊 System Usage", border_style="cyan")
+
+def build_hts221_panel():
+    data = get_hts221_stats()
+    body = "\n".join([f"[bold green]{k}:[/bold green] {v}" for k, v in data.items()])
+    return Panel(body, title="💧 HTS221 Sensor", border_style="green")
+
+def build_scd4x_panel():
+    body = "\n".join([f"[bold magenta]{k}:[/bold magenta] {v}" for k, v in scd4x_data.items()])
+    return Panel(body, title="🫁 SCD4x Sensor", border_style="magenta")
+
+# Dashboard layout
+def build_dashboard():
+    layout = Table.grid(padding=(1, 2))
+    layout.add_row(build_usage_panel(), build_hts221_panel(), build_scd4x_panel())
+    return layout
+
+# Live loop
+def run_dashboard():
+    threading.Thread(target=update_scd4x_loop, daemon=True).start()
+    with Live(console=console, refresh_per_second=10, screen=True) as live:
+        while True:
+            live.update(build_dashboard())
+            time.sleep(REFRESH_INTERVAL)
+
+if __name__ == "__main__":
+    run_dashboard()

@@ -1,0 +1,5 @@
+[safe]
+	directory = /home/pi/sensors
+[user]
+	email = mennfox@gmail.com
+	name = mennfox
