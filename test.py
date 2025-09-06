@@ -144,6 +144,13 @@ def bar_visual(value, max_value=100, width=20, color="white"):
     bar = "█" * filled_len + " " * (width - filled_len)
     return Text(bar, style=color)
 
+def dual_bar_visual(used, total, width=20, used_color="blue", free_color="orange1"):
+    used_len = min(int((used / total) * width), width)
+    free_len = width - used_len
+    used_bar = Text("█" * used_len, style=used_color)
+    free_bar = Text("█" * free_len, style=free_color)
+    return used_bar + free_bar
+
 def zone_color(value, zones):
     for threshold, color in zones:
         if value <= threshold:
@@ -192,20 +199,22 @@ def get_memory_panel():
 def get_disk_panel():
     usage = psutil.disk_usage("/")
     disk_history.append(usage.percent)
-    max_disk = max(disk_history) or 1.0  # Avoid zero division
-    graph = sparkline(disk_history, max_value=max_disk, color="yellow")
+
+    bar = dual_bar_visual(usage.used, usage.total, width=30)
 
     table = Table(title="[bold yellow]Disk Usage[/bold yellow]", expand=True)
     table.add_column("Used")
     table.add_column("Total")
     table.add_column("Usage")
-    table.add_column("Graph")
+    table.add_column("Bar")
+
     table.add_row(
         f"{usage.used // (1024**3)} GB",
         f"{usage.total // (1024**3)} GB",
         colorize(usage.percent),
-        graph
+        bar
     )
+
     return Panel(table, border_style="grey37")
 
 def get_network_panel():

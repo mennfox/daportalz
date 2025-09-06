@@ -1,150 +1,3 @@
-qwertyu
-clear
-htop
-ps aux | grep python
-python3 -u th.py &
-cd html
-python3 -u th.py &
-sudo python3 -u th.py &
-ps aux | grep python
-reboot
-sudo reboot
-su
-cat i2c 
-i2cdtect -y 1
-i2cdetect -y 1
-cd html
-ps aux | grep python
-su
-python3 -u test.py 
-python3 -u dpz.py
-python3 -u dpz.py 
-ic2detect -y 1
-i2cdetect -y 1
-cat i2c
-i2cdetect -y 1
-python3 -u dpz.py 
-i2cdetect -y 1
-python3 -u dpz.py 
-python3 -u dpz.py
-cd sensors
-python3 -u dpz.py
-exit
-cd /home/pi/sensors/
-python3 -u dpz.py 
-s
-pwd
-s
-ls
-rm 1
-su
-cd sensors/
-python3 -u dpz.py 
-cd sensors
-python3 -u dpz.py 
-cd sensors/
-python3 -u dpz.py 
-exit
-cd sensors/
-python3 -u dpz.py 
-exit
-pythno3 -u dpz.py 
-python3 -u dpz.py 
-cd sensors/
-pythonm3 -u dpz.py
-python3 -u dpz.py
-pythonm3 -u dpz.py
-python3 -u dpz.py
-cp dpz.py 4
-git add .
-python3 -u dpz.py 
-cd sensors/
-python3 -u dpz.py 
-i2cdetect -y 1
-reboot
-sudo reboot
-cd sensors/
-git status
-git config --global --add safe.directory /home/pi/sensors
-sudo chown -R $(pi):$(pi) /home/pi/sensors
-sudo chown -R pi:pi /home/pi/sensors
-[200~ls -ld /home/pi/sensors
-ls -ld /home/pi/sensors
-git status
-git add dpz.py
-git add .
-git commit -m "Update: refined temp sensor logic and dashboard sync"
-git push origin main
-git add dpz.py
-git commit -m "Update: refined temp sensor logic and dashboard sync"
-git push origin main
-vi dpz.py
-python3 -u dpz.py 
-git add dpz.py
-git commit -m "Update: refined temp sensor logic and dashboard sync"
-git config --global user.email "mennfox@gmail.com"
-git config --global user.name "mennfox"
-git add dpz.py
-git commit -m "Update: refined temp sensor logic and dashboard sync"
-git push origin main
-sudo vi dpz.py
-git commit -m "Update: refined temp sensor logic and dashboard sync"
-git push origin main
-sudo vi CHANGELOG.MD
-i2cdetect -y 1
-halt -p
-sudo halt -p
-i2cdetect -y 1
-ifconfig
-ping google.com
-reboot
-cd sensors/
-python3 -u dpz.py 
-clear
-cp dpz.py test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-cp dpz.py test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-cp test.py dpz.py 
-cp test.py 5
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-python3 -u dpz.py 
-python3 -u test.py
-vi test.py 
-python3 -u dpz.py
-vi dpz.py
-python3 -u dpz.py
-vi test.py 
-python3 -u test.py
-vi test.py
-python3 -u test.py
-cp test.py 6
-python3 -u test.py
-ping google.com
-i2cdetect -y 1
-cd sensors/
-python3 -u dpz.py 
 github status
 git status
 git add .
@@ -1998,3 +1851,150 @@ vi watchdog_20250905.232900log
 vi watchdog_20250905.232900.log 
 vi watchdog_20250905_232900.log
 vi watchdog_20250905_234723.log
+python3 -u watering_log.py 
+ls
+mkdir 6925
+mv 1 2 3 4 5 6 7 8 9 10 11 12 13 14 6925/
+ls
+cd backups/
+ls
+cd ..
+ls
+mv -r 3925/ 6925/ 4925/ backups/
+mv -p 3925/ 6925/ 4925/ backups/
+mv  3925/ 6925/ 4925/ backups/
+sudo mv  3925/ 6925/ 4925/ backups/
+ls
+cp test.py 1
+vi test.py 
+touch modules/runtime_health_panel.py
+sudo touch modules/runtime_health_panel.py
+vi modules/runtime_health_panel.py 
+sudo vi modules/runtime_health_panel.py 
+pwd
+sudo vi trest.py
+sudo vi test.py
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+vi test.py
+ls
+mkdir tmp
+cp test.py tmp
+cd tmp
+ls
+mkdir modules
+vi mods.py
+ls
+python3 -u mods.py 
+ls
+cd modules/
+ls
+cd ..
+ls
+cd modules/
+ls
+cd ..
+cd modules/
+ls
+cd tmp
+cd ..
+ls
+cd tm
+p
+cd tmp
+ls
+vi main.py
+python3 -u main.py 
+cd modules/
+ls
+clear
+ls
+python3 -u /home/pi/tmp/main.py 
+ls
+cd ..
+cp test.py dpz.py 
+vi test.py
+cp test.py 2
+vi modules/loopdrift.py
+sido vi modules/loopdrift.py
+sudo vi modules/loopdrift.py
+vi test.py
+ls
+vi test.py
+sudo rm .test.py.swp
+vi test.py
+clear
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+clear
+sudo rm .test.py.swp
+python3 -u test.py
+cd logs/
+rm *
+cd ..
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+cd logs
+ls
+cd ..
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+sudo git pull origin master
+git push origin master
+sudo git push origin master
+ls
+cd logs
+ls
+pwd
+mkdir logs
+ls
+git sudo git add .
+sudo git add .
+sudo git commit -m "Resolved merge conflict"
+sudo git push origin master
+ls
+cd tmp
+ls
+cd ..
+sudo find / -type f -name "*.log" 2>/dev/null
+cp dpz.py test.py 
+pwd
+ls
+sudo cp dpz.py test.py 
+git rm --cached logs/watchdog_20250906_172942.log
+echo "logs/*.log" >> .gitignore
+git add .gitignore
+git commit -m "Remove large log file and ignore future logs"
+git push origin master
+sudo git rm --cached logs/watchdog_20250906_172942.log
+sudo git ls-files | grep watchdog
+sudo rm -r tmp
+pwd
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+sudo cp -r daportalz daportalz_backup
+sudo git filter-repo --path logs/watchdog_20250906_172942.log --invert-paths --force
+git filter-repo --path logs/watchdog_20250906_172942.log --invert-paths --force
+sudo python3 -m pip install --user git-filter-repo --break-system-packages
+sudo git filter-repo --path logs/watchdog_20250906_172942.log --invert-paths --force
+git filter-repo --path logs/watchdog_20250906_172942.log --invert-paths --force
+git filter-repo --help
+python3 -m site --user-base
+/home/pi/.local/bin/git-filter-repo
+cd /home/pi/.local/bin/
+find ~/.local -name "git-filter-repo"
+rm -rf .git
+su root
+sudo git init
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+sudo git add .
+sudo git commit -m "Fresh start: clean repo init"
+sudo git remote add origin https://github.com/mennfox/daportalz.git
+sudo git push --force origin master
