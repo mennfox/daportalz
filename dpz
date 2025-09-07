@@ -895,14 +895,11 @@ def build_dashboard_health_panel():
         "update_scd4x_loop",
         "watchdog_ping_loop"
     ]
-
-    def format_thread_status(name):
-        is_active = any(name in t.name for t in active_threads)
-        symbol = "[green]✓[/green]" if is_active else "[red]✗[/red]"
-        return Text.from_markup(f"[bold]{symbol} Thread: {name}[/bold]")
-
     for name in expected_threads:
-        lines.append(format_thread_status(name))
+        if any(name in t.name for t in active_threads):
+            lines.append(Text.from_markup(f"[bold][green]✓[/green] Thread: {name}[/bold]"))
+        else:
+            lines.append(Text.from_markup(f"[bold][red]✗[/red] Thread: {name}[/bold]"))
 
     # 🔁 Refresh Interval
     try:
@@ -918,16 +915,16 @@ def build_dashboard_health_panel():
     except Exception as e:
         lines.append(Text(f"Memory Check Error: {str(e)}", style="red"))
 
-    # 🎭 Banner Status
+    # 🎭 Banner Status (optional flag)
     banner_flag = getattr(console, "banner_rendered", True)
     banner_status = "[green]✓[/green]" if banner_flag else "[yellow]Pending[/yellow]"
     lines.append(Text.from_markup(f"Banner Animation: {banner_status}"))
 
-    # 🧨 Last Exception
+    # 🧨 Last Exception (if tracked)
     if hasattr(console, "last_exception"):
         lines.append(Text(f"[red]Last Exception: {console.last_exception}[/red]"))
 
-    # 🫀 Frame Render Timing
+    # 🫀 Frame Render Timing (optional)
     try:
         now = time.time()
         if not hasattr(console, "last_frame_time"):
@@ -940,7 +937,7 @@ def build_dashboard_health_panel():
     except Exception as e:
         lines.append(Text(f"Frame Timing Error: {str(e)}", style="red"))
 
-    # 🧭 Loop Drift Detection
+    # 🧭 Loop Drift Detection (optional)
     try:
         if not hasattr(console, "last_loop_time"):
             console.last_loop_time = time.time()
