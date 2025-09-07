@@ -1,24 +1,3 @@
-github status
-git status
-git add .
-git commit -m "Update: refined temp sensor logic and dashboard sync"
-git push origin main
-git add .
-reboot
-sudo reboot
-cd sensors/
-python3 -u dpz.py 
-cd sensors
-python3 -u dpz.py 
-c sensors/
-python3 -u dpz.py 
-cd sensors/
-python3 -u dpz.py 
-cd sensors/
-python3 -u dpz.py 
-qwertyu
-git status
-git add .
 sudi git add .
 sudo git add .
 sudo git commit -m "Update: refined temp sensor logic and dashboard sync"
@@ -1998,3 +1977,24 @@ sudo git add .
 sudo git commit -m "Fresh start: clean repo init"
 sudo git remote add origin https://github.com/mennfox/daportalz.git
 sudo git push --force origin master
+la
+ls
+python3 -u watering_log.py 
+ls
+vi test.py
+sudo git push --force origin masterclear
+clear
+sudo vi test.py
+cp test.py 3
+cp test.py dpz.py 
+sudo cp test.py dpz.py 
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+vi test.py
+sudo vi test.py
+vi test.py
+sudo vi test.py
+sudo cp dpz.py test.py 
+sudo vi test.py
+sudo cp dpz.py test.py 
