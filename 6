@@ -873,19 +873,18 @@ def build_sensor_graph_panel():
             except Exception as e:
                 console.log(f"[red]{label} block error: {e}[/red]")
                 return [Text(f"[red]{label} block error: {e}[/red]")]
-
-        # 🌡 Temp overlays + annotation block
+        # 🌡  Temp overlays
         try:
             temp_graphs = [
                 max_overlay_graph(htu21d_history, temp_spike_history, 28.5, 40, width=GRAPH_WIDTH),
                 max_overlay_graph(scd4x_history, temp_spike_history, 28.5, 40, width=GRAPH_WIDTH),
                 max_overlay_graph(sht31d_history, sht31d_spike_history, 25.5, 30, width=GRAPH_WIDTH)
             ]
-            merged_temp = Text.assemble(*[g + Text(" ") for g in temp_graphs])
             current = mean(list(temp_all_history)[-1:]) if temp_all_history else 0.0
             max_val = max(temp_spike_history) if temp_spike_history else current
             breach_hours = sum(1 for val in temp_all_history if val > 28.5) * (REFRESH_INTERVAL / 3600)
 
+            merged_temp = Text.assemble(*[g + Text(" ") for g in temp_graphs])
             lines.append(label_graph("Temp", merged_temp, style="bold magenta"))
             lines.append(Text(f"Max Temp: {max_val:.2f} °C", style="bold green"))
             lines.append(Text(f"Breach: {breach_hours:.1f} hrs", style="yellow" if breach_hours > 0 else "dim"))
@@ -894,8 +893,8 @@ def build_sensor_graph_panel():
             console.log(f"[red]Temp overlay error: {e}[/red]")
             lines.append(Text(f"[red]Temp overlay error: {e}[/red]"))
 
+
         # Sensor blocks
-        lines += sensor_block(temp_all_history, temp_spike_history, ZONES_TEMP, "Temp", "°C", 28.5)
         lines += sensor_block(co2_history, co2_history, ZONES_CO2, "CO₂", "ppm", 1500)
         lines += sensor_block(lux_history, lux_history, ZONES_LUX, "Lux", "Lux", 9000)
         lines += sensor_block(hum_history, hum_history, ZONES_HUM, "Rh", "%", 70)
