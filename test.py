@@ -733,23 +733,18 @@ def build_bme280_panel():
 
 def build_environment_panel():
     try:
-        # Parse environment strings
         co2_str = environment_data.get("CO₂", "0.0 ppm")
         pressure_str = environment_data.get("Pressure", "0.0 hPa")
         lux_str = environment_data.get("Lux", "0.0 Lux")
 
-        # Extract numeric values
         co2_value = float(co2_str.split()[0]) if "ppm" in co2_str else 0.0
         pressure_value = float(pressure_str.split()[0]) if "hPa" in pressure_str else 0.0
         lux_value = float(lux_str.split()[0]) if "Lux" in lux_str else 0.0
-        console.log(f"[yellow]Environment Lux Value: {lux_value:.2f}[/yellow]")
 
-        # Update max trackers
         max_values["Environment"]["CO₂"] = max(max_values["Environment"]["CO₂"], co2_value)
         max_values["Environment"]["Pressure"] = max(max_values["Environment"]["Pressure"], pressure_value)
         max_values["Environment"]["Lux"] = max(max_values["Environment"].get("Lux", float('-inf')), lux_value)
 
-        # Render zone bars
         lines = []
         lines += sensor_zone_lines(co2_value, ZONES_CO2, "CO₂", "ppm", max_values["Environment"]["CO₂"])
         lines += sensor_zone_lines(pressure_value, ZONES_PRESSURE, "Pressure", "hPa", max_values["Environment"]["Pressure"])
