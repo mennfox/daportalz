@@ -521,7 +521,7 @@ def get_bh1750_stats():
         lux = bh1750.lux
         lux_history.append(lux)
 
-        # Track max in both BH1750 and Environment scopes
+        # Update both BH1750 and Environment max trackers
         max_values["BH1750"]["Lux"] = max(max_values["BH1750"]["Lux"], lux)
         max_values["Environment"]["Lux"] = max(max_values["Environment"].get("Lux", float('-inf')), lux)
 
@@ -534,7 +534,6 @@ def get_bh1750_stats():
         }
     except Exception as e:
         return {"Sensor Error": str(e)}
-
 
 def get_as7341_panel():
     try:
