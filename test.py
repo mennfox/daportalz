@@ -520,6 +520,7 @@ def get_bh1750_stats():
     try:
         lux = bh1750.lux
         lux_history.append(lux)
+        console.log(f"[cyan]BH1750 Lux Reading: {lux:.2f}[/cyan]")
 
         # Update both BH1750 and Environment max trackers
         max_values["BH1750"]["Lux"] = max(max_values["BH1750"]["Lux"], lux)
@@ -741,6 +742,7 @@ def build_environment_panel():
         co2_value = float(co2_str.split()[0]) if "ppm" in co2_str else 0.0
         pressure_value = float(pressure_str.split()[0]) if "hPa" in pressure_str else 0.0
         lux_value = float(lux_str.split()[0]) if "Lux" in lux_str else 0.0
+        console.log(f"[yellow]Environment Lux Value: {lux_value:.2f}[/yellow]")
 
         # Update max trackers
         max_values["Environment"]["CO₂"] = max(max_values["Environment"]["CO₂"], co2_value)
@@ -1183,6 +1185,7 @@ def build_dashboard():
         build_watchdog_log_panel(),
         build_i2c_panel(),
         build_tent_panel(),
+        get_bh1750_stats(),
         build_environment_panel()
     ]
 
