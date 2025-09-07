@@ -887,23 +887,23 @@ def build_sensor_graph_panel():
     return Panel(body, title="📊 High Sensor Readings", border_style="grey37")
 
 def build_dashboard_health_panel():
-
     lines = []
 
     # 🧵 Thread Health Check
     active_threads = threading.enumerate()
-    thread_names = [t.name for t in active_threads]
     expected_threads = [
         "update_scd4x_loop",
         "watchdog_ping_loop"
     ]
     for name in expected_threads:
-        status = "[green]✓[/green]" if any(name in t.name for t in active_threads) else "[red]✗[/red]"
-        lines.append(Text(f"{status} Thread: {name}", style="bold"))
+        if any(name in t.name for t in active_threads):
+            lines.append(Text.from_markup(f"[bold][green]✓[/green] Thread: {name}[/bold]"))
+        else:
+            lines.append(Text.from_markup(f"[bold][red]✗[/red] Thread: {name}[/bold]"))
 
     # 🔁 Refresh Interval
     try:
-        lines.append(Text.from_markup(f"[bold]{status} Thread: {name}[/bold]"))
+        lines.append(Text(f"Refresh Interval: {REFRESH_INTERVAL:.2f}s", style="cyan"))
     except NameError:
         lines.append(Text("Refresh Interval: [red]Not Defined[/red]"))
 
@@ -915,10 +915,10 @@ def build_dashboard_health_panel():
     except Exception as e:
         lines.append(Text(f"Memory Check Error: {str(e)}", style="red"))
 
-
     # 🎭 Banner Status (optional flag)
     banner_flag = getattr(console, "banner_rendered", True)
-    lines.append(Text(f"Banner Animation: {'[green]✓[/green]' if banner_flag else '[yellow]Pending[/yellow]'}"))
+    banner_status = "[green]✓[/green]" if banner_flag else "[yellow]Pending[/yellow]"
+    lines.append(Text.from_markup(f"Banner Animation: {banner_status}"))
 
     # 🧨 Last Exception (if tracked)
     if hasattr(console, "last_exception"):
