@@ -903,7 +903,7 @@ def build_dashboard_health_panel():
 
     # 🔁 Refresh Interval
     try:
-        lines.append(Text(f"Refresh Interval: {REFRESH_INTERVAL:.2f}s", style="cyan"))
+        lines.append(Text.from_markup(f"[bold]{status} Thread: {name}[/bold]"))
     except NameError:
         lines.append(Text("Refresh Interval: [red]Not Defined[/red]"))
 

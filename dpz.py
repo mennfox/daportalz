@@ -128,7 +128,8 @@ core_colors = ["cyan", "magenta", "yellow", "green"]
 
 def sparkline(data, max_value=100, color="white"):
     blocks = "▁▂▃▄▅▆▇█"
-    scaled = [min(int((val / max_value) * (len(blocks) - 1)), len(blocks) - 1) for val in data]
+    safe_max = max_value if max_value > 0 else 1.0
+    scaled = [min(int((val / safe_max) * (len(blocks) - 1)), len(blocks) - 1) for val in data]
     return Text("".join(blocks[i] for i in scaled), style=color)
 
 def colorize(value, thresholds=(50, 75)):
@@ -223,16 +224,24 @@ def get_network_panel():
     sent = (net_io.bytes_sent - prev_net.bytes_sent) / 1024
     recv = (net_io.bytes_recv - prev_net.bytes_recv) / 1024
     prev_net = net_io
+
     net_sent_history.append(sent)
     net_recv_history.append(recv)
-    graph_sent = sparkline(net_sent_history, max_value=max(net_sent_history), color="cyan")
-    graph_recv = sparkline(net_recv_history, max_value=max(net_recv_history), color="magenta")
+
+    # ✅ Guard against zero max values
+    max_sent = max(net_sent_history) or 1.0
+    max_recv = max(net_recv_history) or 1.0
+
+    graph_sent = sparkline(net_sent_history, max_value=max_sent, color="cyan")
+    graph_recv = sparkline(net_recv_history, max_value=max_recv, color="magenta")
+
     table = Table(title="[bold green]Network I/O[/bold green]", expand=True)
     table.add_column("Metric", style="bold")
     table.add_column("KB/s")
     table.add_column("Graph")
     table.add_row("Sent", f"[cyan]{sent:.1f}[/cyan]", graph_sent)
     table.add_row("Recv", f"[magenta]{recv:.1f}[/magenta]", graph_recv)
+
     return Panel(table, border_style="grey37")
 
 def get_system_panel():
