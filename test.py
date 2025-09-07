@@ -331,6 +331,19 @@ def update_scd4x_loop():
             environment_data["CO₂"] = "Error"
             scd4x_data["Temperature"] = "-"
             scd4x_data["Humidity"] = "-"
+def update_bh1750_loop():
+    while True:
+        try:
+            lux = bh1750.lux
+            lux_history.append(lux)
+            environment_data["Lux"] = f"{lux:.2f} Lux"
+            max_values["Environment"]["Lux"] = max(
+                max_values["Environment"].get("Lux", float('-inf')),
+                lux
+            )
+        except Exception as e:
+            environment_data["Lux"] = "Error"
+        time.sleep(REFRESH_INTERVAL)
 
 def get_last_watered_text():
     try:
@@ -520,12 +533,19 @@ def get_bh1750_stats():
     try:
         lux = bh1750.lux
         lux_history.append(lux)
-        max_values["BH1750"]["Lux"] = max(max_values["BH1750"]["Lux"], lux)
-        return {
-            "Light Level": f"{lux:.2f} Lux",
-            "Max Lux": f"{max_values['BH1750']['Lux']:.2f} Lux"
-        }
+
+        # Update max tracker
+        max_values["Environment"]["Lux"] = max(
+            max_values["Environment"].get("Lux", float('-inf')),
+            lux
+        )
+
+        # Populate shared environment dictionary
+        environment_data["Lux"] = f"{lux:.2f} Lux"
+
+        return {"Lux": lux}
     except Exception as e:
+        environment_data["Lux"] = "Error"
         return {"Sensor Error": str(e)}
 
 def get_as7341_panel():
@@ -740,20 +760,24 @@ def build_environment_panel():
     try:
         co2_str = environment_data["CO₂"]
         pressure_str = environment_data["Pressure"]
+        lux_str = environment_data.get("Lux", "Waiting...")
 
         co2_value = float(co2_str.split()[0]) if "ppm" in co2_str else 0.0
         pressure_value = float(pressure_str.split()[0]) if "hPa" in pressure_str else 0.0
+        lux_value = float(lux_str.split()[0]) if "Lux" in lux_str else 0.0
 
         # Update max values
-        max_values["Environment"]["CO₂"] = max(max_values["Environment"]["CO₂"], co2_value)
-        max_values["Environment"]["Pressure"] = max(max_values["Environment"]["Pressure"], pressure_value)
+        max_values["Environment"]["CO₂"] = max(max_values["Environment"].get("CO₂", float('-inf')), co2_value)
+        max_values["Environment"]["Pressure"] = max(max_values["Environment"].get("Pressure", float('-inf')), pressure_value)
+        max_values["Environment"]["Lux"] = max(max_values["Environment"].get("Lux", float('-inf')), lux_value)
 
-        # Define zones
+        # Build panel lines
         lines = []
         lines += sensor_zone_lines(co2_value, ZONES_CO2, "CO₂", "ppm", max_values["Environment"]["CO₂"])
         lines += sensor_zone_lines(pressure_value, ZONES_PRESSURE, "Pressure", "hPa", max_values["Environment"]["Pressure"])
-        body = Text("\n").join(lines)
+        lines += sensor_zone_lines(lux_value, get_mood_lux_palette(), "Lux", "Lux", max_values["Environment"]["Lux"])
 
+        body = Text("\n").join(lines)
     except Exception as e:
         body = f"[red]Sensor Error: {e}[/red]"
 
@@ -1195,7 +1219,6 @@ def build_dashboard():
     ]
     fourth_row_panels = [
         get_as7341_panel(),
-        build_bh1750_panel(),
         build_averages_panel(),
         build_sensor_graph_panel()
     ]
@@ -1226,6 +1249,7 @@ def run_dashboard():
     threading.Thread(target=update_scd4x_loop, name="update_scd4x_loop", daemon=True).start()
     threading.Thread(target=watchdog_ping_loop, name="watchdog_ping_loop", daemon=True).start()
     threading.Thread(target=update_as7341_loop, name="as7341_loop", daemon=True).start()
+    threading.Thread(target=update_bh1750_loop, name="update_bh1750_loop", daemon=True).start()
     # 🧼 Clear screen before banner
     os.system("clear")  
 
