@@ -172,47 +172,18 @@ def format_zone_bar(value, zones, label="", unit="", width=20, max_value=None):
     bar = bar_visual(value, max_value=scale, width=width, color=color)
     return Text(f"{label:<10} {value:.1f}{unit:<3} ", style=color) + bar
 
+
 def get_cpu_panel():
     cpu_percents = psutil.cpu_percent(percpu=True)
-    freqs = psutil.cpu_freq(percpu=True)
-    load1, load5, load15 = os.getloadavg()
-
-    # Optional: Core temps
-    temps = psutil.sensors_temperatures().get("coretemp", [])
-    temp_map = {i: t.current for i, t in enumerate(temps)} if temps else {}
-
-    # Zone bar for overall CPU pressure
-    avg_usage = sum(cpu_percents) / len(cpu_percents)
-    ZONES_CPU = [(30, "green"), (60, "yellow"), (90, "red")]
-    pressure_bar = format_zone_bar(avg_usage, ZONES_CPU, label="CPU", unit="%", width=30)
-
     table = Table(title="[bold cyan]CPU Usage[/bold cyan]", expand=True)
     table.add_column("Core", style="bold")
-    table.add_column("Usage")
-    table.add_column("Freq")
-    table.add_column("Temp")
+    table.add_column("Usage", style="bold")
     table.add_column("Graph")
-
     for i, percent in enumerate(cpu_percents):
         cpu_histories[i].append(percent)
         color = core_colors[i] if i < len(core_colors) else "white"
         graph = sparkline(cpu_histories[i], color=color)
-        freq = f"{freqs[i].current:.0f} MHz" if i < len(freqs) else "—"
-        temp = f"{temp_map.get(i, '—'):.1f}°C" if temp_map else "—"
-        table.add_row(f"Core {i}", colorize(percent), freq, temp, graph)
-
-    # Add system-wide metrics
-    table.add_row("—", "—", "—", "—", Text(f"Load Avg: {load1:.2f}, {load5:.2f}, {load15:.2f}", style="dim"))
-    table.add_row("—", "—", "—", "—", pressure_bar)
-
-    # Top process snapshot
-    try:
-        top_proc = max(psutil.process_iter(['pid', 'name', 'cpu_percent']), key=lambda p: p.info['cpu_percent'])
-        proc_info = f"{top_proc.info['name']} ({top_proc.info['cpu_percent']:.1f}%)"
-        table.add_row("—", "—", "—", "—", Text(f"Top Proc: {proc_info}", style="dim"))
-    except Exception:
-        table.add_row("—", "—", "—", "—", Text("Top Proc: —", style="dim"))
-
+        table.add_row(f"Core {i}", colorize(percent), graph)
     return Panel(table, border_style="grey37")
 
 def get_memory_panel():
@@ -372,30 +343,21 @@ def get_ip_address():
         return ip
     except Exception:
         return "Unavailable"
-
 def get_system_panel():
     load1, load5, load15 = os.getloadavg()
     uptime_sec = time.time() - psutil.boot_time()
     hours = int(uptime_sec // 3600)
     minutes = int((uptime_sec % 3600) // 60)
     now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-    ip_address = get_ip_address()
-
-    # System metadata
-    uname = os.uname()
-    hostname = uname.nodename
-    kernel = uname.release
+    ip_address = get_ip_address()  # 👈 Add this line
 
     table = Table(title="[bold blue]System Info[/bold blue]", expand=True)
     table.add_column("Metric", style="bold")
     table.add_column("Value")
-
     table.add_row("Load Avg", f"[white]{load1:.2f}, {load5:.2f}, {load15:.2f}[/white]")
     table.add_row("Uptime", f"[white]{hours}h {minutes}m[/white]")
     table.add_row("Time", f"[white]{now}[/white]")
-    table.add_row("IP Address", f"[white]{ip_address}[/white]")
-    table.add_row("Hostname", f"[white]{hostname}[/white]")
-    table.add_row("Kernel", f"[white]{kernel}[/white]")
+    table.add_row("IP Address", f"[white]{ip_address}[/white]")  # 👈 New row
 
     return Panel(table, border_style="grey37")
 
