@@ -47,6 +47,7 @@ import json
 from pathlib import Path
 import re
 import traceback
+import socket
 from modules.watering import get_last_watered_text
 from rich.progress import BarColumn
 from datetime import datetime, timedelta
@@ -245,19 +246,33 @@ def get_network_panel():
     table.add_row("Recv", f"[magenta]{recv:.1f}[/magenta]", graph_recv)
 
     return Panel(table, border_style="grey37")
+import socket
 
+def get_ip_address():
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))  # Google's DNS
+        ip = s.getsockname()[0]
+        s.close()
+        return ip
+    except Exception:
+        return "Unavailable"
 def get_system_panel():
     load1, load5, load15 = os.getloadavg()
     uptime_sec = time.time() - psutil.boot_time()
     hours = int(uptime_sec // 3600)
     minutes = int((uptime_sec % 3600) // 60)
     now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    ip_address = get_ip_address()  # 👈 Add this line
+
     table = Table(title="[bold blue]System Info[/bold blue]", expand=True)
     table.add_column("Metric", style="bold")
     table.add_column("Value")
     table.add_row("Load Avg", f"[white]{load1:.2f}, {load5:.2f}, {load15:.2f}[/white]")
     table.add_row("Uptime", f"[white]{hours}h {minutes}m[/white]")
     table.add_row("Time", f"[white]{now}[/white]")
+    table.add_row("IP Address", f"[white]{ip_address}[/white]")  # 👈 New row
+
     return Panel(table, border_style="grey37")
 
 def hydration_urgency_bar(days_ago, max_days=10, width=30):
@@ -351,11 +366,14 @@ def get_last_watered_text():
             notes = json.load(f)
         if not notes:
             return Text("Last watered: [dim]No data[/dim]")
-        last_entry = max(notes, key=lambda n: n["timestamp"])
-        date_str = time.strftime("%Y-%m-%d %H:%M", time.localtime(last_entry["timestamp"]))
-        return Text(f"Last watered: {date_str}", style="green")
+        last = max(notes, key=lambda n: n["timestamp"])
+        date_str = time.strftime("%Y-%m-%d %H:%M", time.localtime(last["timestamp"]))
+        method = last.get("method", "unknown")
+        volume = last.get("volume_ml", "—")
+        return Text(f"Last watered: {date_str} — {volume}ml via {method}", style="green")
     except Exception as e:
         return Text(f"[red]Error reading watering log: {e}[/red]")
+
 
 def get_last_watering_info():
     try:
@@ -363,11 +381,24 @@ def get_last_watering_info():
             notes = json.load(f)
         if not notes:
             return None
-        last_entry = max(notes, key=lambda n: n["timestamp"])
-        days_ago = (time.time() - last_entry["timestamp"]) / 86400
-        date_str = time.strftime("%Y-%m-%d %H:%M", time.localtime(last_entry["timestamp"]))
+        last = max(notes, key=lambda n: n["timestamp"])
+        days_ago = (time.time() - last["timestamp"]) / 86400
+        date_str = time.strftime("%Y-%m-%d %H:%M", time.localtime(last["timestamp"]))
+
+        # Build styled line
+        line = Text("Last watered: ", style="bold white")
+        line.append(f"{date_str}", style="green")
+        line.append(" — ", style="dim")
+        line.append(f"{last['volume_ml']}ml", style="cyan")
+        line.append(" via ", style="dim")
+        line.append(f"{last['method']}", style="yellow")
+        line.append(" — ", style="dim")
+        line.append(f"{last['uptake']} uptake", style="magenta")
+        line.append(" — ", style="dim")
+        line.append(f"{last['pot_size_l']}L pot", style="blue")
+
         return {
-            "text": last_entry["text"],
+            "text": line,
             "date": date_str,
             "days_ago": days_ago
         }
@@ -683,8 +714,23 @@ def build_watering_panel():
     if not recent_notes:
         body = Text("No watering notes in the last 7 days.", style="dim")
     else:
-        lines = [f"{time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(n['timestamp']))} — {n['text']}" for n in recent_notes[-5:]]
-        body = Text("\n".join(lines), style="green")
+        lines = []
+        for n in recent_notes[-5:]:
+            date_str = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(n['timestamp']))
+            line = Text.assemble(
+                Text(date_str, style="green"),
+                Text(" — ", style="dim"),
+                Text(f"{n.get('volume_ml', '—')}ml", style="cyan"),
+                Text(" via ", style="dim"),
+                Text(n.get("method", "unknown"), style="yellow"),
+                Text(" — ", style="dim"),
+                Text(f"{n.get('uptake', '—')} uptake", style="magenta"),
+                Text(" — ", style="dim"),
+                Text(f"{n.get('pot_size_l', '—')}L pot", style="blue")
+            )
+            lines.append(line)
+        body = Text("\n").join(lines)
+
     return Panel(body, title="🪴 Watering Log", border_style="grey37")
 
 def build_htu21d_panel():

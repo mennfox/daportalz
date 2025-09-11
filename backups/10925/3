@@ -331,19 +331,6 @@ def update_scd4x_loop():
             environment_data["CO₂"] = "Error"
             scd4x_data["Temperature"] = "-"
             scd4x_data["Humidity"] = "-"
-def update_bh1750_loop():
-    while True:
-        try:
-            lux = bh1750.lux
-            lux_history.append(lux)
-            environment_data["Lux"] = f"{lux:.2f} Lux"
-            max_values["Environment"]["Lux"] = max(
-                max_values["Environment"].get("Lux", float('-inf')),
-                lux
-            )
-        except Exception as e:
-            environment_data["Lux"] = "Error"
-        time.sleep(REFRESH_INTERVAL)
 
 def get_last_watered_text():
     try:
@@ -533,19 +520,12 @@ def get_bh1750_stats():
     try:
         lux = bh1750.lux
         lux_history.append(lux)
-
-        # Update max tracker
-        max_values["Environment"]["Lux"] = max(
-            max_values["Environment"].get("Lux", float('-inf')),
-            lux
-        )
-
-        # Populate shared environment dictionary
-        environment_data["Lux"] = f"{lux:.2f} Lux"
-
-        return {"Lux": lux}
+        max_values["BH1750"]["Lux"] = max(max_values["BH1750"]["Lux"], lux)
+        return {
+            "Light Level": f"{lux:.2f} Lux",
+            "Max Lux": f"{max_values['BH1750']['Lux']:.2f} Lux"
+        }
     except Exception as e:
-        environment_data["Lux"] = "Error"
         return {"Sensor Error": str(e)}
 
 def get_as7341_panel():
@@ -760,24 +740,20 @@ def build_environment_panel():
     try:
         co2_str = environment_data["CO₂"]
         pressure_str = environment_data["Pressure"]
-        lux_str = environment_data.get("Lux", "Waiting...")
 
         co2_value = float(co2_str.split()[0]) if "ppm" in co2_str else 0.0
         pressure_value = float(pressure_str.split()[0]) if "hPa" in pressure_str else 0.0
-        lux_value = float(lux_str.split()[0]) if "Lux" in lux_str else 0.0
 
         # Update max values
-        max_values["Environment"]["CO₂"] = max(max_values["Environment"].get("CO₂", float('-inf')), co2_value)
-        max_values["Environment"]["Pressure"] = max(max_values["Environment"].get("Pressure", float('-inf')), pressure_value)
-        max_values["Environment"]["Lux"] = max(max_values["Environment"].get("Lux", float('-inf')), lux_value)
+        max_values["Environment"]["CO₂"] = max(max_values["Environment"]["CO₂"], co2_value)
+        max_values["Environment"]["Pressure"] = max(max_values["Environment"]["Pressure"], pressure_value)
 
-        # Build panel lines
+        # Define zones
         lines = []
         lines += sensor_zone_lines(co2_value, ZONES_CO2, "CO₂", "ppm", max_values["Environment"]["CO₂"])
         lines += sensor_zone_lines(pressure_value, ZONES_PRESSURE, "Pressure", "hPa", max_values["Environment"]["Pressure"])
-        lines += sensor_zone_lines(lux_value, get_mood_lux_palette(), "Lux", "Lux", max_values["Environment"]["Lux"])
-
         body = Text("\n").join(lines)
+
     except Exception as e:
         body = f"[red]Sensor Error: {e}[/red]"
 
@@ -879,43 +855,38 @@ def label_graph(label, graph_text, style="bold cyan"):
 
 def build_sensor_graph_panel():
     try:
-        lines = []
+        graphs = []
 
-        # Helper: Annotate sensor with 3-line format
-        def sensor_block(history, spike_history, zones, label, unit, threshold):
-            try:
-                current = mean(list(history)[-1:]) if history else 0.0
-                max_val = max(spike_history) if spike_history else current
-                breach_hours = sum(1 for val in history if val > threshold) * (REFRESH_INTERVAL / 3600)
+        # CO₂
+        graphs.append(label_graph("CO₂", render_high_graph(co2_history, 1500, 2000, width=GRAPH_WIDTH), style="bold red"))
 
-                block = [
-                    label_graph(label, render_high_graph(history, threshold, zones[-1][0], width=GRAPH_WIDTH), style=f"bold {zone_color(current, zones)}"),
-                    Text(f"Max {label}: {max_val:.2f} {unit}", style="bold green"),
-                    Text(f"Breach: {breach_hours:.1f} hrs", style="yellow" if breach_hours > 0 else "dim")
-                ]
-                return block
-            except Exception as e:
-                console.log(f"[red]{label} block error: {e}[/red]")
-                return [Text(f"[red]{label} block error: {e}[/red]")]
+        # Lux
+        graphs.append(label_graph("Lux", render_high_graph(lux_history, 9000, 10500, width=GRAPH_WIDTH), style="bold yellow"))
 
-        # 🌡 Temp block — now using standard format
-        lines += sensor_block(temp_all_history, temp_spike_history, ZONES_TEMP, "Temp", "°C", 28.5)
+        # Temperature Overlays (merged)
+        temp_graphs = [
+            max_overlay_graph(htu21d_history, temp_spike_history, 28.5, 40, width=GRAPH_WIDTH),
+            max_overlay_graph(scd4x_history, temp_spike_history, 28.5, 40, width=GRAPH_WIDTH),
+            max_overlay_graph(sht31d_history, sht31d_spike_history, 25.5, 30, width=GRAPH_WIDTH)
+        ]
+        merged_temp = Text.assemble(*[g + Text(" ") for g in temp_graphs])
+        graphs.append(label_graph("Temp", merged_temp, style="bold magenta"))
 
-        # Other sensor blocks
-        lines += sensor_block(co2_history, co2_history, ZONES_CO2, "CO₂", "ppm", 1500)
-        lines += sensor_block(lux_history, lux_history, ZONES_LUX, "Lux", "Lux", 9000)
-        lines += sensor_block(hum_history, hum_history, ZONES_HUM, "Rh", "%", 70)
-        lines += sensor_block(pressure_history, pressure_history, ZONES_PRESSURE, "hPa", "hPa", 1020)
+        # Humidity
+        graphs.append(label_graph("Rh", render_high_graph(hum_history, 70, 100, width=GRAPH_WIDTH), style="bold blue"))
+
+        # Pressure
+        graphs.append(label_graph("hPa", render_high_graph(pressure_history, 1020, 1050, width=GRAPH_WIDTH), style="bold green"))
 
         # Footer
-        lines.append(Text("Time → [Last 24h]", style="dim"))
+        graphs.append(Text("Time → [Last 24h]", style="dim"))
 
-        body = Text("\n").join(lines)
-        return Panel(body, title="📊 High Sensor Readings", border_style="grey37")
+        body = Text("\n").join(graphs)
 
     except Exception as e:
-        console.log(f"[red]Sensor Graph Error: {e}[/red]")
-        return Panel(Text(f"[red]Sensor Graph Error: {e}[/red]"), title="📊 High Sensor Readings", border_style="red")
+        body = Text(f"[red]Sensor Graph Error: {e}[/red]")
+
+    return Panel(body, title="📊 High Sensor Readings", border_style="grey37")
 
 
 # Initialize thread metadata store
@@ -1219,6 +1190,7 @@ def build_dashboard():
     ]
     fourth_row_panels = [
         get_as7341_panel(),
+        build_bh1750_panel(),
         build_averages_panel(),
         build_sensor_graph_panel()
     ]
@@ -1249,7 +1221,6 @@ def run_dashboard():
     threading.Thread(target=update_scd4x_loop, name="update_scd4x_loop", daemon=True).start()
     threading.Thread(target=watchdog_ping_loop, name="watchdog_ping_loop", daemon=True).start()
     threading.Thread(target=update_as7341_loop, name="as7341_loop", daemon=True).start()
-    threading.Thread(target=update_bh1750_loop, name="update_bh1750_loop", daemon=True).start()
     # 🧼 Clear screen before banner
     os.system("clear")  
 

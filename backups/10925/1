@@ -48,8 +48,6 @@ from pathlib import Path
 import re
 import traceback
 from modules.watering import get_last_watered_text
-from rich.progress import BarColumn
-from datetime import datetime, timedelta
 
 WATCHDOG_LOG_DIR = Path("logs")
 WATCHDOG_LOG_DIR.mkdir(parents=True, exist_ok=True)
@@ -58,7 +56,7 @@ WATCHDOG_LOG_FILE = WATCHDOG_LOG_DIR / f"watchdog_{datetime.now().strftime('%Y%m
 WATCHDOG_CHECK_INTERVAL = 10.0
 WATCHDOG_STALL_THRESHOLD = 5.0
 WATCHDOG_SCROLL_INDEX = 0
-WATCHDOG_SCROLL_WINDOW = 14  # Number of lines to show
+WATCHDOG_SCROLL_WINDOW = 10  # Number of lines to show
 WATCHDOG_FILTER_MODE = False  # Toggle to show only warnings/errors
 
 # Globals
@@ -331,19 +329,6 @@ def update_scd4x_loop():
             environment_data["CO₂"] = "Error"
             scd4x_data["Temperature"] = "-"
             scd4x_data["Humidity"] = "-"
-def update_bh1750_loop():
-    while True:
-        try:
-            lux = bh1750.lux
-            lux_history.append(lux)
-            environment_data["Lux"] = f"{lux:.2f} Lux"
-            max_values["Environment"]["Lux"] = max(
-                max_values["Environment"].get("Lux", float('-inf')),
-                lux
-            )
-        except Exception as e:
-            environment_data["Lux"] = "Error"
-        time.sleep(REFRESH_INTERVAL)
 
 def get_last_watered_text():
     try:
@@ -533,19 +518,12 @@ def get_bh1750_stats():
     try:
         lux = bh1750.lux
         lux_history.append(lux)
-
-        # Update max tracker
-        max_values["Environment"]["Lux"] = max(
-            max_values["Environment"].get("Lux", float('-inf')),
-            lux
-        )
-
-        # Populate shared environment dictionary
-        environment_data["Lux"] = f"{lux:.2f} Lux"
-
-        return {"Lux": lux}
+        max_values["BH1750"]["Lux"] = max(max_values["BH1750"]["Lux"], lux)
+        return {
+            "Light Level": f"{lux:.2f} Lux",
+            "Max Lux": f"{max_values['BH1750']['Lux']:.2f} Lux"
+        }
     except Exception as e:
-        environment_data["Lux"] = "Error"
         return {"Sensor Error": str(e)}
 
 def get_as7341_panel():
@@ -760,24 +738,20 @@ def build_environment_panel():
     try:
         co2_str = environment_data["CO₂"]
         pressure_str = environment_data["Pressure"]
-        lux_str = environment_data.get("Lux", "Waiting...")
 
         co2_value = float(co2_str.split()[0]) if "ppm" in co2_str else 0.0
         pressure_value = float(pressure_str.split()[0]) if "hPa" in pressure_str else 0.0
-        lux_value = float(lux_str.split()[0]) if "Lux" in lux_str else 0.0
 
         # Update max values
-        max_values["Environment"]["CO₂"] = max(max_values["Environment"].get("CO₂", float('-inf')), co2_value)
-        max_values["Environment"]["Pressure"] = max(max_values["Environment"].get("Pressure", float('-inf')), pressure_value)
-        max_values["Environment"]["Lux"] = max(max_values["Environment"].get("Lux", float('-inf')), lux_value)
+        max_values["Environment"]["CO₂"] = max(max_values["Environment"]["CO₂"], co2_value)
+        max_values["Environment"]["Pressure"] = max(max_values["Environment"]["Pressure"], pressure_value)
 
-        # Build panel lines
+        # Define zones
         lines = []
         lines += sensor_zone_lines(co2_value, ZONES_CO2, "CO₂", "ppm", max_values["Environment"]["CO₂"])
         lines += sensor_zone_lines(pressure_value, ZONES_PRESSURE, "Pressure", "hPa", max_values["Environment"]["Pressure"])
-        lines += sensor_zone_lines(lux_value, get_mood_lux_palette(), "Lux", "Lux", max_values["Environment"]["Lux"])
-
         body = Text("\n").join(lines)
+
     except Exception as e:
         body = f"[red]Sensor Error: {e}[/red]"
 
@@ -879,103 +853,53 @@ def label_graph(label, graph_text, style="bold cyan"):
 
 def build_sensor_graph_panel():
     try:
-        lines = []
+        graphs = []
 
-        # Helper: Annotate sensor with 3-line format
-        def sensor_block(history, spike_history, zones, label, unit, threshold):
-            try:
-                current = mean(list(history)[-1:]) if history else 0.0
-                max_val = max(spike_history) if spike_history else current
-                breach_hours = sum(1 for val in history if val > threshold) * (REFRESH_INTERVAL / 3600)
+        # CO₂
+        graphs.append(label_graph("CO₂", render_high_graph(co2_history, 1500, 2000, width=GRAPH_WIDTH), style="bold red"))
 
-                block = [
-                    label_graph(label, render_high_graph(history, threshold, zones[-1][0], width=GRAPH_WIDTH), style=f"bold {zone_color(current, zones)}"),
-                    Text(f"Max {label}: {max_val:.2f} {unit}", style="bold green"),
-                    Text(f"Breach: {breach_hours:.1f} hrs", style="yellow" if breach_hours > 0 else "dim")
-                ]
-                return block
-            except Exception as e:
-                console.log(f"[red]{label} block error: {e}[/red]")
-                return [Text(f"[red]{label} block error: {e}[/red]")]
+        # Lux
+        graphs.append(label_graph("Lux", render_high_graph(lux_history, 9000, 10500, width=GRAPH_WIDTH), style="bold yellow"))
 
-        # 🌡 Temp block — now using standard format
-        lines += sensor_block(temp_all_history, temp_spike_history, ZONES_TEMP, "Temp", "°C", 28.5)
+        # Temperature Overlays (merged)
+        temp_graphs = [
+            max_overlay_graph(htu21d_history, temp_spike_history, 28.5, 40, width=GRAPH_WIDTH),
+            max_overlay_graph(scd4x_history, temp_spike_history, 28.5, 40, width=GRAPH_WIDTH),
+            max_overlay_graph(sht31d_history, sht31d_spike_history, 25.5, 30, width=GRAPH_WIDTH)
+        ]
+        merged_temp = Text.assemble(*[g + Text(" ") for g in temp_graphs])
+        graphs.append(label_graph("Temp", merged_temp, style="bold magenta"))
 
-        # Other sensor blocks
-        lines += sensor_block(co2_history, co2_history, ZONES_CO2, "CO₂", "ppm", 1500)
-        lines += sensor_block(lux_history, lux_history, ZONES_LUX, "Lux", "Lux", 9000)
-        lines += sensor_block(hum_history, hum_history, ZONES_HUM, "Rh", "%", 70)
-        lines += sensor_block(pressure_history, pressure_history, ZONES_PRESSURE, "hPa", "hPa", 1020)
+        # Humidity
+        graphs.append(label_graph("Rh", render_high_graph(hum_history, 70, 100, width=GRAPH_WIDTH), style="bold blue"))
+
+        # Pressure
+        graphs.append(label_graph("hPa", render_high_graph(pressure_history, 1020, 1050, width=GRAPH_WIDTH), style="bold green"))
 
         # Footer
-        lines.append(Text("Time → [Last 24h]", style="dim"))
+        graphs.append(Text("Time → [Last 24h]", style="dim"))
 
-        body = Text("\n").join(lines)
-        return Panel(body, title="📊 High Sensor Readings", border_style="grey37")
+        body = Text("\n").join(graphs)
 
     except Exception as e:
-        console.log(f"[red]Sensor Graph Error: {e}[/red]")
-        return Panel(Text(f"[red]Sensor Graph Error: {e}[/red]"), title="📊 High Sensor Readings", border_style="red")
+        body = Text(f"[red]Sensor Graph Error: {e}[/red]")
 
-
-# Initialize thread metadata store
-if not hasattr(console, "thread_meta"):
-    console.thread_meta = {}
+    return Panel(body, title="📊 High Sensor Readings", border_style="grey37")
 
 def build_dashboard_health_panel():
     lines = []
-    active_threads = threading.enumerate()
-    now = time.time()
 
+    # 🧵 Thread Health Check
+    active_threads = threading.enumerate()
     expected_threads = [
         "update_scd4x_loop",
         "watchdog_ping_loop"
     ]
-
-    def format_thread_info(name):
-        # Find matching thread
-        thread = next((t for t in active_threads if name in t.name), None)
-        is_active = thread is not None
-        symbol = "[green]✓[/green]" if is_active else "[red]✗[/red]"
-
-        # Metadata tracking
-        meta = console.thread_meta.get(name, {})
-        if is_active:
-            if "start_time" not in meta:
-                meta["start_time"] = now
-                meta["restarts"] = meta.get("restarts", 0) + 1
-            uptime = timedelta(seconds=int(now - meta["start_time"]))
-        else:
-            uptime = "—"
-
-        # Age bar
-        age_secs = (now - meta.get("start_time", now)) if is_active else 0
-        age_color = "green" if age_secs < 60 else "yellow" if age_secs < 300 else "red"
-        age_bar = "█" * min(int(age_secs / 10), 20)
-        age_bar = Text(age_bar.ljust(20), style=age_color)
-
-        # CPU/mem overlay
-        try:
-            process = psutil.Process(os.getpid())
-            cpu = process.cpu_percent(interval=None)
-            mem_mb = process.memory_info().rss / (1024 ** 2)
-            usage = f"CPU: {cpu:.1f}% | Mem: {mem_mb:.1f}MB"
-        except Exception:
-            usage = "Usage: [red]Error[/red]"
-
-        # Store updated meta
-        console.thread_meta[name] = meta
-
-        return Group(
-            Text.from_markup(f"[bold]{symbol} Thread: {name}[/bold]"),
-            Text(f"Uptime: {uptime}", style="cyan"),
-            Text(f"Restarts: {meta.get('restarts', 0)}", style="magenta"),
-            Text("Age Bar: ") + age_bar,
-            Text(usage, style="blue")
-        )
-
     for name in expected_threads:
-        lines.append(format_thread_info(name))
+        if any(name in t.name for t in active_threads):
+            lines.append(Text.from_markup(f"[bold][green]✓[/green] Thread: {name}[/bold]"))
+        else:
+            lines.append(Text.from_markup(f"[bold][red]✗[/red] Thread: {name}[/bold]"))
 
     # 🔁 Refresh Interval
     try:
@@ -983,17 +907,26 @@ def build_dashboard_health_panel():
     except NameError:
         lines.append(Text("Refresh Interval: [red]Not Defined[/red]"))
 
-    # 🎭 Banner Status
+    # 🧠 Memory Footprint
+    try:
+        process = psutil.Process(os.getpid())
+        mem_mb = process.memory_info().rss / (1024 ** 2)
+        lines.append(Text(f"Memory Usage: {mem_mb:.1f} MB", style="magenta"))
+    except Exception as e:
+        lines.append(Text(f"Memory Check Error: {str(e)}", style="red"))
+
+    # 🎭 Banner Status (optional flag)
     banner_flag = getattr(console, "banner_rendered", True)
     banner_status = "[green]✓[/green]" if banner_flag else "[yellow]Pending[/yellow]"
     lines.append(Text.from_markup(f"Banner Animation: {banner_status}"))
 
-    # 🧨 Last Exception
+    # 🧨 Last Exception (if tracked)
     if hasattr(console, "last_exception"):
         lines.append(Text(f"[red]Last Exception: {console.last_exception}[/red]"))
 
-    # 🫀 Frame Render Timing
+    # 🫀 Frame Render Timing (optional)
     try:
+        now = time.time()
         if not hasattr(console, "last_frame_time"):
             console.last_frame_time = now
             frame_delta = 0.0
@@ -1004,21 +937,22 @@ def build_dashboard_health_panel():
     except Exception as e:
         lines.append(Text(f"Frame Timing Error: {str(e)}", style="red"))
 
-    # 🧭 Loop Drift Detection
+    # 🧭 Loop Drift Detection (optional)
     try:
         if not hasattr(console, "last_loop_time"):
-            console.last_loop_time = now
+            console.last_loop_time = time.time()
             drift = 0.0
         else:
-            drift = now - console.last_loop_time - REFRESH_INTERVAL
-            console.last_loop_time = now
+            current = time.time()
+            drift = current - console.last_loop_time - REFRESH_INTERVAL
+            console.last_loop_time = current
         drift_color = "green" if abs(drift) < 0.1 else "yellow" if abs(drift) < 0.5 else "red"
         lines.append(Text(f"Loop Drift: {drift:+.3f}s", style=drift_color))
     except Exception as e:
         lines.append(Text(f"Loop Drift Error: {str(e)}", style="red"))
 
     # 🧾 Panel Assembly
-    body = Group(*lines)
+    body = Text("\n").join(lines)
     return Panel(body, title="📊 Dashboard Runtime Monitor", border_style="grey37")
 
 
@@ -1203,9 +1137,9 @@ def build_dashboard():
 
 
     second_row_panels = [
+        build_i2c_panel(),
         build_dashboard_health_panel(),
         build_watchdog_log_panel(),
-        build_i2c_panel(),
         build_tent_panel(),
         build_environment_panel()
     ]
@@ -1219,6 +1153,7 @@ def build_dashboard():
     ]
     fourth_row_panels = [
         get_as7341_panel(),
+        build_bh1750_panel(),
         build_averages_panel(),
         build_sensor_graph_panel()
     ]
@@ -1249,7 +1184,6 @@ def run_dashboard():
     threading.Thread(target=update_scd4x_loop, name="update_scd4x_loop", daemon=True).start()
     threading.Thread(target=watchdog_ping_loop, name="watchdog_ping_loop", daemon=True).start()
     threading.Thread(target=update_as7341_loop, name="as7341_loop", daemon=True).start()
-    threading.Thread(target=update_bh1750_loop, name="update_bh1750_loop", daemon=True).start()
     # 🧼 Clear screen before banner
     os.system("clear")  
 

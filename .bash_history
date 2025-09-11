@@ -1,375 +1,3 @@
-sudi git add .
-sudo git add .
-sudo git commit -m "Update: refined temp sensor logic and dashboard sync"
-sudo git push origin main
-exit
-cd sensors/
-python3 -u dpz.py 
-cd sensors/
-git status
-git add .
-sudo git commit -m "Update: refined temp sensor logic and dashboard sync"
-sudo git push origin main
-su vi test.py
-sudo vi test.py
-python3 -u test.py 
-vi test.py
-git add .
-sudo git commit -m "Update: refined temp sensor logic and dashboard sync"
-sudo git push origin main
-vi test.py
-python3 -u test.py 
-vivi test.py
-bi test.py
-sudo vi test.py
-python3 -u test.py 
-i2cedetect -y 1
-i3cdetect -y 1
-i2cdetect -y 1
-sudo halt -p
-i2cdetect -y 1
-cd sensors/
-python3 -u test.py 
-python3 -u dpz.py
-cp dpz.py test.py
-git add .
-sudo git commit -m "Update: refined temp sensor logic and dashboard sync"
-sudo git push origin main
-python3 -u test.py
-sudo rm test.py
-sudo vi test.py
-python3 -u test.py
-:q!
-sudo rm test.py
-sudo vi test.py
-clear
-cp dpz.py test.py
-python3 -u dpz.py
-rm test.py
-vi test.py
-cd sensors/
-vi test.py 
-cd sensors/
-rm test.py
-sudo vi test.py
-python3 -u test.py 
-sudo vi test.py
-python3 -u test.py 
-sudo vi test.py
-python3 -u test.py 
-sudo vi test.py
-python3 -u test.py 
-rm test.py
-su rm test.py
-ls test*
-sudo rm test.py
-cp dpz.py test.py
-git add .
-sudo git commit -m "Update: refined temp sensor logic and dashboard sync"
-sudo git push origin main
-sudo git add .
-sudo git commit -m "Update: refined temp sensor logic and dashboard sync"
-sudo git push origin main
-git pull origin main --rebase
-git add <conflicted-file>
-git rebase --continue
-git add tet.dpz
-git add test.dpz
-git add test.py
-ls test*
-cp dpz.py test.py
-git add test.py
-git rebase --continue
-[200~git pull origin main --rebase
-git pull origin main --rebase
-git add .
-sudo git commit -m "Update: refined temp sensor logic and dashboard sync"
-sudo git push origin main
-vi test.py
-sudo vi test.py
-python3 -u test.py
-sudo vi test.py
-python3 -u test.py
-cp dpz.py 7
-cp test.py dpz.py 
-cp test.py 7
-sudo vi test.py
-python3 -u test.py
-sudo vi test.py
-python3 -u test.py
-sudo vi test.py
-python3 -u test.py
-sudo vi test.py
-python3 -u test.py
-python3 -u test.pyclear
-clear
-cp test.py dpz.py 
-mv test.py 8
-python3 -u dpz.py 
-git add .
-sudo git commit -m "Update: refined temp sensor logic and dashboard sync"
-sudo git push origin main
-vi test.py
-cp dpz.py test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-clear
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-git add .
-sudo git commit -m "Update: peak graph logs"
-sudo git push origin main
-vi test.py
-python3 -u test.py
-git add .
-sudo git push origin main
-git add .
-sudo git commit -m "Update: peak graph logs"
-sudo git push origin main
-python3 -u test.py
-vi test.py
-python3 -u test.py
-cp test.py 1a
-cp dpz.py test.py
-python3 -u test.py
-clear
-vi test.py
-python3 -u test.py
-git add .
-sudo git commit -m "Update: peak graph logs"
-sudo git push origin main
-vi test.py
-python3 -u test.py
-git add .
-sudo git commit -m "Update: peak graph logs"
-sudo git push origin main
-python3 -u test.py
-cp test.py dpz.py 
-cp test.py 9
-git add .
-sudo git commit -m "Update: peak graph logs"
-sudo git push origin main
-python3 -u dpz.py 
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-vi test.py
-git add .
-sudo git commit -m "threading"
-sudo git push origin main
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-python3 -u dpz.py 
-cp dpz.py test.py 
-vi test.py 
-python3 -u dpz.py 
-python3 -u test.py 
-vi test.py 
-python3 -u test.py 
-vi test.py 
-python3 -u test.py 
-vi dpz.py
-vi test.py
-vat dpz.py 
-cat dpz.py 
-python3 -u test.py 
-cp dpz.py test.py 
-python3 -u dpz.py 
-vi test.py 
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-cp test.py dpz.py 
-cp test.py 10
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-cp test.py dpz.py 
-vi test.py
-python3 -u test.py 
-git add .
-sudo git commit -m "Update: peak graph logs"
-sudo git push origin main
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-cp dpz.py 1a
-cp test dpz.py 
-cp test.py dpz.py 
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi dpz.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-cp dpz.py test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-cp test.py 1b
-vi test.py
-python3 -u test.py
-i2cdetect -y 1
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py 
-python3 -u test.py
-git add .
-sudo git commit -m "Update: various levels"
-sudo git push origin main
-cp test.py dpz.py 
-poython3 -u dpz.py 
-python3 -u dpz.py 
-cat dpz.py
-python3 -u dpz.py 
-cd sensors/
-python3 -u dpz.py
-cd sensors/
-python3 -u dpz.py 
-cd sensors/
-python3 -u dpz.py 
-halt -p
-cd sensors/
-python3 -u dpz.py 
-i2cdtect -y 1
-i2cdetect -y 1
-python3 -u dpz.py 
-python3 -u test.py 
-cp dpz.py test.py
-python3 -y test.py 
-python3 -u test.py 
-python3 -u dpz.py 
-cd sensors/
-git status
-git add .
-sudo git commit -m "Update: various levels"
-sudo git push origin main
-cp dpz.py test.py 
-vi test.py
-python3 -u test.py 
-vi test.py
-cp dpz.py test.py
-vi test.py
-python3 -u test.py 
-vi test.py
-cp dpz.py test.py
-vi test.py
-python3 -u test.py 
-git add .
-sudo git commit -m "Update: various levels"
-sudo git push origin main
-vi test.py
-python3 -u test.py 
-git add .
-sudo git commit -m "Update: various levels"
-sudo git push origin main
-python3
-vi test.py
-python3 -u test.py 
-cp dpz.py 1
-rm 10
-rm 1
-cp dpz.py 1
-rm 1a
-rm 1b
-rm 2
-rm 4
-rm 5
-rm 6
-rm 7
-rm 8
-rm 9
-cp dpz.py 1
-cp dpz.py 2
-cp test.py dpz.py
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u dpz.py 
-git add .
-sudo git commit -m "added bar to bh1750"
-sudo git push origin main
-vi test.py
-python3 -u test.py 
-python3 -u dpz.py
-i2cdetect -y 1
-python3 -u scd4x/scd.py 
-reboot
-sudo reboot
-cd sensors/
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-vi test.py
-vi cam.oy
-vi can.py
-python3 -u can.py 
-pip3 install ascii_magic
-pip3 install ascii_magic --break-system-packages
-python3 -u can.py 
-fswebcam -r 320x240 --jpeg 85 -D 1 /tmp/latest_cam.jpg
-sudo service motion stop
-fswebcam -r 320x240 --jpeg 85 -D 1 /tmp/latest_cam.jpg
-python3 -u can.py 
-clear
-rm can.py 
-vi cam.py
-python3 -u cam.py 
-pip3 install pillow --break-system-packages
-sudo pip3 install pillow --break-system-packages
-fswebcam -r 320x240 --jpeg 85 -D 1 /tmp/latest_cam.jpg
-python3 -u cam.py 
-ls -la /tmp/
-chmod 777 /tmp/latest_cam.jpg 
-ls -la /tmp/
-python3 -u cam.py 
-vi cam.py
-fswebcam -r 320x240 --jpeg 85 -D 1 /tmp/latest_cam.jpg
 python3 -u cam.py 
 vi cam.py
 fswebcam -r 320x240 --jpeg 85 -D 1 latest_cam.jpg
@@ -1998,3 +1626,375 @@ sudo vi test.py
 sudo cp dpz.py test.py 
 sudo vi test.py
 sudo cp dpz.py test.py 
+cd  logs
+ls
+ls -la
+sudo vi watchdog_202509006_235254.log
+sudo vi watchdog_20250906_235254.log 
+ls
+cd ..
+ls
+mkdir 7925
+mv 1 2 3 7925/
+ls -la backups/
+mv 7925 backups/
+sudo mv 7925 backups/
+ls -la
+chown pi:pi *
+sudo chown pi:pi *
+vi test.py 
+sudo vi test.py
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+cd logs
+ls
+rm *
+cd ..
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+cp test.py dpz.py 
+cd logs
+ls
+python3 -u dpz.py
+cd ..
+python3 -u dpz.py
+vi test.py
+pkill -f test.py
+cp dpz.py test.py
+pkill -f test.py
+vi test.py
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+vi test.py
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+cp test.py 1
+cp test.py dpz
+pkill -f test.py
+vi test.py
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+python3 -u test.py
+vi test.py
+cp test.py 2
+cp test.py dpz.py 
+ls
+rm dpz
+python3 -u watering_log.py 
+vi test.py
+clear
+cp test.py 3
+cp test.py dpz.py 
+python3 -u dpz.py 
+vi test.py
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+cp dpz.py test.py
+python3 -u dpz.py 
+vi test.py
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+cp dpz.py test.py
+vi test.py
+cp test.py dpz.py 
+cp test.py 4
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+clear
+python3 -u dpz.py 
+vi test.py
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+cp test.py 5
+cp test.py dpz.py
+vi tesat.py
+vi test.py
+python3 -u test.py
+vi test.py
+clear
+ls
+cp test.py 6
+cp 5 test.py
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+vi test.py
+cp test.py
+cp 5 test.py
+vi test.py
+rm 6
+cp 5 test.py
+vi test.py
+python3 -u test.py
+cp test.py 6
+vi test.py
+python3 -u test.py
+vi test.py
+cp 6 test.py
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+python3 - u test.py
+python3 -u test.py 
+vi test.py
+python3 -u teat.py
+python3 -u test.py
+cp test.py 7
+cp test.py dpz
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin mastersudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+cp test.py dpz.py
+ls
+rm dpz
+python3 -u dpz.py
+i2cdetect -y 1
+ls
+cd backups/
+ls
+cd 17825/
+ls
+cd ..
+ls
+cd 1925/
+ls
+mkdir sensors
+cd ads1115/
+ls
+python3 -u m.py 
+pkill -f test.py
+cd..
+cd ..
+python3 -u watering_log.py 
+ls
+cp test.py 8
+vi test.py
+cp test.py dpz.py 
+cp test.py 9
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+vi test.py
+pkill -f test.py
+vi test.py
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+vi test.py
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+vi test.py
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+vi test.py
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+ls
+cp 9 test.py
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+date
+sudo git log
+sudo git status
+sudo git branch
+sudo git log --oneline --decorate --graph --date=iso
+sudo git remote -v
+sudo git status
+sudo git show efc8262 --name-only
+sudo git log -- test.py
+history
+vi test.py
+pkill -f test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+cp test.py 9
+cp test.py 9 dpz.py 
+cp test.py dpz.py 
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+ls
+cp dpz.py test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+cd backups/
+ls
+cd bup
+cd bup170825/
+ls
+cat test.py
+python3 -u test.py
+ls
+cat 8
+cp 8 /home/pi/test.py
+cd ..
+python3 -u test.py
+cd backups/
+ls
+cd bup07/
+ls
+cd bup01
+ls
+cp 2 2.py
+python3 -u 2.py
+cd ..
+cp dpz.py test.py
+cd ..
+cp dpz.py test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+ls
+rm zpd 
+mkdir 4925
+cp test.py 4925/1.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+cp dpz.py test.py
+vi test.py
+python3 -u test.py
+cat test.py
+python3 -u test.py
+cat test.py
+python3 -u test.py
+cd backups/
+l;s
+ls
+cm bup170825 170825
+sudo mv bup170825 170825
+ls
+sudo mv bup07 1925
+ls
+sudo mv 170825 17825
+ls
+cd 1925
+ls
+cp test.py /home/pi/
+cd ..
+ls
+cd 6925/
+ls
+cp 14 /home/pi/test.py
+cd ..
+python3 -u test.py 
+cp dpz.py test.py
+sudo cp dpz.py test.py
+python3 -u test.py 
+cler
+clear
+python3 -u test.py 
+ls
+cd backups/
+ls
+cs 1925/
+cd 1925/
+ls
+cd bh1750/
+python3 -u 1750.py 
+cd ./
+cd ../
+cd /
+pwd
+cd /home/pi
+python3 -u test.py 
+cp 8 test.py
+python3 -u test.py 
+cd logs
+ls -la
+rm *
+cd ..
+python3 watering_log.py 
+python3 -u test.py 
+python3 -u watering_log.py 
+python3 -u test.py 
+python3 -u watering_log.py 
+python3 -u test.py 
+hostname
+ifconfig
+ping google.com
+reboot
