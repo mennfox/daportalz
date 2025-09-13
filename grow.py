@@ -24,7 +24,7 @@ def prompt_for_plants():
     i = 1
     print("🌱 Enter plant details. Leave name blank to finish.")
     while True:
-        name = input(f"Plant #{i} name: ").strip()
+        name = input(f"\nPlant #{i} name: ").strip()
         if not name:
             break
 
@@ -33,7 +33,6 @@ def prompt_for_plants():
         repot_date = input("Repot date (DD/MM/YY or 'none'): ").strip()
         height = input("Current height (inches): ").strip()
 
-        # Normalize repot date
         repot_date = repot_date if repot_date.lower() != "none" else None
 
         plant = {
@@ -57,7 +56,7 @@ def show_plants(plants):
         name = plant.get("name", "Unnamed")
         type_ = plant.get("type", "Unknown")
         height = plant.get("height", "N/A")
-        print(f"{name} | Type: {type_} | Height: {height}\"")
+        print(f"🪴 {name} | Type: {type_} | Height: {height}\"")
 
 def main():
     print("🪴 Grow Setup Utility")
@@ -71,31 +70,7 @@ def main():
     new_plants = prompt_for_plants()
     if new_plants:
         save_plants(new_plants)
-        print(f"✅ Saved {len(new_plants)} plants to {PLANT_FILE}")
-        show_plants(new_plants)
-    else:
-        print("⚠️ No plants entered. File not updated.")
-def show_plants(plants):
-    print("\n🌿 Grow Tracker Panel")
-    for plant in plants:
-        name = plant.get("name", "Unnamed")
-        type_ = plant.get("type", "Unknown")
-        height = plant.get("height", "N/A")
-        print(f"{name} | Type: {type_} | Height: {height}\"")
-
-def main():
-    print("🪴 Grow Setup Utility")
-    existing = load_plants()
-    if existing:
-        print(f"Found {len(existing)} existing plants. Overwrite? (y/N)")
-        if input().lower() != "y":
-            print("❌ Aborted. No changes made.")
-            return
-
-    new_plants = prompt_for_plants()
-    if new_plants:
-        save_plants(new_plants)
-        print(f"✅ Saved {len(new_plants)} plants to {PLANT_FILE}")
+        print(f"\n✅ Saved {len(new_plants)} plants to {PLANT_FILE}")
         show_plants(new_plants)
     else:
         print("⚠️ No plants entered. File not updated.")
