@@ -1,121 +1,3 @@
-ls dp*
-cp test dpz.py
-cp test.py dpz.py
-rm dpy.py 
-python3 -u dpz.py 
-sudo vi logo_panel.py
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-cp dpy.py test.py
-cp dpz.py test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi logo_panel.py 
-sudo vi logo_panel.py 
-vio test.py 
-clear
-vi test.py
-python3 -u test.py
-vi test.py
-git add test.py
-sudo git commit -m "Updates"
-sudo git push origin main
-vi test.py
-cp dpz.py test.py
-cd sensors/
-python3 -u dpz.py 
-cd sensors
-git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-python3 -u test.py
-git add .
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-ls
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u dpz.py
-ls
-cp 5 test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-cp test.py 7
-vi test.py
-python3 -u test.py
-cp test.py 9
-python3 -u scd4x/scd.py 
-python3 -u test.py
-cp test.py 1
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-cp test.py 3
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-vi test.py
-python3 -u test.py
-ls
-vi 3
-cp 3 test.py
-python3 -u test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
---
-vi test.py
-python3 -u sht31/sht3.py
-vi test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-vi test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-cd sensors/
-python3 -u test.py
-btop
-cd sensors/
-python3 -u test.py
-halt - p
-sudo halt -p
-cd sensors/
-python3 -u test.py
-python3 -u dpz.py
-halt -p
-i2cdetect -y 1
-reboot
-i2cdetect -y 1
-cat i2c
-service motion status
-i2cdetect -y 1
-cd sensors/
-python3 -u dpz.py 
-python3 -u test.py
 reboot
 su
 i2cdetect -y 1
@@ -1998,3 +1880,121 @@ vi test.py
 pkill -f test.py
 cp 12 test.py 
 sudo service motion stop
+ls
+mkdir  13925
+mv 1 2 3 4 5 6 7 8 9 10 11 12 13925/
+ls
+rm dpz
+rm test.gpy 
+cd i2c
+cat i2c
+ls
+cp test.py 1
+cp test.py dpz.py 
+vi test.py
+clear
+python3 -u test.py
+vi test.py
+cp test.py 1
+cp test.py dpz.py 
+vi test.py
+python3 -u test.py
+sudo iostat -dx | grep -m1 sda
+iostat -dx 1 2
+cp test.py 2
+vi test.py
+python3 -u test.py
+cp test.py 3
+cp test.py dpz.py
+ping -c 1 -W 1 192.168.1.1
+ping -c 1 -W 1 192.168.2.1
+ping -c 1 -W 1 192.168.1.2
+ifconfig
+ping 192.168.1.254
+vi test.py
+ls
+cat plants.json
+ls
+cat grow.py
+ls
+cp grow.py 13925/
+cp plants.json 13925/
+vi plants.py
+vi grow.py
+vi height.py
+mv height.py modules/
+vi test.py
+cd modules
+python3 -u height.py 
+vi height.py 
+python3 -u height.py 
+ls
+ls -la
+ls
+touch modules/__init__.py
+touch __init__.py
+cd ..
+vi test.py
+cd modules/
+python3 -u height.py 
+cd ..
+vi plants.json 
+vi grow.py
+vi plants.json
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+vi grow.py
+rm grow.py
+vi grow.py
+cat grow.py
+vi grow.py
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+vi grow.py
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+vi grow.py
+rm grow.py
+vi grow.py
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+vi test.py
+cp 13925/grow.py /home/pi/
+cp 13925/plants.json /home/pi/
+ls
+cp 3 test.py
+ls
+ls *.json
+cat report.py
+cat repot.py
+vi test.py
+vi main.py
+python3 -u main.py 
+vi test.py
+vi main.py 
+python3 -u main.py 
+cd modules/
+touch __init__.py
+ls
+vi ../test.py 
+vi height.py 
+cd ..
+vi plants.json 
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+vi test.py
+python3 -u main.py
+cp test.py 4
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+vi test.py
+cp test.py 5
+cd modules/
+ls
+vi height.py

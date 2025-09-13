@@ -19,24 +19,78 @@ def save_plants(plants):
     with open(PLANT_FILE, "w") as f:
         json.dump(plants, f, indent=2)
 
+def growth_stage_label(height):
+    if height < 2:
+        return "[grey50]Germination[/grey50]"
+    elif height < 6:
+        return "[blue]Seedling[/blue]"
+    elif height < 12:
+        return "[cyan]Early Veg[/cyan]"
+    elif height < 20:
+        return "[green]Veg[/green]"
+    elif height < 28:
+        return "[chartreuse3]Late Veg[/chartreuse3]"
+    elif height < 36:
+        return "[yellow]Early Flower[/yellow]"
+    elif height < 46:
+        return "[orange1]Flowering[/orange1]"
+    elif height <= 55:
+        return "[magenta]Ripening[/magenta]"
+    else:
+        return "[red]Harvest Ready[/red]"
 
+from rich.text import Text
 
-def height_bar(height, max_height=36):
+def height_bar(height, prev_height=0.0, max_height=55):
     filled = int((height / max_height) * 30)
     empty = 30 - filled
+    percent = int((height / max_height) * 100)
+    delta = height - prev_height
 
-    # Color zones
-    if height < 12:
+    # Stage label and color logic
+    if height < 2:
+        color = "grey50"
+        stage = "[grey50]Germination[/grey50]"
+    elif height < 6:
+        color = "blue"
+        stage = "[blue]Seedling[/blue]"
+    elif height < 12:
         color = "cyan"
-    elif height < 24:
+        stage = "[cyan]Early Veg[/cyan]"
+    elif height < 20:
         color = "green"
+        stage = "[green]Veg[/green]"
+    elif height < 28:
+        color = "chartreuse3"
+        stage = "[chartreuse3]Late Veg[/chartreuse3]"
     elif height < 36:
         color = "yellow"
+        stage = "[yellow]Early Flower[/yellow]"
+    elif height < 46:
+        color = "orange1"
+        stage = "[orange1]Flowering[/orange1]"
+    elif height <= 55:
+        color = "magenta"
+        stage = "[magenta]Ripening[/magenta]"
     else:
         color = "red"
+        stage = "[red]Harvest Ready[/red]"
 
-    bar_str = f"[{color}]{'█' * filled}[/{color}][dim]{'░' * empty}[/dim]"
+    # Growth delta string
+    if delta > 0:
+        delta_str = f"[green]+{delta:.1f}\"[/green]"
+    elif delta < 0:
+        delta_str = f"[red]{delta:.1f}\"[/red]"
+    else:
+        delta_str = "[dim]0.0\"[/dim]"
+
+    # Final bar string
+    bar_str = (
+        f"[{color}]{'█' * filled}[/{color}][dim]{'░' * empty}[/dim] "
+        f"[bold white]{height:.1f}\"[/bold white] ({percent}%) {delta_str} {stage}"
+    )
     return Text.from_markup(bar_str)
+
 
 def update_height(plants):
     print("📏 Update plant heights (inches). Press Enter to skip.")
@@ -46,7 +100,9 @@ def update_height(plants):
         new_height = input("New height: ").strip()
         if new_height:
             try:
-                plant["height"] = float(new_height)
+                new_val = float(new_height)
+                plant["prev_height"] = current  # store previous
+                plant["height"] = new_val
             except ValueError:
                 print("⚠️ Invalid number. Skipping.")
 

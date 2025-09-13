@@ -1318,9 +1318,7 @@ def build_grow_panel():
         progress = calc_progress(prop_date, repot_date)
         repot = repot_date if repot_date else "[Pending]"
         height_val = entry.get("height", 0.0)
-        prev_val = entry.get("prev_height", 0.0)
-        height = height_bar(height_val, prev_val)
-
+        height = height_bar(height_val)
         table.add_row(name, type_, prop_date, repot, progress, last_watered, height)
 
     return Panel(table, border_style="grey37")

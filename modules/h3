@@ -21,11 +21,22 @@ def save_plants(plants):
 
 
 
-def height_bar(height, max_height=100):
+from rich.text import Text
+
+def height_bar(height, prev_height=0.0, max_height=36):
     filled = int((height / max_height) * 30)
     empty = 30 - filled
+    delta = height - prev_height
+    percent = int((height / max_height) * 100)
 
     # Color zones
+    if delta > 0:
+        delta_str = f"[green]+{delta:.1f}\"[/green]"
+    elif delta < 0:
+        delta_str = f"[red]{delta:.1f}\"[/red]"
+    else:
+        delta_str = "[dim]0.0\"[/dim]"
+
     if height < 12:
         color = "cyan"
     elif height < 24:
@@ -35,7 +46,7 @@ def height_bar(height, max_height=100):
     else:
         color = "red"
 
-    bar_str = f"[{color}]{'█' * filled}[/{color}][dim]{'░' * empty}[/dim]"
+    bar_str = f"[{color}]{'█' * filled}[/{color}][dim]{'░' * empty}[/dim] {percent}% {delta_str}"
     return Text.from_markup(bar_str)
 
 def update_height(plants):
@@ -46,7 +57,9 @@ def update_height(plants):
         new_height = input("New height: ").strip()
         if new_height:
             try:
-                plant["height"] = float(new_height)
+                new_val = float(new_height)
+                plant["prev_height"] = current  # store previous
+                plant["height"] = new_val
             except ValueError:
                 print("⚠️ Invalid number. Skipping.")
 
