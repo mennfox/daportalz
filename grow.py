@@ -29,6 +29,7 @@ def prompt_for_plants():
             break
 
         type_ = input("Type (e.g., Auto): ").strip()
+        breeder = input("Breeder (e.g., FastBuds, Mephisto): ").strip()
         prop_date = input("Propagation date (DD/MM/YY): ").strip()
         repot_date = input("Repot date (DD/MM/YY or 'none'): ").strip()
 
@@ -39,6 +40,7 @@ def prompt_for_plants():
             "id": i,
             "name": name,
             "type": type_ or "Unknown",
+            "breeder": breeder or "Unknown", 
             "propagation_date": prop_date or "Unknown",
             "repot_date": repot_date,
             "progress": None,

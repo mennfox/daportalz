@@ -1303,18 +1303,15 @@ def build_grow_panel():
     table = Table(title="[bold green]Grow Tracker[/bold green]", expand=True)
     table.add_column("Name", style="bold green", justify="left", no_wrap=True)
     table.add_column("Type", style="cyan", justify="center")
-    table.add_column("Breeder", style="cyan", justify="center")
     table.add_column("Propergated", style="magenta", justify="center")
     table.add_column("Re-Potted", style="yellow", justify="center")
     table.add_column("Progress", style="white", justify="left")
     table.add_column("Watering Schedule", style="blue", justify="center")
     table.add_column("Height", style="green", justify="center")
-    table.add_column("Harvest", style="bold yellow", justify="center")
 
     for entry in plants_data:
         name = f"[link=]{entry['name']}[/link]"
         type_ = entry.get("type", "Unknown")
-        breeder = entry.get("breeder", "Unknown")
         prop_date = entry.get("propagation_date", "N/A")
         repot_date = entry.get("repot_date", "")
         last_watered = get_last_watered_text()
@@ -1323,10 +1320,8 @@ def build_grow_panel():
         height_val = entry.get("height", 0.0)
         prev_val = entry.get("prev_height", 0.0)
         height = height_bar(height_val, prev_val)
-        harvest_weight = entry.get("harvest_weight", 0.0)
-        harvest = f"{harvest_weight:.1f}g" if harvest_weight else "[Pending]"
 
-        table.add_row(name, type_, breeder,prop_date, repot, progress, last_watered, height, harvest)
+        table.add_row(name, type_, prop_date, repot, progress, last_watered, height)
 
     return Panel(table, border_style="grey37")
 

@@ -1,5 +1,5 @@
 import os
-import json
+
 def main_menu():
     while True:
         print("\n🌿 Grow Dashboard Interface")
@@ -10,8 +10,7 @@ def main_menu():
         print("5. View Grow Tracker")
         print("6. Start New Grow (Archive + Reset)")
         print("7. View Archived Grow Summaries") 
-        print("8. Harvest Stats")
-        print("9. Exit")
+        print("8. Exit")
 
         choice = input("Select an option: ").strip()
 
@@ -47,27 +46,6 @@ def main_menu():
             else:
                 print("📁 No archive file found yet.")
         elif choice == "8":
-            try:
-                with open("/home/pi/plants.json", "r") as f:
-                    plants = json.load(f)
-                for plant in plants:
-                    name = plant.get("name", "Unnamed")
-                    current = plant.get("harvest_weight", None)
-                    print(f"\n🌿 {name}")
-                    print(f"Current harvest: {current if current else '[None]'}")
-                    new_weight = input("Enter harvest weight (g) or leave blank: ").strip()
-                    if new_weight:
-                        try:
-                            plant["harvest_weight"] = float(new_weight)
-                        except ValueError:
-                            print("❌ Invalid number. Skipping.")
-                with open("plants.json", "w") as f:
-                    json.dump(plants, f, indent=2)
-                print("✅ Harvest weights updated.")
-            except Exception as e:
-                print(f"❌ Error updating harvest stats: {e}")
-        
-        elif choice == "9":
             print("👋 Exiting dashboard.")
             break
         else:

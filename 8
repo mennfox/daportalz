@@ -1309,7 +1309,6 @@ def build_grow_panel():
     table.add_column("Progress", style="white", justify="left")
     table.add_column("Watering Schedule", style="blue", justify="center")
     table.add_column("Height", style="green", justify="center")
-    table.add_column("Harvest", style="bold yellow", justify="center")
 
     for entry in plants_data:
         name = f"[link=]{entry['name']}[/link]"
@@ -1323,10 +1322,8 @@ def build_grow_panel():
         height_val = entry.get("height", 0.0)
         prev_val = entry.get("prev_height", 0.0)
         height = height_bar(height_val, prev_val)
-        harvest_weight = entry.get("harvest_weight", 0.0)
-        harvest = f"{harvest_weight:.1f}g" if harvest_weight else "[Pending]"
 
-        table.add_row(name, type_, breeder,prop_date, repot, progress, last_watered, height, harvest)
+        table.add_row(name, type_, breeder,prop_date, repot, progress, last_watered, height)
 
     return Panel(table, border_style="grey37")
 

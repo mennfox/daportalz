@@ -1,87 +1,3 @@
-reboot
-su
-i2cdetect -y 1
-cd i2c
-cat i2c 
-i2cdetect -y 1
-cd htu21d/
-ls
-python3 -u g.py 
-python3 -u gy.py 
-cd ..
-ls
-python3 -u ahtx0/ahtx0.py 
-cd sht31/
-python3 -u sht3.py
-python3 -u ahtx0/ahtx0.py 
-cd ..
-python3 -u ahtx0/ahtx0.py 
-pkill -f test.py
-sudo pkill -f test.py
-i2cdetect -y 1
-cd htu21d/
-python3 -u gy.py 
-
-cd .. ahtx0/
-ls
-cd ahtx0/
-ls
-python3 -u ahtx0.py 
-python3 -u gy.py 
-python3 -u ahtx0.py 
-cat ahtx0.py 
-cd ..
-cd sht31
-ls
-python3 -u sht3.py 
-python3 -u sht31.py 
-python3 -u sht3.py 
-cat sh3.py
-cat sht3.py
-cd ..
-cd htu21d/
-ls
-cat gy.py 
-cd ..
-vi s.py
-python3 -u s.py 
-vi s2.py
-python3 -u s2.py 
-cd sensors/
-cp test.py dpz.py 
-ls
-mv bup bup01
-md bup
-mkdir bup02
-mv 1 2 3 4 5 7 9 bup02/
-ls
-vi test.py
-sed -i 's/hts221/htu21d/g' test.py 
-vi test.py
-sed -i 's/HTS221/HTU21d/g' test.py 
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-cp test.py 1
-cd hts221/
-i2cdetect -y 1
-python3 -u 221.py 
-sudo pkill -f test.py
-vi test.py
-cd ..
-vi test.py
-cp test.py 1
-cp dpz.py bup02/
-cp test.py dpz.py 
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
 vi test.py
 python3 -u test.py 
 vi test.py
@@ -1998,3 +1914,87 @@ cp test.py 5
 cd modules/
 ls
 vi height.py
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+pwd
+ls
+cp main.py m1
+vi main.py
+cd modules/
+cp height.py h4
+vi height.py 
+cd ..
+vi main.py 
+python3 -u main.py 
+vi main.py 
+sudo apt install micro
+micro menu.py
+ls
+ls men*
+vi main.py
+python3 -u main.py 
+vi main.py
+python3 -u main.py 
+vi main.py
+python3 -u main.py 
+cd modules/
+cp height.py h6
+vi height.py 
+0;23;25M0;23;25mcd ..
+cd ..
+pwd
+vi main.py 
+exit
+cd modules/
+sudo rm .height.py.swp 
+vi height.py 
+cd ..
+vi test.py 
+ls
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+vi test.py 
+ls
+cp 5 test.py
+cd modules/
+ls
+vi height.py 
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+cat height.py 
+vi height.py 
+cp height.py h1
+vi height.py 
+vi test.py
+cd ..
+vi test.py
+cd modules/
+vi height.py 
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+cd ..
+vi test.py
+cp 4.test.py
+cp 4 test.py
+cp 1 test.py
+cp 5 test.py 
+vi test.py
+cp 1 test.py
+vi test.py
+cd modules
+ls
+__init__.py
+vi height.py 
+cd ..
+vi test.py
+cp 5 test.py
+vi test.py
+cp 1.test.py
+cp 1 test.py
+vi test.py
+cp 1 test.py
+vi test.py
