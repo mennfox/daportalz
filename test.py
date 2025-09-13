@@ -51,10 +51,7 @@ import socket
 from modules.watering import get_last_watered_text
 from rich.progress import BarColumn
 from datetime import datetime, timedelta
-import sys
-sys.path.append("./modules")
-import height
-
+from modules import height
 WATCHDOG_LOG_DIR = Path("logs")
 WATCHDOG_LOG_DIR.mkdir(parents=True, exist_ok=True)
 WATCHDOG_LOG_FILE = WATCHDOG_LOG_DIR / f"watchdog_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
@@ -367,7 +364,7 @@ def get_disk_panel():
 def update_network_latency_loop():
     while True:
         try:
-            result = subprocess.getoutput("ping -c 1 -W 1 192.168.1.254 | grep 'time='")
+            result = subprocess.getoutput("ping -c 1 -W 1 192.168.1.1 | grep 'time='")
             latency_val = result.split("time=")[-1].split()[0]
             network_cache["latency"] = f"{latency_val} ms"
             network_cache["last_ping"] = time.time()
@@ -1341,6 +1338,7 @@ def build_grow_panel():
     table.add_column("Re-Potted", style="yellow", justify="center")
     table.add_column("Progress", style="white", justify="left")
     table.add_column("Watering Schedule", style="blue", justify="center")
+    table.add_column("Height", style="green", justify="center")
 
     for entry in plants_data:
         name = f"[link=]{entry['name']}[/link]"
