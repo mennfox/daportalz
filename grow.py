@@ -75,6 +75,30 @@ def main():
         show_plants(new_plants)
     else:
         print("⚠️ No plants entered. File not updated.")
+def show_plants(plants):
+    print("\n🌿 Grow Tracker Panel")
+    for plant in plants:
+        name = plant.get("name", "Unnamed")
+        type_ = plant.get("type", "Unknown")
+        height = plant.get("height", "N/A")
+        print(f"{name} | Type: {type_} | Height: {height}\"")
+
+def main():
+    print("🪴 Grow Setup Utility")
+    existing = load_plants()
+    if existing:
+        print(f"Found {len(existing)} existing plants. Overwrite? (y/N)")
+        if input().lower() != "y":
+            print("❌ Aborted. No changes made.")
+            return
+
+    new_plants = prompt_for_plants()
+    if new_plants:
+        save_plants(new_plants)
+        print(f"✅ Saved {len(new_plants)} plants to {PLANT_FILE}")
+        show_plants(new_plants)
+    else:
+        print("⚠️ No plants entered. File not updated.")
 
 if __name__ == "__main__":
     main()
