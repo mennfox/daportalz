@@ -54,12 +54,6 @@ def display_growth(plants):
         print(f"\n{name} - {height}\"")
         print(height_bar(height))
 
-def height_bar(height, max_height=24.0, width=20):
-    zones = [(2, "blue"), (5, "green"), (8, "yellow"), (12, "orange1"), (16, "red"), (25, "magenta")]
-    color = next((c for t, c in zones if height <= t), zones[-1][1])
-    filled = min(int((height / max_height) * width), width)
-    bar = "█" * filled + " " * (width - filled)
-    return Text(bar, style=color)
 
 def main():
     print("🌿 Height Tracker Module")
