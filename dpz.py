@@ -276,16 +276,9 @@ def get_memory_panel():
 
 def get_disk_panel():
     usage = psutil.disk_usage("/")
-    disk_history.append(usage.percent)
+    swap = psutil.swap_memory()
 
-    # Historical peak
-    max_disk = max(disk_history) or 1.0
-    graph = sparkline(disk_history, max_value=max_disk, color="yellow")
-
-    # Dual bar for used/free
-    bar = dual_bar_visual(usage.used, usage.total, width=30)
-
-    # Live I/O rate
+    # I/O rate
     if not hasattr(console, "prev_disk_io"):
         console.prev_disk_io = psutil.disk_io_counters()
     curr_io = psutil.disk_io_counters()
@@ -293,27 +286,78 @@ def get_disk_panel():
     write_rate = (curr_io.write_bytes - console.prev_disk_io.write_bytes) / REFRESH_INTERVAL / 1024
     console.prev_disk_io = curr_io
 
-    # Zone bar for usage pressure
-    ZONES_DISK = [(50, "green"), (75, "yellow"), (90, "red")]
-    zone_bar = format_zone_bar(usage.percent, ZONES_DISK, label="Disk", unit="%", width=30)
+    # Bar visual for disk usage
+    bar = dual_bar_visual(
+        usage.used,
+        usage.total,
+        width=30,
+        used_color="blue",
+        free_color="yellow"
+    )
+
+    # Filesystem type
+    try:
+        part = next((p for p in psutil.disk_partitions() if p.mountpoint == "/"), None)
+        fs_type = part.fstype if part else "—"
+    except Exception:
+        fs_type = "—"
+
+    # Auto-detect disk device for latency
+    try:
+        device_list = subprocess.getoutput("iostat -dx | awk 'NR>3 {print $1}'").split()
+        device = device_list[0] if device_list else "sda"
+        latency_output = subprocess.getoutput(f"iostat -dx 1 2 | grep -m1 {device}")
+        latency_parts = latency_output.split()
+        disk_latency = latency_parts[9] + " ms" if len(latency_parts) > 9 else "—"
+    except Exception:
+        disk_latency = "—"
 
     # Build table
-    table = Table(title="[bold yellow]Disk Usage[/bold yellow]", expand=True)
+    table = Table(title="[bold yellow]Disk & Swap[/bold yellow]", expand=True)
     table.add_column("Used")
     table.add_column("Total")
     table.add_column("Usage")
     table.add_column("Graph")
 
+    # Disk row with inline bar
     table.add_row(
         f"{usage.used // (1024**3)} GB",
         f"{usage.total // (1024**3)} GB",
         colorize(usage.percent),
-        graph
+        bar
     )
 
-    table.add_row("—", "—", f"[bold orange1]{max_disk:.1f}%[/bold orange1]", Text("Peak", style="dim"))
-    table.add_row(f"{read_rate:.1f} KB/s", f"{write_rate:.1f} KB/s", "—", Text("I/O Rate", style="dim"))
-    table.add_row("—", "—", "—", zone_bar)
+    # Swap row
+    table.add_row(
+        f"{swap.used // (1024**2)} MB",
+        f"{swap.total // (1024**2)} MB",
+        colorize(swap.percent),
+        Text("Swap", style="dim")
+    )
+
+    # I/O rate row
+    table.add_row(
+        f"{read_rate:.1f} KB/s",
+        f"{write_rate:.1f} KB/s",
+        "—",
+        Text("I/O Rate", style="dim")
+    )
+
+    # Filesystem type row
+    table.add_row(
+        fs_type,
+        "—",
+        "—",
+        Text("Filesystem", style="dim")
+    )
+
+    # Latency row
+    table.add_row(
+        "—",
+        "—",
+        disk_latency,
+        Text("Latency", style="dim")
+    )
 
     return Panel(table, border_style="grey37")
 

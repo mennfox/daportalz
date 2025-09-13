@@ -366,11 +366,9 @@ def get_last_watered_text():
             notes = json.load(f)
         if not notes:
             return Text("Last watered: [dim]No data[/dim]")
-        last = max(notes, key=lambda n: n["timestamp"])
-        date_str = time.strftime("%Y-%m-%d %H:%M", time.localtime(last["timestamp"]))
-        method = last.get("method", "unknown")
-        volume = last.get("volume_ml", "—")
-        return Text(f"Last watered: {date_str} — {volume}ml via {method}", style="green")
+        last_entry = max(notes, key=lambda n: n["timestamp"])
+        date_str = time.strftime("%Y-%m-%d %H:%M", time.localtime(last_entry["timestamp"]))
+        return Text(f"Last watered: {date_str}", style="green")
     except Exception as e:
         return Text(f"[red]Error reading watering log: {e}[/red]")
 
@@ -380,11 +378,11 @@ def get_last_watering_info():
             notes = json.load(f)
         if not notes:
             return None
-        last = max(notes, key=lambda n: n["timestamp"])
-        days_ago = (time.time() - last["timestamp"]) / 86400
-        date_str = time.strftime("%Y-%m-%d %H:%M", time.localtime(last["timestamp"]))
+        last_entry = max(notes, key=lambda n: n["timestamp"])
+        days_ago = (time.time() - last_entry["timestamp"]) / 86400
+        date_str = time.strftime("%Y-%m-%d %H:%M", time.localtime(last_entry["timestamp"]))
         return {
-            "text": f"{last['volume_ml']}ml via {last['method']} — {last['uptake']} uptake — {last['pot_size_l']}L pot",
+            "text": last_entry["text"],
             "date": date_str,
             "days_ago": days_ago
         }

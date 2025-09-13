@@ -1,148 +1,3 @@
-python3 -u cam.py 
-vi cam.py
-fswebcam -r 320x240 --jpeg 85 -D 1 latest_cam.jpg
-python3 -u cam.py 
-mv latest_cam.jpg .
-mv latest_cam.jpg /home/pi/
-python3 -u cam.py 
-rm cam.py
-vi cam.py
-fswebcam -r 320x240 --jpeg 85 -D 1 /tmp/latest_cam.jpg
-python3 -u cam.py 
-cat test.py
-vi test.py
-python3 -u test.py
-cd sensors/
-python3 -u scd4x/scd.py 
-i2cdetect -y 1
-python3 -u scd4x/scd.py 
-python3 -u test.py 
-git add .
-sudo git commit -m "added autoscale bars"
-sudo git push origin main
-vi test.py
-python3 -u test.py 
-python3 -u scd4x/scd.py 
-cpo test.py dpz.py 
-cp test.py dpz.py 
-python3 -u dpz.py 
-i2cdetect -y 1
-python3 -u dpz.py 
-vi test.py
-python3 -u test.py
-clear
-git add .
-git commit -m "added autoscale bars"
-sudo git commit -m "added autoscale bars"
-sudo git push origin main
-cp test.py dpz.py
-python3 -u dpz.py 
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-vi test.py
-cp dpz.py test.py
-pwd
-cd sensors/
-vi test.py
-python3 -u test.py
-cp test.py 1
-cp test.py 2
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-git add .
-rm cam.py
-git add .
-sudo git commit -m "Update: various levels"
-sudo git push origin main
-vi test.py
-python3 -u test.py
-cp dpz.py test.py 
-python3 -u test.py
-reboot
-sudo reboot
-cd sensors/
-python3 -u dpz.py 
-cp dpz.py test.py 
-vi test.py
-cp dpz.py test.py 
-vi test.py
-python3 -u test.py
-i test.py
-vi test.py
-python3 -u test.py
-cp dpz.py test.py
-vi test.py
-python3 -u test.py
-ls
-mv 1 1.py
-python3 -u 1.py
-vi test.py
-ls
-sudo git restore --source=fb83538b8ded8fb706d7790fedbffe79066de24d test.py
-copy test.py 1
-cp test.py 1
-rm 1.py
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-cp test.py dpz.py 
-git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-vi test.py
-sudo vi test.py
-python3 -u test.py
-vi test.py
-sudo vi test.py
-python3 -u test.py
-sudo vi test.py
-python3 -u test.py
-sudo vi test.py
-vi dpz.py
-sudo vi test.py
-python3 -u test.py
-sudo vi test.py
-python3 -u test.py
-ls
-mkdir bup
-sudo mv 1 bup
-sudo mv 2 bup
-cp test.py 1
-vi test.py
-ls -la
-chown pi test.py
-sudo chown pi test.py
-vi test.py
-python3 -u test.py 
-git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-cp test.py dpz.py
-cp test.py 1
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-cp test.py 1
-cp test.py dpy.py
-git add .
-sudo git commit -m "Updates"
-sudo git push origin main
 ls dp*
 cp test dpz.py
 cp test.py dpz.py
@@ -1998,3 +1853,148 @@ hostname
 ifconfig
 ping google.com
 reboot
+ls
+mkdir 10925
+mv 1 2 3 4 5 6 7 8 9 10925/
+mv 10925 backups/
+cp test.py 1
+cp test.py dpz.py
+vi test.py
+pkill -f test.py
+ls
+cp watering_log.py backups/
+cp repot.py backups/
+python3 -u port.py 
+cp port.py backups/
+ls
+lsls
+clear
+rm watering_log.py 
+vi watering_log.py
+cp test.py 2
+vi test.py
+python3 -u watering_log.py
+vi watering_log.
+vi watering_log.py 
+python3 -u watering_log.py
+rm watering_log.py 
+vi watering_log.py
+python3 -u watering_log.py
+vi watering_log.py
+python3 -u watering_log.py
+cp test.py 3
+ls
+clear
+vi test.py
+cp test.py 4
+vi test.py
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+clear
+vi test.py
+ls
+cp watering_log.py backups/watering_log2.py 
+mv watering_log.py modules/
+vi watering_log.json 
+cd modules/
+cat watering.py
+vi watering_log.py 
+cd ..
+cp test.py 5
+clear
+vi test.py
+cd modules/
+vi watering_log.py 
+ls
+cp watering.py wateringold
+cp watering_log.py watering.py
+sudo cp watering_log.py watering.py
+ls
+rm watering.py
+sudo chown pi:pi watering.py
+rm watering.py
+vi watering.py
+ls
+cd ..
+ls
+cp backups/watering_log2.py /home/pi/watering_log.py
+ls
+cp 5 test.py
+vi test.py
+rm 5
+cp 4 test,py
+mv test,py test.py
+vi test.py
+ls
+cp 3  test.py
+l,s
+clear
+ls
+cp 4 test.gpy
+cd modules/
+ls
+cp wateringold watering.py
+cd .,.
+cd ..
+lsof | grep deleted
+sudo debugfs /dev/sdX
+debugfs: lsdel
+pwd
+vi test.py
+cp test.py 5
+cp test.py dpz
+vi test.py
+cp test.py 6
+vi test.py
+clear
+cp test.py 7
+vi test.py
+cp test.py 8
+vi test.py
+python3 -u test.py
+cp test.py 9
+cp test.py dpz.py 
+vi test.py
+python3 -u test.py
+cp test.py 10
+vi test.py
+ls
+cp 10 test.py
+vi test.py
+clear
+vi test.py
+ls
+cp test.py 11
+cp 9 test.py
+rm 10
+vi test.py
+ls
+rm 11
+cp test.py 10
+vi test.py
+cp test.py 11
+vi test.py
+cp test.py 12
+cp test.py dpz.py 
+python3 -u dpz.py
+clear
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+vi test.py
+python3 -u dpz.py
+clear
+ls
+cp 12 test.py
+pytthon3 -u test.py
+python3 -u dpz.py
+python3 -u test.py
+vi test.py
+clear
+ls
+cp 12 test.py
+vi test.py
+pkill -f test.py
+cp 12 test.py 
+sudo service motion stop

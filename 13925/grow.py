@@ -44,7 +44,6 @@ def prompt_for_plants():
             "progress": None,
             "last_watered": None,
             "status": "Unknown"
-            "height": float(height) if height else 0.0
         }
         plants.append(plant)
         i += 1

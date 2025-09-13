@@ -7,8 +7,7 @@
     "repot_date": null,
     "progress": null,
     "last_watered": null,
-    "status": "Unknown",
-    "height": 49.0
+    "status": "Unknown"
   },
   {
     "id": 2,
@@ -18,8 +17,7 @@
     "repot_date": null,
     "progress": null,
     "last_watered": null,
-    "status": "Unknown",
-    "height": 48.0
+    "status": "Unknown"
   },
   {
     "id": 3,
@@ -29,8 +27,7 @@
     "repot_date": null,
     "progress": null,
     "last_watered": null,
-    "status": "Unknown",
-    "height": 47.0
+    "status": "Unknown"
   },
   {
     "id": 4,
@@ -40,8 +37,7 @@
     "repot_date": null,
     "progress": null,
     "last_watered": null,
-    "status": "Unknown",
-    "height": 46.0
+    "status": "Unknown"
   },
   {
     "id": 5,
@@ -51,8 +47,7 @@
     "repot_date": null,
     "progress": null,
     "last_watered": null,
-    "status": "Unknown",
-    "height": 45.0
+    "status": "Unknown"
   },
   {
     "id": 6,
@@ -62,8 +57,7 @@
     "repot_date": null,
     "progress": null,
     "last_watered": null,
-    "status": "Unknown",
-    "height": 44.0
+    "status": "Unknown"
   },
   {
     "id": 7,
@@ -73,7 +67,6 @@
     "repot_date": null,
     "progress": null,
     "last_watered": null,
-    "status": "Unknown",
-    "height": 43.0
+    "status": "Unknown"
   }
 ]
