@@ -8,7 +8,7 @@
     "progress": null,
     "last_watered": null,
     "status": "Unknown",
-    "height": 49.0
+    "height": 30.0
   },
   {
     "id": 2,
@@ -19,7 +19,7 @@
     "progress": null,
     "last_watered": null,
     "status": "Unknown",
-    "height": 48.0
+    "height": 26.0
   },
   {
     "id": 3,
@@ -30,7 +30,7 @@
     "progress": null,
     "last_watered": null,
     "status": "Unknown",
-    "height": 47.0
+    "height": 46.0
   },
   {
     "id": 4,
@@ -41,7 +41,7 @@
     "progress": null,
     "last_watered": null,
     "status": "Unknown",
-    "height": 46.0
+    "height": 12.0
   },
   {
     "id": 5,
@@ -52,7 +52,7 @@
     "progress": null,
     "last_watered": null,
     "status": "Unknown",
-    "height": 45.0
+    "height": 78.0
   },
   {
     "id": 6,
@@ -63,7 +63,7 @@
     "progress": null,
     "last_watered": null,
     "status": "Unknown",
-    "height": 44.0
+    "height": 45.0
   },
   {
     "id": 7,
@@ -74,6 +74,6 @@
     "progress": null,
     "last_watered": null,
     "status": "Unknown",
-    "height": 43.0
+    "height": 22.0
   }
 ]
