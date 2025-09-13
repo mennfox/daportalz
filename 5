@@ -52,8 +52,6 @@ from modules.watering import get_last_watered_text
 from rich.progress import BarColumn
 from datetime import datetime, timedelta
 from modules import height
-from modules.height import height_bar
-
 WATCHDOG_LOG_DIR = Path("logs")
 WATCHDOG_LOG_DIR.mkdir(parents=True, exist_ok=True)
 WATCHDOG_LOG_FILE = WATCHDOG_LOG_DIR / f"watchdog_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
@@ -1351,8 +1349,7 @@ def build_grow_panel():
         last_watered = get_last_watered_text()
         progress = calc_progress(prop_date, repot_date)
         report = repot_date if repot_date else "[Pending]"
-        height_val = entry.get("height", 0.0)
-        height = height_bar(height_val)
+        height = f'{entry.get("height", "—")}"'
         table.add_row(name, type_, prop_date, report, progress, last_watered, height)
 
 
