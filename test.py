@@ -297,23 +297,6 @@ def get_disk_panel():
         free_color="yellow"
     )
 
-    # Filesystem type
-    try:
-        part = next((p for p in psutil.disk_partitions() if p.mountpoint == "/"), None)
-        fs_type = part.fstype if part else "—"
-    except Exception:
-        fs_type = "—"
-
-    # Auto-detect disk device for latency
-    try:
-        device_list = subprocess.getoutput("iostat -dx | awk 'NR>3 {print $1}'").split()
-        device = device_list[0] if device_list else "sda"
-        latency_output = subprocess.getoutput(f"iostat -dx 1 2 | grep -m1 {device}")
-        latency_parts = latency_output.split()
-        disk_latency = latency_parts[9] + " ms" if len(latency_parts) > 9 else "—"
-    except Exception:
-        disk_latency = "—"
-
     # Build table
     table = Table(title="[bold yellow]Disk & Swap[/bold yellow]", expand=True)
     table.add_column("Used")
@@ -345,28 +328,12 @@ def get_disk_panel():
         Text("I/O Rate", style="dim")
     )
 
-    # Filesystem type row
-    table.add_row(
-        fs_type,
-        "—",
-        "—",
-        Text("Filesystem", style="dim")
-    )
-
-    # Latency row
-    table.add_row(
-        "—",
-        "—",
-        disk_latency,
-        Text("Latency", style="dim")
-    )
-
     return Panel(table, border_style="grey37")
 
 def update_network_latency_loop():
     while True:
         try:
-            result = subprocess.getoutput("ping -c 1 -W 1 192.168.1.254 | grep 'time='")
+            result = subprocess.getoutput("ping -c 1 -W 1 192.168.1.1 | grep 'time='")
             latency_val = result.split("time=")[-1].split()[0]
             network_cache["latency"] = f"{latency_val} ms"
             network_cache["last_ping"] = time.time()
@@ -516,7 +483,6 @@ def update_scd4x_loop():
             environment_data["CO₂"] = "Error"
             scd4x_data["Temperature"] = "-"
             scd4x_data["Humidity"] = "-"
-
 def update_bh1750_loop():
     while True:
         try:
@@ -1350,11 +1316,10 @@ def build_grow_panel():
         repot_date = entry.get("repot_date", "")
         last_watered = get_last_watered_text()
         progress = calc_progress(prop_date, repot_date)
-        report = repot_date if repot_date else "[Pending]"
+        repot = repot_date if repot_date else "[Pending]"
         height_val = entry.get("height", 0.0)
         height = height_bar(height_val)
-        table.add_row(name, type_, prop_date, report, progress, last_watered, height)
-
+        table.add_row(name, type_, prop_date, repot, progress, last_watered, height)
 
     return Panel(table, border_style="grey37")
 
