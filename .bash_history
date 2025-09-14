@@ -1,171 +1,3 @@
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-ls
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-vi test.py
-python3 -u test.py 
-cp test.py dpz.py 
-cp test.py 2
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-vi test.py
-sudo pip3 install pyfiglet --break-system-packages
-python3 -u test.py 
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-clear
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-cp test.py 3
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-cp test.py 4
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-cp test.py dpz.py 
-sudo vi /etc/systemd/system/daportalz.service
-sudo systemctl daemon-reexec
-sudo systemctl enable daportalz.service
-sudo systemctl start daportalz.service
-sudo systemctl stop daportalz.service
-sudo systemctl disable daportalz.service
-sudo rm /etc/systemd/system/daportalz.service
-sudo systemctl daemon-reload
-/etc/systemd/system/daportalz.service
-sudo vi /etc/systemd/system/daportalz.service
-sudo systemctl daemon-reexec
-sudo systemctl enable daportalz.service
-sudo systemctl start daportalz.service
-sudo pip3 install systemd-python --break-system-packages
-vi test.py
-python3 -u test.py
-cp test.py 5
-cp test.py dpz.py 
-sudo reboot
-sudo service status dpz.py
-sudo service status dpz
-sudo service status 
-cd sensors/
-python3 -u dpz.py 
-exit
-cd s
-clear
-pwd
-cd sensors/
-python3 -u dpz.py 
-cd sensors/ads1115/
-python3 -u ads.py 
-i2cdetect -y 1
-python3 -u ads.py 
-cat ads.py 
-python3 -u ads.py 
-i2cdetect -y 1
-python3 -u ads.py 
-python3 -u m.py 
-i2cdetect -y 1
-clear
-python3 -u ads.py 
-i2cdetect -y 1
-python3 -u ads.py 
-i2cdetect -y 1
-python3 -u ads.py 
-i2cdetect -y 1
-cat m.py 
-i2cdetect -y 1
-ls
-cp ads.py 0.py
-vi 0.py 
-python3 -u 0.py 
-cp ads.py 0.py 
-vi 0.py 
-python3 -u 0.py 
-i2cdetect -y 1
-python3 -u 0.py 
-i2cdetect -y 1
-python3 -u 0.py 
-vi m.py 
-i2cdetect -y 1
-python3 -u m.py 
-i2cdetect -y 1
-python3 -u m.py 
-vi m.py 
-python3 -u m.py 
-vi m.py 
-python3 -u m.py 
-vi m.py 
-python3 -u m.py 
-vi m.py 
-python3 -u m.py 
-i2cdetect -y 1
-python3 -u m.py 
-i2cdetect -y 1
-python3 -u m.py 
-i2cdetect -y 1
-python3 -u m.py 
-i2cdetect -y 1
-2cdetect -y 1
-i2cdetect -y 1
-python3 -u m.py 
-2cdetect -y 1
-i2cdetect -y 1
-python3 -u m.py 
-vi m.py 
-python3 -u m.py 
-vi m.py 
-python3 -u m.py 
-cd sensors/
-python3 -u test.py 
-ls
-vi test2.py
-python3 -u test2.py 
-sudo pip3 install tkinter --break-system-packages
-sudo apt install python3-tk
-python3 -u test2.py 
-rm test2.py 
-vi test2.py
-python3 -u test2.py 
-rm test2.py 
-vi test2.py
-python3 -u test2.py 
-vi test2.py 
-python3 -u test2.py 
-vi test2.py 
-python3 -u test2.py 
-rm test2.py 
-vi test2.py 
-python3 -u test2.py 
-vi test2.py 
-python3 -u test2.py 
-vi test2.py 
-python3 -u test2.py 
-vi test2.py 
-python3 -u test2.py 
-vi test2.py 
-python3 -u test2.py 
-cat test2.py 
-python3 -u test2.py 
-vi test2.py 
 python3 -u test2.py 
 cd sensors/
 ls
@@ -1998,3 +1830,171 @@ cp 1 test.py
 vi test.py
 cp 1 test.py
 vi test.py
+python3 -u test.py 
+LS
+ls
+cp 4 test.py 
+python3 -u test.py 
+cp 4 test.py 
+python3 -u test.py 
+reboot
+clear
+#
+vi test.py
+sudo rm .test.py.swp 
+vi test.py
+cp 5 test.py 
+viu test.py
+vi test.py
+cp 1 test.py
+vi test.py
+mpython3 -u main.py 
+python3 -u main.py 
+cd modules/
+ls
+vi height.py 
+cp height.py h2
+rm height.py 
+vi height.py
+cp h2 height.py 
+cd ..
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+python3 -u main.py
+cd modules/
+vi height.py 
+ls
+rm h2
+cp height.py h2
+vi height.py 
+cd ..
+cd /home/pi/
+cp test.py 6
+vi test.py
+cd modules/
+cp height.py h3
+vi height.py
+cd ..
+main
+python3 -u main.py 
+cd modules/
+vi height.py 
+vi main.py 
+python3 -u main.py 
+vi main.py 
+python3 -u main.py 
+ls
+cp plants.json pj
+python3 -u main.py 
+cp pj plants.json
+ls
+python3 -u main.py 
+ls
+ls *.txt
+vi main.py
+python3 -u main.py 
+vi grow.py 
+cp main.py m2
+vi main.py
+vi grow.py 
+vi test.py
+cp test.py 7
+vi test.py
+vi plants.json 
+ls
+cp main.py m3
+vi main.py
+python3 -u main.py 
+vi main.py
+python3 -u main.py 
+vi main.py
+python3 -u main.py 
+vi main.py
+python3 -u main.py 
+vi main.py
+python3 -u main.py 
+cp test.py 8
+vi test.py
+python3 -u main.py 
+vi main.py 
+python3 -u main.py 
+vi main.py 
+python3 -u main.py 
+vi main.py 
+python3 -u main.py 
+vi plants.json
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+python3 -u main.py 
+i2cdetect -y 1
+ls
+cp test.py dpz.py 
+cp test.py 9
+vi test.py
+pkill -f test.py
+cp test.py dpz.py 
+python3 -u dpz.py 
+cd /tmp
+wget https://www.trekcore.com/audio/background/tng_bridge_1.mp3
+sudo cp tng_bridge_1.mp3 /home/pi/
+sudo pip3 install pygame  --break-system-packages
+cd /home/pi/
+cp test.py 10
+vi test.py
+ls *.mp3
+mv tng_bridge_1.mp3 s1.mp3
+vi test.py
+python3 -u test.py
+sudo apt-get update
+sudo apt-get install libsdl2-mixer-2.0-0
+sudo apt-get install libsdl2-dev libsdl2-image-2.0-0 libsdl2-ttf-2.0-0
+sudo apt-get update
+sudo vi /boot/config.txt 
+sudo vi /boot/firmware/config.txt 
+reboor
+reboot
+sudo reboot
+sudo raspi-config
+python3 -u test.py
+sudo reboot
+python3 -u test.py
+vi test.py
+python3 -u test.py
+sudo vi /boot/firmware/config.txt 
+sudo reboot
+sudo amixer cset numid=3 1
+aplay -l
+sudo amixer cset numid=3 1
+sudo amixer -c 0 scontents
+aplay /usr/share/sounds/alsa/Front_Center.wav 
+cl
+clear
+aplay /usr/share/sounds/alsa/Front_Center.wav 
+pwd
+python3 -u test.py 
+sudo vi /boot/firmware/config.txt 
+amixer cset numid=3 2
+reboot
+amixer cset numid=3 2
+amixer contents
+sudo vi /boot/firmware/config.txt 
+reboot
+sudo raspi-config
+sudo vi /boot/firmware/config.txt 
+shutdown -p
+shutdown 
+sudo halt -p
+sudo raspi-config
+sudo amixer cset numid=3 1
+amixer cset numid=3 1
+sudo raspi-config
+sudo apt install lightdm
+rebbot
+reboot
+raspi-config
+sudo raspi-config
+exit
+python3 -u test.py 
+btop

@@ -60,5 +60,15 @@
     "uptake": "partial",
     "response_time_hr": 1.0,
     "leaf_status": "perky"
+  },
+  {
+    "timestamp": 1757867136.9715312,
+    "volume_ml": 1500,
+    "method": "top",
+    "pot_size_l": 5.5,
+    "interval_days": 3,
+    "uptake": "full",
+    "response_time_hr": 0.3,
+    "leaf_status": "perky"
   }
 ]

@@ -27,6 +27,6 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 # Launch dashboard on login
 if [ -t 1 ]; then
-    python3 /home/pi/dpz.py
+    python3 /home/pi/main.py
 fi
 

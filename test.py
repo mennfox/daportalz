@@ -53,6 +53,7 @@ from rich.progress import BarColumn
 from datetime import datetime, timedelta
 from modules import height
 from modules.height import height_bar
+from modules.moisture_chart import build_moisture_panel
 
 WATCHDOG_LOG_DIR = Path("logs")
 WATCHDOG_LOG_DIR.mkdir(parents=True, exist_ok=True)
@@ -778,10 +779,25 @@ def build_watchdog_log_panel():
 def build_i2c_panel():
     addresses = i2c_scan_cache.get("addresses", [])
     timestamp = i2c_scan_cache.get("timestamp", "Never")
-    lines = [Text("🔌 Detected I²C Addresses", style="bold cyan")]
-    for addr in addresses:
-        color = color_for_address(addr)
-        lines.append(Text(f" ├─ {addr}", style=color))
+
+    # Convert to int for easy comparison
+    found = set(int(addr, 16) for addr in addresses)
+
+    lines = [Text("🔌 I²C Port Map", style="bold cyan")]
+    header = "     " + "  ".join(f"{x:X}" for x in range(16))
+    lines.append(Text(header, style="bold white"))
+
+    for row in range(0x00, 0x80, 0x10):
+        line = f"{row:02X}:"
+        for col in range(16):
+            addr = row + col
+            if addr in found:
+                line += f" {addr:02X}"
+            else:
+                line += " --"
+        lines.append(Text(line, style="white"))
+
+    lines.append(Text(f"Last scan: {timestamp}", style="dim"))
     return Panel(Text("\n").join(lines), title="🧭 I²C Port Map", border_style="grey37")
 
 def build_averages_panel():
@@ -1383,7 +1399,8 @@ def build_dashboard():
     fourth_row_panels = [
         get_as7341_panel(),
         build_averages_panel(),
-        build_sensor_graph_panel()
+        build_sensor_graph_panel(),
+        build_moisture_panel()
     ]
 
 
