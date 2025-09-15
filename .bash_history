@@ -1,80 +1,3 @@
-python3 -u test2.py 
-cd sensors/
-ls
-cd ahtx0/
-ls
-python3 -u ahtx0.py 
-cat ahtx0.py 
-python3 -u ahtx0.py 
-cat ahtx0.py 
-python3 -u ahtx0.py 
-cd ..
-mkdir bup04
-mv 1 2 3 4 5 6 bup04/
-mv bup3 bup03
-ls
-vi test.py 
-python3 -u test.py 
-cp test.py 1
-sudo pkill -f dpz.py
-cp test.py dpz.py 
-vi test.py 
-python3 -u test.py 
-vi test.py 
-python3 -u test.py 
-cp dpz.py test.py
-vi test.py 
-python3 -u test.py 
-cp test.py 2
-vi test.py
-python3 -u test.py 
-cp dpz.py test.py 
-python3 -u test.py
-clear
-vi test.py
-python3 -u test.py
-cp test.py 3
-pkill -f dpz.py
-cp test.py dpz.py 
-python test2.py
-cat test.py
-clear
-cat test2.py
-cp test.py 5
-vi test.py
-cp dpz.py  test.py
-vi test.py 
-python test.py
-vi test.py 
-python test.py
-cat test.py
-vi test.py
-python test.py
-vi test.py
-python test.py
-Error: could not convert string to │
-│ ┏━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━┓ │  │ ┏━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━┓ │  │ ┏━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┓ │  │ ┏━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━┓ │  │ ┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┓ │  │ board.SDA)                        │  │ float: 'Waiting...' 
-vi test.py
-python test.py
-cd sensors/
-pkill -f dpz.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-cp dpz.py test.py
-python3 -u dpz.py
-vi test.py
-python3 -u test.py
-vi test.py
-cp dpz.py test.py 
-sudo git add .
-sudo git commit -m "Updates"
 sudo git push origin main
 vi test.py
 python3 -u test.py
@@ -1998,3 +1921,80 @@ sudo raspi-config
 exit
 python3 -u test.py 
 btop
+python3 -u main.py 
+ls
+vi menu.py
+vi main.py
+vi main.py 
+python3 -u main.py 
+sudo vi ~/.bash_profile
+grep -r "python3" ~/.bash* ~/.profile ~/.zprofile ~/.zshrc
+sudo vi .profile
+ls
+cd backups/
+ls
+cd 1925
+ls
+mkdir sensors
+sudo mkdir sensors
+sudo mv * sensors/
+ls
+sudo mv sensors /home/pi/
+cd /home/pi/
+ls
+mv 13925 backups/
+mkdir 14925
+mv 1 2 3 4 5 6 7 8 9 10 11 14925/
+ls
+mv 14925 backups/
+ls -la
+ls
+mkdir bjson
+rm bjson/
+ls
+mv m1 m2 m3 backups/13925/
+ls
+cat pj
+ls
+mv jj backups/13925/
+mv pj backups/13925/
+ls
+cat port.py 
+ls
+cp *.py backups/14925/
+ls
+rm bjson/
+rm -r bjson/
+ls
+cp -r sensors backups/
+cd sensors/
+cd ads1115/
+ls
+cat m.py
+cd /home/pi/modules/
+vi moisture_chart.pu
+vi moisture_chart.py#
+vi moisture_chart.py
+cd ..
+vi test.py
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+pwd
+cd modules/
+ls
+mv h1 h2 h3 h4 ../backups/14925/
+ls
+mv h6 ../backups/14925/
+mv wateringold ../backups/14925/
+cp moisture_chart.py m1
+vi moisture_chart.py 
+python3 -u /home/pi/test.py 
+cd ..
+pwd
+python3 -u test.py 
+cd modules/
+vi moisture_chart.py 
+cd ..
+vi moisture_chart.py 
+python3 -u test.py 
