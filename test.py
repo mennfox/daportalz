@@ -334,7 +334,7 @@ def get_disk_panel():
 def update_network_latency_loop():
     while True:
         try:
-            result = subprocess.getoutput("ping -c 1 -W 1 192.168.1.1 | grep 'time='")
+            result = subprocess.getoutput("ping -c 1 -W 1 192.168.1.254 | grep 'time='")
             latency_val = result.split("time=")[-1].split()[0]
             network_cache["latency"] = f"{latency_val} ms"
             network_cache["last_ping"] = time.time()

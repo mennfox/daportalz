@@ -45,4 +45,5 @@ def build_moisture_panel():
         volt_str = f"{voltage:.2f} V"
         table.add_row(label, bar, volt_str)
 
-    return Panel(table, title="🌱 Moisture Chart", border_style="grey37")
+    return Panel(table, title="🌱 Moisture Chart", border_style="green")
+
