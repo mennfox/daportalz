@@ -1,0 +1,10 @@
+[2025-09-29 19:56:23] ⚠️ Dashboard stalled! Drift: 10.01s
+[2025-09-29 19:56:23] Active threads:
+[2025-09-29 19:56:23]  - MainThread
+[2025-09-29 19:56:23]  - update_scd4x_loop
+[2025-09-29 19:56:23]  - watchdog_ping_loop
+[2025-09-29 19:56:23]  - as7341_loop
+[2025-09-29 19:56:23]  - update_bh1750_loop
+[2025-09-29 19:56:23]  - i2c_scan_loop
+[2025-09-29 19:56:23]  - i2c_scan_loop
+[2025-09-29 19:56:23]  - Thread-1

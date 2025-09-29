@@ -1,0 +1,90 @@
+[2025-09-29 19:54:06] ⚠️ Dashboard stalled! Drift: 10.00s
+[2025-09-29 19:54:06] Active threads:
+[2025-09-29 19:54:06]  - MainThread
+[2025-09-29 19:54:06]  - update_scd4x_loop
+[2025-09-29 19:54:06]  - watchdog_ping_loop
+[2025-09-29 19:54:06]  - as7341_loop
+[2025-09-29 19:54:06]  - update_bh1750_loop
+[2025-09-29 19:54:06]  - i2c_scan_loop
+[2025-09-29 19:54:06]  - i2c_scan_loop
+[2025-09-29 19:54:06]  - Thread-1
+[2025-09-29 19:54:16] ⚠️ Dashboard stalled! Drift: 20.13s
+[2025-09-29 19:54:16] Active threads:
+[2025-09-29 19:54:16]  - MainThread
+[2025-09-29 19:54:16]  - update_scd4x_loop
+[2025-09-29 19:54:16]  - watchdog_ping_loop
+[2025-09-29 19:54:16]  - as7341_loop
+[2025-09-29 19:54:16]  - update_bh1750_loop
+[2025-09-29 19:54:16]  - i2c_scan_loop
+[2025-09-29 19:54:16]  - i2c_scan_loop
+[2025-09-29 19:54:16]  - Thread-1
+[2025-09-29 19:54:26] ⚠️ Dashboard stalled! Drift: 30.13s
+[2025-09-29 19:54:26] Active threads:
+[2025-09-29 19:54:26]  - MainThread
+[2025-09-29 19:54:26]  - update_scd4x_loop
+[2025-09-29 19:54:26]  - watchdog_ping_loop
+[2025-09-29 19:54:26]  - as7341_loop
+[2025-09-29 19:54:26]  - update_bh1750_loop
+[2025-09-29 19:54:26]  - i2c_scan_loop
+[2025-09-29 19:54:26]  - i2c_scan_loop
+[2025-09-29 19:54:26]  - Thread-1
+[2025-09-29 19:54:36] ⚠️ Dashboard stalled! Drift: 40.25s
+[2025-09-29 19:54:36] Active threads:
+[2025-09-29 19:54:37]  - MainThread
+[2025-09-29 19:54:37]  - update_scd4x_loop
+[2025-09-29 19:54:37]  - watchdog_ping_loop
+[2025-09-29 19:54:37]  - as7341_loop
+[2025-09-29 19:54:37]  - update_bh1750_loop
+[2025-09-29 19:54:37]  - i2c_scan_loop
+[2025-09-29 19:54:37]  - i2c_scan_loop
+[2025-09-29 19:54:37]  - Thread-1
+[2025-09-29 19:54:47] ⚠️ Dashboard stalled! Drift: 50.41s
+[2025-09-29 19:54:47] Active threads:
+[2025-09-29 19:54:47]  - MainThread
+[2025-09-29 19:54:47]  - update_scd4x_loop
+[2025-09-29 19:54:47]  - watchdog_ping_loop
+[2025-09-29 19:54:47]  - as7341_loop
+[2025-09-29 19:54:47]  - update_bh1750_loop
+[2025-09-29 19:54:47]  - i2c_scan_loop
+[2025-09-29 19:54:47]  - i2c_scan_loop
+[2025-09-29 19:54:47]  - Thread-1
+[2025-09-29 19:54:57] ⚠️ Dashboard stalled! Drift: 60.41s
+[2025-09-29 19:54:57] Active threads:
+[2025-09-29 19:54:57]  - MainThread
+[2025-09-29 19:54:57]  - update_scd4x_loop
+[2025-09-29 19:54:57]  - watchdog_ping_loop
+[2025-09-29 19:54:57]  - as7341_loop
+[2025-09-29 19:54:57]  - update_bh1750_loop
+[2025-09-29 19:54:57]  - i2c_scan_loop
+[2025-09-29 19:54:57]  - i2c_scan_loop
+[2025-09-29 19:54:57]  - Thread-1
+[2025-09-29 19:55:07] ⚠️ Dashboard stalled! Drift: 70.60s
+[2025-09-29 19:55:07] Active threads:
+[2025-09-29 19:55:07]  - MainThread
+[2025-09-29 19:55:07]  - update_scd4x_loop
+[2025-09-29 19:55:07]  - watchdog_ping_loop
+[2025-09-29 19:55:07]  - as7341_loop
+[2025-09-29 19:55:07]  - update_bh1750_loop
+[2025-09-29 19:55:07]  - i2c_scan_loop
+[2025-09-29 19:55:07]  - i2c_scan_loop
+[2025-09-29 19:55:07]  - Thread-1
+[2025-09-29 19:55:17] ⚠️ Dashboard stalled! Drift: 80.78s
+[2025-09-29 19:55:17] Active threads:
+[2025-09-29 19:55:17]  - MainThread
+[2025-09-29 19:55:17]  - update_scd4x_loop
+[2025-09-29 19:55:17]  - watchdog_ping_loop
+[2025-09-29 19:55:17]  - as7341_loop
+[2025-09-29 19:55:17]  - update_bh1750_loop
+[2025-09-29 19:55:17]  - i2c_scan_loop
+[2025-09-29 19:55:17]  - i2c_scan_loop
+[2025-09-29 19:55:17]  - Thread-1
+[2025-09-29 19:55:27] ⚠️ Dashboard stalled! Drift: 90.78s
+[2025-09-29 19:55:27] Active threads:
+[2025-09-29 19:55:27]  - MainThread
+[2025-09-29 19:55:27]  - update_scd4x_loop
+[2025-09-29 19:55:27]  - watchdog_ping_loop
+[2025-09-29 19:55:27]  - as7341_loop
+[2025-09-29 19:55:27]  - update_bh1750_loop
+[2025-09-29 19:55:27]  - i2c_scan_loop
+[2025-09-29 19:55:27]  - i2c_scan_loop
+[2025-09-29 19:55:27]  - Thread-1
