@@ -1,0 +1,421 @@
+[2025-09-13 20:20:11] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:12] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:12] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:12] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:13] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:13] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:13] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:14] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:14] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:14] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:15] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:15] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:15] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:16] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:16] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:16] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:17] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:17] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:17] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:18] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:18] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:18] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:18] ✅ Dashboard healthy. Drift: 0.26s
+[2025-09-13 20:20:19] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:19] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:19] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:20] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:20] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:20] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:21] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+
+[2025-09-13 20:20:21] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1420, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1392, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+  File "/usr/local/lib/python3.11/dist-packages/rich/table.py", line 465, in add_row
+    raise errors.NotRenderableError(
+rich.errors.NotRenderableError: unable to render module; a string or other renderable object is required
+

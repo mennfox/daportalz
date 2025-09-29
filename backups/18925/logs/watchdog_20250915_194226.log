@@ -1,0 +1,384 @@
+[2025-09-15 19:42:37] ✅ Dashboard healthy. Drift: 0.18s
+[2025-09-15 19:42:47] ✅ Dashboard healthy. Drift: 0.31s
+[2025-09-15 19:42:57] ✅ Dashboard healthy. Drift: 0.89s
+[2025-09-15 19:43:07] ✅ Dashboard healthy. Drift: 0.95s
+[2025-09-15 19:43:17] ✅ Dashboard healthy. Drift: 1.12s
+[2025-09-15 19:43:27] ✅ Dashboard healthy. Drift: 0.77s
+[2025-09-15 19:43:37] ✅ Dashboard healthy. Drift: 0.91s
+[2025-09-15 19:43:47] ✅ Dashboard healthy. Drift: 0.82s
+[2025-09-15 19:43:57] ✅ Dashboard healthy. Drift: 0.95s
+[2025-09-15 19:44:07] ✅ Dashboard healthy. Drift: 0.86s
+[2025-09-15 19:44:18] ✅ Dashboard healthy. Drift: 0.46s
+[2025-09-15 19:44:28] ✅ Dashboard healthy. Drift: 0.59s
+[2025-09-15 19:44:38] ✅ Dashboard healthy. Drift: 0.36s
+[2025-09-15 19:44:48] ✅ Dashboard healthy. Drift: 0.19s
+[2025-09-15 19:44:58] ✅ Dashboard healthy. Drift: 0.27s
+[2025-09-15 19:45:08] ✅ Dashboard healthy. Drift: 0.09s
+[2025-09-15 19:45:18] ✅ Dashboard healthy. Drift: 0.30s
+[2025-09-15 19:45:28] ✅ Dashboard healthy. Drift: 0.01s
+[2025-09-15 19:45:38] ✅ Dashboard healthy. Drift: 0.12s
+[2025-09-15 19:45:48] ✅ Dashboard healthy. Drift: 0.13s
+[2025-09-15 19:45:58] ✅ Dashboard healthy. Drift: 0.18s
+[2025-09-15 19:46:08] ✅ Dashboard healthy. Drift: 0.40s
+[2025-09-15 19:46:18] ✅ Dashboard healthy. Drift: 0.26s
+[2025-09-15 19:46:28] ✅ Dashboard healthy. Drift: 0.59s
+[2025-09-15 19:46:38] ✅ Dashboard healthy. Drift: 0.10s
+[2025-09-15 19:46:39] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 36, in build_moisture_panel
+    values = [chan.voltage for chan in channels]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 36, in <listcomp>
+    values = [chan.voltage for chan in channels]
+              ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 19:46:48] ⚠️ Dashboard stalled! Drift: 8.42s
+[2025-09-15 19:46:48] Active threads:
+[2025-09-15 19:46:48]  - MainThread
+[2025-09-15 19:46:48]  - update_scd4x_loop
+[2025-09-15 19:46:48]  - watchdog_ping_loop
+[2025-09-15 19:46:48]  - as7341_loop
+[2025-09-15 19:46:48]  - update_bh1750_loop
+[2025-09-15 19:46:48]  - network_latency_loop
+[2025-09-15 19:46:48]  - i2c_scan_loop
+[2025-09-15 19:46:48]  - Thread-1
+[2025-09-15 19:46:48] ❌ Last Exception: Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 36, in build_moisture_panel
+    values = [chan.voltage for chan in channels]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 36, in <listcomp>
+    values = [chan.voltage for chan in channels]
+              ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 19:46:58] ⚠️ Dashboard stalled! Drift: 18.58s
+[2025-09-15 19:46:58] Active threads:
+[2025-09-15 19:46:58]  - MainThread
+[2025-09-15 19:46:58]  - update_scd4x_loop
+[2025-09-15 19:46:58]  - watchdog_ping_loop
+[2025-09-15 19:46:58]  - as7341_loop
+[2025-09-15 19:46:58]  - update_bh1750_loop
+[2025-09-15 19:46:58]  - network_latency_loop
+[2025-09-15 19:46:58]  - i2c_scan_loop
+[2025-09-15 19:46:58]  - Thread-1
+[2025-09-15 19:46:58] ❌ Last Exception: Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 36, in build_moisture_panel
+    values = [chan.voltage for chan in channels]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 36, in <listcomp>
+    values = [chan.voltage for chan in channels]
+              ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 19:47:08] ⚠️ Dashboard stalled! Drift: 28.61s
+[2025-09-15 19:47:08] Active threads:
+[2025-09-15 19:47:08]  - MainThread
+[2025-09-15 19:47:08]  - update_scd4x_loop
+[2025-09-15 19:47:08]  - watchdog_ping_loop
+[2025-09-15 19:47:08]  - as7341_loop
+[2025-09-15 19:47:08]  - update_bh1750_loop
+[2025-09-15 19:47:08]  - network_latency_loop
+[2025-09-15 19:47:08]  - i2c_scan_loop
+[2025-09-15 19:47:08]  - Thread-1
+[2025-09-15 19:47:08] ❌ Last Exception: Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 36, in build_moisture_panel
+    values = [chan.voltage for chan in channels]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 36, in <listcomp>
+    values = [chan.voltage for chan in channels]
+              ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 19:47:18] ⚠️ Dashboard stalled! Drift: 38.82s
+[2025-09-15 19:47:18] Active threads:
+[2025-09-15 19:47:18]  - MainThread
+[2025-09-15 19:47:18]  - update_scd4x_loop
+[2025-09-15 19:47:18]  - watchdog_ping_loop
+[2025-09-15 19:47:18]  - as7341_loop
+[2025-09-15 19:47:18]  - update_bh1750_loop
+[2025-09-15 19:47:18]  - network_latency_loop
+[2025-09-15 19:47:18]  - i2c_scan_loop
+[2025-09-15 19:47:18]  - Thread-1
+[2025-09-15 19:47:18] ❌ Last Exception: Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 36, in build_moisture_panel
+    values = [chan.voltage for chan in channels]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 36, in <listcomp>
+    values = [chan.voltage for chan in channels]
+              ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 19:47:28] ⚠️ Dashboard stalled! Drift: 49.09s
+[2025-09-15 19:47:28] Active threads:
+[2025-09-15 19:47:28]  - MainThread
+[2025-09-15 19:47:28]  - update_scd4x_loop
+[2025-09-15 19:47:28]  - watchdog_ping_loop
+[2025-09-15 19:47:28]  - as7341_loop
+[2025-09-15 19:47:28]  - update_bh1750_loop
+[2025-09-15 19:47:28]  - network_latency_loop
+[2025-09-15 19:47:28]  - i2c_scan_loop
+[2025-09-15 19:47:28]  - Thread-1
+[2025-09-15 19:47:28] ❌ Last Exception: Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 36, in build_moisture_panel
+    values = [chan.voltage for chan in channels]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 36, in <listcomp>
+    values = [chan.voltage for chan in channels]
+              ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 19:47:38] ⚠️ Dashboard stalled! Drift: 59.10s
+[2025-09-15 19:47:39] Active threads:
+[2025-09-15 19:47:39]  - MainThread
+[2025-09-15 19:47:39]  - update_scd4x_loop
+[2025-09-15 19:47:39]  - watchdog_ping_loop
+[2025-09-15 19:47:39]  - as7341_loop
+[2025-09-15 19:47:39]  - update_bh1750_loop
+[2025-09-15 19:47:39]  - network_latency_loop
+[2025-09-15 19:47:39]  - i2c_scan_loop
+[2025-09-15 19:47:39]  - Thread-1
+[2025-09-15 19:47:39] ❌ Last Exception: Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 36, in build_moisture_panel
+    values = [chan.voltage for chan in channels]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 36, in <listcomp>
+    values = [chan.voltage for chan in channels]
+              ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 19:47:49] ⚠️ Dashboard stalled! Drift: 69.17s
+[2025-09-15 19:47:49] Active threads:
+[2025-09-15 19:47:49]  - MainThread
+[2025-09-15 19:47:49]  - update_scd4x_loop
+[2025-09-15 19:47:49]  - watchdog_ping_loop
+[2025-09-15 19:47:49]  - as7341_loop
+[2025-09-15 19:47:49]  - update_bh1750_loop
+[2025-09-15 19:47:49]  - network_latency_loop
+[2025-09-15 19:47:49]  - i2c_scan_loop
+[2025-09-15 19:47:49]  - Thread-1
+[2025-09-15 19:47:49] ❌ Last Exception: Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 36, in build_moisture_panel
+    values = [chan.voltage for chan in channels]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 36, in <listcomp>
+    values = [chan.voltage for chan in channels]
+              ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+

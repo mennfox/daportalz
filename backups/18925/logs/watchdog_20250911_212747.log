@@ -1,0 +1,1114 @@
+[2025-09-11 21:27:50] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:50] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:50] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:51] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:51] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:51] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:51] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:51] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:51] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:51] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:51] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:51] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:51] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:51] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:51] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:52] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:52] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:52] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:52] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:52] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:52] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:52] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:52] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:52] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:52] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:52] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:52] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:52] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:53] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:53] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:53] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:53] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:53] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:53] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:53] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:53] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:53] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:53] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:53] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:53] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:54] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:54] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:54] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:54] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:54] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:54] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:54] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:54] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:54] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:54] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:54] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:54] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:54] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:55] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:55] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:55] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:55] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:55] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:55] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:55] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:55] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:55] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:55] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:55] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:55] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:55] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:56] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:56] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:56] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:56] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:56] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:56] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:56] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:56] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:56] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:56] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:56] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:56] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:56] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:57] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:57] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:57] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:57] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:57] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:57] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:57] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:57] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:57] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:57] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:57] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:57] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:27:58] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1428, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1363, in build_dashboard
+    get_system_panel()
+  File "/home/pi/test.py", line 398, in get_system_panel
+    drift = time.time() - console.last_loop_time - REFRESH_INTERVAL
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Console' object has no attribute 'last_loop_time'
+
+[2025-09-11 21:28:08] ✅ Dashboard healthy. Drift: 0.22s
+[2025-09-11 21:28:18] ✅ Dashboard healthy. Drift: 0.84s
+[2025-09-11 21:28:28] ✅ Dashboard healthy. Drift: 0.21s
+[2025-09-11 21:28:38] ✅ Dashboard healthy. Drift: 0.52s
+[2025-09-11 21:28:48] ✅ Dashboard healthy. Drift: 1.13s
+[2025-09-11 21:28:58] ✅ Dashboard healthy. Drift: 0.20s
+[2025-09-11 21:29:08] ✅ Dashboard healthy. Drift: 0.78s
+[2025-09-11 21:29:18] ✅ Dashboard healthy. Drift: 0.13s
+[2025-09-11 21:29:28] ✅ Dashboard healthy. Drift: 0.37s
+[2025-09-11 21:29:38] ✅ Dashboard healthy. Drift: 0.98s

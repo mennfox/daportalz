@@ -1,0 +1,1865 @@
+[2025-09-15 17:45:58] ✅ Dashboard healthy. Drift: 0.08s
+[2025-09-15 17:46:08] ✅ Dashboard healthy. Drift: 0.37s
+[2025-09-15 17:46:18] ✅ Dashboard healthy. Drift: 0.21s
+[2025-09-15 17:46:28] ✅ Dashboard healthy. Drift: 1.22s
+[2025-09-15 17:46:38] ✅ Dashboard healthy. Drift: 0.79s
+[2025-09-15 17:46:48] ✅ Dashboard healthy. Drift: 0.43s
+[2025-09-15 17:46:58] ✅ Dashboard healthy. Drift: 0.42s
+[2025-09-15 17:47:09] ✅ Dashboard healthy. Drift: 0.40s
+[2025-09-15 17:47:19] ✅ Dashboard healthy. Drift: 0.42s
+[2025-09-15 17:47:29] ✅ Dashboard healthy. Drift: 0.31s
+[2025-09-15 17:47:39] ✅ Dashboard healthy. Drift: 0.19s
+[2025-09-15 17:47:49] ✅ Dashboard healthy. Drift: 0.51s
+[2025-09-15 17:47:59] ✅ Dashboard healthy. Drift: 0.30s
+[2025-09-15 17:48:09] ✅ Dashboard healthy. Drift: 0.30s
+[2025-09-15 17:48:19] ✅ Dashboard healthy. Drift: 0.08s
+[2025-09-15 17:48:29] ✅ Dashboard healthy. Drift: 1.02s
+[2025-09-15 17:48:39] ✅ Dashboard healthy. Drift: 0.86s
+[2025-09-15 17:48:49] ✅ Dashboard healthy. Drift: 0.46s
+[2025-09-15 17:48:59] ✅ Dashboard healthy. Drift: 0.30s
+[2025-09-15 17:49:09] ✅ Dashboard healthy. Drift: 0.45s
+[2025-09-15 17:49:19] ✅ Dashboard healthy. Drift: 0.30s
+[2025-09-15 17:49:29] ✅ Dashboard healthy. Drift: 0.15s
+[2025-09-15 17:49:39] ✅ Dashboard healthy. Drift: 0.28s
+[2025-09-15 17:49:41] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:41] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:42] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:42] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:43] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:43] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:44] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:44] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:45] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:45] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:46] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:46] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:47] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:48] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:48] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:49] ✅ Dashboard healthy. Drift: 0.31s
+[2025-09-15 17:49:49] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:49] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:50] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:51] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:51] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:52] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:52] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:53] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:53] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:54] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:54] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:55] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:56] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:56] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:57] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:57] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:58] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:58] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:59] ✅ Dashboard healthy. Drift: 0.17s
+[2025-09-15 17:49:59] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:49:59] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:50:00] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:50:01] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:50:01] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:50:02] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:50:02] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:50:03] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:50:03] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:50:04] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:50:04] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:50:05] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+
+[2025-09-15 17:50:06] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1446, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1403, in build_dashboard
+    build_moisture_panel()
+  File "/home/pi/modules/moisture_chart.py", line 25, in build_moisture_panel
+    values = get_moisture_values()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in get_moisture_values
+    return [chan.voltage for chan in channels]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/moisture_chart.py", line 22, in <listcomp>
+    return [chan.voltage for chan in channels]
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 60, in voltage
+    volts = self.value * _ADS1X15_PGA_RANGE[self._ads.gain] / 32767
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/analog_in.py", line 53, in value
+    return self._ads.read(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 152, in read
+    return self._read(pin)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 187, in _read
+    self._write_register(_ADS1X15_POINTER_CONFIG, config)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_ads1x15/ads1x15.py", line 223, in _write_register
+    i2c.write(self.buf)
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_bus_device/i2c_device.py", line 100, in write
+    self.i2c.writeto(self.device_address, buf, start=start, end=end)
+  File "/usr/local/lib/python3.11/dist-packages/busio.py", line 212, in writeto
+    return self._i2c.writeto(address, memoryview(buffer)[start:end], stop=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/adafruit_blinka/microcontroller/generic_linux/i2c.py", line 60, in writeto
+    self._i2c_bus.write_bytes(address, buffer[start:end])
+  File "/usr/local/lib/python3.11/dist-packages/Adafruit_PureIO/smbus.py", line 303, in write_bytes
+    self._device.write(buf)
+OSError: [Errno 5] Input/output error
+

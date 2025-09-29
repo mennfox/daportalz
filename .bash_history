@@ -1,19 +1,4 @@
 sudo git push origin main
-vi test.py
-python -u test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-vi test.py
-python3 -u test.py 
-clear
-vi test.py 
-python3 -u test.py 
-pkill -f dpz.py
-python3 -u test.py 
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
 vi test.py 
 python3 -u test.py 
 vi test.py 
@@ -1998,3 +1983,18 @@ python3 -u test.py
 clear
 cd modules/
 vi moisture_chart.py 
+sudo pkill -f test.py
+python3 -u test.py 
+vi moisture_chart.py 
+python3 -u test.py 
+pkill -f test.py
+python3 -u test.py
+pkill -f test.py
+python3 -u test.py
+clear
+python3 -u test.py
+reboot
+9
+clear
+reboot
+halt -p

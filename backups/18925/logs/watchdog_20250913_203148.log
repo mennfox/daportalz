@@ -1,0 +1,638 @@
+[2025-09-13 20:31:52] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:31:52] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:31:53] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:31:53] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:31:53] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:31:54] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:31:54] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:31:54] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:31:55] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:31:55] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:31:55] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:31:56] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:31:56] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:31:56] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:31:57] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:31:57] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:31:57] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:31:58] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:31:58] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:31:58] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:31:59] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:31:59] ✅ Dashboard healthy. Drift: 0.15s
+[2025-09-13 20:31:59] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:31:59] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:00] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:00] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:00] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:01] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:01] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:01] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:02] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:02] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:02] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:03] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:03] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:03] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:04] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:04] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:04] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:05] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:05] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:05] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:06] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:06] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:06] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:07] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    time.sleep(REFRESH_INTERVAL)
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    # 🧩 Optional Watering Panel
+                         ^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:07] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    time.sleep(REFRESH_INTERVAL)
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    # 🧩 Optional Watering Panel
+                         ^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:07] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    time.sleep(REFRESH_INTERVAL)
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    # 🧩 Optional Watering Panel
+                         ^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:08] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    time.sleep(REFRESH_INTERVAL)
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    # 🧩 Optional Watering Panel
+                         ^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+
+[2025-09-13 20:32:08] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1422, in run_dashboard
+    time.sleep(REFRESH_INTERVAL)
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1394, in build_dashboard
+    # 🧩 Optional Watering Panel
+                         ^^^^^^^
+  File "/home/pi/test.py", line 1320, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered)
+             ^^^^^^^^^^
+NameError: name 'height_bar' is not defined
+

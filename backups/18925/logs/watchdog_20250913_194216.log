@@ -1,0 +1,194 @@
+[2025-09-13 19:42:21] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1457, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1429, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1355, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/height.py", line 62, in height_bar
+    return Text(bar, style=color)
+           ^^^^
+NameError: name 'Text' is not defined
+
+[2025-09-13 19:42:23] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1457, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1429, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1355, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/height.py", line 62, in height_bar
+    return Text(bar, style=color)
+           ^^^^
+NameError: name 'Text' is not defined
+
+[2025-09-13 19:42:24] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1457, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1429, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1355, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/height.py", line 62, in height_bar
+    return Text(bar, style=color)
+           ^^^^
+NameError: name 'Text' is not defined
+
+[2025-09-13 19:42:25] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1457, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1429, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1355, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/height.py", line 62, in height_bar
+    return Text(bar, style=color)
+           ^^^^
+NameError: name 'Text' is not defined
+
+[2025-09-13 19:42:27] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1457, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1429, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1355, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/height.py", line 62, in height_bar
+    return Text(bar, style=color)
+           ^^^^
+NameError: name 'Text' is not defined
+
+[2025-09-13 19:42:27] ✅ Dashboard healthy. Drift: 0.79s
+[2025-09-13 19:42:28] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1457, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1429, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1355, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/height.py", line 62, in height_bar
+    return Text(bar, style=color)
+           ^^^^
+NameError: name 'Text' is not defined
+
+[2025-09-13 19:42:29] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1457, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1429, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1355, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/height.py", line 62, in height_bar
+    return Text(bar, style=color)
+           ^^^^
+NameError: name 'Text' is not defined
+
+[2025-09-13 19:42:31] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1457, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1429, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1355, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/height.py", line 62, in height_bar
+    return Text(bar, style=color)
+           ^^^^
+NameError: name 'Text' is not defined
+
+[2025-09-13 19:42:32] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1457, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1429, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1355, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/height.py", line 62, in height_bar
+    return Text(bar, style=color)
+           ^^^^
+NameError: name 'Text' is not defined
+
+[2025-09-13 19:42:33] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1457, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1429, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1355, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/height.py", line 62, in height_bar
+    return Text(bar, style=color)
+           ^^^^
+NameError: name 'Text' is not defined
+
+[2025-09-13 19:42:35] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1457, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1429, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1355, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/height.py", line 62, in height_bar
+    return Text(bar, style=color)
+           ^^^^
+NameError: name 'Text' is not defined
+
+[2025-09-13 19:42:36] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1457, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1429, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1355, in build_grow_panel
+    height = height_bar(height_val)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/modules/height.py", line 62, in height_bar
+    return Text(bar, style=color)
+           ^^^^
+NameError: name 'Text' is not defined
+
+[2025-09-13 19:42:37] ✅ Dashboard healthy. Drift: 1.31s

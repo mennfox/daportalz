@@ -1,0 +1,482 @@
+[2025-09-13 20:30:35] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:35] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:35] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:36] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:36] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:36] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:37] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:37] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:37] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:38] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:38] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:38] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:39] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:39] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:39] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:40] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:40] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:40] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:41] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:41] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:41] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:42] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:42] ✅ Dashboard healthy. Drift: 0.26s
+[2025-09-13 20:30:42] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:42] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:43] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:43] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:43] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:44] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:44] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:44] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:45] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:45] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:45] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:46] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:46] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:46] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
+[2025-09-13 20:30:47] ❌ Exception caught in main loop:
+Traceback (most recent call last):
+  File "/home/pi/test.py", line 1421, in run_dashboard
+    live.update(build_dashboard())
+                ^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1393, in build_dashboard
+    grow_layout.add_row(build_grow_panel())  # Full-width, isolated
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/test.py", line 1321, in build_grow_panel
+    table.add_row(name, type_, prop_date, report, progress, last_watered, height)
+                                          ^^^^^^
+NameError: name 'report' is not defined
+
