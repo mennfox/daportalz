@@ -554,6 +554,18 @@ def build_averages_panel():
     except Exception as e:
         return Panel(f"[red]Error calculating averages: {e}[/red]", title="📈 Sensor Averages", border_style="red")
 
+def build_ahtx0_panel():
+    data = get_ahtx0_stats()
+    if "Sensor Error" in data:
+        body = f"[red]{data['Sensor Error']}[/red]"
+    else:
+        temp = data["Temperature"]
+        hum = data["Humidity"]
+        lines = []
+        lines += sensor_zone_lines(temp, ZONES_TEMP, "Duct Temp", "°C", max_values["AHTx0"]["Temp"])
+        lines += sensor_zone_lines(hum, ZONES_HUM, "Duct RH", "%", max_values["AHTx0"]["Hum"])
+        body = Text("\n").join(lines)
+    return Panel(body, title="🌀 Duct Sensor (AHTx0)", border_style="grey37")
 
 def build_watering_panel():
     recent_notes = [n for n in watering_notes if time.time() - n["timestamp"] < 7 * 86400]
@@ -564,6 +576,23 @@ def build_watering_panel():
         body = Text("\n".join(lines), style="green")
     return Panel(body, title="🪴 Watering Log", border_style="grey37")
 
+def build_htu21d_panel():
+    data = get_htu21d_stats()
+    if "Sensor Error" in data:
+        body = f"[red]{data['Sensor Error']}[/red]"
+    else:
+        temp = data["Temperature"]
+        hum = data["Humidity"]
+        htu21d_history.append(temp)
+        for i, val in enumerate(temp_all_history):
+            temp_spike_history[i] = max(temp_spike_history[i], val)
+        max_values["HTU21d"]["Temp"] = max(max_values["HTU21d"]["Temp"], temp)
+        max_values["HTU21d"]["Hum"] = max(max_values["HTU21d"]["Hum"], hum)
+        lines = []
+        lines += sensor_zone_lines(temp, ZONES_TEMP, "Temp", "°C", max_values["HTU21d"]["Temp"])
+        lines += sensor_zone_lines(hum, ZONES_HUM, "Humidity", "%", max_values["HTU21d"]["Hum"])
+        body = Text("\n").join(lines)
+    return Panel(body, title="💧 HTU21d Sensor", border_style="grey37")
 
 def build_scd4x_panel():
     if isinstance(scd4x_data["Temperature"], float):
@@ -583,6 +612,24 @@ def build_scd4x_panel():
         body = f"[red]Sensor not ready[/red]"
     return Panel(body, title="🫁 SCD4x Sensor", border_style="grey37")
 
+def build_bme280_panel():
+    data = get_bme280_stats()
+    if "Sensor Error" in data:
+        body = f"[red]{data['Sensor Error']}[/red]"
+    else:
+        temp = data["Temperature"]
+        hum = data["Humidity"]
+        temp_all_history.append(temp)
+        for i, val in enumerate(temp_all_history):
+            temp_spike_history[i] = max(temp_spike_history[i], val)
+        max_values["BME280"]["Temp"] = max(max_values["BME280"]["Temp"], temp)
+        max_values["BME280"]["Hum"] = max(max_values["BME280"]["Hum"], hum)
+        lines = []
+        lines += sensor_zone_lines(temp, ZONES_TEMP, "Temp", "°C", max_values["BME280"]["Temp"])
+        lines += sensor_zone_lines(hum, ZONES_HUM, "Humidity", "%", max_values["BME280"]["Hum"])
+        body = Text("\n").join(lines)
+    return Panel(body, title="🌤 BME280 Sensor", border_style="grey37")
+
 def build_bh1750_panel():
     data = get_bh1750_stats()
     if "Sensor Error" in data:
@@ -598,6 +645,25 @@ def build_bh1750_panel():
         body = Text("\n").join(lines)
     return Panel(body, title="🔆 BH1750 Sensor", border_style="grey37")
 
+
+def build_room_panel():
+    try:
+        temp = sht31.temperature
+        humidity = sht31.relative_humidity
+        sht31d_history.append(temp)
+        for i, val in enumerate(temp_all_history):
+            temp_spike_history[i] = max(temp_spike_history[i], val)
+        for i, val in enumerate(sht31d_history):
+            sht31d_spike_history[i] = max(sht31d_spike_history[i], val)
+        max_values["Room"]["Temp"] = max(max_values["Room"]["Temp"], temp)
+        max_values["Room"]["Hum"] = max(max_values["Room"]["Hum"], humidity)
+        lines = []
+        lines += sensor_zone_lines(temp, ZONES_TEMP_ROOM, "Room Temp", "°C", max_values["Room"]["Temp"])
+        lines += sensor_zone_lines(humidity, ZONES_HUM, "Room Hum", "%", max_values["Room"]["Hum"])
+        body = Text("\n").join(lines)
+    except Exception as e:
+        body = f"[red]Sensor Error: {e}[/red]"
+    return Panel(body, title="🏠 Room Stats (SHT31)", border_style="grey37")
 
 def build_combined_tent_environment_panel():
     try:
@@ -653,48 +719,6 @@ def watering_rhythm_sparkline():
         return sparkline(intervals, max_value=10, color="cyan")
     except:
         return Text("No rhythm data", style="dim")
-def build_combined_tent_environment_panel():
-    try:
-        # Tent sensor readings
-        temp_mcp = mcp9808.temperature
-        temp_adt = adt7410.temperature
-        data_bme = get_bme280_stats()
-        temp_bme = data_bme["Temperature"] if "Sensor Error" not in data_bme else None
-
-        # Environment readings
-        co2_str = environment_data["CO₂"]
-        pressure_str = environment_data["Pressure"]
-        lux_str = environment_data.get("Lux", "Waiting...")
-
-        co2_value = float(co2_str.split()[0]) if "ppm" in co2_str else 0.0
-        pressure_value = float(pressure_str.split()[0]) if "hPa" in pressure_str else 0.0
-        lux_value = float(lux_str.split()[0]) if "Lux" in lux_str else 0.0
-
-        # Update max trackers
-        max_values["Tent"]["MCP9808"] = max(max_values["Tent"]["MCP9808"], temp_mcp)
-        max_values["Tent"]["ADT7410"] = max(max_values["Tent"]["ADT7410"], temp_adt)
-        if temp_bme is not None:
-            max_values["Tent"]["BME280"] = max(max_values["Tent"]["BME280"], temp_bme)
-
-        max_values["Environment"]["CO₂"] = max(max_values["Environment"]["CO₂"], co2_value)
-        max_values["Environment"]["Pressure"] = max(max_values["Environment"]["Pressure"], pressure_value)
-        max_values["Environment"]["Lux"] = max(max_values["Environment"]["Lux"], lux_value)
-
-        # Build lines
-        lines = []
-        lines += sensor_zone_lines(temp_mcp, ZONES_TEMP, "MCP9808", "°C", max_values["Tent"]["MCP9808"])
-        lines += sensor_zone_lines(temp_adt, ZONES_TEMP, "ADT7410", "°C", max_values["Tent"]["ADT7410"])
-        if temp_bme is not None:
-            lines += sensor_zone_lines(temp_bme, ZONES_TEMP, "BME280", "°C", max_values["Tent"]["BME280"])
-        lines += sensor_zone_lines(co2_value, ZONES_CO2, "CO₂", "ppm", max_values["Environment"]["CO₂"])
-        lines += sensor_zone_lines(pressure_value, ZONES_PRESSURE, "Pressure", "hPa", max_values["Environment"]["Pressure"])
-        lines += sensor_zone_lines(lux_value, get_mood_lux_palette(), "Lux", "Lux", max_values["Environment"]["Lux"])
-
-        body = Text("\n").join(lines)
-        return Panel(body, title="🌡 Tent + Environment", border_style="grey37")
-
-    except Exception as e:
-        return Panel(f"[red]Sensor Error: {e}[/red]", title="🌡 Tent + Environment", border_style="red")
 
 def render_high_graph(data, threshold, max_value, width=60):
     blocks = "▁▂▃▄▅▆▇█"
@@ -1080,8 +1104,11 @@ def build_dashboard():
     ]
 
     third_row_panels = [
+        build_htu21d_panel(),
         build_scd4x_panel(),
-        build_combined_sensor_panel()
+        build_bme280_panel(),
+        build_ahtx0_panel(),
+        build_room_panel()
     ]
     fourth_row_panels = [
         get_as7341_panel(),
