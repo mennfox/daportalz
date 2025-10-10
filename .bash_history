@@ -1,76 +1,3 @@
-sudo git push origin main
-vi test.py 
-python3 -u test.py 
-vi test.py 
-python3 -u test.py 
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-vi test.py 
-python3 -u test.py 
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-vi test.py 
-cp dpz.py test.py 
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-vi test.py 
-grep typewriter test.py
-git status
-git log --oneline
-git add test.py
-git commit -m "Remove typewriter logic"
-git push origin main --force
-cp test.py dashboard.py
-vi dashboard.py 
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-vi test.py 
-python3 -u test.py 
-vi test.py 
-python3 -u test.py 
-vi test.py 
-python3 -u test.py 
-vi test.py 
-python3 -u test.py 
-ls
-cp 5 test.py
-pyton3 -u test.py 
-python3 -u test.py 
-cp dpz.py test.py 
-vi test.py
-python3 -u test.py 
-cp test.py 6
-cp dpz.py test.py
-vi test.py
-python3 -u test.py 
-vi test.py
-python3 -u test.py 
-cp test.py dpz.py 
-cp test.py 7
-ls
-vi test.py
-i2cdetect -y 1
-cd sensors/
-python3 -u dpz.py 
-cp 7 test.py
-python3 -u test.py 
-cp 6 test.py
-python3 -u test.py 
-cp test.py dpz.py 
-python3 -u test.py 
-python3 -u test.py
-cd sensors/
-cp test.py dpz.py 
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-vi test.py
-python -u test.py
-vi test.py
 sudo reboot now
 cd sensors/
 sudo git add .
@@ -1998,3 +1925,76 @@ reboot
 clear
 reboot
 halt -p
+pwd
+cd modules/
+ls
+ls *.py
+cat system.metrics.py
+mkdir tmp
+mv system_metrics.py tmp/
+mv runtime_health_panel.py tmp/
+ls
+mv loopdrift.py tmp/
+cd ..
+ls
+mkdir 29925
+mv 1 2 29925/
+cp test.py 29925/
+cp dpz.py 29925/
+mv 29925 backups/
+ls
+cd modules/
+vi system_panel.py
+vi performance_panels.py
+ls
+rm performance_panels.py 
+vi  performance_panels.py
+python3 -u performance_panels.py 
+rm performance_panels.py 
+vi  performance_panels.py
+vi performance_panels.py 
+rm performance_panels.py 
+vi performance_panels.py 
+rm performance_panels.py 
+vi performance_panels.py 
+vi dashboard_monitor.py
+rm dashboard_monitor.py 
+vi i2c_panel.py
+vi dashboard_monitor.py
+ls
+cd logs
+ls
+ls -la
+vi dashboard_monitor.py
+cd ..
+vi dashboard_monitor.py
+cp dashboard_monitor.py dm1
+rm dashboard_monitor.py 
+vi dashboard_monitor.py
+rm dashboard_monitor.py 
+vi dashboard_monitor.py
+ls -la /tmp/
+cat /tmp/daportalz_logs/watchdog_20250929_195845.log 
+vi test.py
+rm dashboard_monitor.py 
+vi dashboard_monitor.py
+rm dashboard_monitor.py 
+vi dashboard_monitor.py
+python3 -u test.py 
+ls
+cp 4 test.py
+vi test.py
+python3 -u test.py 
+5
+python3 -u test.py 
+cp 4 test.py
+python3 -u test.py 
+cp 4 test.py 
+python3 -u tet.py
+python3 -u test.py
+python3 -u dpz.py
+reboot
+sudo reboot
+5
+python3 -u test.py
+exit
