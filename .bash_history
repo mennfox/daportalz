@@ -1,87 +1,3 @@
-sudo reboot now
-cd sensors/
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-python3 -u dpz.py
-vi test.py
-python3 -u test.py
-cp dpz.py test.py 
-vi test.py
-pkill -f dpz.py
-vi test.py
-cd sensors
-cat test.py
-pkill -f test.py
-vi test.py
-python3 -u test.py
-vi test.py
-cat dpz.py
-vi test.py
-python3 -u test.py
-cp test.py 8
-clear
-vi test.py
-python3 -u test.py
-cp test.py dpz.py 
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-vi grow.py
-python3 -u grow.py 
-ls
-sudo apt update && sudo apt upgrade -y
-sudo apt install shellinabox -y
-sudo systemctl start shellinabox
-sudo systemctl enable shellinabox
-sudo vi /etc/default/shellinabox 
-sudo systemctl restart shellinabox
-sudo vi /etc/default/shellinabox 
-!
-sudo wget https://raw.githubusercontent.com/shellinabox/shellinabox/master/shellinabox/white-on-black.css -O /etc/shellinabox/white-on-black.css
-sudo vi /etc/default/shellinabox 
-sudo systemctl restart shellinabox
-cd sensors/
-vi grow.py 
-python3 -u grow.py 
-cat plants.json
-cd sensors
-ls
-python3 -u grow.py 
-cat plants.json
-cat dash
-cat dashboard.py 
-ls
-clear
-ls
-cat test2.py
-ls
-clear
-ls
-cat grow.py
-pyhon3 -u grow.py 
-clear
-python3 -u grow.py 
-cat plants.json
-cd sens
-cd sensors
-python3 -u dpz.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-python3 -u test.py
-cat grow.py 
-ls
-mkdir bup05
-mv 1 2 3 5 6 7 8 bup05/
-ls
-cp grow.py g1
-vi grow.py
-python3 -u grow.py 
-vi plant.
-clear
-vi plants.json 
-vi test.py
 cat plants.json
 cp grow.py g2
 rm grow.py 
@@ -1998,3 +1914,87 @@ sudo reboot
 5
 python3 -u test.py
 exit
+ls
+mkdir 101125
+mv 1 2 3 4 101125/
+cp dpz.py 101125/
+cp test.py 101125/
+python3 -u main.py 
+ls
+ls -la
+clea
+clear
+[200~sudo git add .
+sudo git commit -m "Updates"
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+python3 -u test.py 
+cd modules/
+vi tent_pany.py
+vi tent_panel.py
+cd ..
+vi test.py
+cd modules/
+mv tent_panel.py atmos_tent_panel.py
+cd ..
+vi test.py
+cp test.py 1
+vi test.py
+python3 -u test.py
+vi test.py
+pip3 install utils --break-system-packages
+python3 -u test.py
+cd modules
+vi utils
+python3 -u test.py
+cd ..
+python3 -u test.py
+pwd
+cd modules/
+ls
+cat utils 
+my utils utils.py
+mv utils utils.py
+cd ..
+python3 -u test.py
+cd modules/
+vi atmos_tent_panel.py 
+cd .
+python3 -u test.py
+cd ..
+python3 -u test.pycd 
+python3 -u test.py
+cd 1 test.py
+cp 1 test.py
+python3 -u tst.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+cp test.py 2
+ls
+mv 101125 backups/
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+cp 2 test.py 
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+[200~sudo git add .
+sudo git commit -m "Updates"
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+vi test.py
+sudo git add .
+clear
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+cp 2 test.py
+python3 -u test.py
+vi test.py
