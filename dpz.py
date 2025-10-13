@@ -54,6 +54,14 @@ from datetime import datetime, timedelta
 from modules import height
 from modules.height import height_bar
 from modules.moisture_chart import build_moisture_panel
+from modules.system_panel import get_system_panel
+from modules.i2c_panel import build_i2c_panel, scan_i2c_loop
+from modules.performance_panels import (
+    get_cpu_panel,
+    get_memory_panel,
+    get_disk_panel,
+    get_network_panel
+)
 
 WATCHDOG_LOG_DIR = Path("logs")
 WATCHDOG_LOG_DIR.mkdir(parents=True, exist_ok=True)
@@ -72,11 +80,6 @@ log_scroll_index = 0
 
 SUMMARY_SCROLL_WINDOW = 10  # Match height of averages panel
 summary_scroll_index = 0    # Scroll position tracker
-
-network_cache = {
-    "latency": "—",
-    "last_ping": 0.0
-}
 
 as7341_cache = {
     "channels": {},
@@ -127,13 +130,6 @@ SCD4X_REFRESH = 10.0
 
 scd4x_data = {"Temperature": "Waiting...", "Humidity": "Waiting..."}
 environment_data = {"CO₂": "Waiting...", "Pressure": "Waiting..."}
-HISTORY_LEN = 30
-cpu_histories = [deque([0]*HISTORY_LEN, maxlen=HISTORY_LEN) for _ in range(psutil.cpu_count())]
-mem_history = deque([0]*HISTORY_LEN, maxlen=HISTORY_LEN)
-disk_history = deque([0]*HISTORY_LEN, maxlen=HISTORY_LEN)
-net_sent_history = deque([0]*HISTORY_LEN, maxlen=HISTORY_LEN)
-net_recv_history = deque([0]*HISTORY_LEN, maxlen=HISTORY_LEN)
-prev_net = psutil.net_io_counters()
 
 core_colors = ["cyan", "magenta", "yellow", "green"]
 
@@ -163,6 +159,7 @@ def dual_bar_visual(used, total, width=20, used_color="blue", free_color="orange
     free_bar = Text("█" * free_len, style=free_color)
     return used_bar + free_bar
 
+
 def zone_color(value, zones):
     for threshold, color in zones:
         if value <= threshold:
@@ -175,243 +172,6 @@ def format_zone_bar(value, zones, label="", unit="", width=20, max_value=None):
     bar = bar_visual(value, max_value=scale, width=width, color=color)
     return Text(f"{label:<10} {value:.1f}{unit:<3} ", style=color) + bar
 
-def get_cpu_panel():
-    cpu_percents = psutil.cpu_percent(percpu=True)
-    freqs = psutil.cpu_freq(percpu=True)
-    load1, load5, load15 = os.getloadavg()
-
-    # Optional: Core temps
-    temps = psutil.sensors_temperatures().get("coretemp", [])
-    temp_map = {i: t.current for i, t in enumerate(temps)} if temps else {}
-
-    # Zone bar for overall CPU pressure
-    avg_usage = sum(cpu_percents) / len(cpu_percents)
-    ZONES_CPU = [(30, "green"), (60, "yellow"), (90, "red")]
-    pressure_bar = format_zone_bar(avg_usage, ZONES_CPU, label="CPU", unit="%", width=30)
-
-    table = Table(title="[bold cyan]CPU Usage[/bold cyan]", expand=True)
-    table.add_column("Core", style="bold")
-    table.add_column("Usage")
-    table.add_column("Freq")
-    table.add_column("Temp")
-    table.add_column("Graph")
-
-    for i, percent in enumerate(cpu_percents):
-        cpu_histories[i].append(percent)
-        color = core_colors[i] if i < len(core_colors) else "white"
-        graph = sparkline(cpu_histories[i], color=color)
-        freq = f"{freqs[i].current:.0f} MHz" if i < len(freqs) else "—"
-        temp = f"{temp_map.get(i, '—'):.1f}°C" if temp_map else "—"
-        table.add_row(f"Core {i}", colorize(percent), freq, temp, graph)
-
-    # Add system-wide metrics
-    table.add_row("—", "—", "—", "—", Text(f"Load Avg: {load1:.2f}, {load5:.2f}, {load15:.2f}", style="dim"))
-    table.add_row("—", "—", "—", "—", pressure_bar)
-
-    # Top process snapshot
-    try:
-        top_proc = max(psutil.process_iter(['pid', 'name', 'cpu_percent']), key=lambda p: p.info['cpu_percent'])
-        proc_info = f"{top_proc.info['name']} ({top_proc.info['cpu_percent']:.1f}%)"
-        table.add_row("—", "—", "—", "—", Text(f"Top Proc: {proc_info}", style="dim"))
-    except Exception:
-        table.add_row("—", "—", "—", "—", Text("Top Proc: —", style="dim"))
-
-    return Panel(table, border_style="grey37")
-
-def get_memory_panel():
-    mem = psutil.virtual_memory()
-    swap = psutil.swap_memory()
-
-    mem_history.append(mem.percent)
-    max_mem = max(mem_history) or 1.0
-    graph = sparkline(mem_history, max_value=max_mem, color="magenta")
-
-    table = Table(title="[bold magenta]Memory[/bold magenta]", expand=True)
-    table.add_column("Used")
-    table.add_column("Total")
-    table.add_column("Usage")
-    table.add_column("Graph")
-
-    # RAM row
-    table.add_row(
-        f"{mem.used // (1024**2)} MB",
-        f"{mem.total // (1024**2)} MB",
-        colorize(mem.percent),
-        graph
-    )
-
-    # Swap row
-    table.add_row(
-        f"{swap.used // (1024**2)} MB",
-        f"{swap.total // (1024**2)} MB",
-        colorize(swap.percent),
-        Text("Swap", style="dim")
-    )
-
-    # Peak usage row
-    table.add_row(
-        "—",
-        "—",
-        f"[bold magenta]{max_mem:.1f}%[/bold magenta]",
-        Text("Peak", style="dim")
-    )
-
-    # Top processes section
-    try:
-        top_procs = sorted(
-            psutil.process_iter(['name', 'memory_info']),
-            key=lambda p: p.info['memory_info'].rss,
-            reverse=True
-        )[:3]
-
-        for proc in top_procs:
-            mem_mb = proc.info['memory_info'].rss // (1024**2)
-            table.add_row(
-                f"[cyan]{proc.info['name']}[/cyan]",
-                f"{mem_mb} MB",
-                "—",
-                Text("Top Proc", style="dim")
-            )
-    except Exception as e:
-        table.add_row("Error", "—", "—", Text(str(e), style="red"))
-
-    return Panel(table, border_style="grey37")
-
-def get_disk_panel():
-    usage = psutil.disk_usage("/")
-    swap = psutil.swap_memory()
-
-    # I/O rate
-    if not hasattr(console, "prev_disk_io"):
-        console.prev_disk_io = psutil.disk_io_counters()
-    curr_io = psutil.disk_io_counters()
-    read_rate = (curr_io.read_bytes - console.prev_disk_io.read_bytes) / REFRESH_INTERVAL / 1024
-    write_rate = (curr_io.write_bytes - console.prev_disk_io.write_bytes) / REFRESH_INTERVAL / 1024
-    console.prev_disk_io = curr_io
-
-    # Bar visual for disk usage
-    bar = dual_bar_visual(
-        usage.used,
-        usage.total,
-        width=30,
-        used_color="blue",
-        free_color="yellow"
-    )
-
-    # Build table
-    table = Table(title="[bold yellow]Disk & Swap[/bold yellow]", expand=True)
-    table.add_column("Used")
-    table.add_column("Total")
-    table.add_column("Usage")
-    table.add_column("Graph")
-
-    # Disk row with inline bar
-    table.add_row(
-        f"{usage.used // (1024**3)} GB",
-        f"{usage.total // (1024**3)} GB",
-        colorize(usage.percent),
-        bar
-    )
-
-    # Swap row
-    table.add_row(
-        f"{swap.used // (1024**2)} MB",
-        f"{swap.total // (1024**2)} MB",
-        colorize(swap.percent),
-        Text("Swap", style="dim")
-    )
-
-    # I/O rate row
-    table.add_row(
-        f"{read_rate:.1f} KB/s",
-        f"{write_rate:.1f} KB/s",
-        "—",
-        Text("I/O Rate", style="dim")
-    )
-
-    return Panel(table, border_style="grey37")
-
-def update_network_latency_loop():
-    while True:
-        try:
-            result = subprocess.getoutput("ping -c 1 -W 1 192.168.1.254 | grep 'time='")
-            latency_val = result.split("time=")[-1].split()[0]
-            network_cache["latency"] = f"{latency_val} ms"
-            network_cache["last_ping"] = time.time()
-        except Exception:
-            network_cache["latency"] = "—"
-        time.sleep(30)  # Refresh every 30s
-
-def get_network_panel():
-    global prev_net
-    net_io = psutil.net_io_counters()
-    sent = (net_io.bytes_sent - prev_net.bytes_sent) / 1024
-    recv = (net_io.bytes_recv - prev_net.bytes_recv) / 1024
-    prev_net = net_io
-
-    net_sent_history.append(sent)
-    net_recv_history.append(recv)
-
-    max_sent = max(net_sent_history) or 1.0
-    max_recv = max(net_recv_history) or 1.0
-
-    graph_sent = sparkline(net_sent_history, max_value=max_sent, color="cyan")
-    graph_recv = sparkline(net_recv_history, max_value=max_recv, color="magenta")
-
-    errors = net_io.errin + net_io.errout
-    drops = net_io.dropin + net_io.dropout
-    latency_text = network_cache.get("latency", "—")
-
-    table = Table(title="[bold green]Network I/O[/bold green]", expand=True)
-    table.add_column("Metric", style="bold")
-    table.add_column("KB/s")
-    table.add_column("Graph")
-
-    table.add_row("Sent", f"[cyan]{sent:.1f}[/cyan]", graph_sent)
-    table.add_row("Recv", f"[magenta]{recv:.1f}[/magenta]", graph_recv)
-    table.add_row("Peak Sent", f"{max_sent:.1f}", Text("Peak", style="dim"))
-    table.add_row("Peak Recv", f"{max_recv:.1f}", Text("Peak", style="dim"))
-    table.add_row("Errors", f"{errors}", Text("Packets", style="red" if errors else "dim"))
-    table.add_row("Drops", f"{drops}", Text("Packets", style="yellow" if drops else "dim"))
-    table.add_row("Latency", latency_text, Text("Ping", style="dim"))
-
-    return Panel(table, border_style="grey37")
-
-def get_ip_address():
-    try:
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.connect(("8.8.8.8", 80))  # Google's DNS
-        ip = s.getsockname()[0]
-        s.close()
-        return ip
-    except Exception:
-        return "Unavailable"
-
-def get_system_panel():
-    load1, load5, load15 = os.getloadavg()
-    uptime_sec = time.time() - psutil.boot_time()
-    hours = int(uptime_sec // 3600)
-    minutes = int((uptime_sec % 3600) // 60)
-    now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-    ip_address = get_ip_address()
-
-    # System metadata
-    uname = os.uname()
-    hostname = uname.nodename
-    kernel = uname.release
-
-    table = Table(title="[bold blue]System Info[/bold blue]", expand=True)
-    table.add_column("Metric", style="bold")
-    table.add_column("Value")
-
-    table.add_row("Load Avg", f"[white]{load1:.2f}, {load5:.2f}, {load15:.2f}[/white]")
-    table.add_row("Uptime", f"[white]{hours}h {minutes}m[/white]")
-    table.add_row("Time", f"[white]{now}[/white]")
-    table.add_row("IP Address", f"[white]{ip_address}[/white]")
-    table.add_row("Hostname", f"[white]{hostname}[/white]")
-    table.add_row("Kernel", f"[white]{kernel}[/white]")
-
-    return Panel(table, border_style="grey37")
 
 def hydration_urgency_bar(days_ago, max_days=10, width=30):
     color = "green" if days_ago < 2 else "yellow" if days_ago < 5 else "red"
@@ -563,24 +323,6 @@ def color_for_address(addr):
         return "green"
     else:
         return "yellow"
-
-i2c_scan_cache = {"addresses": [], "timestamp": "Never"}
-
-def scan_i2c_loop(bus_id, interval):
-    global i2c_scan_cache
-    while True:
-        bus = smbus2.SMBus(bus_id)
-        found = []
-        for address in range(0x03, 0x77):
-            try:
-                bus.write_quick(address)
-                found.append(f"0x{address:02X}")
-            except OSError:
-                continue
-        bus.close()
-        i2c_scan_cache["addresses"] = found
-        i2c_scan_cache["timestamp"] = datetime.now().strftime("%H:%M:%S")
-        time.sleep(interval)
 
 def log_watchdog(msg):
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -776,29 +518,6 @@ def build_watchdog_log_panel():
     except Exception as e:
         return Panel(f"[red]Error reading watchdog log: {e}[/red]", title="🧩 Watchdog Logs", border_style="red")
 
-def build_i2c_panel():
-    addresses = i2c_scan_cache.get("addresses", [])
-    timestamp = i2c_scan_cache.get("timestamp", "Never")
-
-    # Convert to int for easy comparison
-    found = set(int(addr, 16) for addr in addresses)
-
-    lines = [Text("🔌 I²C Port Map", style="bold cyan")]
-    header = "     " + "  ".join(f"{x:X}" for x in range(16))
-    lines.append(Text(header, style="bold white"))
-
-    for row in range(0x00, 0x80, 0x10):
-        line = f"{row:02X}:"
-        for col in range(16):
-            addr = row + col
-            if addr in found:
-                line += f" {addr:02X}"
-            else:
-                line += " --"
-        lines.append(Text(line, style="white"))
-
-    lines.append(Text(f"Last scan: {timestamp}", style="dim"))
-    return Panel(Text("\n").join(lines), title="🧭 I²C Port Map", border_style="grey37")
 
 def build_averages_panel():
     try:
@@ -926,32 +645,6 @@ def build_bh1750_panel():
         body = Text("\n").join(lines)
     return Panel(body, title="🔆 BH1750 Sensor", border_style="grey37")
 
-def build_environment_panel():
-    try:
-        co2_str = environment_data["CO₂"]
-        pressure_str = environment_data["Pressure"]
-        lux_str = environment_data.get("Lux", "Waiting...")
-
-        co2_value = float(co2_str.split()[0]) if "ppm" in co2_str else 0.0
-        pressure_value = float(pressure_str.split()[0]) if "hPa" in pressure_str else 0.0
-        lux_value = float(lux_str.split()[0]) if "Lux" in lux_str else 0.0
-
-        # Update max values
-        max_values["Environment"]["CO₂"] = max(max_values["Environment"].get("CO₂", float('-inf')), co2_value)
-        max_values["Environment"]["Pressure"] = max(max_values["Environment"].get("Pressure", float('-inf')), pressure_value)
-        max_values["Environment"]["Lux"] = max(max_values["Environment"].get("Lux", float('-inf')), lux_value)
-
-        # Build panel lines
-        lines = []
-        lines += sensor_zone_lines(co2_value, ZONES_CO2, "CO₂", "ppm", max_values["Environment"]["CO₂"])
-        lines += sensor_zone_lines(pressure_value, ZONES_PRESSURE, "Pressure", "hPa", max_values["Environment"]["Pressure"])
-        lines += sensor_zone_lines(lux_value, get_mood_lux_palette(), "Lux", "Lux", max_values["Environment"]["Lux"])
-
-        body = Text("\n").join(lines)
-    except Exception as e:
-        body = f"[red]Sensor Error: {e}[/red]"
-
-    return Panel(body, title="🌍 Environment", border_style="grey37")
 
 def build_room_panel():
     try:
@@ -972,26 +665,48 @@ def build_room_panel():
         body = f"[red]Sensor Error: {e}[/red]"
     return Panel(body, title="🏠 Room Stats (SHT31)", border_style="grey37")
 
-def build_tent_panel():
+def build_combined_tent_environment_panel():
     try:
+        # Tent sensor readings
         temp_mcp = mcp9808.temperature
         temp_adt = adt7410.temperature
         data_bme = get_bme280_stats()
         temp_bme = data_bme["Temperature"] if "Sensor Error" not in data_bme else None
+
+        # Environment readings
+        co2_str = environment_data["CO₂"]
+        pressure_str = environment_data["Pressure"]
+        lux_str = environment_data.get("Lux", "Waiting...")
+
+        co2_value = float(co2_str.split()[0]) if "ppm" in co2_str else 0.0
+        pressure_value = float(pressure_str.split()[0]) if "hPa" in pressure_str else 0.0
+        lux_value = float(lux_str.split()[0]) if "Lux" in lux_str else 0.0
+
+        # Update max trackers
         max_values["Tent"]["MCP9808"] = max(max_values["Tent"]["MCP9808"], temp_mcp)
         max_values["Tent"]["ADT7410"] = max(max_values["Tent"]["ADT7410"], temp_adt)
         if temp_bme is not None:
             max_values["Tent"]["BME280"] = max(max_values["Tent"]["BME280"], temp_bme)
 
+        max_values["Environment"]["CO₂"] = max(max_values["Environment"]["CO₂"], co2_value)
+        max_values["Environment"]["Pressure"] = max(max_values["Environment"]["Pressure"], pressure_value)
+        max_values["Environment"]["Lux"] = max(max_values["Environment"]["Lux"], lux_value)
+
+        # Build lines
         lines = []
         lines += sensor_zone_lines(temp_mcp, ZONES_TEMP, "MCP9808", "°C", max_values["Tent"]["MCP9808"])
         lines += sensor_zone_lines(temp_adt, ZONES_TEMP, "ADT7410", "°C", max_values["Tent"]["ADT7410"])
         if temp_bme is not None:
             lines += sensor_zone_lines(temp_bme, ZONES_TEMP, "BME280", "°C", max_values["Tent"]["BME280"])
+        lines += sensor_zone_lines(co2_value, ZONES_CO2, "CO₂", "ppm", max_values["Environment"]["CO₂"])
+        lines += sensor_zone_lines(pressure_value, ZONES_PRESSURE, "Pressure", "hPa", max_values["Environment"]["Pressure"])
+        lines += sensor_zone_lines(lux_value, get_mood_lux_palette(), "Lux", "Lux", max_values["Environment"]["Lux"])
+
         body = Text("\n").join(lines)
+        return Panel(body, title="🌡 Tent + Environment", border_style="grey37")
+
     except Exception as e:
-        body = f"[red]Sensor Error: {e}[/red]"
-    return Panel(body, title="🌡 Tent Heatmap", border_style="grey37")
+        return Panel(f"[red]Sensor Error: {e}[/red]", title="🌡 Tent + Environment", border_style="red")
 
 def watering_rhythm_sparkline():
     try:
@@ -1385,8 +1100,7 @@ def build_dashboard():
         build_dashboard_health_panel(),
         build_watchdog_log_panel(),
         build_i2c_panel(),
-        build_tent_panel(),
-        build_environment_panel()
+        build_combined_tent_environment_panel()
     ]
 
     third_row_panels = [
@@ -1430,7 +1144,7 @@ def run_dashboard():
     threading.Thread(target=watchdog_ping_loop, name="watchdog_ping_loop", daemon=True).start()
     threading.Thread(target=update_as7341_loop, name="as7341_loop", daemon=True).start()
     threading.Thread(target=update_bh1750_loop, name="update_bh1750_loop", daemon=True).start()
-    threading.Thread(target=update_network_latency_loop, name="network_latency_loop", daemon=True).start()
+    threading.Thread(target=scan_i2c_loop, name="i2c_scan_loop", daemon=True).start()
     # 🧼 Clear screen before banner
     os.system("clear")  
 
