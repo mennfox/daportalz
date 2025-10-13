@@ -1,178 +1,3 @@
-sudo git push origin main
-cat plants.json
-vi test.py
-python3 -u test.py
-cd sensors/
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-copy dpz.py test.py
-cp dpz.py test.py
-python3 -u dpz.py 
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-vi test.py
-python3 -u test.py
-cp dpz.py test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-cd /home/pi/sensors/
-vi test.py
-rm .test.py.swp
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-clear
-python3 -u test.py
-cd sensors
-test test.py t4
-cp test.py t4
-vi test.py
-python3 -u grow.py 
-vi plants.json
-python3 -u test.py
-vi plants.json
-python3 -u test.py
-cp test.py t5
-vi test.py
-vat grow.py
-cat grow.py
-vi grow.py
-clear
-vi test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-vi test.py
-python3 -u test.py
-vi grow.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-catr plants.json
-cat plants.json
-clear
-vi test.py
-cp test.py dpz.py 
-python3 -u dpz.py 
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-vi test.py
-clear
-python3 -u test.py
-cp test.py t6
-vi test.py
-python3 -u test.py
-cp test.py tt7
-cp test.py dpz.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-python3 -u dpz.py 
-vi repot.py
-rm repot.py 
-vi report.py
-report.py
-repot.py
-python3 -u repot.py
-mv report.py repot.py
-python3 -u repot.py
-python3 -u dpz.py 
-vi plants.json
-python3 -u dpz.py 
-cd sensors/
-cp test.py dpz.py 
-python3 -u dpz.py 
-python3 -u dpz.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-python3 -u dpz.py
-cp dpz.py d1
-cp test.py dpz.py 
-python3 -u dpz.py 
-python3 -u test.py
-python3 -u test.py 
-cat tst.py
-cat test.py
-python3 -u test.py 
-python3 -u test.py
-python3 -u dps.py
-ls t*
-cp t9 test.py
-python3 -u test.py
-cp test.py dpz.py
-vi test.py
-python3 -u test.py
-python3 -u dpz.py
-python3 -u test.py
-python3 -u dpz.py
-python3 -u test.py
-cp test.py dpz.py
-cd sensors/
-vi test.py
-python3 -u test.py
-cp dpz.py test.py
-clear
-vi teest.py
-vi test.py
-python3 -u test.py
-sudo pkill -f dpz.py
-vi test.py
-python3 -u test.py
-clear
-cp test.py t7
-cp test.py dpz.py
-vi test.py
-vi tst.py
-clear
-vi test.py
-cp test.py t8
-rm tt7
-vi test.py
-python3 -u test.py
-vi test.py
-cat dpz.py
-vi test.py
-python3 -u test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-cp dpz.py test.py
-python3 -u test.py
-cp t8 test.py
-python3 -u test.py
-vi test.py
-cp test.py 9
-python3 -u test.py
-clear
-vi test.py
-clear
-python3 -u test.py
-cat dpz.py
-vi test.py
-:x!
-sudo git commit -m "Updates"clear
-q!
 cleart
 clear
 vi test.py
@@ -1997,4 +1822,179 @@ vi test.py
 python3 -u test.py
 ls
 cp 1 test.py 
+python3 -u test.py
+ls
+mkdir 131025
+mv 1 131025/
+cp dpz.py 131025/
+cp test.py 131025/
+mv 131025/ backups/
+cp test.py 1
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+python3 -u test.py
+vi test.py 
+cd modules/
+ls
+rm htu21d_panel.py 
+cd ..
+python3 -u test.py
+cd modules/
+cd ..
+cp test.py dpz.py 
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+ls
+python3 -u grow.py 
+python3 -u test.py
+cd modules/
+ls
+vi system_panel.py 
+cat sensor_core.py 
+rm sensor_core.py 
+cat temp_panels.py 
+rm temp_panels.py 
+ls
+cat atmos_tent_panel.py 
+ls
+cat dashboard_monitor.py 
+ls
+cd tmp
+ls
+cd ..
+rm -r tmp
+ls
+cd ..
+python3 -u dpz.py 
+cd modules
+ls
+ls -la
+rm dm1
+ls -la
+cd ..
+cd modules/
+vi atmos_tent_panel.py 
+rm atmos_tent_panel.py 
+ls
+mv m1 m2 m3 m4 utils.py ../backups/131025/
+ls
+vi dashboard_monitor.py 
+mv dashboard_monitor.py ../backups/131025/
+cd ..
+python3 -u dpz.py
+cd modules/
+vi sensor_panels.py
+cd ..
+ls
+vi dpz.py
+python3 -u dpz.py
+vi dpz.py
+python3 -u dpz.py
+cd modules/
+vi sensor_panels.py 
+cd ..
+python3 -u dpz.py
+touch modules/zone_utils.py
+pwd
+ls
+cd modules/
+ls
+vi zone_utils.py 
+vi sensor_panels.py 
+cd ..
+python3 -u dpz.py
+cd modules/
+vi zone_utils.py 
+cd ..
+python3 -u dpz.py
+cd modules/
+cd ..
+rm test.py
+vi test.py
+python3 -u test.py
+rm test.py
+cp 1 dpz.py 
+vi test.py
+python3 -u test.py 
+python3 -u dpz.py
+clear
+python3 -u test.py 
+python3 -u dpz.py
+vi dpz.py
+python3 -u dpz.py
+cd modules/
+vi dashboard_health.py
+clear
+vi test.py
+cd ..
+vi test.py
+python3 -u test.py 
+cd modules/
+vi dashboard_health.py 
+cd ..
+python3 -u test.py 
+cd modules/
+vi dashboard_health.py 
+cd ..
+python3 -u test.py 
+python3 -u dpz.py 
+cd modules/
+vi as7341_panel.py
+vi test.py
+cd ..
+vi test.py
+python3 -u test.py 
+vi test.py
+cd modules/
+cd ..
+vi test.py
+cd modules/
+vi as7341_panel.py 
+vi as7341_sensor.py
+cd ..
+vi test.py
+python3 -u test.py
+vi test.py
+cd modules/
+ls as7341_
+ls as*
+cat as7341_sensor.py 
+cat as7341_panel.py 
+cd ..
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+cd modules/
+ls
+cd ..
+vi test.py
+python3 -u test.py
+cd modules/
+ls
+cd ..
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+cd modules/
+ls
+cd ..
+vi test.py
+python3 -u test.py
+ls
+vi test.py
+python3 -u test.py
+cat test.py
+vi test.py
+python3 -u test.py
+cp test.py 2
 python3 -u test.py

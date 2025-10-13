@@ -1,93 +1,68 @@
 [
   {
     "id": 1,
-    "name": "Banana Punch",
+    "name": "Auto Do-Si-Dos",
     "type": "Auto",
     "breeder": "Discreet Seeds",
-    "propagation_date": "26/7/25",
-    "repot_date": null,
+    "propagation_date": "13/10/25",
+    "repot_date": "",
     "progress": null,
     "last_watered": null,
-    "status": "Unknown",
-    "height": 43.0,
-    "prev_height": 34.0
+    "status": "Unknown"
   },
   {
     "id": 2,
-    "name": "Californian Snow",
+    "name": "Auto Grapefruit",
     "type": "Auto",
-    "breeder": "FastBuds",
-    "propagation_date": "26/7/25",
-    "repot_date": null,
+    "breeder": "Discreet Seeds",
+    "propagation_date": "13/10/25",
+    "repot_date": "",
     "progress": null,
     "last_watered": null,
-    "status": "Unknown",
-    "height": 43.0,
-    "prev_height": 26.0
+    "status": "Unknown"
   },
   {
     "id": 3,
-    "name": "Crystal Meth",
+    "name": "Zerbert Auto",
     "type": "Auto",
-    "breeder": "FastBuds",
-    "propagation_date": "26/7/25",
-    "repot_date": null,
+    "breeder": "Eleven Thirty",
+    "propagation_date": "13/10/25",
+    "repot_date": "",
     "progress": null,
     "last_watered": null,
-    "status": "Unknown",
-    "height": 46.3,
-    "prev_height": 40.0
+    "status": "Unknown"
   },
   {
     "id": 4,
-    "name": "Lemon Zkittlez",
+    "name": "Original Russian",
     "type": "Auto",
-    "breeder": "Discreet Seeds",
-    "propagation_date": "26/7/25",
-    "repot_date": null,
+    "breeder": "Fastbuds",
+    "propagation_date": "13/10/25",
+    "repot_date": "",
     "progress": null,
     "last_watered": null,
-    "status": "Unknown",
-    "height": 31.0,
-    "prev_height": 33.0
+    "status": "Unknown"
   },
   {
     "id": 5,
-    "name": "Cinderella",
+    "name": "Mexican Airline",
     "type": "Auto",
-    "breeder": "FastBuds",
-    "propagation_date": "26/7/25",
-    "repot_date": null,
+    "breeder": "Fastbuds",
+    "propagation_date": "13/10/25",
+    "repot_date": "",
     "progress": null,
     "last_watered": null,
-    "status": "Unknown",
-    "height": 43.0,
-    "prev_height": 49.0
+    "status": "Unknown"
   },
   {
     "id": 6,
-    "name": "C4",
+    "name": "Rhino Ryder",
     "type": "Auto",
-    "breeder": "FastBuds",
-    "propagation_date": "26/7/25",
-    "repot_date": null,
+    "breeder": "Fastbuds",
+    "propagation_date": "13/10/25",
+    "repot_date": "",
     "progress": null,
     "last_watered": null,
-    "status": "Unknown",
-    "height": 42.5,
-    "prev_height": 33.0
-  },
-  {
-    "id": 7,
-    "name": "Bubblegum",
-    "type": "Auto",
-    "breeder": "FastBuds",
-    "propagation_date": "26/7/25",
-    "repot_date": null,
-    "progress": null,
-    "last_watered": null,
-    "status": "Unknown",
-    "height": 31.5,
-    "prev_height": 41.0
+    "status": "Unknown"
   }
 ]
