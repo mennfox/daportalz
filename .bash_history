@@ -1,44 +1,3 @@
-cat plants.json
-cp grow.py g2
-rm grow.py 
-vi grow.py
-python3 -u grow.py
-python3 -u test.py
-cd sensors/
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi tesat/py
-vi test.py
-python3 -u test.py
-ci plants.json
-vi plants.json
-cat plants.json
-ls *.json
-:x!
-cp test.py t1
-vi test.py
-python3 -u test.py
-cp t1 test.py
-vi test.py
-python3 -u test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-cp dpz.py test.py
-vu test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-cat plants.json
-vi test.py
-cp test.py t2
-vi test.py
-python3 -u test.py
-cp test.py t3
-sudo git add .
-sudo git commit -m "Updates"
 sudo git push origin main
 cat plants.json
 vi test.py
@@ -1998,3 +1957,44 @@ vi test.py
 cp 2 test.py
 python3 -u test.py
 vi test.py
+ls
+mkdir 111025
+mv 1 2 111025/
+cp test.py 111025/
+cp dpz.py 111025/
+mv 111025 backups/
+ls
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+cp test.py 1
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+clear
+cd modules/
+vi temp_panels.py
+:q!
+vi temp_panels.py 
+cd ..
+python3 -u test.py
+vi sensor_core.py
+vi htu21d_panel.py
+pwd
+mv sensor_core.py modules/
+mv htu21d_panel.py modules/
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test/py
+vi test.py 
+python3 -u test.py
+vi test.py 
+python3 -u test.py
+ls
+cp 1 test.py 
+python3 -u test.py
