@@ -64,7 +64,6 @@ def build_dashboard(watchdog_config):
     system_grid = Table.grid(padding=(1, 2))
     system_grid.add_column()
     system_grid.add_column()
-    system_grid.add_column()
 
     system_grid.add_row(get_system_panel(), get_cpu_panel(), build_dashboard_health_panel(console))
     system_grid.add_row(get_memory_panel(), get_disk_panel(), build_watchdog_log_panel(watchdog_config)) 
@@ -72,6 +71,12 @@ def build_dashboard(watchdog_config):
 
     layout.add_row(system_grid)
  
+    layout.add_row(
+#        build_i2c_panel(),
+        build_dashboard_health_panel(console),
+        build_watchdog_log_panel(watchdog_config),
+        build_as7341_panel(as7341_cache)
+    )
 
     layout.add_row(build_sensor_cluster_panel())
 
