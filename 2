@@ -7,75 +7,99 @@ import time
 import board
 import busio
 from adafruit_as7341 import AS7341
+import threading
 
 # 🧩 Your custom modules only
 from modules.as7341_sensor import init_as7341, create_as7341_cache, start_as7341_loop
 from modules.as7341_panel import build_as7341_panel
-
-# Initialize sensor and cache
-as7341 = init_as7341()
-as7341_cache = create_as7341_cache()
-start_as7341_loop(as7341, as7341_cache)
 from modules.watering import get_last_watered_text
 from modules.dashboard_health import build_dashboard_health_panel
 from modules.height import height_bar
-from modules.moisture_chart import build_moisture_panel
+# from modules.moisture_chart import build_moisture_panel  # logging removed
 from modules.system_panel import get_system_panel
 from modules.i2c_panel import build_i2c_panel, scan_i2c_loop
+from modules.grow_dashboard import build_grow_dashboard
+from modules.watering_panel import build_watering_panel
 from modules.performance_panels import (
     get_cpu_panel, get_memory_panel, get_disk_panel, get_network_panel
 )
 from modules.sensor_panels import build_sensor_cluster_panel
-from modules.grow_tracker import build_grow_panel
+from modules.watchdog_panel import WatchdogConfig, build_watchdog_log_panel, log_watchdog, watchdog_ping_loop
 
+# 🌐 Console
 console = Console()
 
+# 🌿 Sensor Initialization
+as7341 = init_as7341()
+as7341_cache = create_as7341_cache()
+start_as7341_loop(as7341, as7341_cache)
+
+# 🔁 Refresh interval
 REFRESH_INTERVAL = 1.0
 
-def build_dashboard():
+def build_main_system_panel():
+    grid = Table.grid(padding=(1, 2))
+    grid.add_row(
+        get_system_panel(),
+        get_cpu_panel(),
+        get_memory_panel()
+    )
+    grid.add_row(
+        get_disk_panel(),
+        get_network_panel(),
+        get_i2c_panel()  # Example: swap in any other panel here
+    )
+    grid.add_row(
+        get_watchdog_log_panel(),
+        build_dashboard_health_panel(),
+        build_averages_panel()
+    )
+
+    return Panel(grid, title="🧠 Core System Glyph", border_style="grey37")
+
+# 🧩 Dashboard builder with config passed in
+def build_dashboard(watchdog_config):
     layout = Table.grid(padding=(1, 2))
 
-    # 🧠 System + Performance Panels
     layout.add_row(
+        get_system_panel(),
         get_cpu_panel(),
         get_memory_panel(),
         get_disk_panel(),
-        get_network_panel(),
-        get_system_panel()
+        get_network_panel()
     )
 
-    # 🌱 Grow Tracker Panel
-    grow_panel = Panel(
-        Group(
-            height_bar(42.0, 38.5),  # Example height values
-            get_last_watered_text()
-        ),
-        title="🌱 Grow Tracker",
-        border_style="green"
-    )
-
-    # 🌿 Moisture + I2C Panels
     layout.add_row(
         build_i2c_panel(),
         build_dashboard_health_panel(console),
-        build_as7341_panel(as7341_cache),
-        build_grow_panel()
+        build_watchdog_log_panel(watchdog_config),
+        build_as7341_panel(as7341_cache)
     )
 
     layout.add_row(build_sensor_cluster_panel())
 
-    return layout
+    # Separate layout for full-width panels
+    grow_layout = Table.grid(padding=(1, 2))
+    grow_layout.add_row(build_grow_dashboard())
+    grow_layout.add_row(build_watering_panel(show_panel=True))
 
+    # Combine both layouts
+    return Group(layout, grow_layout)
+
+# 🚀 Dashboard runner
 def run_dashboard():
-    # Optional: start I2C scan loop
-    import threading
+    watchdog_config = WatchdogConfig()
+    log_watchdog("✅ Sentinel Echo initialized.", watchdog_config)
+
     threading.Thread(target=scan_i2c_loop, name="i2c_scan_loop", daemon=True).start()
+    threading.Thread(target=watchdog_ping_loop, args=(watchdog_config,), name="watchdog_ping_loop", daemon=True).start()
 
     with Live(console=console, refresh_per_second=10, screen=True) as live:
         while True:
-            live.update(build_dashboard())
+            live.update(build_dashboard(watchdog_config))
             time.sleep(REFRESH_INTERVAL)
 
+# 🧭 Entry point
 if __name__ == "__main__":
     run_dashboard()
 

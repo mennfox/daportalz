@@ -90,5 +90,15 @@
     "uptake": "full",
     "response_time_hr": 15.0,
     "leaf_status": "yellowing"
+  },
+  {
+    "timestamp": 1760826202.4228892,
+    "volume_ml": 5,
+    "method": "top",
+    "pot_size_l": 7.0,
+    "interval_days": 1,
+    "uptake": "slow",
+    "response_time_hr": 0.0,
+    "leaf_status": ""
   }
 ]
