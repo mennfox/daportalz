@@ -1,0 +1,48 @@
+# modules/moisture_chart.py
+
+import board
+import busio
+import adafruit_ads1x15.ads1015 as ADS
+from adafruit_ads1x15.analog_in import AnalogIn
+from rich.text import Text
+from rich.panel import Panel
+from rich.table import Table
+
+# Initialize I2C and ADC
+i2c = busio.I2C(board.SCL, board.SDA)
+ads = ADS.ADS1015(i2c, address=0x49)
+channels = [AnalogIn(ads, ADS.P0), AnalogIn(ads, ADS.P1), AnalogIn(ads, ADS.P2), AnalogIn(ads, ADS.P3)]
+
+# Soil condition thresholds (voltage-based)
+def classify_soil(voltage):
+    if voltage < 2.3:
+        return "Saturated", "blue"
+    elif voltage < 2.8:
+        return "Moist", "green"
+    else:
+        return "Dry", "yellow"
+
+# Build horizontal bar with gradient
+def build_bar(voltage, max_voltage=3.3, width=30):
+    filled = int((voltage / max_voltage) * width)
+    condition, color = classify_soil(voltage)
+    bar = Text()
+    for i in range(width):
+        style = color if i < filled else "grey23"
+        bar.append("█", style=style)
+    return bar, condition, color
+
+def build_moisture_panel():
+    values = [chan.voltage for chan in channels]
+    table = Table.grid(padding=(0, 1))
+    table.add_column(justify="left", style="bold white")
+    table.add_column(justify="left")
+    table.add_column(justify="left", style="bold white")
+
+    for idx, voltage in enumerate(values):
+        bar, condition, color = build_bar(voltage)
+        label = f"CH{idx+1} [{condition}]"
+        volt_str = f"{voltage:.2f} V"
+        table.add_row(label, bar, volt_str)
+
+    return Panel(table, title="🌱 Moisture Chart", border_style="grey37")

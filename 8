@@ -18,12 +18,11 @@ from modules.height import height_bar
 from modules.moisture_chart import build_moisture_panel  # logging removed
 from modules.system_panel import get_system_panel
 from modules.i2c_panel import build_i2c_panel, scan_i2c_loop
-from modules.grow_dashboard import build_grow_dashboard
-
 from modules.performance_panels import (
     get_cpu_panel, get_memory_panel, get_disk_panel, get_network_panel
 )
 from modules.sensor_panels import build_sensor_cluster_panel
+from modules.grow_tracker import build_grow_panel
 from modules.watchdog_panel import WatchdogConfig, build_watchdog_log_panel, log_watchdog, watchdog_ping_loop
 
 # 🌐 Console
@@ -61,7 +60,7 @@ def build_dashboard(watchdog_config):
 
     # Separate layout for full-width panels
     grow_layout = Table.grid(padding=(1, 2))
-    grow_layout.add_row(build_grow_dashboard())
+    grow_layout.add_row(build_grow_panel())
 
     # Combine both layouts
     return Group(layout, grow_layout)

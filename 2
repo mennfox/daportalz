@@ -25,8 +25,11 @@ from modules.i2c_panel import build_i2c_panel, scan_i2c_loop
 from modules.performance_panels import (
     get_cpu_panel, get_memory_panel, get_disk_panel, get_network_panel
 )
+from modules.sensor_panels import build_sensor_cluster_panel
+from modules.grow_tracker import build_grow_panel
 
 console = Console()
+
 REFRESH_INTERVAL = 1.0
 
 def build_dashboard():
@@ -53,12 +56,13 @@ def build_dashboard():
 
     # 🌿 Moisture + I2C Panels
     layout.add_row(
-        build_moisture_panel(),
         build_i2c_panel(),
         build_dashboard_health_panel(console),
         build_as7341_panel(as7341_cache),
-        grow_panel
+        build_grow_panel()
     )
+
+    layout.add_row(build_sensor_cluster_panel())
 
     return layout
 

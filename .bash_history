@@ -1,378 +1,3 @@
-cp dpz.py test.py
-cp dpz.py zpd
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-cp dpz.py test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-cp dpz.py test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-cp dpz.py test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-cp dpz.py test.py
-reboot
-sudo reboot
-vi test.py
-python3 -u test.py
-python3 -u dpz.py
-vp dpz.py test.py
-cp dpz.py test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-ls
-pwd
-cd backups/
-cd ..
-cd 3925
-ls
-cp 1 /home/pi/test.py
-cd ..
-python3 -u test.py
-pwd
-cp dpz.py test.py
-reboot
-sudo reboot
-cd /home/pi
-vi test.py
-rm test.py
-vi test.py
-python3 -u test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-vi test.py
-python3 -u test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-vi test.py
-python3 -u test.py
-cp dpz.py test.py
-vi test.py
-ls
-cd backups/
-la
-ls
-cd bup07/
-ls
-pytthon3 -u test.py
-python3 -u test.py 
-cd test.py ./
-cp test.py ./
-cp test.py .
-cp test.py /home/pi/
-pkill -f test.py
-lear
-pwd
-clear
-ls
-cd ..
-ls
-cd bup07/
-ls
-cd ..
-ls
-cd bup07/
-ls
-cd bup067
-cd bup06
-ls
-cp t9 /home/pi/test.py
-cp t1 /home/pi/test.py
-su
-cd /home/pi/
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-htop
-sudo service motion stop
-pkill -f test.py
-pwd
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-su root
-pwd
-vi test.py
-pkill -f test.py
-ls
-cd logs
-ls
-tail -f watchdog_20250905_055221.log 
-cd ..
-vi test.py
-cat dpz.py
-vi test.py
-cd logs
-tail -f watchdog_20250905_055221.log 
-rm *
-ls
-cd ..
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-cd logs/
-ls
-tail -f watchdog_20250905_060614.log 
-su root
-vi test.py 
-sudo rm .test.py.swp
-vi test.py
-cp 12 test.py
-vi test.py
-vi test.pyvi test.py
-pwd
-vi test.py
-cp 12 test.py
-vi test.py
-cp test.py 13
-vi test.py
-cp test.py 13
-vi test.py
-btop
-cp test.py 14
-vi test.py
-ls
-cp 14 test.py
-cd logs
-ls
-ls -la
-date
-rm *
-ls
-cd logs
-tail -f watchdog_20250905_060614.log 
-ls
-tail -f watchdog_20250905_202957.log 
-ls
-l
-cd /home/pi/logs
-ls
-ls -la
-vi watchdog_20250905_231439.log 
-vi watchdog_20250905_6954137.log 
-vi watchdog_20250906_003353.log 
-cd ..
-vi test.py
-python3 -u watering_log.py 
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-cd logs
-ls
-ls -la
-split -b 750k watchdog_20250906_003312.log watchdog_chunk_
-split -b 750k watchdog_20250906_003353.log watchdog_chunk_
-ls
-ls -la
-cd ..
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-cd logs
-ls -la
-vi watchdog_20250906_003353.log 
-vi watchdog_2.log 
-vi watchdog_20250905.232900log 
-vi watchdog_20250905.232900.log 
-vi watchdog_20250905_232900.log
-vi watchdog_20250905_234723.log
-python3 -u watering_log.py 
-ls
-mkdir 6925
-mv 1 2 3 4 5 6 7 8 9 10 11 12 13 14 6925/
-ls
-cd backups/
-ls
-cd ..
-ls
-mv -r 3925/ 6925/ 4925/ backups/
-mv -p 3925/ 6925/ 4925/ backups/
-mv  3925/ 6925/ 4925/ backups/
-sudo mv  3925/ 6925/ 4925/ backups/
-ls
-cp test.py 1
-vi test.py 
-touch modules/runtime_health_panel.py
-sudo touch modules/runtime_health_panel.py
-vi modules/runtime_health_panel.py 
-sudo vi modules/runtime_health_panel.py 
-pwd
-sudo vi trest.py
-sudo vi test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-vi test.py
-ls
-mkdir tmp
-cp test.py tmp
-cd tmp
-ls
-mkdir modules
-vi mods.py
-ls
-python3 -u mods.py 
-ls
-cd modules/
-ls
-cd ..
-ls
-cd modules/
-ls
-cd ..
-cd modules/
-ls
-cd tmp
-cd ..
-ls
-cd tm
-p
-cd tmp
-ls
-vi main.py
-python3 -u main.py 
-cd modules/
-ls
-clear
-ls
-python3 -u /home/pi/tmp/main.py 
-ls
-cd ..
-cp test.py dpz.py 
-vi test.py
-cp test.py 2
-vi modules/loopdrift.py
-sido vi modules/loopdrift.py
-sudo vi modules/loopdrift.py
-vi test.py
-ls
-vi test.py
-sudo rm .test.py.swp
-vi test.py
-clear
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-clear
-sudo rm .test.py.swp
-python3 -u test.py
-cd logs/
-rm *
-cd ..
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-cd logs
-ls
-cd ..
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-sudo git pull origin master
-git push origin master
-sudo git push origin master
-ls
-cd logs
-ls
-pwd
-mkdir logs
-ls
-git sudo git add .
-sudo git add .
-sudo git commit -m "Resolved merge conflict"
-sudo git push origin master
-ls
-cd tmp
-ls
-cd ..
-sudo find / -type f -name "*.log" 2>/dev/null
-cp dpz.py test.py 
-pwd
-ls
-sudo cp dpz.py test.py 
-git rm --cached logs/watchdog_20250906_172942.log
-echo "logs/*.log" >> .gitignore
-git add .gitignore
-git commit -m "Remove large log file and ignore future logs"
-git push origin master
-sudo git rm --cached logs/watchdog_20250906_172942.log
-sudo git ls-files | grep watchdog
-sudo rm -r tmp
-pwd
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-sudo cp -r daportalz daportalz_backup
-sudo git filter-repo --path logs/watchdog_20250906_172942.log --invert-paths --force
-git filter-repo --path logs/watchdog_20250906_172942.log --invert-paths --force
-sudo python3 -m pip install --user git-filter-repo --break-system-packages
-sudo git filter-repo --path logs/watchdog_20250906_172942.log --invert-paths --force
-git filter-repo --path logs/watchdog_20250906_172942.log --invert-paths --force
-git filter-repo --help
-python3 -m site --user-base
-/home/pi/.local/bin/git-filter-repo
-cd /home/pi/.local/bin/
-find ~/.local -name "git-filter-repo"
-rm -rf .git
-su root
-sudo git init
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-sudo git add .
-sudo git commit -m "Fresh start: clean repo init"
-sudo git remote add origin https://github.com/mennfox/daportalz.git
-sudo git push --force origin master
-la
-ls
-python3 -u watering_log.py 
-ls
-vi test.py
-sudo git push --force origin masterclear
-clear
-sudo vi test.py
-cp test.py 3
-cp test.py dpz.py 
-sudo cp test.py dpz.py 
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-vi test.py
-sudo vi test.py
-vi test.py
-sudo vi test.py
-sudo cp dpz.py test.py 
-sudo vi test.py
-sudo cp dpz.py test.py 
-cd  logs
-ls
-ls -la
-sudo vi watchdog_202509006_235254.log
-sudo vi watchdog_20250906_235254.log 
-ls
-cd ..
-ls
 mkdir 7925
 mv 1 2 3 7925/
 ls -la backups/
@@ -1998,3 +1623,378 @@ python3 -u dpz.py
 python3 -u test.py
 cp 1 test.py
 python3 -u test.py
+cd modules/
+ls
+cat zone_utils.py 
+ls
+rm scd4x_module.py 
+cat moisture_chart.py 
+ls
+cd ..
+ls
+python3 -u grow
+python3 -u grow.py 
+vi dpz.py
+ls
+cat grow.py 
+cat grow.json
+ls
+cat plants.json 
+vi dpz.py
+ls
+cd modules/
+rm test.py
+vi test.py
+python3 -u test.py 
+mv test.py ../gt.py
+cd ..
+ls
+python3 -u gt.py 
+mv gt.py gt1
+rm gt.py
+vi gt.py
+python3 -u gt.py 
+cd modules/
+vi grow_tracker.py
+cd ..
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+clear
+vi test.py
+python3 -u test.py 
+cp test.py 2
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+cd modules/
+ls
+vi performance_panels.py 
+cd ..
+vi test.py
+python3 -u test.py 
+cat test.py
+cp test.py 3
+vi test.py 
+python3 -u test.py 
+vi test.py 
+cp 3 test.py 
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+cp 3 test.py 
+vi test.py
+cd modules/
+vi performance_panels.py 
+cd ..
+vi test.py
+python3 -u test.py 
+cat test.py
+cd modules/
+cat grow_tracker.py 
+clear
+vi grow_tracker.py 
+cd ..
+python3 -u test.py 
+cd modules/
+vi grow_tracker.py 
+cd ..
+python3 -u test.py 
+cd modules/
+vi grow_tracker.py 
+cd ..
+vi test.py
+vi grow_tracker.py 
+vi test.py
+python3 -u test.py 
+cd modules/
+python3 -u grow_tracker.py 
+cd ..
+python3 -u test.py 
+vi test2.py
+python3 -u test2.py 
+pwd
+ls -la modules/
+cat test.py
+vi test2.py 
+python3 -u test2.py 
+cat test.py
+vi test2.py 
+python3 -u test2.py 
+rm test2.py
+ls
+vi main.py 
+python3 -u dpz.py 
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+git show -s --format=%ci 58f29b7
+pwd
+cd modules/
+ls
+rm scd4x_panel.py 
+vi scd4x_module.py
+python3 -u scd4x_module.py 
+cd ..
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+pwd
+ls
+cd modules/
+ls
+cd ..
+touch module/__init__.py
+cd modules/
+touch module/__init__.py
+touch __init__.py
+cd ..
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+ls
+vi test.py
+cd modules/
+cd ..
+vi dpz.py 
+python3 -u test.py 
+cp 3 test.py
+python3 -u test.py
+python3 -u dpz.py 
+ython3 -u test.py 
+python3 -u test.py
+python3 -u dpz.py 
+cp test.py 4
+vi test.py
+:x!
+cd modules/
+vi watchdog_panel.py
+cd ..
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+ls
+cd logs
+ls
+rm *
+sudo rm *
+ls
+cd ..
+python3 -u test.py
+cd logs
+ls
+clear
+cd mo
+cd ../modules/
+ls
+rm watchdog_panel.py 
+vi watchdog_panel.py
+cd ..
+python3 -u test.py 
+cd logs/
+ls
+cd ../modules/
+rm watchdog_panel.py 
+vi watchdog_panel.py
+cd ..
+python3 -u test.py 
+vi test.py 
+python3 -u test.py 
+vi test.py 
+python3 -u test.py 
+vi test.py 
+python3 -u test.py 
+vi test.py 
+python3 -u test.py 
+vi test.py 
+rm test.py 
+vi test.py 
+python3 -u test.py 
+cd logs/
+ls
+cat watchdog_latest.log 
+cd ..
+vi test.py
+vi est.py
+pwd
+vi test.py
+cd modules/
+vi watchdog_panel.py 
+rm watchdog_panel.py 
+vi watchdog_panel.py 
+cd ..
+python3 -u test.py 
+cat test.py
+vi test.py
+python3 -u test.py 
+vi test.py
+cd modules/
+ls
+vi grow_tracker.py 
+cd ..
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+vi test.py
+cd modules/
+cat grow_tracker.py 
+i grow_tracker.py 
+i grow_tracker.py vi grow_tracker.py 
+vi grow_tracker.py 
+cd ..
+python3 -u test.py 
+cd modules/
+vi grow_tracker.py 
+cd ..
+python3 -u test.py 
+vi test.py
+cd modules/
+vi grow_tracker.py 
+cd ..
+python3 -u test.py 
+cd modules/
+cat grow_tracker.py 
+clear
+vi test.py
+cd ..
+vi test.py
+cp test.py 5
+rm test.py
+vi test.py
+python3 -u test.py 
+cp test.py 6
+python3 -u dpz.py 
+clear
+cd modules/
+cat grow_tracker.py 
+cat moisture_chart.py 
+:q!
+cat moisture_chart.py 
+cp grow_tracker.py gt1
+cp moisture_chart.py m1
+rm moisture_chart.py 
+vi moisture_chart.py
+vi grow_tracker.py 
+cd ..
+vi test.py
+cp test.py 7
+ls
+rm test.py 
+vi test.py
+python3 -u test.py 
+cd logs/
+ls
+cd ..
+ls *.json
+at moisture_log.json 
+cat moisture_log.json 
+rm moisture_log.json 
+python3 -u test.py 
+cat moisture_log.json 
+cd modules/
+ls
+cat m1
+cat grow_tracker.py 
+rm grow_tracker.py 
+vi grovi grow_tracker.py
+ls
+ls g*
+mv grovi gorw_tracker.py
+mv gorw_tracker.py grow_tracker.py
+cat grow_tracker.py 
+vi grow_tracker.py 
+cd ..
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+cd modules/
+cat moisture_chart.py 
+# modules/moisture_chart.py
+import board
+import busio
+import json
+import time
+from pathlib import Path
+import adafruit_ads1x15.ads1015 as ADS
+from adafruit_ads1x15.analog_in import AnalogIn
+from rich.text import Text
+from rich.panel import Panel
+from rich.table import Table
+# 🌿 Sensor Setup
+i2c = busio.I2C(board.SCL, board.SDA)
+ads = ADS.ADS1015(i2c, address=0x49)
+channels = [AnalogIn(ads, ADS.P0), AnalogIn(ads, ADS.P1), AnalogIn(ads, ADS.P2), AnalogIn(ads, ADS.P3)]
+# 🌱 Plant Mapping (channel index → plant name)
+PLANT_CHANNELS = {
+}
+# 🧪 Normalize voltage to 0–1 scale
+def normalize_voltage(voltage, min_v=2.0, max_v=3.3):
+# 🧩 Exportable glyph: build moisture bar
+def build_bar(voltage, max_voltage=3.3, width=30):
+# 📜 Log readings to moisture_log.json
+def log_moisture_readings(log_path="moisture_log.json"):
+# 🌊 Build live moisture panel
+def build_moisture_panel():
+vi moisture_chart.py :q!
+vi moisture_chart.py
+cd ..
+python -u test.py 
+i2cdetect -y 1
+ls
+cat plants.json
+cd modules/
+vi moisture_chart.py 
+cd ..
+python -u test.py 
+ls
+cd modules/
+ls
+ls g*
+cp grow_tracker.py gt2
+cp gt1 grow_tracker.py 
+cp moisture_chart.py mm2
+cp m1 moisture_chart.py 
+cd ..
+python3 -u test.py 
+ls
+ls g*
+cd modules/
+ls g*
+ls
+vi grow_tracker.py 
+cd ..
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+vi test.py
+cd modules/
+vi grow_tracker.py 
+cd ..
+python3 -u test.py 
+cd modules/
+vi grow_tracker.py 
+cd ..
+python3 -u test.py 
+cd modules/
+vi grow_tracker.py 
+cd ..
+python3 -u test.py 

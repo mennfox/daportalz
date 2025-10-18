@@ -1,0 +1,101 @@
+import json
+from datetime import datetime
+from rich.panel import Panel
+from rich.table import Table
+from rich.text import Text
+
+BLOCKS = "▁▂▃▄▅▆▇█"
+GROW_ZONES = [
+    (2, "blue"), (5, "green"), (8, "yellow"),
+    (12, "orange1"), (16, "red"), (25, "magenta")
+]
+
+def grow_zone_color(week):
+    for threshold, color in GROW_ZONES:
+        if week <= threshold:
+            return color
+    return GROW_ZONES[-1][1]
+
+def calc_progress(prop_date, repot_date=None):
+    try:
+        fmt = "%d/%m/%y"
+        start = datetime.strptime(prop_date, fmt)
+        now = datetime.now()
+        total_weeks = 25
+        elapsed_weeks = max(0, (now - start).days // 7)
+        bar_len = min(elapsed_weeks, total_weeks)
+        blocks = []
+        for week in range(1, bar_len + 1):
+            block_idx = min(int((week / total_weeks) * (len(BLOCKS) - 1)), len(BLOCKS) - 1)
+            block = BLOCKS[block_idx]
+            color = grow_zone_color(week)
+            blocks.append(Text(block, style=color))
+        bar = Text.assemble(*blocks)
+        bar.append(f" {elapsed_weeks}w", style="bold white")
+        return bar
+    except Exception:
+        return Text("[Invalid]", style="red")
+
+def render_moisture_chart(readings):
+    if not readings:
+        return Text("[No data]", style="dim")
+    blocks = []
+    for val in readings:
+        idx = min(int(val * (len(BLOCKS) - 1)), len(BLOCKS) - 1)
+        block = BLOCKS[idx]
+        color = "cyan" if val > 0.5 else "blue"
+        blocks.append(Text(block, style=color))
+    return Text.assemble(*blocks)
+
+def build_grow_panel():
+    try:
+        with open("plants.json", "r") as f:
+            plants_data = json.load(f)
+    except Exception as e:
+        return Panel(f"[red]Error loading plants.json: {e}[/red]", title="🌱 Grow Tracker", border_style="red")
+
+    try:
+        with open("moisture_log.json", "r") as f:
+            moisture_data = json.load(f)
+    except Exception:
+        moisture_data = {}
+
+    table = Table(title="[bold green]Grow Tracker[/bold green]", expand=True)
+    table.add_column("Name", style="bold green", justify="left", no_wrap=True)
+    table.add_column("Type", style="cyan", justify="center")
+    table.add_column("Breeder", style="cyan", justify="center")
+    table.add_column("Propergated", style="magenta", justify="center")
+    table.add_column("Re-Potted", style="yellow", justify="center")
+    table.add_column("Progress", style="white", justify="left")
+    table.add_column("Moisture", style="blue", justify="left")
+    table.add_column("Height", style="green", justify="center")
+    table.add_column("Harvest", style="bold yellow", justify="center")
+
+    for entry in plants_data:
+        name = entry["name"]
+        type_ = entry.get("type", "Unknown")
+        breeder = entry.get("breeder", "Unknown")
+        prop_date = entry.get("propagation_date", "N/A")
+        repot_date = entry.get("repot_date", "")
+        repot = repot_date if repot_date else "[Pending]"
+        progress = calc_progress(prop_date, repot_date)
+        moisture = render_moisture_chart(moisture_data.get(name, []))
+        height_val = entry.get("height", 0.0)
+        harvest_weight = entry.get("harvest_weight", 0.0)
+        height_bar = f"{height_val:.1f}cm" if height_val else "[No data]"
+        harvest = f"{harvest_weight:.1f}g" if harvest_weight else "[Pending]"
+
+        table.add_row(
+            f"[link=]{name}[/link]", type_, breeder, prop_date, repot,
+            progress, moisture, height_bar, harvest
+        )
+
+    return Panel(table, border_style="grey37")
+
+# Optional test render
+if __name__ == "__main__":
+    from rich.console import Console
+    console = Console()
+    panel = build_grow_panel()
+    console.print(panel)
+

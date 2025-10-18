@@ -1,0 +1,90 @@
+# modules/moisture_chart.py
+
+import board
+import busio
+import json
+import time
+from pathlib import Path
+import adafruit_ads1x15.ads1015 as ADS
+from adafruit_ads1x15.analog_in import AnalogIn
+from rich.text import Text
+from rich.panel import Panel
+from rich.table import Table
+
+# 🌿 Sensor Setup
+i2c = busio.I2C(board.SCL, board.SDA)
+ads = ADS.ADS1015(i2c, address=0x49)
+channels = [AnalogIn(ads, ADS.P0), AnalogIn(ads, ADS.P1), AnalogIn(ads, ADS.P2), AnalogIn(ads, ADS.P3)]
+
+# 🌱 Plant Mapping (channel index → plant name)
+PLANT_CHANNELS = {
+    0: "Auto Do-Si-Dos",
+    1: "Auto Grapefruit",
+    2: "Zerbert Auto",
+    3: "Original Russian"
+}
+
+# 🧪 Normalize voltage to 0–1 scale
+def normalize_voltage(voltage, min_v=2.0, max_v=3.3):
+    return max(0.0, min((voltage - min_v) / (max_v - min_v), 1.0))
+
+# 🧩 Exportable glyph: build moisture bar
+def build_bar(voltage, max_voltage=3.3, width=30):
+    filled = int((voltage / max_voltage) * width)
+    condition = "Dry"
+    color = "yellow"
+    if voltage < 2.3:
+        condition = "Saturated"
+        color = "blue"
+    elif voltage < 2.8:
+        condition = "Moist"
+        color = "green"
+    bar = Text()
+    for i in range(width):
+        style = color if i < filled else "grey23"
+        bar.append("█", style=style)
+    return bar, condition, color
+
+# 📜 Log readings to moisture_log.json
+def log_moisture_readings(log_path="moisture_log.json"):
+    log_file = Path(log_path)
+    if not log_file.exists():
+        log_file.write_text("{}")
+
+    try:
+        with log_file.open("r") as f:
+            data = json.load(f)
+    except Exception:
+        data = {}
+
+    for idx, chan in enumerate(channels):
+        voltage = chan.voltage
+        plant = PLANT_CHANNELS.get(idx, f"CH{idx}")
+        norm = normalize_voltage(voltage)
+        readings = data.get(plant, [])
+        readings.append(round(norm, 2))
+        readings = readings[-30:]  # Keep last 30 readings
+        data[plant] = readings
+
+    try:
+        with log_file.open("w") as f:
+            json.dump(data, f, indent=2)
+    except Exception as e:
+        print(f"Moisture log write error: {e}")
+
+# 🌊 Build live moisture panel
+def build_moisture_panel():
+    table = Table.grid(padding=(0, 1))
+    table.add_column(justify="left", style="bold white")
+    table.add_column(justify="left")
+    table.add_column(justify="left", style="bold white")
+
+    for idx, chan in enumerate(channels):
+        voltage = chan.voltage
+        bar, condition, color = build_bar(voltage)
+        label = f"{PLANT_CHANNELS.get(idx, f'CH{idx}')} [{condition}]"
+        volt_str = f"{voltage:.2f} V"
+        table.add_row(label, bar, volt_str)
+
+    return Panel(table, title="🌱 Moisture Chart", border_style="grey37")
+
