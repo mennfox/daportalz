@@ -1,250 +1,3 @@
-cleart
-clear
-vi test.py
-python3 -u test.py
-ls
-mv 9 t9
-cp t9 test.py
-cp test.py dpz.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-clear
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-clear
-python3 -u test.py
-cat test.py
-vi:q!
-clear
-vi test.py
-python3 -u test.py
-ls
-cp t9 test.py
-vi test.py
-cp dpz.py test.py
-vi test.py
-cp test.py t10
-pkill -f test.py
-vi test.py
-pkill
-pkill -f test.py
-vi test.py
-cp test.py t11
-vi test.py
-python3 -u test.py
-clear
-cp test.py t12
-cp test.py dpz.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-pkill -f test.py
-pkill -f dpz.py
-vi test.py
-cp test.py dpz.py
-cp test.py t13
-mkdir bup06
-mv t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 t13 bup06/
-ls
-cp g1 g2 grow.py watering_log.json plants.json d1 dashboard.py bup06/
-rm d1 d2
-rm d2
-ls
-rm g1 g2
-ls
-rm dashboard.py 
-cat logo_panel.py 
-cp logo_panel.py bup06/
-rm logo_panel.py 
-ls
-pkill -f test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin main
-sudo systemctl cat daportalz.service
-ps -eo pid,cmd | grep test.py
-systemctl status daportalz.service
-clear
-sudo vi /etc/systemd/system/daportalz.service 
-sudo systemctl daemon-reexec
-sudo systemctl daemon-reload
-sudo systemctl restart daportalz.service
-sudo systemctl daemon-reexec
-sudo systemctl daemon-reload
-sudo systemctl restart daportalz.service
-journalctl -u daportalz.service
-clear
-sudo vi /etc/systemd/system/daportalz.service 
-sudo systemctl daemon-reexec
-sudo systemctl daemon-reload
-sudo systemctl restart daportalz.service
-sudo systemctl status daportalz.service
-d
-python3 /home/pi/sensors/dpz.py
-sudo usermod -aG i2c pi
-sudo systemctl daemon-reload
-sudo systemctl restart daportalz.service
-cat /home/pi/sensors/dashboard.log
-journalctl -xeu daportalz.service
-d
-cleart
-clear
-cp test.py dpz.py
-vi dpz.py
-python3 -u dpz.py
-sudo systemctl daemon-reload
-sudo systemctl restart daportalz.service
-sudo systemctl daemon-reload
-sudo systemctl restart daportalz.service
-sudo systemctl disable daportalz.service
-sudo systemctl stop daportalz.service
-sudo rm /etc/systemd/system/daportalz.service
-sudo systemctl daemon-reload
-sudo pkill -f dpz.py
-test.py
-vi test.py
-sudo vi ~/.profile
-sudo reboot
-pwd
-ls
-pword
-pwd
-ls
-cd bup06
-pwd
-cd sensors
-ls
-pwd
-cp test.py .
-cp test.py ./
-cp test.py /home/pi/
-cp dpz.py /home/pi
-cp *.json /home/pi
-cp grow.py /home/pi/
-ls
-mv test2.py bup06/
-cp repot.py bup06/
-cp repot.py /home/pi/
-cd ..
-ls
-rm *.jpg
-ls
-clear
-ls
-ls -la
-rm -r ads1115
-sudo vi ~/.profile 
-reboot
-sudo reboot
-cd /home/pi/
-vi ports.py
-python3 -u ports.py 
-cat i2c 
-rm ports.py 
-vi ports.py
-python3 -u ports.py 
-i2cdetect -y 1
-rm ports.py 
-vi port.py
-python3 -u ports.py 
-python3 -u port.py 
-ls
-vi test.py
-python3 -u test.py
-pkill -f dpz.py
-pkill -f test.py
-ls
-mkdir 3925
-cp test.py 3925/
-vi test.py
-ls -la 3925/test.py 
-mv 3925/test.py 3925/1
-cp test.py 3925/2
-ls -la 3925/
-vi test.py
-clear
-cp test.py dpz.py 
-cp test.py 3925/
-cp test.py 3925/3
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-pkill -f teat.py
-pkill -f test.py
-vi test.py
-i2cdetect -y 1
-lsof -p $(pgrep -f test.py)
-vi test.py
-pkill -f test.py
-vi test.py
-pkill -f test.py
-cp dpz.py test.py
-pkill -f test.py
-vi test.py
-pkill -f test.py
-vi test.py
-python3 -u test.py
-vi test.py
-pkill -f test.py
-vi test.py
-pkill -f test.py
-cp dpz.py test.py
-vi test.py
-clear
-pkill -f test.py
-vi test.py
-pkill -f test.py
-vi test.py
-pkill -f test.py
-vi test.py
-pkill -f test.py
-vi test.py
-cd /home/pi/
-vi test.py
-exit
-python3 -u test.py
-python3 -u dpz.py 
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-ls
-cd backups
-ls
-cd bup07
-ls
-cd scd4x/
-python3 -u scd.py 
-cd /home/pi/
-vi test.py
-python3 -u scd.py 
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
 cp dpz.py test.py
 cp dpz.py zpd
 vi test.py
@@ -1997,4 +1750,251 @@ cat test.py
 vi test.py
 python3 -u test.py
 cp test.py 2
+python3 -u test.py
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+python3 -u dpz.py
+cd modules/
+ls
+cat sensor_panels.py 
+rm sensor_panels.py 
+vi sensor_panels.py
+python3 -u sensor_panels.py 
+vi sensor_panels.py
+python3 -u sensor_panels.py 
+vi sensor_panels.py
+python3 -u sensor_panels.py 
+vi sensor_panels.py
+python3 -u sensor_panels.py 
+vi sensor_panels.py
+clear
+vi sensor_panels.py
+python3 -u sensor_panels.py 
+cat sensor_panels.py 
+python3 -u sensor_panels.py 
+vi test.py
+python3 -u test.py
+ls
+cd ..
+python3 -u dpz.py
+cd modules/
+vi test.py 
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+ls
+cat sensor_panels.py 
+cp test.py sensor_panels.py 
+cd ..
+python3 -u test.py
+cp test.py 2
+vi test.py
+python3 -u test.py
+vi test.py
+ls -la modules/
+vi test.py
+python3 -u test.py
+cd modules/
+vi sensor_panels.py 
+cd ..
+python3 -u test.py
+cd modules/
+cat sensor_panels.py 
+vi sensor_panels.py 
+cd ..
+cd modules/
+python3 -u sensor_panels.py 
+vi sensor_panels.py 
+python3 -u sensor_panels.py 
+vi test.py
+python3 -u sensor_panels.py 
+cd modules/
+vi sensor_panels.py 
+python3 -u sensor_panels.py 
+vi sensor_panels.py 
+python3 -u sensor_panels.py 
+vi sensor_panels.py 
+python3 -u sensor_panels.py 
+vi sensor_panels.py 
+cp test.py sensor_panels.py 
+vi sensor_panels.py 
+cd ..
+python3 -u test.py 
+cd modules/
+vi sensor_panels.py 
+python3 -u sensor_panels.py 
+vi sensor_panels.py 
+python3 -u sensor_panels.py 
+vi sensor_panels.py 
+python3 -u sensor_panels.py 
+vi sensor_panels.py 
+cp test.py sensor_panels.py 
+vi sensor_panels.py 
+python3 -u sensor_panels.py 
+vi sensor_panels.py 
+cp test.py sensor_panels.py 
+vi sensor_panels.py 
+cd ..
+python3 -u test.py 
+cd modules/
+ls
+cat system_panel.py 
+cp system_panel.py sp1
+ls
+cat system_panel.py 
+cd sensors/
+cd scd4x/
+ls
+python3 -u scd.py 
+cd ..
+python3 -u test.py
+python3 -u dpz.py 
+python -u dpz.py 
+python3 -u test.py
+cd modules/
+ls
+python3 -u sensor_panels.py 
+python3 -u performance_panels.py 
+sudo pkill -f sen
+ls
+pkill -f sensor_panels.py
+cat sensor_panels.py 
+cp sensor_panels.py sp1
+vi sensor_panels.py 
+cd ..
+python3 -u test.py 
+python3 -u sensors/scd4x/scd.py 
+python3 -u test.py 
+cat test.py 
+cd modules/
+cat sensor_panels.py 
+clear
+cat sensor_panels.py 
+vi sensor_panels.py 
+cd ..
+python3 -u test.py 
+cd modules/
+vi sensor_panels.py 
+cd ..
+python3 -u test.py 
+cd modules/
+vi sensor_panels.py 
+cd ..
+python3 -u test.py 
+ping 192.168.2.254
+ifconfig
+ping 192.168.1.254
+cd modules/
+ls
+vi performance_panels.py 
+vi system_panel.py 
+ls
+cd ..
+python3 -u test.py 
+cd modules/
+vi performance_panels.py 
+cd ..
+python3 -u test.py 
+cd sensors/
+cd scd4x/
+cat scd.py 
+cd ..
+cd modules/
+vi scd4x_panel.py
+python3 -u scd4x_panel.py 
+cd ..
+cp test.py 1 
+vi test.py
+python3 -u test.py 
+vi test.py
+cd modules/
+ls
+cd ..
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+cd modules/
+vi scd4x_panel.py 
+cd ..
+python3 -u test.py 
+python3 -u dpz.py 
+pwd
+python3 -u dpz.py 
+i2cdetect -y 1
+sudo reboot
+i2cdetect -y 1
+halt -p
+sudo halt -p
+cd modules/
+rm test.py 
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+rm test.py
+vi test.py
+python3 -u test.py 
+rm test.py
+vi test.py
+python3 -u test.py 
+rm test.py
+vi test.py
+python3 -u test.py 
+rm test.py
+vi test.py
+python3 -u test.py 
+cp test.py scd4x_panel.py
+cd ..
+python3 -u test.py
+pwd
+ls
+cat test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+ls -la modules/
+touch /home/pi/modules/__init__.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+cp 1 test.py
+python3 -u dpz.py 
+python3 -u test.py
+cd modules/
+vi co2_panel.py
+python3 -u co2_panel.py 
+rm co2_panel.py 
+vi co2_panel.py
+python3 -u co2_panel.py 
+cd ..
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+python3 -u dpz.py 
+i2cdetect -y 1
+python3 -u test.py
+python3 -u dpz.py 
+python3 -u test.py
+clear
+vi dpz.py
+exit
+python3 -u dpz.py 
+python3 -u test.py
+cp 1 test.py
 python3 -u test.py

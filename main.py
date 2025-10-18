@@ -31,7 +31,7 @@ def main_menu():
         elif choice == "4":
             os.system("python3 watering_log.py")
         elif choice == "5":
-            os.system("python3 test.py")
+            os.system("python3 dpz.py")
         elif choice == "6":
             confirm = input("⚠️ This will archive and delete your current grow data. Are you sure? (y/n): ").strip().lower()
             if confirm == "y":

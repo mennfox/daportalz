@@ -25,6 +25,7 @@ from modules.i2c_panel import build_i2c_panel, scan_i2c_loop
 from modules.performance_panels import (
     get_cpu_panel, get_memory_panel, get_disk_panel, get_network_panel
 )
+from modules.sensor_panels import build_sensor_cluster_panel
 
 console = Console()
 REFRESH_INTERVAL = 1.0
@@ -59,6 +60,8 @@ def build_dashboard():
         build_as7341_panel(as7341_cache),
         grow_panel
     )
+
+    layout.add_row(build_sensor_cluster_panel())
 
     return layout
 

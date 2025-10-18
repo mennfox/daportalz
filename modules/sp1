@@ -12,6 +12,7 @@ hum_history = deque(maxlen=60)
 import board, busio, smbus2, time, threading
 from datetime import datetime
 from adafruit_htu21d import HTU21D
+import adafruit_scd4x
 import adafruit_sht31d
 import adafruit_ahtx0
 import bme280
@@ -22,6 +23,8 @@ REFRESH_INTERVAL = 1.0
 # Initialize sensors
 i2c = busio.I2C(board.SCL, board.SDA)
 htu = HTU21D(i2c)
+scd4x = adafruit_scd4x.SCD4X(i2c)
+scd4x.start_periodic_measurement()
 sht31 = adafruit_sht31d.SHT31D(i2c)
 ahtx0 = adafruit_ahtx0.AHTx0(i2c)
 bme_bus = smbus2.SMBus(1)
@@ -29,8 +32,10 @@ bme_address = 0x76
 bme_cal = bme280.load_calibration_params(bme_bus, bme_address)
 
 # Shared data
+scd4x_data = {"Temperature": "Waiting...", "Humidity": "Waiting..."}
 max_values = {
     "HTU21D": {"Temp": float("-inf"), "Hum": float("-inf")},
+    "SCD4X": {"Temp": float("-inf"), "Hum": float("-inf")},
     "BME280": {"Temp": float("-inf"), "Hum": float("-inf")},
     "Room": {"Temp": float("-inf"), "Hum": float("-inf")},
     "AHTx0": {"Temp": float("-inf"), "Hum": float("-inf")},
@@ -61,6 +66,20 @@ def sensor_zone_lines(value, zones, label, unit, max_val):
         Text(f"Max {label}: {max_val:.2f} {unit}", style="bold green")
     ]
 
+def update_scd4x_loop():
+    while True:
+        time.sleep(10)
+        try:
+            if scd4x.data_ready:
+                scd4x_data["Temperature"] = scd4x.temperature
+                scd4x_data["Humidity"] = scd4x.relative_humidity
+            else:
+                scd4x_data["Temperature"] = "-"
+                scd4x_data["Humidity"] = "-"
+        except Exception:
+            scd4x_data["Temperature"] = "-"
+            scd4x_data["Humidity"] = "-"
+
 
 def get_htu21d_panel():
     try:
@@ -73,6 +92,23 @@ def get_htu21d_panel():
         return Panel(Text("\n").join(lines), title="💧 HTU21D Sensor", border_style="grey37")
     except Exception as e:
         return Panel(f"[red]Sensor Error: {e}[/red]", title="💧 HTU21D Sensor", border_style="grey37")
+
+def get_scd4x_panel():
+    try:
+        temp = scd4x_data["Temperature"]
+        hum = scd4x_data["Humidity"]
+        if isinstance(temp, float):
+            max_values["SCD4X"]["Temp"] = max(max_values["SCD4X"]["Temp"], temp)
+            max_values["SCD4X"]["Hum"] = max(max_values["SCD4X"]["Hum"], hum)
+            hum = data.humidity
+            temp_history.append(temp)
+            lines = sensor_zone_lines(temp, ZONES_TEMP, "Temp", "°C", max_values["SCD4X"]["Temp"])
+            lines += sensor_zone_lines(hum, ZONES_HUM, "Humidity", "%", max_values["SCD4X"]["Hum"])
+            return Panel(Text("\n").join(lines), title="🫁 SCD4X Sensor", border_style="grey37")
+        else:
+            return Panel("[red]Sensor not ready[/red]", title="🫁 SCD4X Sensor", border_style="grey37")
+    except Exception as e:
+        return Panel(f"[red]Sensor Error: {e}[/red]", title="🫁 SCD4X Sensor", border_style="grey37")
 
 def get_bme280_panel():
     try:
@@ -156,8 +192,9 @@ def build_averages_panel():
 
 def build_sensor_cluster_panel():
     grid = Table.grid(padding=(1, 2))
-    grid.add_row(get_htu21d_panel(), get_ahtx0_panel()) 
-    grid.add_row(get_bme280_panel(), get_room_panel())
+    grid.add_row(get_htu21d_panel(), get_scd4x_panel())
+    grid.add_row(get_bme280_panel(), get_ahtx0_panel())
+    grid.add_row(get_room_panel())
     grid.add_row(build_averages_panel())  # 👈 Final row
     return Panel(grid, title="🌡 Sensor Cluster", border_style="cyan", expand=True)
 
