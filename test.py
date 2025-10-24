@@ -16,7 +16,8 @@ from modules.as7341_panel import build_as7341_panel
 from modules.watering import get_last_watered_text
 from modules.dashboard_health import build_dashboard_health_panel
 from modules.height import height_bar
-# from modules.moisture_chart import build_moisture_panel  # logging removed
+from modules.tent_environment_panel import build_tent_environment_panel
+from modules.scd4x_panel import build_scd4x_panel
 from modules.system_panel import get_system_panel
 from modules.i2c_panel import build_i2c_panel, scan_i2c_loop
 from modules.grow_dashboard import build_grow_dashboard
@@ -59,21 +60,43 @@ def build_main_system_panel():
     return Panel(grid, title="🧠 Core System Glyph", border_style="grey37")
 
 # 🧩 Dashboard builder with config passed in
+# 🧩 Dashboard builder with config passed in
 def build_dashboard(watchdog_config):
     layout = Table.grid(padding=(1, 2))
+
     system_grid = Table.grid(padding=(1, 2))
     system_grid.add_column()
     system_grid.add_column()
     system_grid.add_column()
+    system_grid.add_column()
 
-    system_grid.add_row(get_system_panel(), get_cpu_panel(), build_dashboard_health_panel(console))
-    system_grid.add_row(get_memory_panel(), get_disk_panel(), build_watchdog_log_panel(watchdog_config)) 
-    system_grid.add_row(get_network_panel(), build_i2c_panel(), build_as7341_panel(as7341_cache))
+    system_grid.add_row(
+        get_system_panel(),
+        get_cpu_panel(),
+        build_dashboard_health_panel(console),
+        build_tent_environment_panel()  # ✅ fixed: added missing closing parenthesis
+    )
+
+    system_grid.add_row(
+        get_memory_panel(),
+        get_disk_panel(),
+        build_watchdog_log_panel(watchdog_config),
+        build_sensor_cluster_panel()
+    )
+
+    system_grid.add_row(
+        get_network_panel(),
+        build_i2c_panel(),
+        build_as7341_panel(as7341_cache),
+    )
 
     layout.add_row(system_grid)
- 
 
-    layout.add_row(build_sensor_cluster_panel())
+    # Optional sensor panels
+    # layout.add_row(build_scd4x_panel())
+    # layout.add_row(build_tent_environment_panel())
+
+#    layout.add_row(build_sensor_cluster_panel())
 
     # Separate layout for full-width panels
     grow_layout = Table.grid(padding=(1, 2))
@@ -82,7 +105,6 @@ def build_dashboard(watchdog_config):
 
     # Combine both layouts
     return Group(layout, grow_layout)
-
 # 🚀 Dashboard runner
 def run_dashboard():
     watchdog_config = WatchdogConfig()
@@ -99,4 +121,8 @@ def run_dashboard():
 # 🧭 Entry point
 if __name__ == "__main__":
     run_dashboard()
+
+
+
+
 

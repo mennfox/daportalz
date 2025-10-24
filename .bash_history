@@ -1,289 +1,3 @@
-mkdir 7925
-mv 1 2 3 7925/
-ls -la backups/
-mv 7925 backups/
-sudo mv 7925 backups/
-ls -la
-chown pi:pi *
-sudo chown pi:pi *
-vi test.py 
-sudo vi test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-cd logs
-ls
-rm *
-cd ..
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-cp test.py dpz.py 
-cd logs
-ls
-python3 -u dpz.py
-cd ..
-python3 -u dpz.py
-vi test.py
-pkill -f test.py
-cp dpz.py test.py
-pkill -f test.py
-vi test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-vi test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-cp test.py 1
-cp test.py dpz
-pkill -f test.py
-vi test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-python3 -u test.py
-vi test.py
-cp test.py 2
-cp test.py dpz.py 
-ls
-rm dpz
-python3 -u watering_log.py 
-vi test.py
-clear
-cp test.py 3
-cp test.py dpz.py 
-python3 -u dpz.py 
-vi test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-cp dpz.py test.py
-python3 -u dpz.py 
-vi test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-cp dpz.py test.py
-vi test.py
-cp test.py dpz.py 
-cp test.py 4
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-clear
-python3 -u dpz.py 
-vi test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-cp test.py 5
-cp test.py dpz.py
-vi tesat.py
-vi test.py
-python3 -u test.py
-vi test.py
-clear
-ls
-cp test.py 6
-cp 5 test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-vi test.py
-cp test.py
-cp 5 test.py
-vi test.py
-rm 6
-cp 5 test.py
-vi test.py
-python3 -u test.py
-cp test.py 6
-vi test.py
-python3 -u test.py
-vi test.py
-cp 6 test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-python3 - u test.py
-python3 -u test.py 
-vi test.py
-python3 -u teat.py
-python3 -u test.py
-cp test.py 7
-cp test.py dpz
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin mastersudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-cp test.py dpz.py
-ls
-rm dpz
-python3 -u dpz.py
-i2cdetect -y 1
-ls
-cd backups/
-ls
-cd 17825/
-ls
-cd ..
-ls
-cd 1925/
-ls
-mkdir sensors
-cd ads1115/
-ls
-python3 -u m.py 
-pkill -f test.py
-cd..
-cd ..
-python3 -u watering_log.py 
-ls
-cp test.py 8
-vi test.py
-cp test.py dpz.py 
-cp test.py 9
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-vi test.py
-pkill -f test.py
-vi test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-vi test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-vi test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-vi test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-ls
-cp 9 test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-date
-sudo git log
-sudo git status
-sudo git branch
-sudo git log --oneline --decorate --graph --date=iso
-sudo git remote -v
-sudo git status
-sudo git show efc8262 --name-only
-sudo git log -- test.py
-history
-vi test.py
-pkill -f test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-cp test.py 9
-cp test.py 9 dpz.py 
-cp test.py dpz.py 
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-ls
-cp dpz.py test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-cd backups/
-ls
-cd bup
-cd bup170825/
-ls
-cat test.py
-python3 -u test.py
-ls
-cat 8
-cp 8 /home/pi/test.py
-cd ..
-python3 -u test.py
-cd backups/
-ls
-cd bup07/
-ls
-cd bup01
-ls
-cp 2 2.py
-python3 -u 2.py
-cd ..
-cp dpz.py test.py
-cd ..
-cp dpz.py test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
 python3 -u test.py
 vi test.py
 python3 -u test.py
@@ -1997,4 +1711,290 @@ python3 -u test.py
 cd modules/
 vi grow_tracker.py 
 cd ..
+python3 -u test.py 
+cd modules/
+vi watering.panel.py
+cd ..
+vi test.py
+python3 -u test.py 
+cd modules/
+ls
+mv watering.panel.py watering_panel.py
+cd ..
+python3 -u test.py 
+python3 -u test.py
+clear
+vi test.py
+python3 -u test.py
+clear
+python3 -u test.py
+cp test.py 5
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+python3 -u test.py
+python3 -u dpz.py 
+python3 -u dpz.py 
+clear
+python3 -u dpz.py 
+ls
+python3 -u watering_log.py 
+ls
+mkdir 181025
+mv 1 2 3 4 5 6 7 8 9 181025/
+mv gt1 gt.py 181025/
+ls
+cp test.py dpz.py 181025/
+mv 181025/ backups/
+cp test.py 1
+python3 -u test.py
+clear
+python3 -u dpz.py 
+clear
+python3 -u test.py 
+clear
+cd modules/
+ls
+cat watering_panel.py 
+:q!
+cd ..
+cat test.py 
+vi test.py
+cat test.py
+clear
+cat test.py
+cp test.py 2
+rm test.py
+vi test.py
+python -u test.py 
+cp 2 test.py 
+python -u test.py 
+cat test.py
+vi test.py
+python -u test.py 
+vi test.py
+python -u test.py 
+cat 1
+vi test.py
+python -u test.py 
+vi test.py
+python -u test.py 
+vi test.py
+vi test.pyh
+python -u test.py 
+cp test.py 3
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+vi test.pyh
+vi test.py
+vi test.pyh
+vi test.py
+python -u test.py 
+vi test.py
+python -u test.py 
+ls
+cp 3 test.py
+vi test.py
+cp test.py 4
+vi test.py
+python3 -u test.py 
+python3 -u test.py
+cat 1
+clear
+cat 1
+vi test.py
+cat 1
+python3 -u test.py 
+:q!
+clear
+python3 -u test.py 
+vi test.py
+cat 1
+vi test.py
+python3 -u test.py 
+clear
+cd mode
+cd modules/
+cat grow_tracker.py 
+cat moisture_chart.py 
+cat grow_tracker.py 
+vi grow.py
+cd ..
+cat test.py
+vi test.py
+cp test.py 8
+vi test.py
+cd modules/
+mv grow_tracker.py gt3
+mv grow.py grow_tracker.py
+cd ..
+python3 -u test.py 
+vi test.py 
+python3 -u test.py 
+cd modules/
+ls
+mv grow_tracker.py grow_dashboard.py
+cd ..
+python3 -u test.py 
+cd modules/
+ls
+cd ..
+vi test.py
+python3 -u test.py 
+cp test.py 9
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+python3 -u test.py
+cd modules/
+ls
+python3 -u watering_panel.py 
+cat zone_utils.py 
+python3 -u test.py
+cp 1 test.py 
+python3 -u test.py
+btop
+python3 -u dpz.py 
+cp dpz.py d1
+vi dpz.py 
+exit
+ls
+vi plants.json 
+cp plants.json p1
+vi plants.json 
+python3 -u test.py
+ls
+mkdir 231025
+mv 1 2 3 4 5 p1 231025/
+mv 231025 backups/
+cp test.py 1
+vi test.py
+python3 -u test.py
+vi test.py
+cp 1 test.py 
+python3 -u test.py
+python3 -u dpz.py 
+python3 -u test.py
+exit
+cd o
+cd modules/
+ls
+mv gt* ../backups/231025/
+mv m1 mm2 ../backups/231025/
+ls
+vi scd4x_reader.py
+python3 -u scd4x_reader.py 
+cd ..
+vi test.py
+cd modules/
+vi scd4x_panel.py
+cd ..
+vi testpy
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+vi test.py
+python3 -u test.py
+cd modules/
+ls
+rm scd4x_reader.py 
+ls
+clear
+vi scd4x_panel.py 
+rm scd4x_panel.py 
+vi scd4x_reader.py
+vi scd4x_panel.py
+cd ..
+python3 -u test.py
+cd modules/
+rm scd4x_*
+ls
+vi scd4x_module.py
+vi scd4x_panel.py
+cd ..
+vi test.py
+python3 -u test.py
+pwd
+cd modules/
+ls
+cat sensor_panels.py 
+cd ..
+cp test.py 2
+cler
+cleR
+clar
+clear
+cd modules/
+ls
+vi scd4x_panel.py 
+vi scd4x_module.py 
+cd ..
+python3 -u dpz.py 
+cd modules/
+vi tent_environment_panel.py
+cd ..
+vi test.py
+python3 -u test.py 
+cd modules/
+ls
+cat tent_environment_panel.py 
+ls
+vi sensor_panels.py 
+vi bme280_module.py
+vi tent_environment_panel.py 
+cd ..
+clear
+python3 -u test.py 
+ls
+cd modules/
+l
+ls
+cat zone_utils.py 
+vi tent_environment_panel.py 
+cd ..
+python3 -u test.py 
+cd modules/
+vi tent_environment_panel.py 
+cd ..
+python3 -u test.py 
+cd modules/
+ls
+vi mood_palette.py
+clear
+vi tent_environment_panel.py 
+cd ..
+python3 -u test.py 
+cat test.py
+vi test.py
+:x!
+:xclar
+clear
+python3 -u test.py 
+cat 1
+vi test.py
+:x!
+vi test.py
+clear
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+vi test.py
+cp test.py 3
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+vi test.py
+exit
 python3 -u test.py 

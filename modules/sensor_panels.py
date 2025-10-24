@@ -157,13 +157,13 @@ def build_averages_panel():
 def build_sensor_cluster_panel():
     grid = Table.grid(padding=(1, 2))
     grid.add_row(get_htu21d_panel(), get_ahtx0_panel()) 
-    grid.add_row(get_bme280_panel(), get_room_panel())
-    grid.add_row(build_averages_panel())  # 👈 Final row
+    grid.add_row(get_room_panel(), build_averages_panel())
+#    grid.add_row(build_sensor_cluster_panel())  # 👈 Final row
     return Panel(grid, title="🌡 Sensor Cluster", border_style="cyan", expand=True)
 
 def build_dashboard():
     layout = Table.grid(padding=(1, 2))
-    layout.add_row(build_sensor_cluster_panel())
+#    layout.add_row(build_sensor_cluster_panel())
     return layout
 
 def run_dashboard():
