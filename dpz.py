@@ -1,18 +1,21 @@
 from pyfiglet import Figlet
 import os
-from rich.text import Text
-from rich.panel import Panel
-from rich.console import Console
-from rich.console import Group
-from rich.table import Table
-from rich.live import Live
 import time
+import threading
+import subprocess
+import json
+JSON_FOLDER = os.path.join(os.path.dirname(__file__), "json")
+from rich.console import Console, Group
+from rich.panel import Panel
+from rich.table import Table
+from rich.text import Text
+from rich.live import Live
+
 import board
 import busio
 from adafruit_as7341 import AS7341
-import threading
 
-# 🧩 Your custom modules only
+# 🧩 Custom Modules
 from modules.as7341_sensor import init_as7341, create_as7341_cache, start_as7341_loop
 from modules.as7341_panel import build_as7341_panel
 from modules.watering import get_last_watered_text
@@ -29,6 +32,7 @@ from modules.performance_panels import (
 )
 from modules.sensor_panels import build_sensor_cluster_panel
 from modules.watchdog_panel import WatchdogConfig, build_watchdog_log_panel, log_watchdog, watchdog_ping_loop
+from modules.get_top_process_panel import get_top_processes_panel  # ✅ New panel
 
 # 🌐 Console
 console = Console()
@@ -41,6 +45,7 @@ start_as7341_loop(as7341, as7341_cache)
 # 🔁 Refresh interval
 REFRESH_INTERVAL = 1.0
 
+# 🌟 Portal Invocation
 def print_animated_banner(text="DaPortalZ", font="slant", delay=0.1):
     figlet = Figlet(font=font)
     banner_lines = figlet.renderText(text).splitlines()
@@ -50,28 +55,15 @@ def print_animated_banner(text="DaPortalZ", font="slant", delay=0.1):
         console.print(padded_line, style="bold cyan")
         time.sleep(delay)
 
+# 🧠 Core System Panel (optional legacy block)
 def build_main_system_panel():
     grid = Table.grid(padding=(1, 2))
-    grid.add_row(
-        get_system_panel(),
-        get_cpu_panel(),
-        get_memory_panel()
-    )
-    grid.add_row(
-        get_disk_panel(),
-        get_network_panel(),
-        get_i2c_panel()  # Example: swap in any other panel here
-    )
-    grid.add_row(
-        get_watchdog_log_panel(),
-        build_dashboard_health_panel(),
-        build_averages_panel()
-    )
-
+    grid.add_row(get_system_panel(), get_cpu_panel(), get_memory_panel())
+    grid.add_row(get_disk_panel(), get_network_panel(), get_i2c_panel())
+    grid.add_row(get_watchdog_log_panel(), build_dashboard_health_panel(), build_averages_panel())
     return Panel(grid, title="🧠 Core System Glyph", border_style="grey37")
 
-# 🧩 Dashboard builder with config passed in
-# 🧩 Dashboard builder with config passed in
+# 🧩 Dashboard Builder
 def build_dashboard(watchdog_config):
     layout = Table.grid(padding=(1, 2))
 
@@ -81,11 +73,12 @@ def build_dashboard(watchdog_config):
     system_grid.add_column()
     system_grid.add_column()
 
+    # 🧠 Core Panels
     system_grid.add_row(
         get_system_panel(),
         get_cpu_panel(),
         build_dashboard_health_panel(console),
-        build_tent_environment_panel()  # ✅ fixed: added missing closing parenthesis
+        build_tent_environment_panel()
     )
 
     system_grid.add_row(
@@ -97,26 +90,22 @@ def build_dashboard(watchdog_config):
 
     system_grid.add_row(
         get_network_panel(),
+        get_top_processes_panel(),  # ✅ New panel added here
         build_i2c_panel(),
         build_as7341_panel(as7341_cache)
     )
 
     layout.add_row(system_grid)
 
-    # Optional sensor panels
-    # layout.add_row(build_scd4x_panel())
-    # layout.add_row(build_tent_environment_panel())
-
-#    layout.add_row(build_sensor_cluster_panel())
-
-    # Separate layout for full-width panels
+    # 🌿 Grow Panels
     grow_layout = Table.grid(padding=(1, 2))
     grow_layout.add_row(build_grow_dashboard())
     grow_layout.add_row(build_watering_panel(show_panel=True))
 
-    # Combine both layouts
+    # 🧬 Combine Layouts
     return Group(layout, grow_layout)
-# 🚀 Dashboard runner
+
+# 🚀 Dashboard Runner
 def run_dashboard():
     watchdog_config = WatchdogConfig()
     log_watchdog("✅ Sentinel Echo initialized.", watchdog_config)
@@ -129,12 +118,7 @@ def run_dashboard():
             live.update(build_dashboard(watchdog_config))
             time.sleep(REFRESH_INTERVAL)
 
-# 🧭 Entry point
+# 🧭 Entry Point
 if __name__ == "__main__":
     print_animated_banner()  # 🌟 Portal invocation
     run_dashboard()
-
-
-
-
-

@@ -1,6 +1,3 @@
-python3 -u test.py
-cat test.py
-python3 -u test.py
 cat test.py
 python3 -u test.py
 cd backups/
@@ -1998,3 +1995,6 @@ exit
 exi
 exit
 systemctl status shellinabox
+python3 -u dpz.py 
+ython3 -u dpz.py 
+python3 -u dpz.py 

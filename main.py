@@ -1,5 +1,6 @@
 import os
-import json
+import json 
+JSON_FOLDER = os.path.join(os.path.dirname(__file__), "json")
 
 
 # Clear screen based on OS
@@ -41,7 +42,7 @@ def main_menu():
                     if plants:
                         archive_grow(plants)
                         append_readable_archive(plants)
-                    os.remove("/home/pi/plants.json")
+                    os.remove("/home/pi/json/plants.json")
                     print("🧹 Grow data archived and reset.")
                 except Exception as e:
                     print(f"❌ Error during archive/reset: {e}")

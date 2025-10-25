@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "name": "Auto Grapefruit",
+    "type": "Auto",
+    "breeder": "Discreet Seeds",
+    "propagation_date": "13/10/25",
+    "repot_date": "",
+    "progress": null,
+    "last_watered": null,
+    "status": "Unknown"
+  },
+  {
+    "id": 2,
+    "name": "Zerbert Auto",
+    "type": "Auto",
+    "breeder": "Eleven Thirty",
+    "propagation_date": "13/10/25",
+    "repot_date": "",
+    "progress": null,
+    "last_watered": null,
+    "status": "Unknown"
+  },
+  {
+    "id": 3,
+    "name": "Original Russian",
+    "type": "Auto",
+    "breeder": "Fastbuds",
+    "propagation_date": "13/10/25",
+    "repot_date": "",
+    "progress": null,
+    "last_watered": null,
+    "status": "Unknown"
+  },
+  {
+    "id": 4,
+    "name": "Mexican Airline",
+    "type": "Auto",
+    "breeder": "Fastbuds",
+    "propagation_date": "13/10/25",
+    "repot_date": "",
+    "progress": null,
+    "last_watered": null,
+    "status": "Unknown"
+  },
+  {
+    "id": 5,
+    "name": "Rhino Ryder",
+    "type": "Auto",
+    "breeder": "Fastbuds",
+    "propagation_date": "13/10/25",
+    "repot_date": "",
+    "progress": null,
+    "last_watered": null,
+    "status": "Unknown"
+  }
+]

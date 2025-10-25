@@ -1,9 +1,10 @@
 # watering_panel.py
-
+import os
 from rich.panel import Panel
 from rich.text import Text
 import time
 import json
+
 from datetime import datetime
 from statistics import mean
 

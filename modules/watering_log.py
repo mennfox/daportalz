@@ -1,5 +1,6 @@
 # watering_log.py (module version)
 import json, time
+JSON_FOLDER = os.path.join(os.path.dirname(__file__), "json")
 from pathlib import Path
 
 LOG_PATH = Path("watering_log.json")

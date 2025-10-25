@@ -1,4 +1,7 @@
+import os
 import json, time
+JSON_FOLDER = os.path.join(os.path.dirname(__file__), "..", "json")
+JSON_FOLDER = os.path.abspath(JSON_FOLDER)  # Optional: resolves full path
 from pathlib import Path
 from rich.text import Text
 

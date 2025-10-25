@@ -1,6 +1,5 @@
 from rich.panel import Panel
 from rich.text import Text
-from rich.console import Console
 from datetime import datetime
 
 def build_as7341_panel(as7341_cache):
@@ -13,22 +12,10 @@ def build_as7341_panel(as7341_cache):
 
         lines = []
 
-        # Normalize values
+        # Normalize values for SPD-style bar graph
         values = list(channels.values())
         max_val = max(values) if values else 1
-        norm_values = [v / max_val for v in values]
 
-        # Build SPD curve using Unicode blocks
-        curve = Text("SPD Curve: ", style="bold")
-        for norm in norm_values:
-            height = int(norm * 8)  # 8 levels of block height
-            block = "▁▂▃▄▅▆▇█"[height - 1] if height > 0 else " "
-            curve.append(block, style="dim")
-
-        lines.append(curve)
-        lines.append(Text(""))  # Spacer
-
-        # Add channel bars
         for name, value in channels.items():
             norm = value / max_val
             bar_len = int(norm * 40)

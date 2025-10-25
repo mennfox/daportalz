@@ -1,8 +1,10 @@
 import json
 import os
+JSON_FOLDER = os.path.join(os.path.dirname(__file__), "..", "json")
+JSON_FOLDER = os.path.abspath(JSON_FOLDER)  # Optional: resolves full path
 from datetime import datetime
 
-PLANT_FILE = "plants.json"
+PLANT_FILE = "\home\pi\json\plants.json"
 
 def load_plants():
     if os.path.exists(PLANT_FILE):

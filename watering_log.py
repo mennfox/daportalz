@@ -1,7 +1,9 @@
+insert os
 import json
 import time
 from pathlib import Path
-
+JSON_FOLDER = os.path.join(os.path.dirname(__file__), "..", "json")
+JSON_FOLDER = os.path.abspath(JSON_FOLDER)  # Optional: resolves full path
 LOG_PATH = Path("watering_log.json")
 
 def load_watering_notes():
