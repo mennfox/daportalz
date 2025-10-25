@@ -107,16 +107,12 @@ def build_dashboard(watchdog_config):
     # layout.add_row(build_scd4x_panel())
     # layout.add_row(build_tent_environment_panel())
 
-    # Create a horizontal layout for side-by-side panels
-    grow_layout = Table.grid(padding=(1, 2))
-    grow_layout.add_column(ratio=1)
-    grow_layout.add_column(ratio=1)
+#    layout.add_row(build_sensor_cluster_panel())
 
-    # Add the panels side by side
-    grow_layout.add_row(
-    build_grow_dashboard(),
-    build_watering_panel(show_panel=True)
-    )
+    # Separate layout for full-width panels
+    grow_layout = Table.grid(padding=(1, 2))
+    grow_layout.add_row(build_grow_dashboard())
+    grow_layout.add_row(build_watering_panel(show_panel=True))
 
     # Combine both layouts
     return Group(layout, grow_layout)

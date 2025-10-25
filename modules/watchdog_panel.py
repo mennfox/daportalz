@@ -11,7 +11,7 @@ import time
 class WatchdogConfig:
     log_dir: Path = Path("logs")
     log_file: Path = None
-    scroll_window: int = 14
+    scroll_window: int = 17
     filter_mode: bool = False
     scroll_index: int = 0
     last_loop_time: float = time.time()

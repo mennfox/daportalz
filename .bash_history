@@ -1,21 +1,4 @@
 python3 -u test.py
-vi test.py
-python3 -u test.py
-ls
-rm zpd 
-mkdir 4925
-cp test.py 4925/1.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-python3 -u test.py
-vi test.py
-cp dpz.py test.py
-vi test.py
-python3 -u test.py
 cat test.py
 python3 -u test.py
 cat test.py
@@ -1998,3 +1981,20 @@ python3 -u test.py
 vi test.py
 exit
 python3 -u test.py 
+cp test.py 6
+vi test.py
+clear
+python3 -u test.py 
+exit
+sudo reboot
+exit
+cd modules/
+ls
+cat watchdog_panel.py 
+vi watchdog_panel.py 
+cd ..
+python3 -u dpz.py 
+exit
+exi
+exit
+systemctl status shellinabox

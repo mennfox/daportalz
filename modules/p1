@@ -112,23 +112,8 @@ def get_memory_panel():
     table.add_column("Graph")
 
     table.add_row(f"{mem.used // (1024**2)} MB", f"{mem.total // (1024**2)} MB", colorize(mem.percent), graph)
-    table.add_row("—", "—", f"[bold]{mem.percent:.1f}%[/bold]", Text("Used %", style="dim"))
     table.add_row(f"{swap.used // (1024**2)} MB", f"{swap.total // (1024**2)} MB", colorize(swap.percent), Text("Swap", style="dim"))
     table.add_row("—", "—", f"[bold magenta]{max_mem:.1f}%[/bold magenta]", Text("Peak", style="dim"))
-    table.add_row(f"{mem.available // (1024**2)} MB", "—", "[green]Available[/green]", Text("Free", style="dim"))
-    active = getattr(mem, 'active', 0)
-    table.add_row(f"{active // (1024**2)} MB", "—", "[cyan]Active[/cyan]", Text("In Use", style="dim"))
-    shared = getattr(mem, 'shared', 0)
-    table.add_row(f"{shared // (1024**2)} MB", "—", "[magenta]Shared[/magenta]", Text("Interproc", style="dim"))
-    cached = getattr(mem, 'cached', 0)
-    table.add_row(f"{cached // (1024**2)} MB", "—", "[blue]Cached[/blue]", Text("Reusable", style="dim"))
-    dirty = getattr(mem, 'dirty', 0)
-    table.add_row(f"{dirty // (1024**2)} MB", "—", "[red]Dirty[/red]", Text("Pending Write", style="dim"))
-    page_faults = getattr(mem, 'pfaults', 0)
-    table.add_row(f"{page_faults}", "—", "[red]Page Faults[/red]", Text("RAM Misses", style="dim"))
-    table.add_row(f"{swap.sin // 1024} KB", f"{swap.sout // 1024} KB", "[yellow]Swap I/O[/yellow]", Text("In/Out", style="dim"))
-    writeback = getattr(mem, 'writeback', 0)
-    table.add_row(f"{writeback // (1024**2)} MB", "—", "[orange1]Writeback[/orange1]", Text("Disk Sync", style="dim"))  
 
     return Panel(table, border_style="grey37")
 
@@ -151,29 +136,9 @@ def get_disk_panel():
     table.add_column("Graph")
 
     table.add_row(f"{usage.used // (1024**3)} GB", f"{usage.total // (1024**3)} GB", colorize(usage.percent), bar)
-    table.add_row("—", f"{usage.free // (1024**3)} GB", "[green]Free Space[/green]", Text("Available", style="dim"))   
-    free_percent = 100 - usage.percent
-    table.add_row("—", "—", f"[green]{free_percent:.1f}%[/green]", Text("Free %", style="dim"))
     table.add_row(f"{swap.used // (1024**2)} MB", f"{swap.total // (1024**2)} MB", colorize(swap.percent), Text("Swap", style="dim"))
-    table.add_row(f"{curr_io.read_count}", f"{curr_io.write_count}", "[cyan]I/O Ops[/cyan]", Text("Reads/Writes", style="dim"))
     table.add_row(f"{read_rate:.1f} KB/s", f"{write_rate:.1f} KB/s", "—", Text("I/O Rate", style="dim"))
-    table.add_row("/", "—", "[cyan]Mount[/cyan]", Text("Root", style="dim"))
-    queue_time = curr_io.write_time + curr_io.read_time
-    table.add_row(f"{queue_time / 1000:.1f}s", "—", "[yellow]Queue Time[/yellow]", Text("Total Wait", style="dim"))
-    mount_opts = subprocess.getoutput("findmnt -n -o OPTIONS /")
-    table.add_row(mount_opts, "—", "[magenta]Mount Opts[/magenta]", Text("Flags", style="dim"))
-    # ✅ 1. Disk Busy Time
-    busy_time = curr_io.busy_time / 1000  # ms to sec
-    table.add_row(f"{busy_time:.1f}s", "—", "[blue]Busy Time[/blue]", Text("I/O Load", style="dim"))
 
-    # ✅ 2. Disk Utilization %
-    util_percent = busy_time / 1.0  # Assuming 1s sample window
-    table.add_row("—", "—", f"[bold]{util_percent:.1f}%[/bold]", Text("Disk Util", style="dim"))
-
-    read_mb = (curr_io.read_bytes - console.prev_disk_io.read_bytes) / (1024**2)
-    write_mb = (curr_io.write_bytes - console.prev_disk_io.write_bytes) / (1024**2)
-    table.add_row(f"{read_mb:.2f} MB/s", f"{write_mb:.2f} MB/s", "[cyan]Throughput[/cyan]", Text("Read/Write", style="dim"))
-   
     return Panel(table, border_style="grey37")
 
 def get_network_panel():
