@@ -5,6 +5,17 @@ from rich.panel import Panel
 from rich.text import Text
 import threading
 import time
+import pytz
+import os
+
+log_dir = "logs"
+for filename in os.listdir(log_dir):
+    file_path = os.path.join(log_dir, filename)
+    if os.path.isfile(file_path):
+        os.remove(file_path)
+
+tz = pytz.timezone("Europe/London")
+timestamp = datetime.now(tz).strftime("%Y-%m-%d %H:%M:%S")
 
 # 🧪 Configuration for the Watchdog panel
 @dataclass

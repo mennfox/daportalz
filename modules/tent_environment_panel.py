@@ -43,10 +43,10 @@ def build_tent_environment_panel():
 
         # Compose visual lines
         lines = []
-        lines += sensor_zone_lines(temp_mcp, ZONES_TEMP, "MCP9808", "°C", temp_mcp)
-        lines += sensor_zone_lines(temp_adt, ZONES_TEMP, "ADT7410", "°C", temp_adt)
-        lines += sensor_zone_lines(temp_bme, ZONES_TEMP, "BME280", "°C", temp_bme)
-        lines += sensor_zone_lines(hum_bme, ZONES_HUM, "BME Hum", "%", hum_bme)
+        lines += sensor_zone_lines(temp_mcp, ZONES_TEMP, "MCP9808 - UPPER", "°C", temp_mcp)
+        lines += sensor_zone_lines(temp_adt, ZONES_TEMP, "ADT7410 - MID", "°C", temp_adt)
+        lines += sensor_zone_lines(temp_bme, ZONES_TEMP, "BME280 - LOWER", "°C", temp_bme)
+        lines += sensor_zone_lines(hum_bme, ZONES_HUM, "BME280 - lower hum", "%", hum_bme)
         lines += sensor_zone_lines(co2, ZONES_CO2, "CO₂", "ppm", co2)
         lines += sensor_zone_lines(pressure, ZONES_PRESSURE, "Pressure", "hPa", pressure)
         lines += sensor_zone_lines(lux, get_mood_lux_palette(), "Lux", "Lux", lux)

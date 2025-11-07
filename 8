@@ -33,6 +33,7 @@ from modules.performance_panels import (
 from modules.sensor_panels import build_sensor_cluster_panel
 from modules.watchdog_panel import WatchdogConfig, build_watchdog_log_panel, log_watchdog, watchdog_ping_loop
 from modules.get_top_process_panel import get_top_processes_panel  # ✅ New panel
+from modules.fade1 import fade1_panel
 
 
 # 🌐 Console
@@ -79,7 +80,8 @@ def build_dashboard(watchdog_config):
         get_system_panel(),
         get_cpu_panel(),
         build_dashboard_health_panel(console),
-        build_tent_environment_panel()
+        build_tent_environment_panel(),
+        fade1_panel()
     )
 
     system_grid.add_row(

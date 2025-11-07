@@ -1,291 +1,3 @@
-cat test.py
-python3 -u test.py
-cd backups/
-l;s
-ls
-cm bup170825 170825
-sudo mv bup170825 170825
-ls
-sudo mv bup07 1925
-ls
-sudo mv 170825 17825
-ls
-cd 1925
-ls
-cp test.py /home/pi/
-cd ..
-ls
-cd 6925/
-ls
-cp 14 /home/pi/test.py
-cd ..
-python3 -u test.py 
-cp dpz.py test.py
-sudo cp dpz.py test.py
-python3 -u test.py 
-cler
-clear
-python3 -u test.py 
-ls
-cd backups/
-ls
-cs 1925/
-cd 1925/
-ls
-cd bh1750/
-python3 -u 1750.py 
-cd ./
-cd ../
-cd /
-pwd
-cd /home/pi
-python3 -u test.py 
-cp 8 test.py
-python3 -u test.py 
-cd logs
-ls -la
-rm *
-cd ..
-python3 watering_log.py 
-python3 -u test.py 
-python3 -u watering_log.py 
-python3 -u test.py 
-python3 -u watering_log.py 
-python3 -u test.py 
-hostname
-ifconfig
-ping google.com
-reboot
-ls
-mkdir 10925
-mv 1 2 3 4 5 6 7 8 9 10925/
-mv 10925 backups/
-cp test.py 1
-cp test.py dpz.py
-vi test.py
-pkill -f test.py
-ls
-cp watering_log.py backups/
-cp repot.py backups/
-python3 -u port.py 
-cp port.py backups/
-ls
-lsls
-clear
-rm watering_log.py 
-vi watering_log.py
-cp test.py 2
-vi test.py
-python3 -u watering_log.py
-vi watering_log.
-vi watering_log.py 
-python3 -u watering_log.py
-rm watering_log.py 
-vi watering_log.py
-python3 -u watering_log.py
-vi watering_log.py
-python3 -u watering_log.py
-cp test.py 3
-ls
-clear
-vi test.py
-cp test.py 4
-vi test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-clear
-vi test.py
-ls
-cp watering_log.py backups/watering_log2.py 
-mv watering_log.py modules/
-vi watering_log.json 
-cd modules/
-cat watering.py
-vi watering_log.py 
-cd ..
-cp test.py 5
-clear
-vi test.py
-cd modules/
-vi watering_log.py 
-ls
-cp watering.py wateringold
-cp watering_log.py watering.py
-sudo cp watering_log.py watering.py
-ls
-rm watering.py
-sudo chown pi:pi watering.py
-rm watering.py
-vi watering.py
-ls
-cd ..
-ls
-cp backups/watering_log2.py /home/pi/watering_log.py
-ls
-cp 5 test.py
-vi test.py
-rm 5
-cp 4 test,py
-mv test,py test.py
-vi test.py
-ls
-cp 3  test.py
-l,s
-clear
-ls
-cp 4 test.gpy
-cd modules/
-ls
-cp wateringold watering.py
-cd .,.
-cd ..
-lsof | grep deleted
-sudo debugfs /dev/sdX
-debugfs: lsdel
-pwd
-vi test.py
-cp test.py 5
-cp test.py dpz
-vi test.py
-cp test.py 6
-vi test.py
-clear
-cp test.py 7
-vi test.py
-cp test.py 8
-vi test.py
-python3 -u test.py
-cp test.py 9
-cp test.py dpz.py 
-vi test.py
-python3 -u test.py
-cp test.py 10
-vi test.py
-ls
-cp 10 test.py
-vi test.py
-clear
-vi test.py
-ls
-cp test.py 11
-cp 9 test.py
-rm 10
-vi test.py
-ls
-rm 11
-cp test.py 10
-vi test.py
-cp test.py 11
-vi test.py
-cp test.py 12
-cp test.py dpz.py 
-python3 -u dpz.py
-clear
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-vi test.py
-python3 -u dpz.py
-clear
-ls
-cp 12 test.py
-pytthon3 -u test.py
-python3 -u dpz.py
-python3 -u test.py
-vi test.py
-clear
-ls
-cp 12 test.py
-vi test.py
-pkill -f test.py
-cp 12 test.py 
-sudo service motion stop
-ls
-mkdir  13925
-mv 1 2 3 4 5 6 7 8 9 10 11 12 13925/
-ls
-rm dpz
-rm test.gpy 
-cd i2c
-cat i2c
-ls
-cp test.py 1
-cp test.py dpz.py 
-vi test.py
-clear
-python3 -u test.py
-vi test.py
-cp test.py 1
-cp test.py dpz.py 
-vi test.py
-python3 -u test.py
-sudo iostat -dx | grep -m1 sda
-iostat -dx 1 2
-cp test.py 2
-vi test.py
-python3 -u test.py
-cp test.py 3
-cp test.py dpz.py
-ping -c 1 -W 1 192.168.1.1
-ping -c 1 -W 1 192.168.2.1
-ping -c 1 -W 1 192.168.1.2
-ifconfig
-ping 192.168.1.254
-vi test.py
-ls
-cat plants.json
-ls
-cat grow.py
-ls
-cp grow.py 13925/
-cp plants.json 13925/
-vi plants.py
-vi grow.py
-vi height.py
-mv height.py modules/
-vi test.py
-cd modules
-python3 -u height.py 
-vi height.py 
-python3 -u height.py 
-ls
-ls -la
-ls
-touch modules/__init__.py
-touch __init__.py
-cd ..
-vi test.py
-cd modules/
-python3 -u height.py 
-cd ..
-vi plants.json 
-vi grow.py
-vi plants.json
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-vi grow.py
-rm grow.py
-vi grow.py
-cat grow.py
-vi grow.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-vi grow.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-vi grow.py
-rm grow.py
-vi grow.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-vi test.py
-cp 13925/grow.py /home/pi/
-cp 13925/plants.json /home/pi/
 ls
 cp 3 test.py
 ls
@@ -1998,3 +1710,291 @@ systemctl status shellinabox
 python3 -u dpz.py 
 ython3 -u dpz.py 
 python3 -u dpz.py 
+vi dpz.py 
+clear
+python3 -u dpz.py 
+cd json/
+ls
+cp * ../
+python3 -u dpz.py 
+cd ..
+python3 -u dpz.py 
+cd modules/
+ls
+cat system_panel.py 
+cat performance_panels.py 
+clear
+cp performance_panels.py p1
+vi performance_panels.py 
+vi watchdog_panel.py 
+cd ..
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+cd modules/
+ls
+cat as7341_panel.py 
+cat as7341_sensor.py 
+cd ..
+cp dpz.py 1
+vi dpz.py 
+cd modules/
+cat as7341_sensor.py 
+cat as7341_panel.py 
+vi as7341_panel.py 
+cp as7341_panel.py ap1
+vi as7341_panel.py 
+cp as7341_panel.py ap2
+vi as7341_panel.py 
+cp as7341_panel.py ap3
+vi as7341_panel.py 
+pkill -f dpz.pu
+pkill -f dpz.py
+vi get_top_process_panel.py
+cd ..
+vi dpz.py 
+cp dpz.py 7
+rm dpz.py 
+vi dpz.py
+cd modules/
+pkill -f dpz.py
+vi get_top_process_panel.py 
+pkill -f dpy.py
+cp get_top_process_panel.py g1
+vi get_top_process_panel.py 
+pkill -f dpy.py
+vi get_top_process_panel.py 
+cd ..
+mdkir -p json
+mkdir -p json
+ls json
+ls *.json
+cd modules/
+ls
+cat watering_panel.py 
+cd ..
+ls
+ls *.json
+cd modules/
+vi moisture_chart.py 
+cd ..
+vi main.py 
+vi grow.py
+mv *.json json/
+vi grow.py 
+vi dpz.py 
+cd json/
+ls
+ls -la
+cd ..
+ls
+vi watering_log.py 
+pkill -f dpz.py
+cd modules/
+vi watering.py
+vi watering_log.py
+vi watering_panel.py 
+vi watering_log.py
+vi watering.py
+cvi sensor_panels.py 
+vi sensor_panels.py 
+vi watering.py 
+cd ..
+vi grow.py 
+ls
+vi watering_log.py 
+ls
+pcd modules/
+cd modules/
+vi watering_panel.py 
+cd ..
+vi grow.py 
+pkill -f dpz.py
+vi grow.py 
+pkill -f dpz.py
+vi grow.py 
+vi dpz.py 
+pkill -f dpz.py
+vi dpz.py 
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+cd modules/
+vi as7341_panel.py 
+vi tent_environment_panel.py
+ls
+vi tent_environment_panel.py
+vi zone_utils.py 
+cd ..
+vi dpz.py 
+pkill -f dpz.py
+vi dpz.py 
+cd modules/
+vi sensor_panels.py 
+ls
+vi tent_environment_panel.py 
+cat zone_utils.py 
+vi zone_utils.py 
+pkill -f dpz.py
+vi zone_utils.py 
+pkill -f dpz.py
+vi zone_utils.py 
+vi sensor_panels.py 
+vi tent_environment_panel.py 
+vi zone_utils.py 
+pkill -f dpz.py
+vi zone_utils.py 
+pkill -f dpz.py
+vi zone_utils.py 
+pkill -f dpz.py
+vi zone_utils.py 
+pkill -f dpz.py
+vi zone_utils.py 
+pkill -f dpz.py
+vi zone_utils.py 
+cat dpz.py
+cd ..
+cat dpz.py
+ls
+rm test.py 
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+vi test.py
+python3 -u test.py 
+cd modules/
+vi fade1.py
+cd ..
+vi dpz.py 
+cd modules/
+vi fade1.py 
+cd ..
+vi fade1.py 
+vi dpz.py 
+cd modules/
+vi fade1.py 
+cd ..
+vp dpz.py 8
+cp dpz.py 8
+vi dpz.py 
+cp 8 dpz.py 
+cd modules/
+vi fade1.py 
+cd ..
+vi dpz.py 
+cd modules/
+cat fade1.py 
+vi fade1.py 
+cd ..
+python3 -u dpz.py 
+cp 8 dpz.py 
+python3 -u dpz.py 
+cp 8 dpz.py 
+python3 -u dpz.py 
+cp 7 dpz.py 
+python3 -u dpz.py 
+ls
+cp 8 dpz.py 
+vi dpz.py 
+cd modules/
+cat watering_panel.py 
+cat waterimg.py
+cat watering.py
+cat grow_dashboard.py 
+cat watering_panel.py 
+ls
+cat grow_dashboard.py 
+vi grow_watering_dashboard.py
+cd ..
+cp dpz.py 9
+vi dpz.py 
+cd modules/
+ls
+vi grow_watering_dashboard.py 
+rm grow_watering_dashboard.py 
+vi grow_watering_dashboard.py 
+cat grow_dashboard.py 
+cd ..
+python3 -u dpz.py 
+vi dpz.py 
+python3 -u dpz.py 
+vi dpz.py 
+python3 -u dpz.py 
+vi dpz.py 
+python3 -u dpz.py 
+cp 8 dpz.py 
+python3 -u dpz.py 
+cp 9 dpz.py 
+python3 -u dpz.py 
+pip3 install pyfiglet 
+pip3 install pyfiglet --break[system=packages
+pip3 install pyfiglet --break[-system=-packages
+pip3 install pyfiglet --break-system=-packages
+pip3 install pyfiglet --break-system-packages
+cd modules/
+vi banner.py
+cd ..
+python3 -u dpz.py 
+ca dpz.py
+cat dpz.py 
+python3 -u dpz.py 
+cp 8 dpz.py 
+clear
+cat dpz.py 
+:q!
+rm dpz.py 
+vi dpz.py
+python3 -u dpz.py 
+vi dpz.py
+python3 -u dpz.py 
+vi dpz.py 
+python3 -u dpz.py 
+cd modules/
+ls
+cat watering_panel.py 
+ls
+vi grow
+vi grow_watering_dashboard.py 
+ls
+pkill -f dpz.py
+python -u dpz.p
+pkill -f dpz.py
+python -u dpz.p
+python3 -u dpz.py 
+cd modules/
+vi sensor_panels.py 
+python3 -u dpz.py 
+python3 -u dpz.py 
+cd modules/
+vi sensor_panels.py 
+ls
+ls wat*
+ls -la
+vi dashboard_health.py 
+clear
+cp dashboard_health.py dh1
+vi dashboard_health.py 
+cat dh1 
+clear
+vi dashboard_health.py 
+python3 -u dpz.py 
+cd modules/
+cp dh1 dashboard_health.py 
+cd ..
+python3 -u dpz.py 
+cd modules/
+ls
+cat watchdog_panel.py 
+cd logs/
+ls
+cat watchdog_20250915_181532.log 
+rm *
+ls
+cd ..
+cd logs/
+ls
+#
+ls

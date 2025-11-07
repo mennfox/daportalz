@@ -48,7 +48,7 @@ def zone_color(value, zones):
             return color
     return zones[-1][1]
 
-def format_zone_bar(value, zones, label="", unit="", width=20, max_value=None):
+def format_zone_bar(value, zones, label="", unit="", width=10, max_value=None):
     color = zone_color(value, zones)
     scale = max_value if max_value else zones[-1][0]
     filled_len = min(int((value / scale) * width), width)
@@ -159,7 +159,7 @@ def build_sensor_cluster_panel():
     grid.add_row(get_htu21d_panel(), get_ahtx0_panel()) 
     grid.add_row(get_room_panel(), build_averages_panel())
 #    grid.add_row(build_sensor_cluster_panel())  # 👈 Final row
-    return Panel(grid, title="🌡 Sensor Cluster", border_style="cyan", expand=True)
+    return Panel(grid, title="🌡 Sensor Cluster", border_style="grey37", expand=True)
 
 def build_dashboard():
     layout = Table.grid(padding=(1, 2))

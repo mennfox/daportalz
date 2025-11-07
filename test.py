@@ -1,144 +1,31 @@
-from pyfiglet import Figlet
-import os
-from rich.text import Text
-from rich.panel import Panel
-from rich.console import Console
-from rich.console import Group
-from rich.table import Table
-from rich.live import Live
 import time
-import board
-import busio
-from adafruit_as7341 import AS7341
-import threading
+import random
+from pyfiglet import Figlet
+from rich.console import Console
+from rich.text import Text
+from rich.live import Live
 
-# 🧩 Your custom modules only
-from modules.as7341_sensor import init_as7341, create_as7341_cache, start_as7341_loop
-from modules.as7341_panel import build_as7341_panel
-from modules.watering import get_last_watered_text
-from modules.dashboard_health import build_dashboard_health_panel
-from modules.height import height_bar
-from modules.tent_environment_panel import build_tent_environment_panel
-from modules.scd4x_panel import build_scd4x_panel
-from modules.system_panel import get_system_panel
-from modules.i2c_panel import build_i2c_panel, scan_i2c_loop
-from modules.grow_dashboard import build_grow_dashboard
-from modules.watering_panel import build_watering_panel
-from modules.performance_panels import (
-    get_cpu_panel, get_memory_panel, get_disk_panel, get_network_panel
-)
-from modules.sensor_panels import build_sensor_cluster_panel
-from modules.watchdog_panel import WatchdogConfig, build_watchdog_log_panel, log_watchdog, watchdog_ping_loop
-
-# 🌐 Console
 console = Console()
 
-# 🌿 Sensor Initialization
-as7341 = init_as7341()
-as7341_cache = create_as7341_cache()
-start_as7341_loop(as7341, as7341_cache)
+def fade_retro_da():
+    figlet = Figlet(font="block")  # Try "block", "big", "slant", "bubble", "doom"
+    styles = ["dim white", "white", "bold white", "bold cyan", "bold magenta"]
+    duration = 20  # seconds
+    start_time = time.time()
 
-# 🔁 Refresh interval
-REFRESH_INTERVAL = 1.0
+    with Live(console=console, refresh_per_second=5, screen=False) as live:
+        while time.time() - start_time < duration:
+            style = random.choice(styles)
 
-def print_animated_banner(text="DaPortalZ", font="slant", delay=0.1):
-    figlet = Figlet(font=font)
-    banner_lines = figlet.renderText(text).splitlines()
-    terminal_width = os.get_terminal_size().columns
-    for line in banner_lines:
-        padded_line = line.center(terminal_width)
-        console.print(padded_line, style="bold cyan")
-        time.sleep(delay)
+            d_lines = figlet.renderText("D").splitlines()
+            a_lines = figlet.renderText("A").splitlines()
+            combined = d_lines + [""] + a_lines  # vertical stack
 
-def build_main_system_panel():
-    grid = Table.grid(padding=(1, 2))
-    grid.add_row(
-        get_system_panel(),
-        get_cpu_panel(),
-        get_memory_panel()
-    )
-    grid.add_row(
-        get_disk_panel(),
-        get_network_panel(),
-        get_i2c_panel()  # Example: swap in any other panel here
-    )
-    grid.add_row(
-        get_watchdog_log_panel(),
-        build_dashboard_health_panel(),
-        build_averages_panel()
-    )
+            styled_text = Text()
+            for line in combined:
+                styled_text.append(line.center(console.width) + "\n", style=style)
 
-    return Panel(grid, title="🧠 Core System Glyph", border_style="grey37")
+            live.update(styled_text)
+            time.sleep(random.uniform(0.6, 1.2))  # slow fade
 
-# 🧩 Dashboard builder with config passed in
-# 🧩 Dashboard builder with config passed in
-def build_dashboard(watchdog_config):
-    layout = Table.grid(padding=(1, 2))
-
-    system_grid = Table.grid(padding=(1, 2))
-    system_grid.add_column()
-    system_grid.add_column()
-    system_grid.add_column()
-    system_grid.add_column()
-
-    system_grid.add_row(
-        get_system_panel(),
-        get_cpu_panel(),
-        build_dashboard_health_panel(console),
-        build_tent_environment_panel()  # ✅ fixed: added missing closing parenthesis
-    )
-
-    system_grid.add_row(
-        get_memory_panel(),
-        get_disk_panel(),
-        build_watchdog_log_panel(watchdog_config),
-        build_sensor_cluster_panel()
-    )
-
-    system_grid.add_row(
-        get_network_panel(),
-        build_i2c_panel(),
-        build_as7341_panel(as7341_cache)
-    )
-
-    layout.add_row(system_grid)
-
-    # Optional sensor panels
-    # layout.add_row(build_scd4x_panel())
-    # layout.add_row(build_tent_environment_panel())
-
-    # Create a horizontal layout for side-by-side panels
-    grow_layout = Table.grid(padding=(1, 2))
-    grow_layout.add_column(ratio=1)
-    grow_layout.add_column(ratio=1)
-
-    # Add the panels side by side
-    grow_layout.add_row(
-    build_grow_dashboard(),
-    build_watering_panel(show_panel=True)
-    )
-
-    # Combine both layouts
-    return Group(layout, grow_layout)
-# 🚀 Dashboard runner
-def run_dashboard():
-    watchdog_config = WatchdogConfig()
-    log_watchdog("✅ Sentinel Echo initialized.", watchdog_config)
-
-    threading.Thread(target=scan_i2c_loop, name="i2c_scan_loop", daemon=True).start()
-    threading.Thread(target=watchdog_ping_loop, args=(watchdog_config,), name="watchdog_ping_loop", daemon=True).start()
-
-    with Live(console=console, refresh_per_second=10, screen=True) as live:
-        while True:
-            live.update(build_dashboard(watchdog_config))
-            time.sleep(REFRESH_INTERVAL)
-
-# 🧭 Entry point
-if __name__ == "__main__":
-    print_animated_banner()  # 🌟 Portal invocation
-    run_dashboard()
-
-
-
-
-
+fade_retro_da()

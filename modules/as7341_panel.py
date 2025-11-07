@@ -31,7 +31,7 @@ def build_as7341_panel(as7341_cache):
         # Add channel bars
         for name, value in channels.items():
             norm = value / max_val
-            bar_len = int(norm * 40)
+            bar_len = int(norm * 90)
             bar = "█" * bar_len
             color = name.lower()
 
