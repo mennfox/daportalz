@@ -90,7 +90,7 @@ def build_grow_dashboard(plants_path="plants.json"):
         progress = calc_progress(prop_date, repot_date)
         height_val = entry.get("height", 0.0)
         harvest_weight = entry.get("harvest_weight", 0.0)
-        height_bar = f"{height_val:.1f}cm" if height_val else "[No data]"
+        height_bar = f"{height_val:.1f}in" if height_val else "[No data]"
         harvest = f"{harvest_weight:.1f}g" if harvest_weight else "[Pending]"
 
         # Moisture alignment by index

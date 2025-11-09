@@ -26,9 +26,9 @@ def sparkline(data, max_value=100, color="white", width=30):
     safe_max = max(max_value, 1.0)
     scaled = [min(int((val / safe_max) * (len(blocks) - 1)), len(blocks) - 1) for val in data]
 
-    # Pad from the left to align graph start
+    # Pad or trim to fixed width
     if len(scaled) < width:
-        scaled = [0] * (width - len(scaled)) + scaled
+        scaled += [0] * (width - len(scaled))
     elif len(scaled) > width:
         scaled = scaled[-width:]
 

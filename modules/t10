@@ -140,6 +140,7 @@ def build_tent_environment_panel():
     lines.append(render_heat_bar(temp_mcp, "MCP9808 - UPPER", ZONES_TEMP))
     lines.append(render_heat_bar(temp_adt, "ADT7410 - MID", ZONES_TEMP))
     lines.append(render_heat_bar(temp_bme, "BME280 - LOWER", ZONES_TEMP))
+    lines.append(render_heat_bar(temp_scd, "SCD4x - AIR", ZONES_TEMP))
 
     co2_lines = render_dial_lines(co2, "Co₂", max_value=2000)
     hpa_lines = render_dial_lines(pressure, "hPa", max_value=1050)
@@ -147,6 +148,7 @@ def build_tent_environment_panel():
         lines.append(Text.from_markup(f"{l1:<25} {l2}"))
 
     lines += sensor_zone_lines(hum_bme, ZONES_HUM, "BME280 - lower hum", "%", hum_bme)
+    lines += sensor_zone_lines(hum_scd, ZONES_HUM, "SCD4x - air hum", "%", hum_scd)
     lines += sensor_zone_lines(lux, get_mood_lux_palette(), "Lux", "Lux", lux)
 
     lines.append(Text("\n"))

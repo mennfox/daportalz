@@ -1,188 +1,3 @@
-ls
-cp 3 test.py
-ls
-ls *.json
-cat report.py
-cat repot.py
-vi test.py
-vi main.py
-python3 -u main.py 
-vi test.py
-vi main.py 
-python3 -u main.py 
-cd modules/
-touch __init__.py
-ls
-vi ../test.py 
-vi height.py 
-cd ..
-vi plants.json 
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-vi test.py
-python3 -u main.py
-cp test.py 4
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-vi test.py
-cp test.py 5
-cd modules/
-ls
-vi height.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-pwd
-ls
-cp main.py m1
-vi main.py
-cd modules/
-cp height.py h4
-vi height.py 
-cd ..
-vi main.py 
-python3 -u main.py 
-vi main.py 
-sudo apt install micro
-micro menu.py
-ls
-ls men*
-vi main.py
-python3 -u main.py 
-vi main.py
-python3 -u main.py 
-vi main.py
-python3 -u main.py 
-cd modules/
-cp height.py h6
-vi height.py 
-0;23;25M0;23;25mcd ..
-cd ..
-pwd
-vi main.py 
-exit
-cd modules/
-sudo rm .height.py.swp 
-vi height.py 
-cd ..
-vi test.py 
-ls
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-vi test.py 
-ls
-cp 5 test.py
-cd modules/
-ls
-vi height.py 
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-cat height.py 
-vi height.py 
-cp height.py h1
-vi height.py 
-vi test.py
-cd ..
-vi test.py
-cd modules/
-vi height.py 
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-cd ..
-vi test.py
-cp 4.test.py
-cp 4 test.py
-cp 1 test.py
-cp 5 test.py 
-vi test.py
-cp 1 test.py
-vi test.py
-cd modules
-ls
-__init__.py
-vi height.py 
-cd ..
-vi test.py
-cp 5 test.py
-vi test.py
-cp 1.test.py
-cp 1 test.py
-vi test.py
-cp 1 test.py
-vi test.py
-python3 -u test.py 
-LS
-ls
-cp 4 test.py 
-python3 -u test.py 
-cp 4 test.py 
-python3 -u test.py 
-reboot
-clear
-#
-vi test.py
-sudo rm .test.py.swp 
-vi test.py
-cp 5 test.py 
-viu test.py
-vi test.py
-cp 1 test.py
-vi test.py
-mpython3 -u main.py 
-python3 -u main.py 
-cd modules/
-ls
-vi height.py 
-cp height.py h2
-rm height.py 
-vi height.py
-cp h2 height.py 
-cd ..
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-python3 -u main.py
-cd modules/
-vi height.py 
-ls
-rm h2
-cp height.py h2
-vi height.py 
-cd ..
-cd /home/pi/
-cp test.py 6
-vi test.py
-cd modules/
-cp height.py h3
-vi height.py
-cd ..
-main
-python3 -u main.py 
-cd modules/
-vi height.py 
-vi main.py 
-python3 -u main.py 
-vi main.py 
-python3 -u main.py 
-ls
-cp plants.json pj
-python3 -u main.py 
-cp pj plants.json
-ls
-python3 -u main.py 
-ls
-ls *.txt
-vi main.py
-python3 -u main.py 
-vi grow.py 
-cp main.py m2
-vi main.py
-vi grow.py 
 vi test.py
 cp test.py 7
 vi test.py
@@ -1998,3 +1813,188 @@ cd logs/
 ls
 #
 ls
+d modules/
+cd modules/
+ls
+ls -la
+python3 -u watchdog_panel.py 
+python3 -u watchdog_panel.py > test
+cat test
+clear
+cat test
+clear
+ls -la
+cat dashboard_health.py 
+:q!
+clear
+python3 -u dpz.py
+cd ..
+python3 -u dpz.py
+date
+time
+python3 -u dpz.py
+cd logs/
+ls
+cd ..
+cd modules/
+vi watchdog_panel.py 
+cd ..
+python3 -u dpz.py
+clear
+sudo timedatectl set-ntp true
+sudo timedatectl set-timezone Europe/London
+date
+python3 -u dpz.py
+cd logs/
+ls
+rm *
+cd ..
+python3 -u dpz.py
+cd od
+ls
+clear
+cd modules/
+vi watchdog_panel.py 
+cd ..
+python3 -u dpz.py
+cd modules/
+vi watchdog_panel.py 
+cd ..
+python3 -u dpz.py
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+python3 -u dpz.py
+clear
+cd modules/
+cat dashboard_health.py 
+:q!
+clear
+vi watchdog_panel.py 
+vi dashboard_health.py 
+cd ..
+python3 -u dpz.py 
+cd sensors/
+cd scd4x/
+ls
+python3 -u scd.py 
+cd ..
+cd ../modules/
+cat dashboard_health.py 
+s
+ls -la
+ls
+cp dashboard_health.py dh2
+vi dashboard_health.py 
+cd ..
+python3 -u dpz.py 
+cd modules/
+vi dashboard_health.py 
+exig
+exit
+python3 -u dpz.py 
+pkill -f dpz.py
+cd modules/
+cat dashboard_health.py 
+pkill -f dpz.py
+rm dashboard_health.py 
+vi dashboard_health.py
+pkill -f dpz.py
+rm dashboard_health.py 
+vi dashboard_health.py
+sudo halt -p
+cd modules/
+cp performance_panels.py p2
+vi performance_panels.py 
+cp p2 performance_panels.py 
+vi performance_panels.py 
+cat performance_panels.py 
+vi performance_panels.py 
+cp performance_panels.py p3
+vi performance_panels.py 
+pkill -f dpz.py
+cd ..
+vi test.py
+cat test.py
+python3 -u test.py
+rm test.py
+vi test.py
+python3 -u test.py
+cd modules
+vi tent_heat_panel.py
+cd ..
+vi dpz.py
+cd modules/
+cp tent_environment_panel.py t2
+rm tent_environment_panel.py 
+vi tent_environment_panel.py 
+cd ..
+ls
+python3 -u main.py 
+ls
+vi watering_log.py 
+python3 -u main.py 
+ls
+vi grow.py
+cd modules/
+ls
+vi grow_dashboard.py 
+vi gauge.py
+python3 -u gauge.py 
+rm gauge.py 
+vi gauge.py
+python3 -u gauge.py 
+rm gauge.py 
+vi gauge.py
+python3 -u gauge.py 
+rm gauge.py 
+vi gauge.py
+python3 -u gauge.py 
+rm gauge.py 
+vi gauge.py
+python3 -u gauge.py 
+rm gauge.py 
+vi gauge.py
+python3 -u gauge.py 
+rm gauge.py 
+vi gauge.py
+python3 -u gauge.py 
+rm gauge.py 
+vi gauge.py
+python3 -u gauge.py 
+cat tent_environment_panel.py 
+cp tent_environment_panel.py t3
+rm tent_environment_panel.py 
+vi tent_environment_panel.py 
+cp tent_environment_panel.py t4
+vi tent_environment_panel.py 
+:q!
+!
+rm tent_environment_panel.py 
+vi tent_environment_panel.py 
+pkill -f dpz.py
+htop
+vi tent_environment_panel.py 
+pkill -f dpz.py
+cp t4 tent_environment_panel.py 
+halt -p
+sudo halt -p
+python3 -u dpz.py 
+cd modules/
+ls
+mv tent_heat_panel.py tent_heatmap_panel.py
+cd ..
+python3 -u dpz.py 
+cd modules/
+ls
+vi performance_panels.py 
+pkill -f dpz.py
+xs..
+cd ..
+python3 -u dpz.py 
+exit
+clear
+python3 -u main.py 
+clear
+python3 -u main.py 
+exit

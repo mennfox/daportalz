@@ -39,7 +39,7 @@ def render_line(data, label, color, height=10):
     return Text("\n".join(lines), style=color)
 
 def run_live_graph():
-    with Live(console=console, refresh_per_second=4) as live:
+    with Live(console=console, refresh_per_second=1) as live:
         while True:
             temp, hum = get_readings()
             temp_data.append(temp)
@@ -50,8 +50,7 @@ def run_live_graph():
 
             temp_graph = render_line(temp_data, "Temp", "red")
             hum_graph = render_line(hum_data, "Hum", "cyan")
-            combined = Text(f"{temp_graph}\n\n{hum_graph}")
-            panel = Panel(combined, title="🌡️ Live Temp & Hum", border_style="grey37")
+            panel = Panel(Text.assemble(temp_graph, "\n\n", hum_graph), title="🌡️ Live Temp & Hum", border_style="grey37")
             live.update(panel)
             sleep(10)
 

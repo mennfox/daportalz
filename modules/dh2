@@ -8,75 +8,78 @@ import os
 from datetime import timedelta
 
 REFRESH_INTERVAL = 1.0  # You can override this from your main script
-
 def build_dashboard_health_panel(console):
-    # 🛡️ Initialize thread metadata if missing
+    # 🛡️ Ensure thread_meta exists
     if not hasattr(console, "thread_meta"):
         console.thread_meta = {}
 
+    lines = []
     active_threads = threading.enumerate()
     now = time.time()
-    expected_threads = ["watchdog_ping_loop", "i2c_scan_loop"]
+    expected_threads = [
+        "watchdog_ping_loop",
+        "i2c_scan_loop",
+    ]
 
-    thread_lines = []
-    for name in expected_threads:
+    def format_thread_info(name):
         thread = next((t for t in active_threads if name in t.name), None)
         is_active = thread is not None
         symbol = "[green]✓[/green]" if is_active else "[red]✗[/red]"
 
         meta = console.thread_meta.get(name, {})
-        previously_active = meta.get("was_active", False)
-
-        # 🔁 Restart logic: only increment if transitioning from inactive to active
         if is_active:
-            if not previously_active:
-                meta["restarts"] = meta.get("restarts", 0) + 1
+            if "start_time" not in meta:
                 meta["start_time"] = now
-            uptime = timedelta(seconds=int(now - meta.get("start_time", now)))
+            meta["restarts"] = meta.get("restarts", 0) + 1
+            uptime = timedelta(seconds=int(now - meta["start_time"]))
         else:
             uptime = "—"
 
-        meta["was_active"] = is_active
-
-        # 🧭 Age bar visualization
         age_secs = (now - meta.get("start_time", now)) if is_active else 0
         age_color = "green" if age_secs < 60 else "yellow" if age_secs < 300 else "red"
         bar_str = ("█" * min(int(age_secs / 10), 20)).ljust(20)
         age_bar = Text(bar_str, style=age_color)
+ 
+        try:
+            process = psutil.Process(os.getpid())
+            cpu = process.cpu_percent(interval=None)
+            mem_mb = process.memory_info().rss / (1024 ** 2)
+            usage = f"CPU: {cpu:.1f}% | Mem: {mem_mb:.1f}MB"
+        except Exception:
+            usage = "Usage: [red]Error[/red]"
 
         console.thread_meta[name] = meta
-
-        thread_lines.extend([
+        return Group(
             Text.from_markup(f"[bold]{symbol} Thread: {name}[/bold]"),
             Text(f"Uptime: {uptime}", style="cyan"),
             Text(f"Restarts: {meta.get('restarts', 0)}", style="magenta"),
             Text("Age Bar: ") + age_bar,
-            Text("")  # Spacer
-        ])
+            Text(usage, style="blue")
+        )
 
-    # 📋 Other runtime diagnostics
-    other_lines = []
+    for name in expected_threads:
+        lines.append(format_thread_info(name))
 
     try:
-        other_lines.append(Text(f"Refresh Interval: {REFRESH_INTERVAL:.2f}s", style="cyan"))
+        lines.append(Text(f"Refresh Interval: {REFRESH_INTERVAL:.2f}s", style="cyan"))
     except NameError:
-        other_lines.append(Text("Refresh Interval: [red]Not Defined[/red]"))
+        lines.append(Text("Refresh Interval: [red]Not Defined[/red]"))
 
     banner_flag = getattr(console, "banner_rendered", True)
     banner_status = "[green]✓[/green]" if banner_flag else "[yellow]Pending[/yellow]"
-    other_lines.append(Text.from_markup(f"Banner Animation: {banner_status}"))
+    lines.append(Text.from_markup(f"Banner Animation: {banner_status}"))
 
     if hasattr(console, "last_exception"):
-        other_lines.append(Text(f"[red]Last Exception: {console.last_exception}[/red]"))
+        lines.append(Text(f"[red]Last Exception: {console.last_exception}[/red]"))
 
     try:
         if not hasattr(console, "last_frame_time"):
             console.last_frame_time = now
         frame_delta = now - console.last_frame_time
         console.last_frame_time = now
-        other_lines.append(Text(f"Frame Render Δ: {frame_delta:.3f}s", style="blue"))
+        lines.append(Text(f"Frame Render Δ: {frame_delta:.3f}s", style="blue"))
     except Exception as e:
-        other_lines.append(Text(f"Frame Timing Error: {str(e)}", style="red"))
+        lines.append(Text(f"Frame Timing Error: {str(e)}", style="red"))
 
     try:
         if not hasattr(console, "last_loop_time"):
@@ -84,21 +87,10 @@ def build_dashboard_health_panel(console):
         drift = now - console.last_loop_time - REFRESH_INTERVAL
         console.last_loop_time = now
         drift_color = "green" if abs(drift) < 0.1 else "yellow" if abs(drift) < 0.5 else "red"
-        other_lines.append(Text(f"Loop Drift: {drift:+.3f}s", style=drift_color))
+        lines.append(Text(f"Loop Drift: {drift:+.3f}s", style=drift_color))
     except Exception as e:
-        other_lines.append(Text(f"Loop Drift Error: {str(e)}", style="red"))
+        lines.append(Text(f"Loop Drift Error: {str(e)}", style="red"))
 
-    other_lines.append(Text(f"Active Threads: {len(active_threads)}", style="cyan"))
-
-    try:
-        log_dir = "logs"
-        log_files = [f for f in os.listdir(log_dir) if os.path.isfile(os.path.join(log_dir, f))]
-        total_size = sum(os.path.getsize(os.path.join(log_dir, f)) for f in log_files)
-        other_lines.append(Text(f"Log Files: {len(log_files)} | Size: {total_size / 1024:.1f} KB", style="yellow"))
-    except Exception as e:
-        other_lines.append(Text(f"Log Folder Error: {str(e)}", style="red"))
-
-    # 🧩 Final panel assembly
-    body = Group(*thread_lines, *other_lines)
+    body = Group(*lines)
     return Panel(body, title="📊 Dashboard Runtime Monitor", border_style="grey37")
 
