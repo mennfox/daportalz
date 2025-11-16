@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "name": "GraphFruit",
+    "type": "Auto",
+    "breeder": "Fastbuds",
+    "propagation_date": "01/11/25",
+    "repot_date": null,
+    "progress": null,
+    "last_watered": null,
+    "status": "Unknown"
+  }
+]

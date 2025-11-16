@@ -1,60 +1,51 @@
-from rich.console import Console
-from rich.live import Live
-from rich.panel import Panel
-from rich.text import Text
-from time import sleep
-from modules.scd4x_module import SCD4xGlyph
+import time
+import csv
+import os
+from datetime import datetime
+from modules.scd4x_module import SCD4x  # renamed import, no 'Glyph'
 
-# ─── Setup ─────────────────────────────────────────────────────────
-console = Console()
-scd4x = SCD4xGlyph()
-max_points = 30
-temp_data = []
-hum_data = []
+# ─── Initialize SCD4x ───────────────────────────────────────────────
+scd4x = SCD4x()
 
-def get_readings():
-    scd4x.update()
-    data = scd4x.get_latest()
-    temp = float(data["temperature"].split()[0]) if "°C" in data["temperature"] else 0.0
-    hum = float(data["humidity"].split()[0]) if "%" in data["humidity"] else 0.0
-    return temp, hum
+# ─── CSV Setup ──────────────────────────────────────────────────────
+os.makedirs("logs", exist_ok=True)
+log_file = "logs/scd4x_test_log.csv"
 
-def render_line(data, label, color, height=10):
-    if not data:
-        return Text(f"{label}: no data", style="dim")
+def log_scd4x(temp, humidity, co2):
+    """Append a row to CSV with timestamp + readings."""
+    try:
+        with open(log_file, mode="a", newline="") as file:
+            writer = csv.writer(file)
+            writer.writerow([
+                datetime.now().isoformat(),
+                f"{temp:.2f}",
+                f"{humidity:.2f}",
+                f"{co2:.0f}"
+            ])
+    except Exception as e:
+        print(f"CSV Logging Error: {e}")
 
-    max_val = max(data)
-    min_val = min(data)
-    span = max_val - min_val or 1
-    scaled = [int((val - min_val) / span * (height - 1)) for val in data]
+# ─── Main Loop ──────────────────────────────────────────────────────
+def run_scd4x_logger():
+    print("Starting SCD4x logger (20s interval)...")
+    while True:
+        scd4x.update()
+        scd = scd4x.get_latest()
 
-    lines = [f"{label:<6}"] + [""] * height
-    for i in range(len(data)):
-        for row in range(height):
-            if height - row - 1 == scaled[i]:
-                lines[row + 1] += "•"
-            else:
-                lines[row + 1] += " "
+        # Parse values safely
+        temp = float(scd["temperature"].split()[0]) if "°C" in scd.get("temperature", "") else None
+        hum  = float(scd["humidity"].split()[0]) if "%" in scd.get("humidity", "") else None
+        co2  = float(scd["co2"].split()[0]) if "ppm" in scd.get("co2", "") else None
 
-    return Text("\n".join(lines), style=color)
+        if temp and hum and co2:
+            print(f"{datetime.now().isoformat()} | Temp: {temp:.2f} °C | Hum: {hum:.2f} % | CO₂: {co2:.0f} ppm")
+            log_scd4x(temp, hum, co2)
+        else:
+            print(f"{datetime.now().isoformat()} | Invalid reading, skipping...")
 
-def run_live_graph():
-    with Live(console=console, refresh_per_second=4) as live:
-        while True:
-            temp, hum = get_readings()
-            temp_data.append(temp)
-            hum_data.append(hum)
-            if len(temp_data) > max_points:
-                temp_data.pop(0)
-                hum_data.pop(0)
-
-            temp_graph = render_line(temp_data, "Temp", "red")
-            hum_graph = render_line(hum_data, "Hum", "cyan")
-            combined = Text(f"{temp_graph}\n\n{hum_graph}")
-            panel = Panel(combined, title="🌡️ Live Temp & Hum", border_style="grey37")
-            live.update(panel)
-            sleep(10)
+        # Wait 20 seconds before next measurement
+        time.sleep(20)
 
 if __name__ == "__main__":
-    run_live_graph()
+    run_scd4x_logger()
 

@@ -1,239 +1,3 @@
-vi test.py
-cp test.py 7
-vi test.py
-vi plants.json 
-ls
-cp main.py m3
-vi main.py
-python3 -u main.py 
-vi main.py
-python3 -u main.py 
-vi main.py
-python3 -u main.py 
-vi main.py
-python3 -u main.py 
-vi main.py
-python3 -u main.py 
-cp test.py 8
-vi test.py
-python3 -u main.py 
-vi main.py 
-python3 -u main.py 
-vi main.py 
-python3 -u main.py 
-vi main.py 
-python3 -u main.py 
-vi plants.json
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-python3 -u main.py 
-i2cdetect -y 1
-ls
-cp test.py dpz.py 
-cp test.py 9
-vi test.py
-pkill -f test.py
-cp test.py dpz.py 
-python3 -u dpz.py 
-cd /tmp
-wget https://www.trekcore.com/audio/background/tng_bridge_1.mp3
-sudo cp tng_bridge_1.mp3 /home/pi/
-sudo pip3 install pygame  --break-system-packages
-cd /home/pi/
-cp test.py 10
-vi test.py
-ls *.mp3
-mv tng_bridge_1.mp3 s1.mp3
-vi test.py
-python3 -u test.py
-sudo apt-get update
-sudo apt-get install libsdl2-mixer-2.0-0
-sudo apt-get install libsdl2-dev libsdl2-image-2.0-0 libsdl2-ttf-2.0-0
-sudo apt-get update
-sudo vi /boot/config.txt 
-sudo vi /boot/firmware/config.txt 
-reboor
-reboot
-sudo reboot
-sudo raspi-config
-python3 -u test.py
-sudo reboot
-python3 -u test.py
-vi test.py
-python3 -u test.py
-sudo vi /boot/firmware/config.txt 
-sudo reboot
-sudo amixer cset numid=3 1
-aplay -l
-sudo amixer cset numid=3 1
-sudo amixer -c 0 scontents
-aplay /usr/share/sounds/alsa/Front_Center.wav 
-cl
-clear
-aplay /usr/share/sounds/alsa/Front_Center.wav 
-pwd
-python3 -u test.py 
-sudo vi /boot/firmware/config.txt 
-amixer cset numid=3 2
-reboot
-amixer cset numid=3 2
-amixer contents
-sudo vi /boot/firmware/config.txt 
-reboot
-sudo raspi-config
-sudo vi /boot/firmware/config.txt 
-shutdown -p
-shutdown 
-sudo halt -p
-sudo raspi-config
-sudo amixer cset numid=3 1
-amixer cset numid=3 1
-sudo raspi-config
-sudo apt install lightdm
-rebbot
-reboot
-raspi-config
-sudo raspi-config
-exit
-python3 -u test.py 
-btop
-python3 -u main.py 
-ls
-vi menu.py
-vi main.py
-vi main.py 
-python3 -u main.py 
-sudo vi ~/.bash_profile
-grep -r "python3" ~/.bash* ~/.profile ~/.zprofile ~/.zshrc
-sudo vi .profile
-ls
-cd backups/
-ls
-cd 1925
-ls
-mkdir sensors
-sudo mkdir sensors
-sudo mv * sensors/
-ls
-sudo mv sensors /home/pi/
-cd /home/pi/
-ls
-mv 13925 backups/
-mkdir 14925
-mv 1 2 3 4 5 6 7 8 9 10 11 14925/
-ls
-mv 14925 backups/
-ls -la
-ls
-mkdir bjson
-rm bjson/
-ls
-mv m1 m2 m3 backups/13925/
-ls
-cat pj
-ls
-mv jj backups/13925/
-mv pj backups/13925/
-ls
-cat port.py 
-ls
-cp *.py backups/14925/
-ls
-rm bjson/
-rm -r bjson/
-ls
-cp -r sensors backups/
-cd sensors/
-cd ads1115/
-ls
-cat m.py
-cd /home/pi/modules/
-vi moisture_chart.pu
-vi moisture_chart.py#
-vi moisture_chart.py
-cd ..
-vi test.py
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-pwd
-cd modules/
-ls
-mv h1 h2 h3 h4 ../backups/14925/
-ls
-mv h6 ../backups/14925/
-mv wateringold ../backups/14925/
-cp moisture_chart.py m1
-vi moisture_chart.py 
-python3 -u /home/pi/test.py 
-cd ..
-pwd
-python3 -u test.py 
-cd modules/
-vi moisture_chart.py 
-cd ..
-vi moisture_chart.py 
-python3 -u test.py 
-Soil Condition	Voltage Range (V)	Raw Value (approx)
-Saturated (very wet)	1.5 – 2.3	12000 – 19000
-Moist	2.3 – 2.8	19000 – 23000
-Dry	2.8 – 3.3	23000 – 26000+
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-cd modules/
-ls
-vi moisture_chart.py 
-clear
-cd ..
-python3 -u test.py 
-history
-cd modules/
-vi moisture_chart.py 
-cp moisture_chart.py m2
-vi moisture_chart.py 
-cp moisture_chart.py m3
-vi moisture_chart.py 
-cp moisture_chart.py m4
-vi moisture_chart.py 
-ls
-cp m3 moisture_chart.py 
-python3 -u /home/pi/sensors/ads1115/m.py 
-cd ..
-python3 -u main.py 
-cd modules/
-cat moisture_chart.py 
-cd ..
-python3 -u test.py
-clear
-cd modules/
-vi moisture_chart.py 
-sudo pkill -f test.py
-python3 -u test.py 
-vi moisture_chart.py 
-python3 -u test.py 
-pkill -f test.py
-python3 -u test.py
-pkill -f test.py
-python3 -u test.py
-clear
-python3 -u test.py
-reboot
-9
-clear
-reboot
-halt -p
-pwd
-cd modules/
-ls
-ls *.py
-cat system.metrics.py
-mkdir tmp
-mv system_metrics.py tmp/
-mv runtime_health_panel.py tmp/
-ls
-mv loopdrift.py tmp/
 cd ..
 ls
 mkdir 29925
@@ -1998,3 +1762,239 @@ python3 -u main.py
 clear
 python3 -u main.py 
 exit
+python3 -u main.py 
+cd modules/
+cat tent_environment_panel.py 
+ls
+cp tent_environment_panel.py tt8
+rm tt5
+rm tent_environment_panel.py 
+vi tent_environment_panel.py 
+rm .tent_environment_panel.py.swp 
+vi tent_environment_panel.py 
+cd ..
+ls
+cd modules/
+ls
+cd logs/
+ls
+cd ..
+ls
+cd logs/
+ls
+find ~ -name "scd4x_log.csv"
+cd ..
+ls
+cd ..
+ls
+cd logs
+ls
+cat scd4x_log.csv 
+ls
+cd ..
+ls
+cd modules
+cp tent_environment_panel.py t9
+rm tent_environment_panel.py 
+vi tent_environment_panel.py 
+pkill -f dpz.py
+cp tent_environment_panel.py t10
+rm tent_environment_panel.py 
+vi tent_environment_panel.py 
+rm tent_environment_panel.py 
+vi tent_environment_panel.py 
+pkill -f dpz.py
+cp tent_environment_panel.py t10
+rm tent_environment_panel.py 
+vi tent_environment_panel.py 
+pkill -f dpz.py
+vi tent_environment_panel.py 
+cp t10 tent_environment_panel.py 
+vi tent_environment_panel.py 
+pkill -f dpz.py
+vi tent_environment_panel.py 
+pkill -f dpz.py
+cd ..
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+cd modules/
+vi tent_environment_panel.py 
+pkill -f dpz.py
+rm tent_environment_panel.py 
+vi tent_environment_panel.py 
+cp tent_environment_panel.py t11
+vi tent_environment_panel.py 
+cd ../logs/
+ls
+tail -f scd4x_log.csv 
+cd ../modules/
+vi tent_environment_panel.py 
+pkill -f dpz.py
+pkill maim.py
+pkill -f main.py
+vi tent_environment_panel.py 
+pkill -f main.py
+pkill -f dpz.py
+cd ..
+pkill -f main.py
+pkill -f dpz.py
+sudo reboot
+cd logs
+tail -f scd4x_log.csv 
+cd ../modules/
+vi tent_environment_panel.py 
+cd ..
+cd logs/
+tail -f scd4x_log.csv 
+i2cdetect -y 1
+halt -p
+sudo halt -p
+pkill -f dpz.py
+python3 -u dpz.py 
+cd modules/
+ls
+ls la
+ls -la
+#
+cear
+cler
+clear
+ls -la
+cat tent_environment_panel.py 
+vi tent_environment_panel.py 
+exit
+python3 -u main.py 
+cd logs/
+ls
+cat scd4x_log.csv 
+pkill dzp.py
+tail -f scd4x_log.csv 
+pkill dzp.py
+tail -f scd4x_log.csv 
+cd ../modules/
+vi tent_environment_panel.py 
+cd ../logs/
+tail -f scd4x_log.csv 
+pkill dzp.py
+cd ../modules/
+vi tent_environment_panel.py 
+vi tent_heatmap_panel.py 
+vi tent_environment_panel.py 
+cd ../logs/
+tail -f scd4x_log.csv 
+cat scd4x_log.csv 
+cd ../modules/
+vi tent_environment_panel.py 
+tail -f ../logs/scd4x_log.csv 
+cp tent_environment_panel.py  te1
+vi tent_environment_panel.py 
+cp tent_environment_panel.py  te1
+vi tent_environment_panel.py 
+tail -f ../logs/scd4x_log.csv 
+sudo reboot
+python3 -u main.py 
+cd modules/
+vi tent_environment_panel.py 
+vi test.py
+python3 -u test.py
+rm test.py
+vi test.py
+python3 -u test.py
+rm test.py
+cd ..
+vi test.py
+python3 -u test.py 
+rm test.py
+vi test.py
+python3 -u test.py 
+rm test.py
+vi test.py
+python3 -u test.py 
+vi test.py
+cd modules/
+ls
+cp te1 tent_environment_panel.py 
+cd ..
+python3 -u dpz.py
+vi dpz.py
+python3 -u dpz.py
+reboot
+pkill -f dpz.py
+cd modules/
+rm tent_environment_panel.py 
+vi tent_environment_panel.py 
+rm tent_environment_panel.py 
+vi tent_environment_panel.py 
+rm tent_environment_panel.py 
+vi tent_environment_panel.py 
+rm tent_environment_panel.py 
+pkill -f dpz.py
+vi tent_environment_panel.py 
+pkill -f dpz.py
+rm tent_environment_panel.py 
+vi tent_environment_panel.py 
+rm tent_environment_panel.py 
+vi tent_environment_panel.py 
+pkill -f dpz.py
+rm tent_environment_panel.py 
+vi tent_environment_panel.py 
+python3 -u ../sensors/scd4x/scd.py 
+cat ../sensors/scd4x/scd.py 
+pkill -f dpz.py
+cp as7341_panel.py as1
+rm as7341_panel.py 
+vi as7341_panel.py 
+ls
+cat grow_watering_dashboard.py 
+cp grow_dashboard.py gd1
+vi grow_dashboard.py 
+rm grow_dashboard.py 
+vi grow_dashboard.py 
+cd ..
+ls
+cp watering_log.py wl1
+rm watering_log.py
+vi watering_log.py
+python3 -u main.py 
+cd modules/
+cp grow_dashboard.py gd2
+rm grow_dashboard.py 
+vi grow_dashboard.py 
+cd ..
+cp watering_log.py wl2
+rm watering_log.py 
+vi watering_log.py 
+pkill -f dpz.py
+pwd
+cp wl2 watering_log.py 
+cd modules/
+cp gd2 grow_dashboard.py 
+i2cdetect -y 1
+sudo reboot
+pythonm3 -u dpz.py 
+python3 -u dpz.py 
+i2cdtect -y 11
+i2cdtect -y 1
+i2cdetect -y 1
+halt -p
+sudo halt -p
+vi dpz.py
+python3 -u dpz.py
+ls
+cp wl1 watering_log.py 
+cd modules/
+cp gd1 grow_dashboard.py 
+cd ..
+python3 -u dpz.py
+i2cdetect -y 1
+python3 -u dpz.py
+cat watering_log.py 
+cd modules/
+rm grow_dashboard.py 
+vi grow_dashboard.py 
+cd ..
+rm watering_log.py 
+vi watering_log.py 
+python3 -u dpz.py 
+python3 -u main.py 

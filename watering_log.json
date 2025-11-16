@@ -110,5 +110,37 @@
     "uptake": "",
     "response_time_hr": 0.0,
     "leaf_status": "perky"
+  },
+  {
+    "timestamp": 1763059961.9884524,
+    "volume_ml": 500,
+    "method": "top",
+    "pot_size_l": 7.0,
+    "interval_days": 5,
+    "uptake": "slow",
+    "response_time_hr": 0.0,
+    "leaf_status": "perky"
+  },
+  {
+    "timestamp": 1763298642.1019838,
+    "volume_ml": 10,
+    "method": "both",
+    "pot_size_l": 7.0,
+    "interval_days": 0,
+    "uptake": "slow",
+    "response_time_hr": 2.0,
+    "leaf_status": "perky"
+  },
+  {
+    "timestamp": 1763305852.3658717,
+    "plant_name": "Auto Grapefruit",
+    "volume_ml": 10,
+    "method": "both",
+    "pot_size_l": 7.0,
+    "interval_days": 0,
+    "uptake": "slow",
+    "response_time_hr": 2.0,
+    "leaf_status": "perky",
+    "growth_stage": "Veg"
   }
 ]

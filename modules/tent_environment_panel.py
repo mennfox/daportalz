@@ -2,21 +2,14 @@ from rich.console import Console
 from rich.live import Live
 from rich.panel import Panel
 from rich.text import Text
-from datetime import datetime
-import csv
-import os
-import time
-
-from modules.scd4x_module import SCD4xGlyph
-from modules.bme280_module import get_bme280_stats
-from modules.zone_utils import sensor_zone_lines
-from modules.mood_palette import get_mood_lux_palette
-
 import adafruit_mcp9808
 import adafruit_adt7410
 import adafruit_bh1750
 import board
 import busio
+import time
+from modules.scd4x_module import SCD4xGlyph
+from modules.bme280_module import get_bme280_stats
 
 # ─── Initialize I2C and Sensors ─────────────────────────────────────
 i2c = busio.I2C(board.SCL, board.SDA)
@@ -27,14 +20,15 @@ scd4x = SCD4xGlyph()
 
 # ─── Threshold Zones ────────────────────────────────────────────────
 ZONES_TEMP = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
-ZONES_HUM = [(30, "sky_blue1"), (50, "cyan"), (70, "deep_sky_blue1"), (85, "steel_blue")]
 ZONES_CO2 = [(600, "blue"), (1000, "green"), (1500, "yellow"), (2000, "red")]
 ZONES_PRESSURE = [(980, "blue"), (1013, "green"), (1030, "yellow"), (1050, "red")]
+ZONES_LUX = [(50, "blue"), (200, "green"), (500, "yellow"), (1000, "red")]
 
-# ─── Buffers for Graph ─────────────────────────────────────────────
-temp_data = []
-hum_data = []
-max_points = 30
+# ─── Global Values ──────────────────────────────────────────────────
+co2_value = 0.0
+last_co2_update = 0
+last_pressure_update = 0
+last_lux_update = 0
 
 # ─── Heatmap Bar Renderer ───────────────────────────────────────────
 def render_heat_bar(temp, label, zones, width=30):
@@ -44,7 +38,7 @@ def render_heat_bar(temp, label, zones, width=30):
     block = blocks[index]
     color = next((c for t, c in reversed(zones) if temp >= t), "white")
     bar = block * width
-    return Text(f"{label:<18} {temp:>5.1f}°C  ", style="bold") + Text(bar, style=color)
+    return Text(f"{label:<18} {temp:>5.1f}°C ", style="bold") + Text(bar, style=color)
 
 # ─── Dial Gauge Renderer ────────────────────────────────────────────
 def render_dial_lines(value, label, max_value=100):
@@ -53,112 +47,78 @@ def render_dial_lines(value, label, max_value=100):
     arc_mid = "│               │"
     arc_bot = "|||||||||||||||||"
     pointer = " " * pointer_pos + "▲"
-
     if value < max_value * 0.33:
         color = "green"
     elif value < max_value * 0.66:
         color = "yellow"
     else:
         color = "red"
-
     return [
         f"[bold {color}]{label:^16}[/bold {color}]",
         f"[cyan]{arc_top}[/cyan]",
         f"[cyan]{arc_mid}[/cyan]",
         f"[cyan]{arc_bot}[/cyan]",
-        f"[{color}]{pointer}  {value:>5.1f}[/{color}]"
+        f"[{color}]{pointer} {value:>5.1f}[/{color}]"
     ]
-
-# ─── SCD4x Logger ───────────────────────────────────────────────────
-def log_scd4x_to_csv(temp, humidity):
-    try:
-        os.makedirs("logs", exist_ok=True)
-        with open("logs/scd4x_log.csv", mode="a", newline="") as file:
-            writer = csv.writer(file)
-            writer.writerow([datetime.now().isoformat(), f"{temp:.2f}", f"{humidity:.2f}"])
-    except Exception as e:
-        print(f"CSV Logging Error: {e}")
-
-# ─── Combined Line Graph with Grid ──────────────────────────────────
-def render_combined_graph(temp_data, hum_data, height=10):
-    if not temp_data or not hum_data:
-        return Text("Live Stats: no data", style="dim")
-
-    max_val = max(max(temp_data), max(hum_data))
-    min_val = min(min(temp_data), min(hum_data))
-    span = max_val - min_val or 1
-
-    temp_scaled = [int((val - min_val) / span * (height - 1)) for val in temp_data]
-    hum_scaled = [int((val - min_val) / span * (height - 1)) for val in hum_data]
-
-    lines = []
-    lines.append("[bold white]Live Stats[/bold white]  [red]● Temp[/red]  [cyan]● Hum[/cyan]  [magenta]● Overlap[/magenta]")
-    for row in range(height):
-        line = f"{max_val - (row * span / (height - 1)):>5.1f} | "
-        for i in range(len(temp_scaled)):
-            if height - row - 1 == temp_scaled[i] and height - row - 1 == hum_scaled[i]:
-                line += "[magenta]●[/magenta]"
-            elif height - row - 1 == temp_scaled[i]:
-                line += "[red]●[/red]"
-            elif height - row - 1 == hum_scaled[i]:
-                line += "[cyan]●[/cyan]"
-            else:
-                line += " "
-        lines.append(line)
-
-    # Horizontal axis
-    axis = "      └" + "".join(f"{i%10}" for i in range(len(temp_scaled)))
-    lines.append(axis)
-
-    return Text.from_markup("\n".join(lines))
 
 # ─── Panel Builder ──────────────────────────────────────────────────
 def build_tent_environment_panel():
-    scd4x.update()
-    scd = scd4x.get_latest()
-    bme = get_bme280_stats()
+    global co2_value, last_co2_update, last_pressure_update, last_lux_update
 
+    bme = get_bme280_stats()
     temp_mcp = mcp9808.temperature
     temp_adt = adt7410.temperature
     temp_bme = bme["Temperature"]
-    hum_bme = bme["Humidity"]
     pressure = bme["Pressure"]
-    co2 = float(scd["co2"].split()[0]) if "ppm" in scd["co2"] else 0.0
     lux = bh1750.lux
-    temp_scd = float(scd["temperature"].split()[0]) if "°C" in scd["temperature"] else 0.0
-    hum_scd = float(scd["humidity"].split()[0]) if "%" in scd["humidity"] else 0.0
 
-    log_scd4x_to_csv(temp_scd, hum_scd)
-
-    temp_data.append(temp_scd)
-    hum_data.append(hum_scd)
-    if len(temp_data) > max_points:
-        temp_data.pop(0)
-        hum_data.pop(0)
+    last_pressure_update = time.time()
+    last_lux_update = time.time()
 
     lines = []
+    # Heatmap bars
     lines.append(render_heat_bar(temp_mcp, "MCP9808 - UPPER", ZONES_TEMP))
     lines.append(render_heat_bar(temp_adt, "ADT7410 - MID", ZONES_TEMP))
     lines.append(render_heat_bar(temp_bme, "BME280 - LOWER", ZONES_TEMP))
-
-    co2_lines = render_dial_lines(co2, "Co₂", max_value=2000)
-    hpa_lines = render_dial_lines(pressure, "hPa", max_value=1050)
-    for l1, l2 in zip(co2_lines, hpa_lines):
-        lines.append(Text.from_markup(f"{l1:<25} {l2}"))
-
-    lines += sensor_zone_lines(hum_bme, ZONES_HUM, "BME280 - lower hum", "%", hum_bme)
-    lines += sensor_zone_lines(lux, get_mood_lux_palette(), "Lux", "Lux", lux)
-
     lines.append(Text("\n"))
-    lines.append(render_combined_graph(temp_data, hum_data))
+
+    # Horizontal dial layout with rightward centering
+    co2_lines = render_dial_lines(co2_value, "Co₂", max_value=2000)
+    hpa_lines = render_dial_lines(pressure, "hPa", max_value=1050)
+    lux_lines = render_dial_lines(lux, "Lux", max_value=1000)
+
+    pad = " " * 10  # adjust padding to center the row visually
+    for i in range(len(co2_lines)):
+        line = pad + f"{co2_lines[i]:<25} {hpa_lines[i]:<25} {lux_lines[i]}"
+        lines.append(Text.from_markup(line))
+
+    # Timestamp row
+    ts_pad = " " * 10
+    ts_line = (
+        ts_pad +
+        f"[dim]Last Co₂: {time.strftime('%H:%M:%S', time.localtime(last_co2_update))}[/dim]".ljust(25) +
+        f"[dim]Last hPa: {time.strftime('%H:%M:%S', time.localtime(last_pressure_update))}[/dim]".ljust(25) +
+        f"[dim]Last Lux: {time.strftime('%H:%M:%S', time.localtime(last_lux_update))}[/dim]"
+    )
+    lines.append(Text.from_markup("\n" + ts_line))
 
     return Panel(Text("\n").join(lines), title="🌍 Tent + Environment", border_style="grey37")
 
 # ─── Live Runner ────────────────────────────────────────────────────
 def run_live_panel():
+    global co2_value, last_co2_update
     console = Console()
+
     with Live(console=console, refresh_per_second=1, screen=True) as live:
         while True:
+            now = time.time()
+            # Only ping SCD4x every 20 seconds
+            if now - last_co2_update >= 20:
+                scd4x.update()
+                scd = scd4x.get_latest()
+                co2_value = float(scd["co2"].split()[0]) if "ppm" in scd["co2"] else 0.0
+                last_co2_update = now
+
             panel = build_tent_environment_panel()
             live.update(panel)
             time.sleep(10)
