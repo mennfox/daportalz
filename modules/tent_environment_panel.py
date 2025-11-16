@@ -16,13 +16,13 @@ i2c = busio.I2C(board.SCL, board.SDA)
 mcp9808 = adafruit_mcp9808.MCP9808(i2c)
 adt7410 = adafruit_adt7410.ADT7410(i2c)
 bh1750 = adafruit_bh1750.BH1750(i2c)
-scd4x = SCD4xGlyph()
-
+scd4x = SCD4xGlyph(warmup_seconds=20, max_retries=6, retry_interval=0.5)
 # ─── Threshold Zones ────────────────────────────────────────────────
 ZONES_TEMP = [(18, "blue"), (25, "green"), (28.5, "yellow"), (32, "red")]
 ZONES_CO2 = [(600, "blue"), (1000, "green"), (1500, "yellow"), (2000, "red")]
-ZONES_PRESSURE = [(980, "blue"), (1013, "green"), (1030, "yellow"), (1050, "red")]
-ZONES_LUX = [(50, "blue"), (200, "green"), (500, "yellow"), (1000, "red")]
+ZONES_PRESSURE = [(980, "blue"), (1013, "green"), (1100, "yellow"), (1200, "red")]
+
+ZONES_LUX = [(50, "blue"), (500, "green"), (1500, "yellow"), (3000, "red")]
 
 # ─── Global Values ──────────────────────────────────────────────────
 co2_value = 0.0
@@ -61,6 +61,15 @@ def render_dial_lines(value, label, max_value=100):
         f"[{color}]{pointer} {value:>5.1f}[/{color}]"
     ]
 
+def _refresh_co2_if_due(now: float, interval: float = 20.0):
+    global co2_value, last_co2_update
+    if now - last_co2_update >= interval:
+        reading = scd4x.update()
+        numeric = scd4x.get_latest_numeric()
+        if numeric["co2"] > 0.0 or "ppm" in reading.get("co2", ""):
+            co2_value = numeric["co2"]
+        last_co2_update = now
+
 # ─── Panel Builder ──────────────────────────────────────────────────
 def build_tent_environment_panel():
     global co2_value, last_co2_update, last_pressure_update, last_lux_update
@@ -84,8 +93,8 @@ def build_tent_environment_panel():
 
     # Horizontal dial layout with rightward centering
     co2_lines = render_dial_lines(co2_value, "Co₂", max_value=2000)
-    hpa_lines = render_dial_lines(pressure, "hPa", max_value=1050)
-    lux_lines = render_dial_lines(lux, "Lux", max_value=1000)
+    hpa_lines = render_dial_lines(pressure, "hPa", max_value=1200)
+    lux_lines = render_dial_lines(lux, "Lux", max_value=3000)
 
     pad = " " * 10  # adjust padding to center the row visually
     for i in range(len(co2_lines)):

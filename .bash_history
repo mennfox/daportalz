@@ -1,30 +1,3 @@
-cd ..
-ls
-mkdir 29925
-mv 1 2 29925/
-cp test.py 29925/
-cp dpz.py 29925/
-mv 29925 backups/
-ls
-cd modules/
-vi system_panel.py
-vi performance_panels.py
-ls
-rm performance_panels.py 
-vi  performance_panels.py
-python3 -u performance_panels.py 
-rm performance_panels.py 
-vi  performance_panels.py
-vi performance_panels.py 
-rm performance_panels.py 
-vi performance_panels.py 
-rm performance_panels.py 
-vi performance_panels.py 
-vi dashboard_monitor.py
-rm dashboard_monitor.py 
-vi i2c_panel.py
-vi dashboard_monitor.py
-ls
 cd logs
 ls
 ls -la
@@ -1998,3 +1971,30 @@ rm watering_log.py
 vi watering_log.py 
 python3 -u dpz.py 
 python3 -u main.py 
+cat plants.json 
+ls
+cp wl1 watering_log.py 
+cd modules/
+ls
+cp gd1 grow_dashboard.py 
+cd ..
+python3 -u dpz.py
+vi dpz.py 
+cd modules/
+vii grow_dashboard.py 
+vi grow_dashboard.py 
+cd ..
+python3 -u dpz.py 
+pkill -f dpz.py
+ls
+cp wl2 watering_log.py 
+cd modules/
+cp gd2 grow_dashboard.py 
+cat gd2
+pkill -f dpz.py
+cd
+ls
+python -m json.tool watering_log.json
+python -m json.tool plants.json
+pkill -f dpz.py
+htop
