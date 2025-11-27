@@ -142,5 +142,35 @@
     "response_time_hr": 2.0,
     "leaf_status": "perky",
     "growth_stage": "Veg"
+  },
+  {
+    "timestamp": 1763487485.6034448,
+    "volume_ml": 250,
+    "method": "top",
+    "pot_size_l": 7.0,
+    "interval_days": 3,
+    "uptake": "full",
+    "response_time_hr": 0.0,
+    "leaf_status": "perky"
+  },
+  {
+    "timestamp": 1763847329.5893965,
+    "volume_ml": 500,
+    "method": "top",
+    "pot_size_l": 7.0,
+    "interval_days": 4,
+    "uptake": "slow",
+    "response_time_hr": 1.0,
+    "leaf_status": "perky"
+  },
+  {
+    "timestamp": 1764260758.305881,
+    "volume_ml": 750,
+    "method": "top",
+    "pot_size_l": 7.0,
+    "interval_days": 3,
+    "uptake": "full",
+    "response_time_hr": 0.3,
+    "leaf_status": "perky"
   }
 ]

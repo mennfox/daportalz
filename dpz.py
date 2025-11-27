@@ -22,7 +22,7 @@ from modules.watering import get_last_watered_text
 from modules.dashboard_health import build_dashboard_health_panel
 from modules.height import height_bar
 from modules.tent_environment_panel import build_tent_environment_panel
-from modules.scd4x_panel import build_scd4x_panel
+# from modules.scd4x_panel import build_scd4x_panel
 from modules.system_panel import get_system_panel
 from modules.i2c_panel import build_i2c_panel, scan_i2c_loop
 from modules.grow_dashboard import build_grow_dashboard

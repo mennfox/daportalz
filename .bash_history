@@ -1,73 +1,3 @@
-cd logs
-ls
-ls -la
-vi dashboard_monitor.py
-cd ..
-vi dashboard_monitor.py
-cp dashboard_monitor.py dm1
-rm dashboard_monitor.py 
-vi dashboard_monitor.py
-rm dashboard_monitor.py 
-vi dashboard_monitor.py
-ls -la /tmp/
-cat /tmp/daportalz_logs/watchdog_20250929_195845.log 
-vi test.py
-rm dashboard_monitor.py 
-vi dashboard_monitor.py
-rm dashboard_monitor.py 
-vi dashboard_monitor.py
-python3 -u test.py 
-ls
-cp 4 test.py
-vi test.py
-python3 -u test.py 
-5
-python3 -u test.py 
-cp 4 test.py
-python3 -u test.py 
-cp 4 test.py 
-python3 -u tet.py
-python3 -u test.py
-python3 -u dpz.py
-reboot
-sudo reboot
-5
-python3 -u test.py
-exit
-ls
-mkdir 101125
-mv 1 2 3 4 101125/
-cp dpz.py 101125/
-cp test.py 101125/
-python3 -u main.py 
-ls
-ls -la
-clea
-clear
-[200~sudo git add .
-sudo git commit -m "Updates"
-sudo git add .
-sudo git commit -m "Updates"
-sudo git push origin master
-python3 -u test.py 
-cd modules/
-vi tent_pany.py
-vi tent_panel.py
-cd ..
-vi test.py
-cd modules/
-mv tent_panel.py atmos_tent_panel.py
-cd ..
-vi test.py
-cp test.py 1
-vi test.py
-python3 -u test.py
-vi test.py
-pip3 install utils --break-system-packages
-python3 -u test.py
-cd modules
-vi utils
-python3 -u test.py
 cd ..
 python3 -u test.py
 pwd
@@ -1998,3 +1928,73 @@ python -m json.tool watering_log.json
 python -m json.tool plants.json
 pkill -f dpz.py
 htop
+cd modules/
+rm gd2
+rm grow_dashboard.py 
+vi grow_dashboard.py 
+cd..
+cd ..
+rm watering_log.py
+vi watering_log.py
+cat watering_log.json 
+pkill -f dpz.py
+cat watering_log.json 
+cp wl1 watering_log.py 
+cd modules/
+cp gd1 grow_dashboard.py 
+cd ..
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+ython3 -u main.py 
+python3 -u dpz.py 
+ython3 -u main.py 
+python3 -u dpz.py 
+i2cdetect -y 1
+reboot
+sudo reboot
+cd modules/
+vi tent_environment_panel.py 
+pkill -f dpz.py
+vi tent_environment_panel.py 
+pkill -f dpz.py
+vi tent_environment_panel.py 
+pkill -f dpz.py
+vi tent_environment_panel.py 
+pkill -f dpz.py
+python3 -u ../sensors/scd4x/scd.py 
+python3
+cd ..
+python3
+cd modules/
+ls
+cat scd4x_module.py 
+rm scd4x_module.py 
+vi scd4x_module.py 
+vi tent_environment_panel.py 
+pkill -f dpz.py
+cat ../sensors/scd4x/scd.py 
+cd ..
+sudo git add .
+sudo git commit -m "Updates"
+sudo git push origin master
+cd modules/
+cp tent_environment_panel.py te2
+rm tent_environment_panel.py
+vi tent_environment_panel.py
+pkill -f dpz.py
+vi scd4x_module.py 
+kill -f dpz.py
+pkill -f dpz.py
+dpz.py
+python3 -u dpz.py
+vi dpz.py
+exit
+vi dpz.py
+python3 -u dpz.py
+ls
+python3 -u dpz.py
+exit
